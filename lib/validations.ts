@@ -21,4 +21,5 @@ export const buyoutInquirySchema = z.object({
 })
 
 export type BuyoutInquiryFormData = z.infer<typeof buyoutInquirySchema>
+export type BuyoutInquiryFormInput = z.input<typeof buyoutInquirySchema>
 

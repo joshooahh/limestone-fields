@@ -23,13 +23,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { buyoutInquirySchema, type BuyoutInquiryFormData } from '@/lib/validations'
+import {
+  buyoutInquirySchema,
+  type BuyoutInquiryFormData,
+  type BuyoutInquiryFormInput,
+} from '@/lib/validations'
 
 function BuyoutInquiryForm() {
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const form = useForm<BuyoutInquiryFormData>({
+  const form = useForm<BuyoutInquiryFormInput>({
     resolver: zodResolver(buyoutInquirySchema),
     defaultValues: {
       name: '',
