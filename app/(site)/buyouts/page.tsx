@@ -23,11 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import {
-  buyoutInquirySchema,
-  type BuyoutInquiryFormData,
-  type BuyoutInquiryFormInput,
-} from '@/lib/validations'
+import { buyoutInquirySchema, type BuyoutInquiryFormInput } from '@/lib/validations'
 
 function BuyoutInquiryForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -47,7 +43,7 @@ function BuyoutInquiryForm() {
     },
   })
 
-  const onSubmit = async (data: BuyoutInquiryFormData) => {
+  const onSubmit = async (data: BuyoutInquiryFormInput) => {
     setIsSubmitting(true)
     try {
       const response = await fetch('/api/buyout-inquiry', {
