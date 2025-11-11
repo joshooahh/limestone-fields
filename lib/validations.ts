@@ -12,12 +12,12 @@ export type WaitlistFormData = z.infer<typeof waitlistSchema>
 export const buyoutInquirySchema = z.object({
   name: z.string().min(1, 'Name is required'),
   email: z.string().email('Enter a valid email'),
-  phone: z.string().optional().default(''),
-  company: z.string().optional().default(''),
+  phone: z.string().default(''),
+  company: z.string().default(''),
   preferredDates: z.string().min(1, 'Preferred dates are required'),
   groupSize: z.coerce.number().min(1, 'Group size is required'),
   eventType: z.string().min(1, 'Event type is required'),
-  additionalDetails: z.string().optional().default(''),
+  additionalDetails: z.string().default(''),
 })
 
 export type BuyoutInquiryFormData = z.infer<typeof buyoutInquirySchema>
