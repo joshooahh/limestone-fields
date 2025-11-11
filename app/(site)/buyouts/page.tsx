@@ -171,7 +171,7 @@ function BuyoutInquiryForm() {
                       <Input
                         type="number"
                         min="1"
-                        value={field.value ?? ''}
+                        value={typeof field.value === 'number' ? String(field.value) : ''}
                         onChange={(event) => {
                           const value = event.target.value
                           field.onChange(value === '' ? undefined : Number(value))
