@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
@@ -24,26 +23,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-
-const buyoutSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().optional(),
-  company: z.string().optional(),
-  preferredDates: z.string().min(1, 'Preferred dates are required'),
-  groupSize: z.coerce.number().min(1, 'Group size is required'),
-  eventType: z.string().min(1, 'Event type is required'),
-  additionalDetails: z.string().optional(),
-})
-
-type BuyoutFormData = z.infer<typeof buyoutSchema>
+import { buyoutInquirySchema, type BuyoutInquiryFormData } from '@/lib/validations'
 
 function BuyoutInquiryForm() {
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const form = useForm<BuyoutFormData>({
-    resolver: zodResolver(buyoutSchema),
+  const form = useForm<BuyoutInquiryFormData>({
+    resolver: zodResolver(buyoutInquirySchema),
     defaultValues: {
       name: '',
       email: '',
@@ -56,7 +43,7 @@ function BuyoutInquiryForm() {
     },
   })
 
-  const onSubmit = async (data: BuyoutFormData) => {
+  const onSubmit = async (data: BuyoutInquiryFormData) => {
     setIsSubmitting(true)
     try {
       const response = await fetch('/api/buyout-inquiry', {
@@ -181,7 +168,15 @@ function BuyoutInquiryForm() {
                   <FormItem>
                     <FormLabel>Group Size *</FormLabel>
                     <FormControl>
-                      <Input type="number" min="1" {...field} />
+                      <Input
+                        type="number"
+                        min="1"
+                        value={field.value ?? ''}
+                        onChange={(event) => {
+                          const value = event.target.value
+                          field.onChange(value === '' ? undefined : Number(value))
+                        }}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -195,17 +190,17 @@ function BuyoutInquiryForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Event Purpose/Type *</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select event type" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="Executive Retreat">Executive Retreat</SelectItem>
-                      <SelectItem value="Creative Intensive">Creative Intensive</SelectItem>
-                      <SelectItem value="Wedding/Celebration">Wedding/Celebration</SelectItem>
-                      <SelectItem value="Other">Other</SelectItem>
+                      <SelectItem value="executive_retreat">Executive Retreat</SelectItem>
+                      <SelectItem value="creative_intensive">Creative Intensive</SelectItem>
+                      <SelectItem value="wedding_celebration">Wedding/Celebration</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -215,7 +210,7 @@ function BuyoutInquiryForm() {
 
             <FormField
               control={form.control}
-              name="additionalDetails"
+                name="additionalDetails"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Additional Details</FormLabel>
