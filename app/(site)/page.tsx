@@ -32,8 +32,8 @@ export default async function HomePage() {
           <ValueProp
             key={section._key}
             eyebrow={page?.title}
-            headline={section.headline}
-            body={section.body}
+            headline={section.headline ?? ''}
+            body={section.body ?? []}
           />
         ))
       ) : (
