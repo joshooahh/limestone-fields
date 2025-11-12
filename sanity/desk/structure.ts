@@ -1,4 +1,4 @@
-import type { StructureResolver } from 'sanity/structure'
+import type { StructureResolver } from 'sanity/desk'
 
 export const structure: StructureResolver = (S) =>
   S.list()
