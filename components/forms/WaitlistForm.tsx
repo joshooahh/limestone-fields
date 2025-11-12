@@ -14,7 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { waitlistSchema, type WaitlistFormData } from '@/lib/validations'
+import { waitlistSchema, type WaitlistFormInput } from '@/lib/validations'
 
 const INTEREST_OPTIONS = [
   'Weekend stays',
@@ -25,17 +25,19 @@ const INTEREST_OPTIONS = [
 
 export default function WaitlistForm() {
   const [submitted, setSubmitted] = useState(false)
-  const form = useForm<WaitlistFormData>({
+  const form = useForm<WaitlistFormInput>({
     resolver: zodResolver(waitlistSchema),
     defaultValues: { interests: [] },
   })
 
-  const onSubmit = async (data: WaitlistFormData) => {
+  const onSubmit = async (data: WaitlistFormInput) => {
     try {
+      const payload = waitlistSchema.parse(data)
+
       const response = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       })
 
       if (!response.ok) {
@@ -120,7 +122,7 @@ export default function WaitlistForm() {
                     <Checkbox
                       checked={field.value?.includes(interest)}
                       onCheckedChange={(checked) => {
-                        const value = new Set(field.value)
+                        const value = new Set(field.value ?? [])
                         if (checked) {
                           value.add(interest)
                         } else {

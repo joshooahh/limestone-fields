@@ -8,6 +8,7 @@ export const waitlistSchema = z.object({
 })
 
 export type WaitlistFormData = z.infer<typeof waitlistSchema>
+export type WaitlistFormInput = z.input<typeof waitlistSchema>
 
 export const buyoutInquirySchema = z.object({
   name: z.string().min(1, 'Name is required'),
