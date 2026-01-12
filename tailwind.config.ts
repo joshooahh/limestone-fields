@@ -28,6 +28,16 @@ const config: Config = {
 
         mono: ['var(--font-jetbrains)', 'Courier New', 'monospace'],
 
+        'abc-daily-slab': ['var(--font-abc-daily-slab)', 'serif'],
+
+        'abc-marfa': ['var(--font-abc-marfa)', 'sans-serif'],
+
+        'abc-marfa-mono': ['var(--font-abc-marfa-mono)', 'monospace'],
+
+        'messina-modern': ['var(--font-messina-modern)', 'sans-serif'],
+
+        'pp-kyoto': ['var(--font-pp-kyoto)', 'serif'],
+
       },
 
       colors: {
