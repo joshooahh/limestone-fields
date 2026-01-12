@@ -54,7 +54,14 @@ export interface CtaSection {
 }
 
 export interface CabinPreviewItem {
-  cabin?: { _ref: string; _type: 'reference' }
+  cabin?: {
+    _id: string
+    title: string
+    slug?: { current: string }
+    squareFeet: number
+    sleeps: string
+    bedType: string
+  }
   image?: Image
   description?: string
 }

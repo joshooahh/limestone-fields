@@ -30,7 +30,7 @@ const config: Config = {
         'special': ['var(--font-abc-daily-slab)', 'serif'],
         
         // Legacy mappings (keeping for backward compatibility)
-        serif: ['var(--font-messina-modern)', 'sans-serif'], // Now maps to headline
+        serif: ['var(--font-messina-modern)', 'serif'], // Now maps to headline
         sans: ['var(--font-abc-marfa)', 'sans-serif'], // Now maps to body
         mono: ['var(--font-abc-marfa-mono)', 'monospace'], // Now maps to subhead
         

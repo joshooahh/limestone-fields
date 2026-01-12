@@ -345,24 +345,6 @@ export default async function WeddingsPage() {
         </div>
       </section>
 
-      {/* Inquiry Form */}
-      <section className="py-16 md:py-24 bg-muted/30">
-        <div className="container max-w-4xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
-              Let&apos;s Talk About Your Celebration
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Not every wedding belongs here. But if you&apos;re looking for a weekend that 
-              feels less like a wedding and more like the best family reunion you&apos;ve ever 
-              had—this might be your place.
-            </p>
-          </div>
-
-          <WeddingInquiryForm />
-        </div>
-      </section>
-
       {/* Inquiry Form Section - Always show */}
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container max-w-4xl mx-auto px-6">

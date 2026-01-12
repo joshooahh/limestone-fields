@@ -66,7 +66,7 @@ export default async function HomePage() {
       <section className="py-24 md:py-32">
         <div className="container max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-serif text-foreground mb-6">
+            <h2 className="text-3xl md:text-5xl font-headline text-foreground mb-6">
               Space to Think. Room to Breathe.
             </h2>
             <Separator className="max-w-24 mx-auto" />
@@ -125,7 +125,7 @@ export default async function HomePage() {
           <Card>
             <CardContent className="p-12 md:p-16 space-y-8">
               <div className="text-center space-y-4">
-                <h2 className="text-3xl md:text-4xl font-serif text-foreground">
+                <h2 className="text-3xl md:text-4xl font-headline text-foreground">
                   Come for the Space. Stay for What It Shows You.
                 </h2>
                 <Separator className="max-w-24 mx-auto" />
@@ -161,7 +161,7 @@ export default async function HomePage() {
       <section className="py-24 md:py-32">
         <div className="container max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-serif text-foreground mb-4">
+            <h2 className="text-3xl md:text-5xl font-headline text-foreground mb-4">
               Ten Cabins. Two Styles.
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -179,7 +179,7 @@ export default async function HomePage() {
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-2xl font-serif text-foreground mb-2">
+                    <h3 className="text-2xl font-headline text-foreground mb-2">
                       Standard Cabin
                     </h3>
                     <p className="text-sm text-muted-foreground">
@@ -207,7 +207,7 @@ export default async function HomePage() {
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-2xl font-serif text-foreground mb-2">
+                    <h3 className="text-2xl font-headline text-foreground mb-2">
                       Cabin Suite
                     </h3>
                     <p className="text-sm text-muted-foreground">
@@ -235,7 +235,7 @@ export default async function HomePage() {
       <section className="py-24 md:py-32 bg-muted/30">
         <div className="container max-w-4xl mx-auto px-6 text-center">
           <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground">
+            <h2 className="text-3xl md:text-4xl font-headline text-foreground">
               For Celebrations That Feel Like Gatherings
             </h2>
             <Separator className="max-w-24 mx-auto" />
@@ -265,7 +265,7 @@ export default async function HomePage() {
       <section className="py-24 md:py-32">
         <div className="container max-w-4xl mx-auto px-6 text-center">
           <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground">
+            <h2 className="text-3xl md:text-4xl font-headline text-foreground">
               Two Hours from Everywhere. A World Away from Everything.
             </h2>
             <Separator className="max-w-24 mx-auto" />
