@@ -1,28 +1,49 @@
+import { client } from '@/sanity/lib/client'
+import { pageQuery } from '@/sanity/queries'
+import type { PageDocument } from '@/sanity/types'
+import Hero from '@/components/sections/Hero'
+import PageSections from '@/components/sections/PageSections'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 
-export default function StoryPage() {
+export default async function StoryPage() {
+  const storyPage = await client.fetch<PageDocument | null>(pageQuery, { slug: 'story' })
+
   return (
     <main>
       {/* Hero */}
-      <section className="relative py-24 md:py-32 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container max-w-4xl mx-auto px-6 text-center space-y-6">
-          <div className="space-y-2">
-            <p className="text-sm text-muted-foreground uppercase tracking-wider">Our Story</p>
-            <h1 className="text-4xl md:text-6xl font-serif text-foreground">Why Limestone Fields Exists</h1>
+      {storyPage?.heroHeadline || storyPage?.heroSubhead ? (
+        <Hero
+          headline={storyPage.heroHeadline ?? 'Why Limestone Fields Exists'}
+          subhead={storyPage.heroSubhead ?? 'The land came first. Everything else followed.'}
+          eyebrow="Our Story"
+        />
+      ) : (
+        <section className="relative py-24 md:py-32 bg-gradient-to-b from-muted/50 to-background">
+          <div className="container max-w-4xl mx-auto px-6 text-center space-y-6">
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground uppercase tracking-wider">Our Story</p>
+              <h1 className="text-4xl md:text-6xl font-headline text-foreground">Why Limestone Fields Exists</h1>
+            </div>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              The land came first. Everything else followed.
+            </p>
           </div>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            The land came first. Everything else followed.
-          </p>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* Dynamic Sections from Sanity */}
+      {storyPage?.sections && storyPage.sections.length > 0 ? (
+        <PageSections sections={storyPage.sections} />
+      ) : (
+        <>
 
       {/* Philosophy Section */}
       <section className="py-16 md:py-24">
         <div className="container max-w-4xl mx-auto px-6">
           <Card>
             <CardContent className="p-8 md:p-12 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-serif text-foreground">A Place Built on Pause</h2>
+              <h2 className="text-3xl md:text-4xl font-headline text-foreground">A Place Built on Pause</h2>
               <Separator />
               <div className="prose prose-lg max-w-none space-y-4 text-muted-foreground">
                 <p>
@@ -55,7 +76,7 @@ export default function StoryPage() {
         <div className="container max-w-4xl mx-auto px-6">
           <Card>
             <CardContent className="p-8 md:p-12 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-serif text-foreground">The Land</h2>
+              <h2 className="text-3xl md:text-4xl font-headline text-foreground">The Land</h2>
               <Separator />
               <div className="prose prose-lg max-w-none space-y-4 text-muted-foreground">
                 <p>1,200 feet of Lake Limestone frontage. Open sky. Tough ground that gives reluctantly but gives deep.</p>
@@ -81,7 +102,7 @@ export default function StoryPage() {
         <div className="container max-w-4xl mx-auto px-6">
           <Card>
             <CardContent className="p-8 md:p-12 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-serif text-foreground">The Farm (Coming 2026)</h2>
+              <h2 className="text-3xl md:text-4xl font-headline text-foreground">The Farm (Coming 2026)</h2>
               <Separator />
               <div className="prose prose-lg max-w-none space-y-4 text-muted-foreground">
                 <p>We&rsquo;re building a working farm. Not for show—for real.</p>
@@ -110,7 +131,7 @@ export default function StoryPage() {
         <div className="container max-w-4xl mx-auto px-6">
           <Card>
             <CardContent className="p-8 md:p-12 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-serif text-foreground">How We Build</h2>
+              <h2 className="text-3xl md:text-4xl font-headline text-foreground">How We Build</h2>
               <Separator />
               <div className="prose prose-lg max-w-none space-y-4 text-muted-foreground">
                 <p>Every cabin at Limestone Fields follows what we call &quot;80/20 luxury.&quot;</p>
@@ -140,7 +161,7 @@ export default function StoryPage() {
       <section className="py-16 md:py-24">
         <div className="container max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">What We Stand For</h2>
+            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">What We Stand For</h2>
             <Separator className="max-w-24 mx-auto" />
           </div>
 
@@ -188,10 +209,10 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Footer CTA */}
+      {/* Footer CTA - Fallback */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/30">
         <div className="container max-w-4xl mx-auto px-6 text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-serif text-foreground">Come see for yourself.</h2>
+          <h2 className="text-3xl md:text-4xl font-headline text-foreground">Come see for yourself.</h2>
           <p className="text-lg text-muted-foreground">Opening Spring 2026. Join the waitlist for early access.</p>
           <div className="pt-4">
             <a
@@ -203,6 +224,8 @@ export default function StoryPage() {
           </div>
         </div>
       </section>
+        </>
+      )}
     </main>
   )
 }

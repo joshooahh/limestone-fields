@@ -1,31 +1,66 @@
+import { client } from '@/sanity/lib/client'
+import { pageQuery } from '@/sanity/queries'
+import type { PageDocument } from '@/sanity/types'
+import Hero from '@/components/sections/Hero'
+import PageSections from '@/components/sections/PageSections'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import Image from 'next/image'
+import { urlForImage } from '@/sanity/lib/image'
+import Link from 'next/link'
 
-export default function HomePage() {
+export default async function HomePage() {
+  const homePage = await client.fetch<PageDocument | null>(pageQuery, { slug: 'home' })
   return (
     <main>
       {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center justify-center px-6 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container max-w-4xl mx-auto text-center space-y-8">
-          <div className="space-y-4">
-            <h1 className="text-5xl md:text-7xl font-serif text-foreground leading-tight">
-              Quiet Ground for Honest Work
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              A collection of cabins on Lake Limestone. Designed for rest, reflection, 
-              and the kind of clarity that comes from being still.
-            </p>
+      {homePage?.heroHeadline || homePage?.heroSubhead ? (
+        <Hero
+          headline={homePage.heroHeadline ?? 'Quiet Ground for Honest Work'}
+          subhead={homePage.heroSubhead ?? 'A collection of cabins on Lake Limestone. Designed for rest, reflection, and the kind of clarity that comes from being still.'}
+          ctaText={homePage.heroCtaText ?? 'Opening Spring 2026 — Join the Waitlist'}
+          ctaHref={homePage.heroCtaHref ?? '/contact'}
+        />
+      ) : (
+        <section className="relative min-h-[90vh] flex items-center justify-center px-6 bg-gradient-to-b from-muted/50 to-background">
+          {homePage?.heroImage && (
+            <div className="absolute inset-0 z-0">
+              <Image
+                src={urlForImage(homePage.heroImage).width(1920).height(1080).url()}
+                alt=""
+                fill
+                className="object-cover opacity-20"
+                priority
+              />
+            </div>
+          )}
+          <div className="container max-w-4xl mx-auto text-center space-y-8 relative z-10">
+            <div className="space-y-4">
+              <h1 className="text-5xl md:text-7xl font-headline text-foreground leading-tight">
+                Quiet Ground for Honest Work
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                A collection of cabins on Lake Limestone. Designed for rest, reflection, 
+                and the kind of clarity that comes from being still.
+              </p>
+            </div>
+            <div className="pt-6">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-10 text-base"
+              >
+                Opening Spring 2026 — Join the Waitlist
+              </Link>
+            </div>
           </div>
-          <div className="pt-6">
-            <a 
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-10 text-base"
-            >
-              Opening Spring 2026 — Join the Waitlist
-            </a>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* Dynamic Sections from Sanity */}
+      {homePage?.sections && homePage.sections.length > 0 ? (
+        <PageSections sections={homePage.sections} />
+      ) : (
+        <>
 
       {/* Value Proposition */}
       <section className="py-24 md:py-32">
@@ -242,11 +277,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer CTA */}
+      {/* Footer CTA - Fallback */}
       <section className="py-24 md:py-32 bg-gradient-to-b from-background to-muted/30">
         <div className="container max-w-4xl mx-auto px-6 text-center space-y-8">
           <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground">
+            <h2 className="text-3xl md:text-4xl font-headline text-foreground">
               Opening Spring 2026
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -255,15 +290,17 @@ export default function HomePage() {
             </p>
           </div>
           <div>
-            <a 
+            <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-10 text-base"
             >
               Join the Waitlist
-            </a>
+            </Link>
           </div>
         </div>
       </section>
+        </>
+      )}
     </main>
   )
 }

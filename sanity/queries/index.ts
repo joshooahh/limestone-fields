@@ -51,7 +51,46 @@ export const pageQuery = groq`
     title,
     heroHeadline,
     heroSubhead,
-    sections,
+    heroImage,
+    heroCtaText,
+    heroCtaHref,
+    sections[] {
+      _type,
+      _key,
+      // Fetch all possible fields - TypeScript will handle type discrimination
+      headline,
+      body,
+      introText,
+      cards[] {
+        headline,
+        body
+      },
+      image,
+      caption,
+      alt,
+      buttonText,
+      buttonHref,
+      variant,
+      subhead,
+      cabins[] {
+        cabin-> {
+          _id,
+          title,
+          slug,
+          squareFeet,
+          sleeps,
+          bedType
+        },
+        image,
+        description
+      },
+      leftHeadline,
+      leftBody,
+      rightHeadline,
+      rightBody,
+      leftImage,
+      rightImage
+    },
     seo
   }
 `

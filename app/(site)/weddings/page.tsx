@@ -1,267 +1,31 @@
-'use client'
-
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { client } from '@/sanity/lib/client'
+import { pageQuery } from '@/sanity/queries'
+import type { PageDocument } from '@/sanity/types'
+import Hero from '@/components/sections/Hero'
+import PageSections from '@/components/sections/PageSections'
+import WeddingInquiryForm from '@/components/forms/WeddingInquiryForm'
+import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
 
-const weddingSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().default(''),
-  partnerName: z.string().default(''),
-  weddingDate: z.string().min(1, 'Wedding date is required'),
-  guestCount: z.coerce.number().min(1, 'Guest count is required'),
-  additionalDetails: z.string().default(''),
-})
-
-type WeddingFormInput = z.input<typeof weddingSchema>
-
-function WeddingInquiryForm() {
-  const [submitted, setSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const form = useForm<WeddingFormInput>({
-    resolver: zodResolver(weddingSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      partnerName: '',
-      weddingDate: '',
-      guestCount: 0,
-      additionalDetails: '',
-    },
-  })
-
-  const onSubmit = async (data: WeddingFormInput) => {
-    setIsSubmitting(true)
-    try {
-      // Convert to buyout inquiry format with eventType: "Wedding/Celebration"
-      const buyoutData = {
-        name: data.name,
-        email: data.email,
-        phone: data.phone || '',
-        company: data.partnerName ? `Wedding: ${data.name} & ${data.partnerName}` : `Wedding: ${data.name}`,
-        preferredDates: data.weddingDate,
-        groupSize: data.guestCount,
-        eventType: 'Wedding/Celebration',
-        additionalDetails: data.additionalDetails || '',
-      }
-
-      const response = await fetch('/api/buyout-inquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(buyoutData),
-      })
-
-      if (response.ok) {
-        setSubmitted(true)
-      }
-    } catch (error) {
-      console.error('Form submission error:', error)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  if (submitted) {
-    return (
-      <Card className="max-w-2xl mx-auto">
-        <CardContent className="p-12 text-center space-y-4">
-          <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
-            <svg
-              className="w-8 h-8 text-primary"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-          </div>
-          <h3 className="text-2xl font-serif text-foreground">
-            Thank you for your inquiry
-          </h3>
-          <p className="text-muted-foreground">
-            We&apos;re excited to learn more about your celebration. We&apos;ll send you 
-            detailed information and pricing within 2 business days.
-          </p>
-        </CardContent>
-      </Card>
-    )
-  }
-
-  return (
-    <Card className="max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle className="text-2xl font-serif">Start the Conversation</CardTitle>
-        <p className="text-sm text-muted-foreground">
-          Tell us about your celebration and we&apos;ll send you everything you need to know.
-        </p>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Your Name *</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="partnerName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Partner&apos;s Name</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email *</FormLabel>
-                    <FormControl>
-                      <Input type="email" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone</FormLabel>
-                    <FormControl>
-                      <Input type="tel" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="weddingDate"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Wedding Date *</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g. October 15, 2026" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="guestCount"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Guest Count *</FormLabel>
-                    <FormControl>
-                      <Input 
-                        type="number" 
-                        min="1" 
-                        max="150" 
-                        {...field}
-                        value={typeof field.value === 'number' ? String(field.value) : ''}
-                        onChange={(e) => field.onChange(e.target.value === '' ? 0 : Number(e.target.value))}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <FormField
-              control={form.control}
-              name="additionalDetails"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Tell Us About Your Vision</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="What drew you to Limestone Fields? What matters most to you about your celebration?"
-                      className="min-h-32"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? 'Sending...' : 'Send Inquiry'}
-            </Button>
-
-            <p className="text-xs text-muted-foreground text-center">
-              Wedding weekends include exclusive use of the entire property from Friday 
-              arrival through Sunday departure. We&apos;ll respond within 2 business days 
-              with detailed information and pricing.
-            </p>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
-  )
-}
-
-export default function WeddingsPage() {
+export default async function WeddingsPage() {
+  const weddingsPage = await client.fetch<PageDocument | null>(pageQuery, { slug: 'weddings' })
   return (
     <main>
       {/* Hero */}
+      {weddingsPage?.heroHeadline || weddingsPage?.heroSubhead ? (
+        <Hero
+          headline={weddingsPage.heroHeadline ?? 'Your People. Our Land. One Weekend.'}
+          subhead={weddingsPage.heroSubhead ?? 'A lakefront property where celebrations feel less like productions and more like gatherings.'}
+          eyebrow="Weddings at Limestone Fields"
+        />
+      ) : (
       <section className="relative py-24 md:py-32 bg-gradient-to-b from-muted/50 to-background">
         <div className="container max-w-4xl mx-auto px-6 text-center space-y-6">
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground uppercase tracking-wider">
               Weddings at Limestone Fields
             </p>
-            <h1 className="text-4xl md:text-6xl font-serif text-foreground">
+              <h1 className="text-4xl md:text-6xl font-headline text-foreground">
               Your People. Our Land. One Weekend.
             </h1>
           </div>
@@ -271,6 +35,13 @@ export default function WeddingsPage() {
           </p>
         </div>
       </section>
+      )}
+
+      {/* Dynamic Sections from Sanity */}
+      {weddingsPage?.sections && weddingsPage.sections.length > 0 ? (
+        <PageSections sections={weddingsPage.sections} />
+      ) : (
+        <>
 
       {/* Overview */}
       <section className="py-16 md:py-24">
@@ -303,7 +74,7 @@ export default function WeddingsPage() {
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
               For Couples Who Want
             </h2>
             <Separator className="max-w-24 mx-auto" />
@@ -388,7 +159,7 @@ export default function WeddingsPage() {
       <section className="py-16 md:py-24">
         <div className="container max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
               What&apos;s Included
             </h2>
             <Separator className="max-w-24 mx-auto" />
@@ -449,7 +220,7 @@ export default function WeddingsPage() {
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
               What You Provide
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -502,7 +273,7 @@ export default function WeddingsPage() {
       <section className="py-16 md:py-24">
         <div className="container max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
               Practical Details
             </h2>
             <Separator className="max-w-24 mx-auto" />
@@ -511,21 +282,21 @@ export default function WeddingsPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <Card>
               <CardContent className="p-8 text-center space-y-3">
-                <div className="text-3xl font-serif text-foreground">75-150</div>
+                <div className="text-3xl font-headline text-foreground">75-150</div>
                 <p className="text-sm text-muted-foreground">Guest Capacity</p>
               </CardContent>
             </Card>
 
             <Card>
               <CardContent className="p-8 text-center space-y-3">
-                <div className="text-3xl font-serif text-foreground">28-30</div>
+                <div className="text-3xl font-headline text-foreground">28-30</div>
                 <p className="text-sm text-muted-foreground">Overnight Guests</p>
               </CardContent>
             </Card>
 
             <Card>
               <CardContent className="p-8 text-center space-y-3">
-                <div className="text-3xl font-serif text-foreground">3 Days</div>
+                <div className="text-3xl font-headline text-foreground">3 Days</div>
                 <p className="text-sm text-muted-foreground">Fri-Sun Weekend</p>
               </CardContent>
             </Card>
@@ -578,7 +349,7 @@ export default function WeddingsPage() {
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
               Let&apos;s Talk About Your Celebration
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -592,10 +363,28 @@ export default function WeddingsPage() {
         </div>
       </section>
 
-      {/* Footer CTA */}
+      {/* Inquiry Form Section - Always show */}
+      <section className="py-16 md:py-24 bg-muted/30">
+        <div className="container max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
+              Let&apos;s Talk About Your Celebration
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Not every wedding belongs here. But if you&apos;re looking for a weekend that 
+              feels less like a wedding and more like the best family reunion you&apos;ve ever 
+              had—this might be your place.
+            </p>
+          </div>
+
+          <WeddingInquiryForm />
+        </div>
+      </section>
+
+      {/* Footer CTA - Fallback */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/30">
         <div className="container max-w-4xl mx-auto px-6 text-center space-y-4">
-          <h2 className="text-2xl font-serif text-foreground">
+          <h2 className="text-2xl font-headline text-foreground">
             Questions about weddings?
           </h2>
           <p className="text-muted-foreground">
@@ -606,6 +395,8 @@ export default function WeddingsPage() {
           </p>
         </div>
       </section>
+        </>
+      )}
     </main>
   )
 }

@@ -27,14 +27,72 @@ export interface ImageSection {
   _key: string
   image?: Image
   caption?: string
+  alt?: string
 }
 
-export type PageSection = TextSection | ImageSection
+export interface ValuePropCard {
+  headline?: string
+  body?: string
+}
+
+export interface ValuePropSection {
+  _type: 'valuePropSection'
+  _key: string
+  headline?: string
+  introText?: string
+  cards?: ValuePropCard[]
+}
+
+export interface CtaSection {
+  _type: 'ctaSection'
+  _key: string
+  headline?: string
+  body?: string
+  buttonText?: string
+  buttonHref?: string
+  variant?: 'primary' | 'secondary' | 'muted'
+}
+
+export interface CabinPreviewItem {
+  cabin?: { _ref: string; _type: 'reference' }
+  image?: Image
+  description?: string
+}
+
+export interface CabinPreviewSection {
+  _type: 'cabinPreviewSection'
+  _key: string
+  headline?: string
+  subhead?: string
+  cabins?: CabinPreviewItem[]
+}
+
+export interface TwoColumnSection {
+  _type: 'twoColumnSection'
+  _key: string
+  leftHeadline?: string
+  leftBody?: PortableTextBlock[]
+  rightHeadline?: string
+  rightBody?: PortableTextBlock[]
+  leftImage?: Image
+  rightImage?: Image
+}
+
+export type PageSection =
+  | TextSection
+  | ImageSection
+  | ValuePropSection
+  | CtaSection
+  | CabinPreviewSection
+  | TwoColumnSection
 
 export interface PageDocument {
   title?: string
   heroHeadline?: string
   heroSubhead?: string
+  heroImage?: Image
+  heroCtaText?: string
+  heroCtaHref?: string
   sections?: PageSection[]
   seo?: {
     metaTitle?: string
