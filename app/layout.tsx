@@ -161,7 +161,7 @@ export default function RootLayout({
 
     >
 
-      <body className={inter.className}>
+      <body className={abcMarfa.className}>
 
         {children}
 

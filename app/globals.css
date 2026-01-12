@@ -24,45 +24,53 @@
 
     
 
-    --background: 0 0% 100%;
+    /* Primary color palette - using HSL from RGB values */
+    /* Dark Grey/Black: #262624 (RGB: 38, 38, 36) */
+    /* Dark Teal/Blue-Grey: #253035 (RGB: 37, 48, 53) */
+    /* Olive Green/Brown: #686121 (RGB: 104, 97, 33) */
+    /* Light Peach/Cream: #F7E7D5 (RGB: 247, 231, 213) */
+    /* Light Blue/Grey-Blue: #B3C1CE (RGB: 179, 193, 206) */
+    /* Very Light Cream/Off-White: #F7F2E4 (RGB: 247, 242, 228) */
 
-    --foreground: 0 0% 15%;
+    --background: 44 54% 93%; /* Very Light Cream #F7F2E4 */
 
-    
-
-    --card: 0 0% 100%;
-
-    --card-foreground: 0 0% 15%;
-
-    
-
-    --popover: 0 0% 100%;
-
-    --popover-foreground: 0 0% 15%;
+    --foreground: 60 3% 15%; /* Dark Grey/Black #262624 */
 
     
 
-    --primary: 28 31% 43%;
+    --card: 44 54% 93%; /* Very Light Cream #F7F2E4 */
 
-    --primary-foreground: 0 0% 98%;
-
-    
-
-    --secondary: 28 22% 92%;
-
-    --secondary-foreground: 0 0% 15%;
+    --card-foreground: 60 3% 15%; /* Dark Grey/Black #262624 */
 
     
 
-    --muted: 28 22% 92%;
+    --popover: 44 54% 93%; /* Very Light Cream #F7F2E4 */
 
-    --muted-foreground: 0 0% 45%;
+    --popover-foreground: 60 3% 15%; /* Dark Grey/Black #262624 */
 
     
 
-    --accent: 28 22% 92%;
+    --primary: 199 18% 18%; /* Dark Teal/Blue-Grey #253035 */
 
-    --accent-foreground: 0 0% 15%;
+    --primary-foreground: 44 54% 93%; /* Very Light Cream #F7F2E4 */
+
+    
+
+    --secondary: 32 68% 90%; /* Light Peach/Cream #F7E7D5 */
+
+    --secondary-foreground: 60 3% 15%; /* Dark Grey/Black #262624 */
+
+    
+
+    --muted: 209 22% 75%; /* Light Blue/Grey-Blue #B3C1CE */
+
+    --muted-foreground: 199 18% 18%; /* Dark Teal/Blue-Grey #253035 */
+
+    
+
+    --accent: 54 52% 27%; /* Olive Green/Brown #686121 */
+
+    --accent-foreground: 44 54% 93%; /* Very Light Cream #F7F2E4 */
 
     
 
@@ -72,11 +80,11 @@
 
     
 
-    --border: 28 22% 88%;
+    --border: 209 22% 75%; /* Light Blue/Grey-Blue #B3C1CE */
 
-    --input: 28 22% 88%;
+    --input: 209 22% 75%; /* Light Blue/Grey-Blue #B3C1CE */
 
-    --ring: 28 31% 43%;
+    --ring: 199 18% 18%; /* Dark Teal/Blue-Grey #253035 */
 
     
 

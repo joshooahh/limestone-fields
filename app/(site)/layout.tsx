@@ -24,10 +24,10 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
     <div className="flex min-h-screen flex-col">
       <header className="border-b border-border bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
-          <Link href="/" className="text-lg font-serif tracking-tight text-foreground">
+          <Link href="/" className="text-lg font-headline tracking-tight text-foreground">
             Limestone Fields
           </Link>
-          <nav className="hidden items-center gap-6 text-sm uppercase tracking-[0.3rem] text-muted-foreground md:flex">
+          <nav className="hidden items-center gap-6 text-sm font-subhead uppercase tracking-[0.3rem] text-muted-foreground md:flex">
             {NAV_LINKS.map((link) => (
               <Link key={link.href} href={link.href} className="transition hover:text-foreground">
                 {link.label}

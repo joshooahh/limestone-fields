@@ -26,8 +26,8 @@ export default function Hero({
           {eyebrow && (
             <p className="text-xs uppercase tracking-[0.4rem] text-muted-foreground">{eyebrow}</p>
           )}
-          <h1 className="text-4xl md:text-6xl font-serif tracking-tight text-foreground">{headline}</h1>
-          <p className="text-lg md:text-xl leading-relaxed text-muted-foreground">{subhead}</p>
+          <h1 className="text-4xl md:text-6xl font-headline tracking-tight text-foreground">{headline}</h1>
+          <p className="text-lg md:text-xl font-subhead leading-relaxed text-muted-foreground">{subhead}</p>
           {ctaText && (
             <div className="flex items-center justify-center gap-3 pt-4">
               <Link

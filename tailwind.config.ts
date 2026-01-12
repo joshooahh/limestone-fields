@@ -22,20 +22,23 @@ const config: Config = {
 
       fontFamily: {
 
-        serif: ['var(--font-fraunces)', 'Georgia', 'Times New Roman', 'serif'],
-
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-
-        mono: ['var(--font-jetbrains)', 'Courier New', 'monospace'],
-
+        // Semantic font assignments
+        headline: ['var(--font-messina-modern)', 'sans-serif'],
+        subhead: ['var(--font-abc-marfa-mono)', 'monospace'],
+        body: ['var(--font-abc-marfa)', 'sans-serif'],
+        'body-secondary': ['var(--font-pp-kyoto)', 'serif'],
+        'special': ['var(--font-abc-daily-slab)', 'serif'],
+        
+        // Legacy mappings (keeping for backward compatibility)
+        serif: ['var(--font-messina-modern)', 'sans-serif'], // Now maps to headline
+        sans: ['var(--font-abc-marfa)', 'sans-serif'], // Now maps to body
+        mono: ['var(--font-abc-marfa-mono)', 'monospace'], // Now maps to subhead
+        
+        // Direct font access (still available)
         'abc-daily-slab': ['var(--font-abc-daily-slab)', 'serif'],
-
         'abc-marfa': ['var(--font-abc-marfa)', 'sans-serif'],
-
         'abc-marfa-mono': ['var(--font-abc-marfa-mono)', 'monospace'],
-
         'messina-modern': ['var(--font-messina-modern)', 'sans-serif'],
-
         'pp-kyoto': ['var(--font-pp-kyoto)', 'serif'],
 
       },
