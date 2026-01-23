@@ -1,0 +1,254 @@
+{
+  "$schema": "https://schemas.figmatokens.com/schema.json",
+  "name": "Limestone Fields Design Tokens",
+  "version": "1.0.0",
+  "tokens": {
+    "color": {
+      "limestone": {
+        "black": {
+          "value": "#262624",
+          "type": "color",
+          "description": "Primary black color"
+        },
+        "dark-blue": {
+          "value": "#253035",
+          "type": "color",
+          "description": "Dark teal/blue-grey - used for primary actions"
+        },
+        "olive": {
+          "value": "#686121",
+          "type": "color",
+          "description": "Olive green/brown - used for accents"
+        },
+        "light-blue": {
+          "value": "#B3C1CE",
+          "type": "color",
+          "description": "Light blue/grey-blue - used for borders and muted elements"
+        },
+        "cream": {
+          "value": "#F7F2E4",
+          "type": "color",
+          "description": "Very light cream/off-white - used for background"
+        },
+        "peach": {
+          "value": "#F7E7D5",
+          "type": "color",
+          "description": "Light peach/cream - used for secondary elements"
+        }
+      },
+      "semantic": {
+        "background": {
+          "value": "#F7F2E4",
+          "type": "color",
+          "description": "Page background"
+        },
+        "foreground": {
+          "value": "#262624",
+          "type": "color",
+          "description": "Primary text color"
+        },
+        "primary": {
+          "value": "#253035",
+          "type": "color",
+          "description": "Primary action color"
+        },
+        "primary-foreground": {
+          "value": "#F7F2E4",
+          "type": "color",
+          "description": "Text on primary background"
+        },
+        "secondary": {
+          "value": "#F7E7D5",
+          "type": "color",
+          "description": "Secondary background"
+        },
+        "secondary-foreground": {
+          "value": "#262624",
+          "type": "color",
+          "description": "Text on secondary background"
+        },
+        "accent": {
+          "value": "#686121",
+          "type": "color",
+          "description": "Accent color"
+        },
+        "accent-foreground": {
+          "value": "#F7F2E4",
+          "type": "color",
+          "description": "Text on accent background"
+        },
+        "muted": {
+          "value": "#B3C1CE",
+          "type": "color",
+          "description": "Muted elements and borders"
+        },
+        "muted-foreground": {
+          "value": "#253035",
+          "type": "color",
+          "description": "Text on muted background"
+        }
+      }
+    },
+    "typography": {
+      "headline": {
+        "fontFamily": {
+          "value": "Messina Modern",
+          "type": "fontFamily"
+        },
+        "fontSize": {
+          "value": "4rem",
+          "type": "fontSize",
+          "description": "Large headlines (64px)"
+        },
+        "fontWeight": {
+          "value": "400",
+          "type": "fontWeight"
+        },
+        "lineHeight": {
+          "value": "1.1",
+          "type": "lineHeight"
+        }
+      },
+      "subhead": {
+        "fontFamily": {
+          "value": "ABC Marfa Mono",
+          "type": "fontFamily"
+        },
+        "fontSize": {
+          "value": "1rem",
+          "type": "fontSize"
+        },
+        "fontWeight": {
+          "value": "500",
+          "type": "fontWeight"
+        },
+        "lineHeight": {
+          "value": "1.5",
+          "type": "lineHeight"
+        }
+      },
+      "body": {
+        "fontFamily": {
+          "value": "ABC Marfa",
+          "type": "fontFamily"
+        },
+        "fontSize": {
+          "value": "1rem",
+          "type": "fontSize"
+        },
+        "fontWeight": {
+          "value": "300",
+          "type": "fontWeight"
+        },
+        "lineHeight": {
+          "value": "1.6",
+          "type": "lineHeight"
+        }
+      },
+      "body-secondary": {
+        "fontFamily": {
+          "value": "PP Kyoto",
+          "type": "fontFamily"
+        },
+        "fontSize": {
+          "value": "1rem",
+          "type": "fontSize"
+        },
+        "fontWeight": {
+          "value": "300",
+          "type": "fontWeight"
+        },
+        "lineHeight": {
+          "value": "1.6",
+          "type": "lineHeight"
+        }
+      }
+    },
+    "spacing": {
+      "xs": {
+        "value": "0.25rem",
+        "type": "spacing",
+        "description": "4px"
+      },
+      "sm": {
+        "value": "0.5rem",
+        "type": "spacing",
+        "description": "8px"
+      },
+      "md": {
+        "value": "1rem",
+        "type": "spacing",
+        "description": "16px"
+      },
+      "lg": {
+        "value": "1.5rem",
+        "type": "spacing",
+        "description": "24px"
+      },
+      "xl": {
+        "value": "2rem",
+        "type": "spacing",
+        "description": "32px"
+      },
+      "2xl": {
+        "value": "3rem",
+        "type": "spacing",
+        "description": "48px"
+      },
+      "3xl": {
+        "value": "4rem",
+        "type": "spacing",
+        "description": "64px"
+      }
+    },
+    "borderRadius": {
+      "sm": {
+        "value": "0.25rem",
+        "type": "borderRadius",
+        "description": "4px"
+      },
+      "md": {
+        "value": "0.375rem",
+        "type": "borderRadius",
+        "description": "6px"
+      },
+      "lg": {
+        "value": "0.5rem",
+        "type": "borderRadius",
+        "description": "8px - default"
+      },
+      "xl": {
+        "value": "0.75rem",
+        "type": "borderRadius",
+        "description": "12px"
+      },
+      "full": {
+        "value": "9999px",
+        "type": "borderRadius",
+        "description": "Fully rounded"
+      }
+    },
+    "breakpoints": {
+      "sm": {
+        "value": "640px",
+        "type": "sizing"
+      },
+      "md": {
+        "value": "768px",
+        "type": "sizing"
+      },
+      "lg": {
+        "value": "1024px",
+        "type": "sizing"
+      },
+      "xl": {
+        "value": "1280px",
+        "type": "sizing"
+      },
+      "2xl": {
+        "value": "1536px",
+        "type": "sizing"
+      }
+    }
+  }
+}

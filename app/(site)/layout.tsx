@@ -7,6 +7,7 @@ import { siteSettingsQuery } from '@/sanity/queries'
 import type { SiteSettings } from '@/sanity/types'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import Logo from '@/components/ui/Logo'
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -24,9 +25,13 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
     <div className="flex min-h-screen flex-col">
       <header className="border-b border-border bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
-          <Link href="/" className="text-lg font-headline tracking-tight text-foreground">
-            Limestone Fields
-          </Link>
+          <Logo 
+            variant="primary" 
+            theme="dark" 
+            href="/" 
+            className="h-7 w-auto"
+            priority
+          />
           <nav className="hidden items-center gap-6 text-sm font-subhead uppercase tracking-[0.3rem] text-muted-foreground md:flex">
             {NAV_LINKS.map((link) => (
               <Link key={link.href} href={link.href} className="transition hover:text-foreground">
