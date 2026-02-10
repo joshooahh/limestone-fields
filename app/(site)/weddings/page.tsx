@@ -50,19 +50,27 @@ export default async function WeddingsPage() {
             <CardContent className="p-8 md:p-12 space-y-6">
               <div className="prose prose-lg max-w-none space-y-4 text-muted-foreground">
                 <p>
-                  Ten custom cabins for your closest people. A ceremony site on the water. 
-                  A barn for dinner and dancing. Working farm for authenticity you can taste. 
-                  And a weekend—not just a day—to be together without rushing.
+                  Ten cabins for your closest people.
+                  A ceremony site on the water.
+                  A barn for dinner and dancing.
+                  A working farm.
+                  And a weekend, not just a day, to be together without rushing.
                 </p>
                 <p>
-                  This is not a wedding factory. We host one event at a time. The property 
-                  is yours, the weekend is yours, and the land does most of the decorating.
+                  This is not a wedding factory.
+                  We host one event at a time.
+                  The property is yours.
+                  The weekend is yours.
+                  The land does most of the decorating.
                 </p>
-                <p className="text-foreground font-medium">
-                  Intimate scale. 75-150 guests. Friday arrival, Sunday departure. Bring 
-                  your own caterer, bring your own vision. We provide the space, the 
-                  accommodations, and the kind of setting that doesn&apos;t need much help 
-                  to feel special.
+                <p>
+                  Intimate scale.
+                  Seventy-five to one hundred fifty guests.
+                  Friday arrival, Sunday departure.
+                  Bring your own caterer.
+                  Bring your own vision.
+                  We provide the space, the accommodations,
+                  and the kind of setting that doesn&apos;t need much help to feel special.
                 </p>
               </div>
             </CardContent>
@@ -87,8 +95,9 @@ export default async function WeddingsPage() {
                   A Weekend, Not Just a Day
                 </h3>
                 <p className="text-muted-foreground">
-                  Friday arrival, Sunday departure. No shuttles, no hotel blocks. Your 
-                  people stay here with you.
+                  Friday arrival, Sunday departure.
+                  No shuttles, no hotel blocks.
+                  Your people stay here with you.
                 </p>
               </CardContent>
             </Card>
@@ -96,11 +105,13 @@ export default async function WeddingsPage() {
             <Card>
               <CardContent className="p-8 space-y-3">
                 <h3 className="text-lg font-semibold text-foreground">
-                  Natural Beauty Without Pinterest
+                  Natural Beauty
                 </h3>
                 <p className="text-muted-foreground">
-                  Lakefront ceremony site. Open sky. The land does the decorating. You 
-                  bring what matters.
+                  Lakefront ceremony site.
+                  Open sky.
+                  The land does the decorating.
+                  You bring what matters.
                 </p>
               </CardContent>
             </Card>
@@ -108,11 +119,11 @@ export default async function WeddingsPage() {
             <Card>
               <CardContent className="p-8 space-y-3">
                 <h3 className="text-lg font-semibold text-foreground">
-                  All-in-One Simplicity
+                  All in One Place
                 </h3>
                 <p className="text-muted-foreground">
-                  Ceremony, reception, and overnight accommodations in one place. Less 
-                  logistics, more presence.
+                  Ceremony, reception, and overnight accommodations in one place.
+                  Less logistics, more presence.
                 </p>
               </CardContent>
             </Card>
@@ -120,11 +131,12 @@ export default async function WeddingsPage() {
             <Card>
               <CardContent className="p-8 space-y-3">
                 <h3 className="text-lg font-semibold text-foreground">
-                  Privacy and Exclusive Use
+                  Privacy
                 </h3>
                 <p className="text-muted-foreground">
-                  One wedding at a time. The entire property is yours. No strangers, no 
-                  other events.
+                  One wedding at a time.
+                  The entire property is yours.
+                  No strangers, no other events.
                 </p>
               </CardContent>
             </Card>
@@ -132,10 +144,13 @@ export default async function WeddingsPage() {
             <Card>
               <CardContent className="p-8 space-y-3">
                 <h3 className="text-lg font-semibold text-foreground">
-                  Authentic Farm-to-Table
+                  The Farm
                 </h3>
                 <p className="text-muted-foreground">
-                  Working farm. Real agriculture. Not staged—lived in and tended daily.
+                  Working farm.
+                  Real agriculture.
+                  Not staged.
+                  Lived in and tended daily.
                 </p>
               </CardContent>
             </Card>

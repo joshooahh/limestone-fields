@@ -21,6 +21,41 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'phone',
+      title: 'Phone',
+      type: 'string',
+    }),
+    defineField({
+      name: 'address',
+      title: 'Physical Address',
+      type: 'string',
+      description: 'Display address for footer',
+    }),
+    defineField({
+      name: 'mapUrl',
+      title: 'Google Map URL',
+      type: 'url',
+      description: 'Link to Google Maps for the property',
+    }),
+    defineField({
+      name: 'socialLinks',
+      title: 'Social Links',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'label', type: 'string', title: 'Label', description: 'e.g. Instagram' },
+            { name: 'url', type: 'url', title: 'URL' },
+          ],
+          preview: {
+            select: { label: 'label' },
+            prepare: ({ label }: { label?: string }) => ({ title: label || 'Social link' }),
+          },
+        },
+      ],
+    }),
+    defineField({
       name: 'openingDate',
       title: 'Opening Date',
       type: 'string',

@@ -21,6 +21,13 @@ export const siteSettingsQuery = groq`
     title,
     description,
     email,
+    phone,
+    address,
+    mapUrl,
+    socialLinks[] {
+      label,
+      url
+    },
     openingDate,
     bookingsOpen,
     footerCta

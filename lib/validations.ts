@@ -24,3 +24,12 @@ export const buyoutInquirySchema = z.object({
 export type BuyoutInquiryFormData = z.infer<typeof buyoutInquirySchema>
 export type BuyoutInquiryFormInput = z.input<typeof buyoutInquirySchema>
 
+export const contactSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().email('Enter a valid email'),
+  message: z.string().min(1, 'Message is required'),
+})
+
+export type ContactFormData = z.infer<typeof contactSchema>
+export type ContactFormInput = z.input<typeof contactSchema>
+

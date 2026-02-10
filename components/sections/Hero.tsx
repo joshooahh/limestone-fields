@@ -14,7 +14,7 @@ interface HeroProps {
 export default function Hero({
   headline,
   subhead,
-  ctaText = 'Join the waitlist',
+  ctaText,
   ctaHref = '/contact',
   eyebrow,
 }: HeroProps) {

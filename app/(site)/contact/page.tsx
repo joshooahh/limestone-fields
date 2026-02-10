@@ -31,7 +31,8 @@ export default async function ContactPage() {
               </h1>
             </div>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              We&apos;re still building. But we&apos;re here.
+              We&apos;re still building.
+              But we&apos;re here.
             </p>
           </div>
         </section>
@@ -103,8 +104,9 @@ export default async function ContactPage() {
                       Detailed directions will be provided upon booking confirmation.
                     </p>
                     <p>
-                      General location: Lake Limestone is located in East Central Texas, 
-                      accessible via Highway 164. Specific property directions and gate codes 
+                      General location: Lake Limestone is in East Central Texas,
+                      accessible via Highway 164.
+                      Specific property directions and gate codes
                       will be sent to confirmed guests prior to arrival.
                     </p>
                   </div>

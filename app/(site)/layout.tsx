@@ -10,12 +10,10 @@ import { cn } from '@/lib/utils'
 import Logo from '@/components/ui/Logo'
 
 const NAV_LINKS = [
-  { href: '/', label: 'Home' },
   { href: '/stay', label: 'Stay' },
-  { href: '/weddings', label: 'Weddings' },
-  { href: '/buyouts', label: 'Buyouts' },
+  { href: '/experience', label: 'Experience' },
+  { href: '/private-events', label: 'Private Events' },
   { href: '/story', label: 'Story' },
-  { href: '/contact', label: 'Contact' },
 ]
 
 export default async function SiteLayout({ children }: { children: ReactNode }) {
@@ -46,7 +44,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
               'hidden items-center gap-1 rounded-full border md:inline-flex'
             )}
           >
-            {siteSettings?.bookingsOpen ? 'Book a cabin' : 'Join waitlist'}
+            {siteSettings?.bookingsOpen ? 'Book' : 'Join Waitlist'}
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
@@ -55,9 +53,11 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
       <main className="flex-1 bg-gradient-to-b from-background via-background to-muted/20">{children}</main>
 
       <Footer
-        title={siteSettings?.title}
-        description={siteSettings?.footerCta?.body ?? siteSettings?.description}
         email={siteSettings?.email}
+        phone={siteSettings?.phone}
+        address={siteSettings?.address}
+        mapUrl={siteSettings?.mapUrl}
+        socialLinks={siteSettings?.socialLinks}
         footerCta={{
           headline: siteSettings?.footerCta?.headline,
           body: siteSettings?.footerCta?.body,

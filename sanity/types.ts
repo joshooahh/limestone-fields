@@ -112,6 +112,10 @@ export interface SiteSettings {
   title?: string
   description?: string
   email?: string
+  phone?: string
+  address?: string
+  mapUrl?: string
+  socialLinks?: { label?: string; url?: string }[]
   openingDate?: string
   bookingsOpen?: boolean
   footerCta?: {

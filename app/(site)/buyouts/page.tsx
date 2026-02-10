@@ -46,13 +46,20 @@ export default async function BuyoutsPage() {
           <Card>
             <CardContent className="p-8 md:p-12 space-y-6">
               <div className="prose prose-lg max-w-none space-y-4 text-muted-foreground">
-                <p>Sometimes the best work happens when you can close the door to the rest of the world.</p>
                 <p>
-                  A full property buyout at Limestone Fields gives your team, your group, or your gathering complete access to
-                  all ten cabins, the 1,200-square-foot Commons Barn, and the entire lakefront property. No other guests. No
-                  distractions. Just your people and the space to do what you came to do.
+                  Sometimes the best work happens when you can close the door to the rest of the world.
                 </p>
-                <p className="text-foreground font-medium">We provide the setting. You bring the intention.</p>
+                <p>
+                  A full property buyout gives your team, your group, or your gathering complete access to
+                  all ten cabins, the Commons Barn, and the entire lakefront property.
+                  No other guests.
+                  No distractions.
+                  Just your people and the space to do what you came to do.
+                </p>
+                <p>
+                  We provide the setting.
+                  You bring the intention.
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -98,9 +105,11 @@ export default async function BuyoutsPage() {
             <CardContent className="p-8 space-y-4">
               <h3 className="text-xl font-semibold text-foreground">Your Event, Your Way</h3>
               <p className="text-muted-foreground">
-                This is an un-facilitated buyout. We prepare the property, provide the amenities, and give you the keys. What
-                happens next is entirely up to you. Bring your own facilitators, chefs, or programming—or simply use the space
-                as it is.
+                This is an un-facilitated buyout.
+                We prepare the property, provide the amenities, and give you the keys.
+                What happens next is entirely up to you.
+                Bring your own facilitators, chefs, or programming.
+                Or simply use the space as it is.
               </p>
             </CardContent>
           </Card>
@@ -120,8 +129,7 @@ export default async function BuyoutsPage() {
               <CardContent className="p-8 space-y-4">
                 <h3 className="text-xl font-semibold text-foreground">Executive Retreats</h3>
                 <p className="text-muted-foreground">
-                  Leadership teams seeking focused time for strategic planning, decision-making, and alignment away from the
-                  office.
+                  Leadership teams seeking focused time for strategic planning, decision-making, and alignment away from the office.
                 </p>
               </CardContent>
             </Card>
@@ -130,8 +138,7 @@ export default async function BuyoutsPage() {
               <CardContent className="p-8 space-y-4">
                 <h3 className="text-xl font-semibold text-foreground">Creative Intensives</h3>
                 <p className="text-muted-foreground">
-                  Writing retreats, design sprints, mastermind groups, and teams working on projects that require deep,
-                  uninterrupted focus.
+                  Writing retreats, design sprints, mastermind groups, and teams working on projects that require deep, uninterrupted focus.
                 </p>
               </CardContent>
             </Card>

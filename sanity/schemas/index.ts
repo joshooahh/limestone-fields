@@ -5,6 +5,7 @@ import policy from './policy'
 import siteSettings from './siteSettings'
 import waitlistSubmission from './waitlistSubmission'
 import buyoutInquiry from './buyoutInquiry'
+import contactSubmission from './contactSubmission'
 
 export const schemaTypes = [
   cabin,
@@ -14,4 +15,5 @@ export const schemaTypes = [
   siteSettings,
   waitlistSubmission,
   buyoutInquiry,
+  contactSubmission,
 ]
