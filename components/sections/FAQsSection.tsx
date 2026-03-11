@@ -3,8 +3,6 @@
 import { useState, useEffect } from 'react'
 import { PortableText } from '@portabletext/react'
 import type { Faq } from '@/sanity/types'
-import { Card, CardContent } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
 import {
   Accordion,
   AccordionContent,
@@ -30,40 +28,34 @@ export default function FAQsSection() {
     fetchFaqs()
   }, [])
 
-  return (
-    <section className="py-16 md:py-24">
-      <div className="container max-w-4xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
-            Frequently Asked Questions
-          </h2>
-          <Separator className="max-w-24 mx-auto" />
-        </div>
+  if (faqs.length === 0) return null
 
-        {faqs.length > 0 ? (
-          <Card>
-            <CardContent className="p-8">
-              <Accordion type="single" collapsible className="w-full">
-                {faqs.map((faq, index) => (
-                  <AccordionItem key={faq._id} value={`item-${index}`}>
-                    <AccordionTrigger className="text-left">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      {faq.answer && <PortableText value={faq.answer} />}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </CardContent>
-          </Card>
-        ) : (
-          <Card>
-            <CardContent className="p-12 text-center">
-              <p className="text-muted-foreground">Loading FAQs...</p>
-            </CardContent>
-          </Card>
-        )}
+  return (
+    <section className="py-24 md:py-32 bg-[#F9F4EE]">
+      <div className="container max-w-4xl mx-auto px-6">
+        <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] mb-5">
+          QUESTIONS
+        </p>
+        <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136] mb-12">
+          Frequently Asked
+        </h2>
+
+        <Accordion type="single" collapsible className="w-full space-y-0">
+          {faqs.map((faq, index) => (
+            <AccordionItem
+              key={faq._id}
+              value={`item-${index}`}
+              className="border-t border-[#253136]/20 last:border-b"
+            >
+              <AccordionTrigger className="text-left text-[18px] font-headline text-[#253136] leading-[1.37] py-5 hover:no-underline hover:opacity-70 transition">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-[17px] text-[#253136] leading-[1.6] pb-5">
+                {faq.answer && <PortableText value={faq.answer} />}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </section>
   )

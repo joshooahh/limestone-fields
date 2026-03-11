@@ -1,67 +1,136 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Hero from '@/components/sections/Hero'
-import { Separator } from '@/components/ui/separator'
-import { buttonVariants } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
-import { cn } from '@/lib/utils'
+
+export const metadata: Metadata = {
+  title: 'Private Events',
+  description:
+    'Limestone Fields hosts one event at a time — full property exclusive use. Intimate lakefront weddings (up to 150 guests), property buyouts, and private gatherings on Lake Limestone, Texas.',
+  openGraph: {
+    title: 'Private Events at Limestone Fields — Lake Limestone, TX',
+    description:
+      'Intimate weddings and private gatherings on Lake Limestone. Full property exclusive use. Up to 150 guests for ceremonies, 120 for receptions. BYOC model.',
+    url: 'https://limestonefields.com/private-events',
+  },
+  alternates: { canonical: 'https://limestonefields.com/private-events' },
+}
 
 export default function PrivateEventsPage() {
   return (
-    <main>
+    <>
       <Hero
         headline="Gather with Intention"
-        subhead="Limestone Fields is available for private events that value presence over production. We host one event at a time, allowing the space to remain calm and focused."
+        subhead="Limestone Fields is available for private events that value presence over production. We host one event at a time."
+        eyebrow="Private Events"
       />
 
-      {/* Weddings by the lake */}
-      <section className="py-20 md:py-28">
-        <div className="container max-w-6xl mx-auto px-6">
-          <div className="max-w-3xl mb-10">
-            <h2 className="text-2xl md:text-3xl font-headline text-foreground mb-6">
-              Weddings by the lake
+      {/* Weddings */}
+      <section className="bg-limestone-cream py-24 md:py-32">
+        <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-20 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
+          <div className="space-y-5">
+            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+              WEDDINGS
+            </p>
+            <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+              Your People. Our Land. One Weekend.
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Intimate weddings are welcomed at Limestone Fields. With on-site cabins and shared gathering spaces, guests can stay together and move through the weekend without rush.
+            <p className="text-[18px] text-[#253136] leading-[1.55]">
+              Intimate weddings are welcomed at Limestone Fields. With on-site cabins
+              and shared gathering spaces, guests can stay together and move through
+              the weekend without rush. No shuttles. No hotel blocks.
+              Just your people, in one place, for a few days.
+            </p>
+            <p className="font-body-secondary text-[17px] text-[#253136]/90 leading-[1.6] tracking-[0.03em] italic">
+              We host one event at a time. The property is yours.
+              The weekend is yours. The land does most of the decorating.
+            </p>
+            <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
+              <li>Lakefront Ceremony Setting</li>
+              <li>On-Site Guest Cabins for 28–30</li>
+              <li>Barn Common Area and Kitchen</li>
+              <li>Fire Pits and Outdoor Gathering Spaces</li>
+            </ul>
+            <Link
+              href="/weddings"
+              className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
+            >
+              Wedding Details
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+          <div className="space-y-5 md:pt-16">
+            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+              CAPACITY
+            </p>
+            <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+              Intimate Scale
+            </h2>
+            <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
+              <li>75–150 guests for the ceremony and reception</li>
+              <li>28–30 guests overnight in the cabins</li>
+              <li>Friday arrival through Sunday departure</li>
+              <li>One wedding at a time — full property exclusivity</li>
+            </ul>
+            <p className="text-[18px] text-[#253136] leading-[1.55]">
+              Small enough to feel personal. Large enough to gather everyone
+              who matters.
             </p>
           </div>
-          <ul className="space-y-2 text-muted-foreground mb-8">
-            <li>Lakefront ceremony setting</li>
-            <li>On-site guest cabins</li>
-            <li>Barn common area and kitchen</li>
-            <li>Fire pits and outdoor gathering spaces</li>
-          </ul>
-          <Link
-            href="/weddings"
-            className={cn(buttonVariants({ size: 'lg' }), 'inline-flex items-center gap-2 rounded-full')}
-          >
-            Wedding Inquiry
-            <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
       </section>
-
-      <Separator className="max-w-4xl mx-auto" />
 
       {/* Property buyouts */}
-      <section className="py-20 md:py-28">
-        <div className="container max-w-6xl mx-auto px-6">
-          <div className="max-w-3xl mb-10">
-            <h2 className="text-2xl md:text-3xl font-headline text-foreground mb-6">
-              Property buyouts
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Full property buyouts are available for retreats, creative gatherings, and private events. The cabins, barn, and land are reserved exclusively for your group.
+      <section className="py-24 md:py-32 bg-[#CBD2DA]">
+        <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-20 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
+          <div className="space-y-5">
+            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+              PROPERTY BUYOUTS
             </p>
+            <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+              The Whole Place. Just Your Group.
+            </h2>
+            <p className="text-[18px] text-[#253136] leading-[1.55]">
+              Full property buyouts are available for retreats, creative gatherings,
+              and private events. All ten cabins, the Commons Barn, and the entire
+              lakefront are reserved exclusively for your group.
+              No other guests. No distractions.
+            </p>
+            <p className="font-body-secondary text-[17px] text-[#253136]/90 leading-[1.6] tracking-[0.03em] italic">
+              We provide the setting. You bring the intention.
+            </p>
+            <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
+              <li>Executive and Leadership Retreats</li>
+              <li>Creative Intensives and Writing Retreats</li>
+              <li>Mastermind Groups and Team Offsites</li>
+              <li>Intimate Celebrations and Family Gatherings</li>
+            </ul>
+            <Link
+              href="/buyouts"
+              className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
+            >
+              Buyout Details
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </div>
-          <Link
-            href="/buyouts"
-            className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'inline-flex items-center gap-2 rounded-full border-foreground/20')}
-          >
-            Buyout Inquiry
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          <div className="space-y-5 md:pt-16">
+            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+              WHAT YOU GET
+            </p>
+            <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+              Full Exclusive Access
+            </h2>
+            <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
+              <li>All 10 Cabins (up to 32 guests)</li>
+              <li>1,200 sq ft Commons Barn with Full Kitchen</li>
+              <li>1,200 ft of Private Lakefront</li>
+              <li>Walking Paths and Open Land</li>
+              <li>Fire Pits and Outdoor Gathering Areas</li>
+              <li>Seasonal Farm Access</li>
+            </ul>
+          </div>
         </div>
       </section>
-    </main>
+    </>
   )
 }

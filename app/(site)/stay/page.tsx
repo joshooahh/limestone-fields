@@ -1,187 +1,236 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import CabinCard from '@/components/sections/CabinCard'
 import Hero from '@/components/sections/Hero'
 import { client } from '@/sanity/lib/client'
 import { cabinsQuery } from '@/sanity/queries'
 import type { Cabin } from '@/sanity/types'
-import { Card, CardContent } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { ArrowRight } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Stay',
+  description:
+    'Ten private cabins on 15 acres at Lake Limestone, Texas. Seven standard cabins (256 sq ft, king bed, cedar soaking tub) and three premium cabins (384 sq ft, sleeps up to 6). From $250/night. 2 hours from Austin, Dallas, and Houston.',
+  openGraph: {
+    title: 'Stay at Limestone Fields — Private Lakefront Cabins',
+    description:
+      'Ten custom-built cabins on Lake Limestone. Every cabin includes a private outdoor cedar soaking tub, king bed, and access to the shared Commons kitchen. From $250/night.',
+    url: 'https://limestonefields.com/stay',
+  },
+  alternates: { canonical: 'https://limestonefields.com/stay' },
+}
 
 export default async function StayPage() {
   const cabins = await client.fetch<Cabin[]>(cabinsQuery)
 
   return (
-    <main>
+    <>
       <Hero
         headline="The Cabins at Limestone Fields"
-        subhead="A quiet place to land"
+        subhead="Ten private cabins. Two thoughtful layouts. Everything you need, nothing you don't."
         ctaText="Join the Waitlist"
         ctaHref="/contact"
       />
 
-      {/* Intro */}
-      <section className="mx-auto max-w-4xl px-6 py-16">
-        <p className="text-xl md:text-2xl font-headline text-foreground text-center mb-6">
-          Ten cabins. Two styles. One simple truth: everything you need, nothing you don&apos;t.
-        </p>
-        <p className="text-muted-foreground text-center leading-relaxed max-w-2xl mx-auto">
-          Stay in a private cabin on Lake Limestone, surrounded by open land, water, and quiet. Each cabin is designed for rest, reflection, and clarity, with thoughtful details that make the stay feel intuitive and unhurried. Cabins are spaced for privacy, with views of the lake or surrounding land.
-        </p>
+      {/* Intro blurb */}
+      <section className="bg-limestone-cream py-24 md:py-36">
+        <div className="container max-w-2xl mx-auto px-6 text-center">
+          <p className="font-body-secondary text-lg md:text-xl text-[#253136] leading-relaxed">
+            Stay in a private cabin on Lake Limestone, surrounded by open land, water,
+            and quiet. Each cabin is designed for rest and unhurried presence.
+            Spaced for privacy. Views of the lake or the surrounding land.
+          </p>
+        </div>
       </section>
 
-      <Separator className="max-w-4xl mx-auto" />
-
-      {/* Cabin Types - from Sanity when available */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="text-2xl md:text-3xl font-headline text-foreground mb-12 text-center">
-          Cabin Types
-        </h2>
-        {cabins?.length ? (
-          <div className="space-y-16">
-            {cabins.map((cabin) => (
-              <CabinCard key={cabin._id} cabin={cabin} />
-            ))}
-          </div>
-        ) : (
-          <>
-            <Card className="max-w-4xl mx-auto border border-border/60 bg-card/80 overflow-hidden">
-              <CardContent className="p-8 md:p-12">
-                <h3 className="text-2xl font-headline text-foreground mb-4">
+      {/* Cabin Types */}
+      <section className="py-24 md:py-32 bg-[#F9F4EE]">
+        <div className="container max-w-6xl mx-auto px-6">
+          <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] mb-5">
+            THE CABINS
+          </p>
+          <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136] mb-12">
+            Two Layouts. Same Intention.
+          </h2>
+          {cabins?.length ? (
+            <div className="space-y-16">
+              {cabins.map((cabin) => (
+                <CabinCard key={cabin._id} cabin={cabin} />
+              ))}
+            </div>
+          ) : (
+            <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+              {/* Cabin Type 1 */}
+              <div className="space-y-5">
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                  LAYOUT ONE
+                </p>
+                <h3 className="text-[26px] font-headline leading-[1.37] text-[#253136]">
                   One Bedroom Lakeview Cabin
                 </h3>
-                <p className="text-muted-foreground mb-6">
-                  A private one-bedroom cabin with views of Lake Limestone. Designed for stillness, with generous windows, simple furnishings, and space to slow down.
+                <p className="text-[18px] text-[#253136] leading-[1.55]">
+                  A private one-bedroom cabin with views of Lake Limestone. Designed for
+                  stillness — generous windows, simple furnishings, and space to slow down.
                 </p>
-                <p className="text-xs uppercase tracking-[0.25rem] text-muted-foreground mb-3">Features</p>
-                <ul className="space-y-2 text-muted-foreground mb-8">
-                  <li>Queen bed with natural linens</li>
-                  <li>Private outdoor soaking tub or porch</li>
-                  <li>Writing desk and seating area</li>
-                  <li>Climate control and modern bath</li>
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] pt-2">
+                  INCLUDED
+                </p>
+                <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
+                  <li>Queen Bed with Natural Linens</li>
+                  <li>Private Outdoor Soaking Tub or Porch</li>
+                  <li>Writing Desk and Seating Area</li>
+                  <li>Climate Control and Modern Bath</li>
                 </ul>
-                <Link href="/contact" className={cn(buttonVariants({ variant: 'outline' }), 'rounded-full')}>
-                  Check Availability
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
+                >
+                  Join the Waitlist
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
-              </CardContent>
-            </Card>
-            <Card className="max-w-4xl mx-auto mt-12 border border-border/60 bg-card/80 overflow-hidden">
-              <CardContent className="p-8 md:p-12">
-                <h3 className="text-2xl font-headline text-foreground mb-4">
+              </div>
+              {/* Cabin Type 2 */}
+              <div className="space-y-5 md:pt-16">
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                  LAYOUT TWO
+                </p>
+                <h3 className="text-[26px] font-headline leading-[1.37] text-[#253136]">
                   Cabin Suite
                 </h3>
-                <p className="text-muted-foreground mb-6">
-                  More space for couples or small groups. Same intention: rest, clarity, and connection to the land.
+                <p className="text-[18px] text-[#253136] leading-[1.55]">
+                  More space for couples or small groups. Same intention: rest, clarity,
+                  and connection to the land. Additional room and a more generous layout
+                  without sacrificing the quiet.
                 </p>
-                <Link href="/contact" className={cn(buttonVariants({ variant: 'outline' }), 'rounded-full')}>
-                  Check Availability
+                <p className="font-body-secondary text-[17px] text-[#253136]/90 leading-[1.6] tracking-[0.03em] italic">
+                  Both layouts were designed with the same question in mind:
+                  what does a person actually need to feel settled?
+                </p>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
+                >
+                  Join the Waitlist
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
-              </CardContent>
-            </Card>
-          </>
-        )}
-      </section>
-
-      {/* A Self-Guided Stay */}
-      <section className="py-20 md:py-28 bg-muted/30">
-        <div className="container max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-headline text-foreground mb-6">
-            A Self-Guided Stay
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-8">
-            Limestone Fields offers care without constant presence. Arrival is simple. Instructions are clear. Spaces are prepared and ready. Help is always available when needed, but guests are never managed or directed. The intention is ease, not oversight.
-          </p>
-          <p className="text-sm uppercase tracking-[0.25rem] text-muted-foreground mb-4">What this means</p>
-          <ul className="space-y-2 text-muted-foreground">
-            <li>Simple, independent arrival</li>
-            <li>Clear guidance throughout your stay</li>
-            <li>Support available without interruption</li>
-            <li>Space to move through the day on your own terms</li>
-          </ul>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* What is provided */}
-      <section className="py-20 md:py-28">
-        <div className="container max-w-6xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-headline text-foreground mb-6 text-center">
-            What is provided
-          </h2>
-          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-            Everything here is intentional. Guests are provided with what they need to feel settled and comfortable, without excess.
-          </p>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card>
-              <CardContent className="p-8">
-                <h3 className="text-lg font-semibold text-foreground mb-4">Included with your stay</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>Fresh linens and towels</li>
-                  <li>Access to the shared barn kitchen</li>
-                  <li>Fire pits and outdoor gathering areas</li>
-                  <li>Parking near cabins</li>
-                  <li>Well maintained, ready spaces</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-8">
-                <h3 className="text-lg font-semibold text-foreground mb-4">What we keep simple</h3>
-                <p className="text-muted-foreground mb-4">Some things are intentionally left out to preserve quiet and clarity.</p>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>No televisions</li>
-                  <li>No daily housekeeping</li>
-                  <li>No scheduled programming</li>
-                  <li>No full service dining</li>
-                </ul>
-              </CardContent>
-            </Card>
+      {/* Self-Guided Stay + What is Provided — two-column */}
+      <section className="py-24 md:py-32 bg-[#CBD2DA]">
+        <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-20 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
+          <div className="space-y-5">
+            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+              HOW IT WORKS
+            </p>
+            <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+              A Self-Guided Stay
+            </h2>
+            <p className="text-[18px] text-[#253136] leading-[1.55]">
+              Limestone Fields offers care without constant presence. Arrival is simple.
+              Instructions are clear. Spaces are prepared and ready. Help is always
+              available when needed, but guests are never managed or directed.
+              The intention is ease, not oversight.
+            </p>
+            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] pt-3">
+              WHAT THIS MEANS
+            </p>
+            <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
+              <li>Simple, Independent Arrival</li>
+              <li>Clear Guidance Throughout Your Stay</li>
+              <li>Support Available Without Interruption</li>
+              <li>Space to Move Through the Day on Your Own Terms</li>
+            </ul>
+          </div>
+          <div className="space-y-5 md:pt-16">
+            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+              WHAT IS PROVIDED
+            </p>
+            <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+              Everything You Need. Nothing Extra.
+            </h2>
+            <p className="text-[18px] text-[#253136] leading-[1.55]">
+              Everything here is intentional. Guests are provided with what they need
+              to feel settled and comfortable, without excess.
+            </p>
+            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] pt-2">
+              INCLUDED WITH YOUR STAY
+            </p>
+            <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
+              <li>Fresh Linens and Towels</li>
+              <li>Access to the Shared Barn Kitchen</li>
+              <li>Fire Pits and Outdoor Gathering Areas</li>
+              <li>Parking Near the Cabins</li>
+            </ul>
+            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] pt-2">
+              INTENTIONALLY LEFT OUT
+            </p>
+            <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
+              <li>No Televisions</li>
+              <li>No Daily Housekeeping</li>
+              <li>No Scheduled Programming</li>
+              <li>No Full Service Dining</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* Shared spaces */}
-      <section className="py-20 md:py-28 bg-muted/30">
-        <div className="container max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-headline text-foreground mb-6">
-            Shared spaces
-          </h2>
-          <p className="text-muted-foreground leading-relaxed">
-            The barn serves as the heart of shared life at Limestone Fields. It includes a communal kitchen, tables for gathering, and space to linger. Interaction is always optional. Some guests cook together. Others pass quietly through. Both are welcome.
-          </p>
+      {/* Land + Who this is for — two-column */}
+      <section className="py-24 md:py-32 bg-limestone-cream">
+        <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-20 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
+          <div className="space-y-5">
+            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+              THE LAND
+            </p>
+            <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+              Not a Backdrop. An Active Presence.
+            </h2>
+            <p className="text-[18px] text-[#253136] leading-[1.55]">
+              The barn serves as the heart of shared life at Limestone Fields —
+              communal kitchen, tables for gathering, and space to linger.
+              Interaction is always optional.
+            </p>
+            <p className="text-[18px] text-[#253136] leading-[1.55]">
+              Guests are free to walk the property, sit by the water, and observe
+              the working farm. Seasons shift. Crops change. Light moves across the lake.
+              This is a place to notice what grows slowly.
+            </p>
+            <p className="font-body-secondary text-[17px] text-[#253136]/90 leading-[1.6] tracking-[0.03em] italic">
+              The land is not a backdrop. It is the whole point.
+            </p>
+          </div>
+          <div className="space-y-5 md:pt-16">
+            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+              WHO THIS IS FOR
+            </p>
+            <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+              People Who Like It Quiet
+            </h2>
+            <p className="text-[18px] text-[#253136] leading-[1.55]">
+              Limestone Fields is best suited for guests who value quiet,
+              independence, and simple comfort. The property is especially well
+              suited for:
+            </p>
+            <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
+              <li>Solo Travelers</li>
+              <li>Couples</li>
+              <li>Writers and Creatives</li>
+              <li>Those Seeking Rest Without Entertainment</li>
+              <li>Guests Comfortable with a Self-Guided Stay</li>
+            </ul>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
+            >
+              Join the Waitlist
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
-
-      {/* The land around the cabins */}
-      <section className="py-20 md:py-28">
-        <div className="container max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-headline text-foreground mb-6">
-            The land around the cabins
-          </h2>
-          <p className="text-muted-foreground leading-relaxed">
-            The land is not a backdrop. It is an active presence. Guests are free to walk the property, sit by the water, and observe the working farm. Seasons shift. Crops change. Light moves across the lake. This is a place to notice what grows slowly.
-          </p>
-        </div>
-      </section>
-
-      {/* Who this place is for */}
-      <section className="py-20 md:py-28 bg-muted/30">
-        <div className="container max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-headline text-foreground mb-6">
-            Who this place is for
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-8">
-            Limestone Fields is best suited for guests who value quiet, independence, and simple comfort. It is especially well suited for:
-          </p>
-          <ul className="space-y-2 text-muted-foreground">
-            <li>Solo travelers</li>
-            <li>Couples</li>
-            <li>Writers and creatives</li>
-            <li>Those seeking rest without entertainment</li>
-            <li>Guests comfortable with a self guided experience</li>
-          </ul>
-        </div>
-      </section>
-    </main>
+    </>
   )
 }

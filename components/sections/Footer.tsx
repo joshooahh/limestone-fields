@@ -1,7 +1,6 @@
 import Link from 'next/link'
-import { ArrowRight, MapPin, Phone, Mail } from 'lucide-react'
-import { buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { Instagram } from 'lucide-react'
+import Logo from '@/components/ui/Logo'
 import FooterContactForm from '@/components/forms/FooterContactForm'
 
 interface FooterCta {
@@ -30,108 +29,107 @@ export default function Footer({
   socialLinks,
   footerCta,
 }: FooterProps) {
+  const instagramUrl = socialLinks?.find((l) => l?.url?.includes('instagram'))?.url
+
   return (
-    <footer className="border-t border-border bg-foreground text-background">
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-16">
-          {/* General contact form */}
-          <div>
-            <h3 className="text-xs uppercase tracking-[0.35rem] text-background/60 mb-4">
-              Get in touch
+    <footer className="border-t border-[#2a3338] bg-[#2b353a] text-[#e8e4dc]">
+      <div className="mx-auto max-w-6xl px-6 pt-16 pb-12 md:pt-20 md:pb-16">
+        {/* Top centered branding: logo + Limestone Fields */}
+        <div className="flex flex-col items-center justify-center text-center pb-14 md:pb-16">
+          <Logo variant="primary" theme="light" href="/" className="h-16 w-auto md:h-20" />
+        </div>
+
+        {/* Three columns */}
+        <div className="grid gap-14 md:grid-cols-3 md:gap-12 lg:gap-20">
+          {/* GET IN TOUCH */}
+          <div className="space-y-5">
+            <h3 className="font-subhead text-[13px] uppercase tracking-[0.28em] text-[#e8e4dc]">
+              GET IN TOUCH
             </h3>
             <FooterContactForm />
           </div>
 
-          {/* Address, phone, email */}
-          <div className="space-y-6">
-            <h3 className="text-xs uppercase tracking-[0.35rem] text-background/60">
-              Visit
+          {/* VISIT */}
+          <div className="space-y-5">
+            <h3 className="font-subhead text-[13px] uppercase tracking-[0.28em] text-[#e8e4dc]">
+              VISIT
             </h3>
-            {address && (
-              <p className="text-background/80 flex items-start gap-3">
-                <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-background/60" />
+            <div className="space-y-3 text-[17px] leading-[1.8] tracking-[0.02em] text-[#e8e4dc]">
+              {address ? (
+                <p>
+                  <a
+                    href={mapUrl || DEFAULT_MAP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 hover:opacity-90"
+                  >
+                    {address}
+                  </a>
+                </p>
+              ) : (
+                <p>
+                  <a
+                    href={mapUrl || DEFAULT_MAP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 hover:opacity-90"
+                  >
+                    123 Address Rd
+                    <br />
+                    City, ST 55555
+                  </a>
+                </p>
+              )}
+              {phone && (
+                <p>
+                  <a href={`tel:${phone.replace(/\D/g, '')}`} className="hover:opacity-90">
+                    {phone}
+                  </a>
+                </p>
+              )}
+              {email && (
+                <p>
+                  <a href={`mailto:${email}`} className="underline underline-offset-2 hover:opacity-90">
+                    {email}
+                  </a>
+                </p>
+              )}
+              {instagramUrl && (
                 <a
-                  href={mapUrl || DEFAULT_MAP_URL}
+                  href={instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-background underline underline-offset-2"
+                  className="inline-flex mt-2 text-[#e8e4dc] hover:opacity-80"
+                  aria-label="Instagram"
                 >
-                  {address}
+                  <Instagram className="h-6 w-6" strokeWidth={1.5} />
                 </a>
-              </p>
-            )}
-            {!address && (
-              <p className="text-background/80 flex items-start gap-3">
-                <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-background/60" />
-                <a
-                  href={mapUrl || DEFAULT_MAP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-background underline underline-offset-2"
-                >
-                  Lake Limestone, Texas
-                </a>
-              </p>
-            )}
-            {phone && (
-              <p className="text-background/80 flex items-center gap-3">
-                <Phone className="h-4 w-4 shrink-0 text-background/60" />
-                <a href={`tel:${phone.replace(/\D/g, '')}`} className="hover:text-background">
-                  {phone}
-                </a>
-              </p>
-            )}
-            {email && (
-              <p className="text-background/80 flex items-center gap-3">
-                <Mail className="h-4 w-4 shrink-0 text-background/60" />
-                <a href={`mailto:${email}`} className="hover:text-background underline underline-offset-2">
-                  {email}
-                </a>
-              </p>
-            )}
+              )}
+            </div>
           </div>
 
-          {/* CTA and social */}
-          <div className="space-y-6">
-            {footerCta && (footerCta.headline || footerCta.body) && (
-              <div className="space-y-3">
-                {footerCta.headline && (
-                  <h3 className="text-lg font-headline text-background">{footerCta.headline}</h3>
-                )}
-                {footerCta.body && (
-                  <p className="text-sm text-background/70">{footerCta.body}</p>
-                )}
-                {footerCta.buttonText && (
-                  <Link
-                    href={footerCta.buttonHref ?? '/contact'}
-                    className={cn(
-                      buttonVariants({ variant: 'secondary', size: 'sm' }),
-                      'inline-flex items-center gap-2 rounded-full border border-background bg-background text-foreground hover:bg-background/90'
-                    )}
-                  >
-                    {footerCta.buttonText}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                )}
-              </div>
-            )}
-            {socialLinks && socialLinks.length > 0 && (
-              <div className="flex flex-wrap gap-4">
-                {socialLinks.map((link) =>
-                  link?.url ? (
-                    <a
-                      key={link.label || link.url}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-background/80 hover:text-background underline underline-offset-2"
-                    >
-                      {link.label || 'Link'}
-                    </a>
-                  ) : null
-                )}
-              </div>
-            )}
+          {/* Opening Spring 2026 + waitlist + legal */}
+          <div className="space-y-5">
+            <h3 className="font-headline text-[22px] md:text-[24px] leading-[1.35] text-[#e8e4dc]">
+              {footerCta?.headline ?? 'Opening Spring 2026'}
+            </h3>
+            <p className="font-body-secondary text-[17px] italic leading-[1.6] text-[#e8e4dc]/95">
+              {footerCta?.body ?? 'Be the first to know when bookings open. Join our waitlist for early access and updates.'}
+            </p>
+            <Link
+              href={footerCta?.buttonHref ?? '/contact'}
+              className="inline-flex items-center justify-center rounded-[78px] bg-[#c9cdd1] px-7 py-2.5 text-[14px] font-subhead uppercase tracking-[0.2em] text-[#253136] transition hover:bg-[#d4d8dc]"
+            >
+              {footerCta?.buttonText ?? 'JOIN'}
+            </Link>
+            <div className="pt-2 space-y-1 text-[15px] leading-relaxed text-[#6b7280]">
+              <Link href="/policies/privacy" className="block hover:text-[#e8e4dc] transition">
+                Privacy Policy
+              </Link>
+              <Link href="/policies/terms" className="block hover:text-[#e8e4dc] transition">
+                Terms and Conditions
+              </Link>
+            </div>
           </div>
         </div>
       </div>

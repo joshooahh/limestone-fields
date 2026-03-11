@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import {
   Form,
@@ -39,7 +38,7 @@ export default function FooterContactForm() {
 
   if (submitted) {
     return (
-      <p className="text-sm text-background/80">
+      <p className="text-[17px] text-[#e8e4dc]/90">
         Thank you. We&apos;ll be in touch.
       </p>
     )
@@ -53,15 +52,15 @@ export default function FooterContactForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-background/80">Name</FormLabel>
+              <FormLabel className="text-[#9ca3a8] text-[17px] tracking-[0.02em]">Your Name*</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Your name"
-                  className="border-background/30 bg-background/10 text-background placeholder:text-background/50"
+                  placeholder="Your Name*"
+                  className="rounded-none border-0 border-b border-[#e8e4dc]/50 bg-transparent px-0 py-2 text-[#e8e4dc] placeholder:text-[#e8e4dc]/50 focus-visible:ring-0 focus-visible:border-[#e8e4dc] focus-visible:border-b"
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="text-background/80" />
+              <FormMessage className="text-[#e8e4dc]/80" />
             </FormItem>
           )}
         />
@@ -70,16 +69,16 @@ export default function FooterContactForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-background/80">Email</FormLabel>
+              <FormLabel className="text-[#9ca3a8] text-[17px] tracking-[0.02em]">Email*</FormLabel>
               <FormControl>
                 <Input
                   type="email"
-                  placeholder="you@example.com"
-                  className="border-background/30 bg-background/10 text-background placeholder:text-background/50"
+                  placeholder="Email*"
+                  className="rounded-none border-0 border-b border-[#e8e4dc]/50 bg-transparent px-0 py-2 text-[#e8e4dc] placeholder:text-[#e8e4dc]/50 focus-visible:ring-0 focus-visible:border-[#e8e4dc] focus-visible:border-b"
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="text-background/80" />
+              <FormMessage className="text-[#e8e4dc]/80" />
             </FormItem>
           )}
         />
@@ -88,27 +87,25 @@ export default function FooterContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-background/80">Message</FormLabel>
+              <FormLabel className="text-[#9ca3a8] text-[17px] tracking-[0.02em]">Message</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="How can we help?"
+                  placeholder="Message..."
                   rows={3}
-                  className="border-background/30 bg-background/10 text-background placeholder:text-background/50 resize-none"
+                  className="rounded-none border-0 border-b border-[#e8e4dc]/50 bg-transparent px-0 py-2 text-[#e8e4dc] placeholder:text-[#e8e4dc]/50 resize-none focus-visible:ring-0 focus-visible:border-[#e8e4dc] focus-visible:border-b"
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="text-background/80" />
+              <FormMessage className="text-[#e8e4dc]/80" />
             </FormItem>
           )}
         />
-        <Button
+        <button
           type="submit"
-          variant="secondary"
-          size="sm"
-          className="rounded-full border border-background bg-background text-foreground hover:bg-background/90"
+          className="inline-flex items-center justify-center rounded-[78px] bg-[#c9cdd1] px-7 py-2.5 text-[14px] font-subhead uppercase tracking-[0.2em] text-[#253136] transition hover:bg-[#d4d8dc]"
         >
-          Send
-        </Button>
+          SUBMIT
+        </button>
       </form>
     </Form>
   )

@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Limestone Fields Website
 
-## Getting Started
+Marketing site for Limestone Fields, built with **Next.js 14 App Router**, **TypeScript**, **Tailwind**, and a **Sanity** CMS backend. The UI is implemented from the Figma file `Limestone Fields – Copy` using the Figma MCP tools, with layout and imagery mapped section‑by‑section into React components.
 
-First, run the development server:
+### Tech stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript, React 18
+- **Styling**: Tailwind CSS + design tokens in `tailwind.config.ts` and `app/globals.css`
+- **CMS**: Sanity (`/sanity`), with `SiteSettings` powering nav and footer content
+- **Images**: `next/image` with a mix of local assets and Figma MCP asset URLs
+
+### Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Key entry points:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Layout chrome: `app/(site)/layout.tsx`
+- Homepage: `app/(site)/page.tsx`
+- Hero: `components/sections/Hero.tsx`
+- Footer + contact form: `components/sections/Footer.tsx`, `components/forms/FooterContactForm.tsx`
 
-## Learn More
+### Figma integration
 
-To learn more about Next.js, take a look at the following resources:
+Design source:  
+`https://www.figma.com/design/hegaFu30p517sxFdBne66d/Limestone-Fields--Copy`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+We use the **Figma MCP `get_design_context` tool** to pull:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Typography, spacing, and section structure (e.g. nodes `2004:28`, `2004:12`, `2004:19`, `2004:20`, `2004:21`)
+- Temporary image asset URLs (`https://www.figma.com/api/mcp/asset/...`) wired through `next/image` and allowed in `next.config.mjs`
 
-## Deploy on Vercel
+If you change the Figma design and want to re‑align the site:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Select the relevant frame/section in Figma.
+2. Copy the link to selection and paste it into Cursor.
+3. Use the MCP `get_design_context` tool to update the corresponding React section.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Sanity content
+
+`SiteSettings` in Sanity control:
+
+- Header “join waitlist” destination (`bookingsOpen` flag)
+- Footer address, phone, email, map URL, and optional CTA copy
+
+Run the Sanity Studio locally (if included in this repo) to edit content, or update through the hosted Studio if configured.
+
+### Deployment
+
+This app can be deployed to any Next.js host (Vercel recommended). Ensure:
+
+- Environment variables for Sanity are set in `.env.local`
+- `next.config.mjs` is deployed with the `images.remotePatterns` entry for Figma MCP assets
+
+Then run:
+
+```bash
+npm run build
+npm start
+```

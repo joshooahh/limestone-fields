@@ -1,56 +1,52 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { ArrowUpRight } from 'lucide-react'
 import { client } from '@/sanity/lib/client'
 import Footer from '@/components/sections/Footer'
 import { siteSettingsQuery } from '@/sanity/queries'
 import type { SiteSettings } from '@/sanity/types'
-import { buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 import Logo from '@/components/ui/Logo'
-
-const NAV_LINKS = [
-  { href: '/stay', label: 'Stay' },
-  { href: '/experience', label: 'Experience' },
-  { href: '/private-events', label: 'Private Events' },
-  { href: '/story', label: 'Story' },
-]
+import MobileNav from '@/components/ui/MobileNav'
 
 export default async function SiteLayout({ children }: { children: ReactNode }) {
   const siteSettings = await client.fetch<SiteSettings | null>(siteSettingsQuery)
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="border-b border-border bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
-          <Logo 
-            variant="primary" 
-            theme="dark" 
-            href="/" 
-            className="h-7 w-auto"
-            priority
-          />
-          <nav className="hidden items-center gap-6 text-sm font-subhead uppercase tracking-[0.3rem] text-muted-foreground md:flex">
-            {NAV_LINKS.map((link) => (
-              <Link key={link.href} href={link.href} className="transition hover:text-foreground">
-                {link.label}
-              </Link>
-            ))}
+    <div className="relative flex min-h-screen flex-col">
+      <header className="pointer-events-none absolute inset-x-0 top-0 z-30">
+        <div className="mx-auto flex w-full max-w-[1207px] items-center justify-between px-6 py-5 md:py-6">
+
+          {/* Desktop: left nav — hidden on mobile */}
+          <nav className="pointer-events-auto hidden md:flex items-center gap-6 text-[16px] font-subhead uppercase tracking-[0.22em] text-[#f7f2e4] md:gap-8">
+            <Link href="/stay" className="transition hover:text-white">stay</Link>
+            <Link href="/experience" className="transition hover:text-white">experience</Link>
+            <Link href="/story" className="transition hover:text-white">story</Link>
           </nav>
-          <Link
-            href={siteSettings?.bookingsOpen ? '/stay' : '/contact'}
-            className={cn(
-              buttonVariants({ variant: 'secondary', size: 'sm' }),
-              'hidden items-center gap-1 rounded-full border md:inline-flex'
-            )}
-          >
-            {siteSettings?.bookingsOpen ? 'Book' : 'Join Waitlist'}
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
+
+          {/* Logo — always visible */}
+          <div className="pointer-events-auto flex shrink-0 items-center justify-center">
+            <Logo variant="primary" theme="light" href="/" className="h-8 w-auto md:h-10" priority />
+          </div>
+
+          {/* Desktop: right nav — hidden on mobile */}
+          <nav className="pointer-events-auto hidden md:flex items-center gap-6 text-[16px] font-subhead uppercase tracking-[0.22em] text-[#f7f2e4] md:gap-8">
+            <Link href="/private-events" className="transition hover:text-white">private events</Link>
+            <Link
+              href={siteSettings?.bookingsOpen ? '/stay' : '/contact'}
+              className="transition hover:text-white underline underline-offset-4"
+            >
+              join waitlist
+            </Link>
+          </nav>
+
+          {/* Mobile: hamburger + drawer — hidden on desktop */}
+          <div className="md:hidden">
+            <MobileNav bookingsOpen={siteSettings?.bookingsOpen} />
+          </div>
+
         </div>
       </header>
 
-      <main className="flex-1 bg-gradient-to-b from-background via-background to-muted/20">{children}</main>
+      <main className="flex-1">{children}</main>
 
       <Footer
         email={siteSettings?.email}

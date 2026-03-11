@@ -1,400 +1,268 @@
+import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
 import { pageQuery } from '@/sanity/queries'
 import type { PageDocument } from '@/sanity/types'
 import Hero from '@/components/sections/Hero'
 import PageSections from '@/components/sections/PageSections'
 import WeddingInquiryForm from '@/components/forms/WeddingInquiryForm'
-import { Card, CardContent } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
+import JsonLd from '@/components/seo/JsonLd'
+
+const eventVenueSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'EventVenue',
+  name: 'Limestone Fields',
+  description:
+    'A lakefront wedding and event venue on Lake Limestone, Texas. Full property exclusive use. Ceremony site for up to 150 guests, 1,200 sq ft barn reception space, and 10 private overnight cabins.',
+  url: 'https://limestonefields.com/weddings',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '159 LCR 890',
+    addressLocality: 'Jewett',
+    addressRegion: 'TX',
+    postalCode: '75846',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 31.3471,
+    longitude: -96.1502,
+  },
+  maximumAttendeeCapacity: 150,
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: 'Lakefront ceremony site', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Barn reception space (1,200 sq ft)', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Outdoor pergola', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Ceremony chairs (up to 150)', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Sound system', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Tables and chairs', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'String lights and uplighting', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Bridal suite', value: true },
+    { '@type': 'LocationFeatureSpecification', name: "Groom's suite", value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Parking for 50+ vehicles', value: true },
+    { '@type': 'LocationFeatureSpecification', name: '10 overnight cabins on site', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Friday rehearsal dinner space', value: true },
+  ],
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await client.fetch<PageDocument | null>(pageQuery, { slug: 'weddings' })
+  return {
+    title: page?.seo?.metaTitle ?? 'Weddings',
+    description:
+      page?.seo?.metaDescription ??
+      'Host your wedding at Limestone Fields on Lake Limestone, Texas. Lakefront ceremony site (up to 150 guests), 10 private cabins for overnight guests, and a 1,200 sq ft barn reception space. Full property exclusive use. 2 hours from Austin, Dallas, and Houston.',
+    openGraph: {
+      title: page?.seo?.metaTitle ?? 'Weddings at Limestone Fields — Lake Limestone, TX',
+      description:
+        page?.seo?.metaDescription ??
+        'A lakefront wedding venue on Lake Limestone. Ceremony for up to 150 guests, barn reception, 10 cabins for overnight guests. Full property exclusive use.',
+      url: 'https://limestonefields.com/weddings',
+    },
+    alternates: { canonical: 'https://limestonefields.com/weddings' },
+  }
+}
 
 export default async function WeddingsPage() {
   const weddingsPage = await client.fetch<PageDocument | null>(pageQuery, { slug: 'weddings' })
-  return (
-    <main>
-      {/* Hero */}
-      {weddingsPage?.heroHeadline || weddingsPage?.heroSubhead ? (
-        <Hero
-          headline={weddingsPage.heroHeadline ?? 'Your People. Our Land. One Weekend.'}
-          subhead={weddingsPage.heroSubhead ?? 'A lakefront property where celebrations feel less like productions and more like gatherings.'}
-          eyebrow="Weddings at Limestone Fields"
-        />
-      ) : (
-      <section className="relative py-24 md:py-32 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container max-w-4xl mx-auto px-6 text-center space-y-6">
-          <div className="space-y-2">
-            <p className="text-sm text-muted-foreground uppercase tracking-wider">
-              Weddings at Limestone Fields
-            </p>
-              <h1 className="text-4xl md:text-6xl font-headline text-foreground">
-              Your People. Our Land. One Weekend.
-            </h1>
-          </div>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A lakefront property where celebrations feel less like productions and more 
-            like gatherings.
-          </p>
-        </div>
-      </section>
-      )}
 
-      {/* Dynamic Sections from Sanity */}
+  return (
+    <>
+      <JsonLd data={eventVenueSchema} />
+      <Hero
+        headline="Your People. Our Land. One Weekend."
+        subhead="A lakefront property where celebrations feel less like productions and more like gatherings."
+        eyebrow="Weddings at Limestone Fields"
+        ctaText="Start an Inquiry"
+        ctaHref="#inquiry"
+      />
+
+      {/* Dynamic Sections from Sanity — overrides hardcoded content if configured */}
       {weddingsPage?.sections && weddingsPage.sections.length > 0 ? (
         <PageSections sections={weddingsPage.sections} />
       ) : (
         <>
+          {/* Intro blurb */}
+          <section className="bg-limestone-cream py-24 md:py-36">
+            <div className="container max-w-2xl mx-auto px-6 text-center">
+              <p className="font-body-secondary text-lg md:text-xl text-[#253136] leading-relaxed">
+                Ten cabins for your closest people. A ceremony site on the water. A barn
+                for dinner and dancing. A working farm. And a weekend — not just a day —
+                to be together without rushing.
+              </p>
+            </div>
+          </section>
 
-      {/* Overview */}
-      <section className="py-16 md:py-24">
-        <div className="container max-w-4xl mx-auto px-6">
-          <Card>
-            <CardContent className="p-8 md:p-12 space-y-6">
-              <div className="prose prose-lg max-w-none space-y-4 text-muted-foreground">
-                <p>
-                  Ten cabins for your closest people.
-                  A ceremony site on the water.
-                  A barn for dinner and dancing.
-                  A working farm.
-                  And a weekend, not just a day, to be together without rushing.
+          {/* The idea + What this offers — two-column */}
+          <section className="py-24 md:py-32 bg-[#F9F4EE]">
+            <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-20 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
+              <div className="space-y-5">
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                  THE IDEA
                 </p>
-                <p>
-                  This is not a wedding factory.
-                  We host one event at a time.
-                  The property is yours.
-                  The weekend is yours.
-                  The land does most of the decorating.
-                </p>
-                <p>
-                  Intimate scale.
-                  Seventy-five to one hundred fifty guests.
-                  Friday arrival, Sunday departure.
-                  Bring your own caterer.
-                  Bring your own vision.
-                  We provide the space, the accommodations,
-                  and the kind of setting that doesn&apos;t need much help to feel special.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* For Couples Who Want */}
-      <section className="py-16 md:py-24 bg-muted/30">
-        <div className="container max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
-              For Couples Who Want
-            </h2>
-            <Separator className="max-w-24 mx-auto" />
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card>
-              <CardContent className="p-8 space-y-3">
-                <h3 className="text-lg font-semibold text-foreground">
-                  A Weekend, Not Just a Day
-                </h3>
-                <p className="text-muted-foreground">
-                  Friday arrival, Sunday departure.
-                  No shuttles, no hotel blocks.
-                  Your people stay here with you.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-8 space-y-3">
-                <h3 className="text-lg font-semibold text-foreground">
-                  Natural Beauty
-                </h3>
-                <p className="text-muted-foreground">
-                  Lakefront ceremony site.
-                  Open sky.
-                  The land does the decorating.
-                  You bring what matters.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-8 space-y-3">
-                <h3 className="text-lg font-semibold text-foreground">
-                  All in One Place
-                </h3>
-                <p className="text-muted-foreground">
-                  Ceremony, reception, and overnight accommodations in one place.
-                  Less logistics, more presence.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-8 space-y-3">
-                <h3 className="text-lg font-semibold text-foreground">
-                  Privacy
-                </h3>
-                <p className="text-muted-foreground">
-                  One wedding at a time.
-                  The entire property is yours.
-                  No strangers, no other events.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-8 space-y-3">
-                <h3 className="text-lg font-semibold text-foreground">
-                  The Farm
-                </h3>
-                <p className="text-muted-foreground">
-                  Working farm.
-                  Real agriculture.
-                  Not staged.
-                  Lived in and tended daily.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-8 space-y-3">
-                <h3 className="text-lg font-semibold text-foreground">
-                  Intimate Scale
-                </h3>
-                <p className="text-muted-foreground">
-                  75-150 guests. Small enough to feel personal. Large enough to gather 
+                <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+                  Not a Wedding Factory
+                </h2>
+                <p className="text-[18px] text-[#253136] leading-[1.55]">
+                  We host one event at a time. The property is yours. The weekend is yours.
+                  The land does most of the decorating. Intimate scale — seventy-five to one
+                  hundred fifty guests — small enough to feel personal, large enough to gather
                   everyone who matters.
                 </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* What's Included */}
-      <section className="py-16 md:py-24">
-        <div className="container max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
-              What&apos;s Included
-            </h2>
-            <Separator className="max-w-24 mx-auto" />
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card>
-              <CardContent className="p-8 space-y-4">
-                <h3 className="text-xl font-semibold text-foreground">Ceremony Site</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Lakefront ceremony location with natural backdrop</li>
-                  <li>• Setup of ceremony chairs (up to 150)</li>
-                  <li>• Sound system for ceremony</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-8 space-y-4">
-                <h3 className="text-xl font-semibold text-foreground">Reception Space</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Commons barn (1,200 sq ft) + outdoor pergola area</li>
-                  <li>• Tables and chairs for reception</li>
-                  <li>• Basic lighting (string lights, uplighting)</li>
-                  <li>• Use of bar area</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-8 space-y-4">
-                <h3 className="text-xl font-semibold text-foreground">Accommodations</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• 10 cabins for wedding party (sleeps 28-30 overnight)</li>
-                  <li>• Bridal suite (premium cabin for getting ready)</li>
-                  <li>• Groom&apos;s suite (premium cabin)</li>
-                  <li>• All standard cabin amenities</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-8 space-y-4">
-                <h3 className="text-xl font-semibold text-foreground">Weekend Timeline</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Friday arrival after 2 PM</li>
-                  <li>• Friday evening rehearsal included</li>
-                  <li>• Saturday ceremony + reception</li>
-                  <li>• Sunday departure by 11 AM</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* What You Provide (BYOC) */}
-      <section className="py-16 md:py-24 bg-muted/30">
-        <div className="container max-w-4xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
-              What You Provide
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              We provide the space. You bring your vision.
-            </p>
-            <Separator className="max-w-24 mx-auto mt-4" />
-          </div>
-
-          <Card>
-            <CardContent className="p-8 md:p-12">
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-foreground">Required</h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• Caterer (you hire your own)</li>
-                    <li>• Alcohol and bartending</li>
-                    <li>• Event coordinator / day-of coordinator</li>
-                    <li>• Florist and decorations</li>
-                    <li>• DJ/band and entertainment</li>
-                    <li>• Photography / videography</li>
-                  </ul>
-                </div>
-
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-foreground">Optional Rentals</h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• Dance floor</li>
-                    <li>• Additional tents</li>
-                    <li>• Specialty lighting beyond basics</li>
-                    <li>• Specialty furniture</li>
-                    <li>• Additional tables/chairs beyond provided</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="mt-8 p-6 bg-muted/50 rounded-lg">
-                <p className="text-sm text-muted-foreground">
-                  <strong>Note:</strong> This BYOC (Bring Your Own Caterer) model gives you 
-                  complete flexibility to work with vendors you trust and create the exact 
-                  celebration you envision. We&apos;re happy to share our preferred vendor 
-                  list to get you started.
+                <p className="font-body-secondary text-[17px] text-[#253136]/90 leading-[1.6] tracking-[0.03em] italic">
+                  Bring your own caterer. Bring your own vision. We provide the space,
+                  the accommodations, and the kind of setting that doesn&apos;t need much
+                  help to feel special.
                 </p>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Pricing & Capacity */}
-      <section className="py-16 md:py-24">
-        <div className="container max-w-4xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
-              Practical Details
-            </h2>
-            <Separator className="max-w-24 mx-auto" />
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card>
-              <CardContent className="p-8 text-center space-y-3">
-                <div className="text-3xl font-headline text-foreground">75-150</div>
-                <p className="text-sm text-muted-foreground">Guest Capacity</p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-8 text-center space-y-3">
-                <div className="text-3xl font-headline text-foreground">28-30</div>
-                <p className="text-sm text-muted-foreground">Overnight Guests</p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-8 text-center space-y-3">
-                <div className="text-3xl font-headline text-foreground">3 Days</div>
-                <p className="text-sm text-muted-foreground">Fri-Sun Weekend</p>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card className="mt-8">
-            <CardContent className="p-8 md:p-12 space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">
-                  Weekend Investment
-                </h3>
-                <div className="space-y-2 text-muted-foreground">
-                  <p>
-                    <strong>Weekday Events (Mon-Thu):</strong> $8,000-10,000
-                  </p>
-                  <p>
-                    <strong>Weekend Events (Fri-Sun):</strong> $13,000-16,000
-                  </p>
-                  <p>
-                    <strong>Peak Season (March-May, Sept-Nov):</strong> $15,000-20,000
-                  </p>
-                </div>
+              <div className="space-y-5 md:pt-16">
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                  FOR COUPLES WHO WANT
+                </p>
+                <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+                  What This Place Offers
+                </h2>
+                <ul className="space-y-5 text-[18px] text-[#253136] leading-[1.55]">
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">A WEEKEND, NOT JUST A DAY</span>
+                    Friday arrival, Sunday departure. Your people stay here with you. No shuttles. No hotel blocks.
+                  </li>
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">NATURAL BEAUTY</span>
+                    Lakefront ceremony site. Open sky. The land does the decorating.
+                  </li>
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">ALL IN ONE PLACE</span>
+                    Ceremony, reception, and overnight accommodations. Less logistics, more presence.
+                  </li>
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">FULL PRIVACY</span>
+                    One wedding at a time. The entire property is yours. No strangers, no other events.
+                  </li>
+                </ul>
               </div>
+            </div>
+          </section>
 
-              <Separator />
+          {/* What's included + What you provide — two-column */}
+          <section className="py-24 md:py-32 bg-[#CBD2DA]">
+            <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-20 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
+              <div className="space-y-5">
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                  WHAT&apos;S INCLUDED
+                </p>
+                <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+                  The Space and Everything in It
+                </h2>
+                <ul className="space-y-5 text-[18px] text-[#253136] leading-[1.55]">
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">CEREMONY SITE</span>
+                    Lakefront location with natural backdrop. Setup for up to 150. Sound system included.
+                  </li>
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">RECEPTION SPACE</span>
+                    Commons barn (1,200 sq ft) with outdoor pergola area. Tables, chairs, and basic lighting.
+                  </li>
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">ACCOMMODATIONS</span>
+                    Ten cabins for the wedding party — sleeps 28–30. Bridal and groom&apos;s suites.
+                  </li>
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">WEEKEND TIMELINE</span>
+                    Friday arrival after 2PM, Friday evening rehearsal, Saturday ceremony and reception,
+                    Sunday departure by 11AM.
+                  </li>
+                </ul>
+              </div>
+              <div className="space-y-5 md:pt-16">
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                  WHAT YOU PROVIDE
+                </p>
+                <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+                  Bring Your Own Vision
+                </h2>
+                <p className="text-[18px] text-[#253136] leading-[1.55]">
+                  This BYOC model gives you complete flexibility to work with vendors you
+                  trust. We are happy to share our preferred vendor list to get you started.
+                </p>
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] pt-2">
+                  YOU ARRANGE
+                </p>
+                <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
+                  <li>Caterer and Bartending</li>
+                  <li>Event and Day-Of Coordinator</li>
+                  <li>Florist and Decorations</li>
+                  <li>DJ or Band</li>
+                  <li>Photography and Videography</li>
+                </ul>
+              </div>
+            </div>
+          </section>
 
-              <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">
-                  What This Includes
-                </h3>
-                <p className="text-muted-foreground">
-                  Venue fee includes ceremony site, reception space, overnight 
-                  accommodations for 28-30 guests, basic furniture and lighting, 
-                  rehearsal, and exclusive use of the entire property for your weekend.
+          {/* Practical details */}
+          <section className="py-24 md:py-32 bg-limestone-cream">
+            <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-20 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
+              <div className="space-y-5">
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                  PRACTICAL DETAILS
+                </p>
+                <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+                  The Numbers
+                </h2>
+                <ul className="space-y-5 text-[18px] text-[#253136] leading-[1.55]">
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">GUEST CAPACITY</span>
+                    75–150 for the ceremony and reception
+                  </li>
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">OVERNIGHT GUESTS</span>
+                    28–30 across all ten cabins
+                  </li>
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">WEEKEND INVESTMENT</span>
+                    Weekday events: $8,000–10,000<br />
+                    Weekend events: $13,000–16,000<br />
+                    Peak season (Mar–May, Sept–Nov): $15,000–20,000
+                  </li>
+                </ul>
+                <p className="font-body-secondary text-[17px] text-[#253136]/90 leading-[1.6] tracking-[0.03em] italic">
+                  Detailed pricing and availability provided upon inquiry.
+                  Custom quotes based on your specific weekend and guest count.
                 </p>
               </div>
-
-              <div className="pt-4">
-                <p className="text-sm text-muted-foreground italic">
-                  Detailed pricing and availability provided upon inquiry. Custom quotes 
-                  based on your specific weekend and guest count.
+              <div className="space-y-5 md:pt-16">
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                  IS THIS THE RIGHT FIT?
+                </p>
+                <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+                  A Word Before You Reach Out
+                </h2>
+                <p className="text-[18px] text-[#253136] leading-[1.55]">
+                  Not every wedding belongs here. But if you&apos;re looking for a weekend that
+                  feels less like a wedding and more like the best gathering you&apos;ve ever
+                  had — this might be your place.
+                </p>
+                <p className="text-[18px] text-[#253136] leading-[1.55]">
+                  We care about the fit as much as the booking. Fill out the form below
+                  and we will be in touch to talk through whether it makes sense.
                 </p>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+            </div>
+          </section>
+        </>
+      )}
 
-      {/* Inquiry Form Section - Always show */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      {/* Inquiry Form — dark bg section */}
+      <section id="inquiry" className="py-24 md:py-32 bg-[#253136]">
         <div className="container max-w-4xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline text-foreground mb-4">
-              Let&apos;s Talk About Your Celebration
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Not every wedding belongs here. But if you&apos;re looking for a weekend that 
-              feels less like a wedding and more like the best family reunion you&apos;ve ever 
-              had—this might be your place.
-            </p>
-          </div>
-
+          <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#b3c1ce] mb-5">
+            START HERE
+          </p>
+          <h2 className="text-[32px] font-headline leading-[1.37] text-[#f7f2e4] mb-10">
+            Let&apos;s Talk About Your Celebration
+          </h2>
           <WeddingInquiryForm />
         </div>
       </section>
-
-      {/* Footer CTA - Fallback */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/30">
-        <div className="container max-w-4xl mx-auto px-6 text-center space-y-4">
-          <h2 className="text-2xl font-headline text-foreground">
-            Questions about weddings?
-          </h2>
-          <p className="text-muted-foreground">
-            Reach out directly:{' '}
-            <a href="mailto:hello@limestonefields.com" className="text-primary hover:underline">
-              hello@limestonefields.com
-            </a>
-          </p>
-        </div>
-      </section>
-        </>
-      )}
-    </main>
+    </>
   )
 }
-

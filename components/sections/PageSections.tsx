@@ -2,9 +2,6 @@ import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import { urlForImage } from '@/sanity/lib/image'
 import type { PageSection } from '@/sanity/types'
-import { Card, CardContent } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
@@ -21,32 +18,25 @@ export default function PageSections({ sections }: PageSectionsProps) {
         switch (section._type) {
           case 'textSection':
             return (
-              <section key={section._key} className="py-16 md:py-24">
+              <section key={section._key} className="py-24 md:py-32 bg-limestone-cream">
                 <div className="container max-w-4xl mx-auto px-6">
-                  <Card>
-                    <CardContent className="p-8 md:p-12 space-y-6">
-                      {section.headline && (
-                        <>
-                          <h2 className="text-3xl md:text-4xl font-headline text-foreground">
-                            {section.headline}
-                          </h2>
-                          <Separator />
-                        </>
-                      )}
-                      {section.body && (
-                        <div className="prose prose-lg max-w-none text-muted-foreground">
-                          <PortableText value={section.body} />
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
+                  {section.headline && (
+                    <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136] mb-8">
+                      {section.headline}
+                    </h2>
+                  )}
+                  {section.body && (
+                    <div className="text-[18px] text-[#253136] leading-[1.55] [&_p]:mb-4 [&_p:last-child]:mb-0">
+                      <PortableText value={section.body} />
+                    </div>
+                  )}
                 </div>
               </section>
             )
 
           case 'imageSection':
             return (
-              <section key={section._key} className="py-16 md:py-24">
+              <section key={section._key} className="py-24 md:py-32 bg-[#F9F4EE]">
                 <div className="container max-w-6xl mx-auto px-6">
                   {section.image && (
                     <div className="relative aspect-video overflow-hidden rounded-lg">
@@ -59,7 +49,7 @@ export default function PageSections({ sections }: PageSectionsProps) {
                     </div>
                   )}
                   {section.caption && (
-                    <p className="text-sm text-muted-foreground text-center mt-4">
+                    <p className="font-subhead text-[11px] tracking-[0.22em] uppercase text-[#253136]/60 text-center mt-5">
                       {section.caption}
                     </p>
                   )}
@@ -69,40 +59,37 @@ export default function PageSections({ sections }: PageSectionsProps) {
 
           case 'valuePropSection':
             return (
-              <section key={section._key} className="py-24 md:py-32">
+              <section key={section._key} className="py-24 md:py-32 bg-[#CBD2DA]">
                 <div className="container max-w-6xl mx-auto px-6">
-                  {section.headline && (
-                    <div className="text-center mb-16">
-                      <h2 className="text-3xl md:text-5xl font-headline text-foreground mb-6">
-                        {section.headline}
-                      </h2>
-                      <Separator className="max-w-24 mx-auto" />
-                    </div>
-                  )}
-                  {section.introText && (
-                    <div className="max-w-3xl mx-auto mb-16 text-center">
-                      <p className="text-lg text-muted-foreground leading-relaxed">
-                        {section.introText}
-                      </p>
+                  {(section.headline || section.introText) && (
+                    <div className="mb-16">
+                      {section.headline && (
+                        <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136] mb-5">
+                          {section.headline}
+                        </h2>
+                      )}
+                      {section.introText && (
+                        <p className="font-body-secondary text-lg md:text-xl text-[#253136] leading-relaxed max-w-3xl">
+                          {section.introText}
+                        </p>
+                      )}
                     </div>
                   )}
                   {section.cards && section.cards.length > 0 && (
-                    <div className="grid md:grid-cols-3 gap-8">
+                    <div className="grid md:grid-cols-3 gap-12">
                       {section.cards.map((card, index) => (
-                        <Card key={index}>
-                          <CardContent className="p-8 space-y-4">
-                            {card.headline && (
-                              <h3 className="text-xl font-semibold text-foreground">
-                                {card.headline}
-                              </h3>
-                            )}
-                            {card.body && (
-                              <p className="text-muted-foreground leading-relaxed">
-                                {card.body}
-                              </p>
-                            )}
-                          </CardContent>
-                        </Card>
+                        <div key={index} className="space-y-4">
+                          {card.headline && (
+                            <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                              {card.headline}
+                            </p>
+                          )}
+                          {card.body && (
+                            <p className="text-[18px] text-[#253136] leading-[1.55]">
+                              {card.body}
+                            </p>
+                          )}
+                        </div>
                       ))}
                     </div>
                   )}
@@ -116,26 +103,43 @@ export default function PageSections({ sections }: PageSectionsProps) {
                 key={section._key}
                 className={cn(
                   'py-24 md:py-32',
-                  section.variant === 'muted' && 'bg-muted/30',
-                  section.variant === 'secondary' && 'bg-secondary/30'
+                  section.variant === 'secondary' ? 'bg-[#253136]' : 'bg-limestone-cream'
                 )}
               >
-                <div className="container max-w-4xl mx-auto px-6 text-center space-y-8">
+                <div className="container max-w-4xl mx-auto px-6 space-y-8">
                   {section.headline && (
-                    <h2 className="text-3xl md:text-4xl font-headline text-foreground">
+                    <h2
+                      className={cn(
+                        'text-[32px] font-headline leading-[1.37]',
+                        section.variant === 'secondary' ? 'text-[#f7f2e4]' : 'text-[#253136]'
+                      )}
+                    >
                       {section.headline}
                     </h2>
                   )}
                   {section.body && (
-                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    <p
+                      className={cn(
+                        'text-[18px] leading-[1.55] max-w-2xl',
+                        section.variant === 'secondary' ? 'text-[#b3c1ce]' : 'text-[#253136]'
+                      )}
+                    >
                       {section.body}
                     </p>
                   )}
                   {section.buttonText && section.buttonHref && (
                     <div>
-                      <Button asChild size="lg">
-                        <Link href={section.buttonHref}>{section.buttonText}</Link>
-                      </Button>
+                      <Link
+                        href={section.buttonHref}
+                        className={cn(
+                          'inline-flex items-center justify-center rounded-[78px] px-8 py-3 text-[13px] font-subhead uppercase tracking-[0.22em] transition',
+                          section.variant === 'secondary'
+                            ? 'bg-[#f7f2e4] text-[#253136] hover:bg-[#f7e7d5]'
+                            : 'bg-[#253136] text-[#b3c1ce] hover:bg-[#253136]/90'
+                        )}
+                      >
+                        {section.buttonText}
+                      </Link>
                     </div>
                   )}
                 </div>
@@ -144,26 +148,59 @@ export default function PageSections({ sections }: PageSectionsProps) {
 
           case 'cabinPreviewSection':
             return (
-              <section key={section._key} className="py-24 md:py-32">
+              <section key={section._key} className="py-24 md:py-32 bg-[#F9F4EE]">
                 <div className="container max-w-6xl mx-auto px-6">
-                  {section.headline && (
-                    <div className="text-center mb-16">
-                      <h2 className="text-3xl md:text-5xl font-headline text-foreground mb-4">
-                        {section.headline}
-                      </h2>
+                  {(section.headline || section.subhead) && (
+                    <div className="mb-16">
+                      {section.headline && (
+                        <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136] mb-4">
+                          {section.headline}
+                        </h2>
+                      )}
                       {section.subhead && (
-                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                        <p className="font-body-secondary text-[17px] text-[#253136]/90 leading-[1.6] tracking-[0.03em] italic">
                           {section.subhead}
                         </p>
                       )}
-                      <Separator className="max-w-24 mx-auto mt-6" />
                     </div>
                   )}
                   {section.cabins && section.cabins.length > 0 && (
-                    <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-20">
                       {section.cabins.map((item, index) => (
-                        <Card key={index}>
-                          <CardContent className="p-8 space-y-6">
+                        <div
+                          key={index}
+                          className="grid gap-12 md:gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start"
+                        >
+                          <div className="space-y-5">
+                            {item.cabin && (
+                              <>
+                                <div className="space-y-3">
+                                  <h3 className="text-[28px] font-headline leading-[1.37] text-[#253136]">
+                                    {item.cabin.title}
+                                  </h3>
+                                  <div className="flex flex-wrap items-center gap-3 font-subhead text-[11px] uppercase tracking-[0.26em] text-[#253136]/60">
+                                    <span>{item.cabin.squareFeet} sq ft</span>
+                                    <span>·</span>
+                                    <span>Sleeps {item.cabin.sleeps}</span>
+                                    <span>·</span>
+                                    <span>{item.cabin.bedType}</span>
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                            {item.description && (
+                              <p className="text-[18px] text-[#253136] leading-[1.55]">
+                                {item.description}
+                              </p>
+                            )}
+                            <Link
+                              href="/stay"
+                              className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
+                            >
+                              View All Cabins
+                            </Link>
+                          </div>
+                          <div>
                             {item.image ? (
                               <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
                                 <Image
@@ -174,34 +211,12 @@ export default function PageSections({ sections }: PageSectionsProps) {
                                 />
                               </div>
                             ) : (
-                              <div className="aspect-[4/3] bg-muted flex items-center justify-center rounded-lg">
-                                <span className="text-muted-foreground">Image coming soon</span>
+                              <div className="flex aspect-[4/3] items-center justify-center rounded-lg border border-dashed border-[#253136]/20 text-[#253136]/40 font-subhead text-[12px] uppercase tracking-[0.22em]">
+                                Image coming soon
                               </div>
                             )}
-                            <div className="space-y-4">
-                              {item.cabin && (
-                                <div>
-                                  <h3 className="text-2xl font-headline text-foreground mb-2">
-                                    {item.cabin.title}
-                                  </h3>
-                                  <p className="text-sm text-muted-foreground">
-                                    {item.cabin.squareFeet} sq ft • Sleeps {item.cabin.sleeps} •{' '}
-                                    {item.cabin.bedType}
-                                  </p>
-                                </div>
-                              )}
-                              {item.description && (
-                                <p className="text-muted-foreground">{item.description}</p>
-                              )}
-                              <Link
-                                href="/stay"
-                                className="inline-flex items-center text-sm text-primary hover:underline"
-                              >
-                                Learn More →
-                              </Link>
-                            </div>
-                          </CardContent>
-                        </Card>
+                          </div>
+                        </div>
                       ))}
                     </div>
                   )}
@@ -211,9 +226,9 @@ export default function PageSections({ sections }: PageSectionsProps) {
 
           case 'twoColumnSection':
             return (
-              <section key={section._key} className="py-16 md:py-24">
+              <section key={section._key} className="py-24 md:py-32 bg-limestone-cream">
                 <div className="container max-w-6xl mx-auto px-6">
-                  <div className="grid md:grid-cols-2 gap-12">
+                  <div className="grid gap-12 md:gap-20 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
                     <div className="space-y-6">
                       {section.leftImage && (
                         <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
@@ -226,12 +241,12 @@ export default function PageSections({ sections }: PageSectionsProps) {
                         </div>
                       )}
                       {section.leftHeadline && (
-                        <h3 className="text-2xl font-headline text-foreground">
+                        <h3 className="text-[28px] font-headline leading-[1.37] text-[#253136]">
                           {section.leftHeadline}
                         </h3>
                       )}
                       {section.leftBody && (
-                        <div className="prose text-muted-foreground">
+                        <div className="text-[18px] text-[#253136] leading-[1.55] [&_p]:mb-4 [&_p:last-child]:mb-0">
                           <PortableText value={section.leftBody} />
                         </div>
                       )}
@@ -248,12 +263,12 @@ export default function PageSections({ sections }: PageSectionsProps) {
                         </div>
                       )}
                       {section.rightHeadline && (
-                        <h3 className="text-2xl font-headline text-foreground">
+                        <h3 className="text-[28px] font-headline leading-[1.37] text-[#253136]">
                           {section.rightHeadline}
                         </h3>
                       )}
                       {section.rightBody && (
-                        <div className="prose text-muted-foreground">
+                        <div className="text-[18px] text-[#253136] leading-[1.55] [&_p]:mb-4 [&_p:last-child]:mb-0">
                           <PortableText value={section.rightBody} />
                         </div>
                       )}

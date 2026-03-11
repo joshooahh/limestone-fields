@@ -1,145 +1,176 @@
+import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
-import { pageQuery, siteSettingsQuery } from '@/sanity/queries'
-import type { PageDocument, SiteSettings } from '@/sanity/types'
+import { pageQuery, siteSettingsQuery, faqsQuery } from '@/sanity/queries'
+import type { PageDocument, SiteSettings, Faq } from '@/sanity/types'
 import Hero from '@/components/sections/Hero'
 import PageSections from '@/components/sections/PageSections'
 import FAQsSection from '@/components/sections/FAQsSection'
 import WaitlistForm from '@/components/forms/WaitlistForm'
-import { Card, CardContent } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
+import JsonLd from '@/components/seo/JsonLd'
+
+export const metadata: Metadata = {
+  title: 'Contact & Directions',
+  description:
+    'Get in touch with Limestone Fields. Located at 159 LCR 890, Jewett TX 75846 — 2 hours from Austin, Dallas, and Houston. Join the waitlist or inquire about events.',
+  openGraph: {
+    title: 'Contact Limestone Fields — Jewett, TX',
+    description:
+      'Located at Lake Limestone, Texas. 2 hours from Austin, Dallas, and Houston. Join the waitlist or inquire about events.',
+    url: 'https://limestonefields.com/contact',
+  },
+  alternates: { canonical: 'https://limestonefields.com/contact' },
+}
 
 export default async function ContactPage() {
-  const [contactPage, siteSettings] = await Promise.all([
+  const [contactPage, siteSettings, faqs] = await Promise.all([
     client.fetch<PageDocument | null>(pageQuery, { slug: 'contact' }),
     client.fetch<SiteSettings | null>(siteSettingsQuery),
+    client.fetch<Faq[]>(faqsQuery),
   ])
 
+  const faqPageSchema = faqs && faqs.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            // PortableText: extract plain text from the first block
+            text:
+              Array.isArray(faq.answer)
+                ? faq.answer
+                    .map((block) =>
+                      Array.isArray(block?.children)
+                        ? block.children.map((c: { text?: string }) => c?.text ?? '').join('')
+                        : ''
+                    )
+                    .join(' ')
+                : '',
+          },
+        })),
+      }
+    : null
+
   return (
-    <main>
-      {/* Hero */}
-      {contactPage?.heroHeadline || contactPage?.heroSubhead ? (
-        <Hero
-          headline={contactPage.heroHeadline ?? 'Get in Touch'}
-          subhead={contactPage.heroSubhead ?? "We're still building. But we're here."}
-        />
-      ) : (
-        <section className="relative py-24 md:py-32 bg-gradient-to-b from-muted/50 to-background">
-          <div className="container max-w-4xl mx-auto px-6 text-center space-y-6">
-            <div className="space-y-2">
-              <h1 className="text-4xl md:text-6xl font-headline text-foreground">
-                Get in Touch
-              </h1>
-            </div>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              We&apos;re still building.
-              But we&apos;re here.
-            </p>
-          </div>
-        </section>
-      )}
+    <>
+      {faqPageSchema && <JsonLd data={faqPageSchema} />}
+      <Hero
+        headline="Get in Touch"
+        subhead="We're still building. But we're here."
+        eyebrow="Contact"
+      />
 
       {/* Dynamic Sections from Sanity */}
       {contactPage?.sections && contactPage.sections.length > 0 ? (
         <PageSections sections={contactPage.sections} />
       ) : (
         <>
-          {/* Contact Information - Fallback */}
-          <section className="py-16 md:py-24">
-            <div className="container max-w-4xl mx-auto px-6">
-              <div className="grid md:grid-cols-3 gap-8 text-center">
-                <Card>
-                  <CardContent className="p-8 space-y-3">
-                    <div className="text-sm uppercase tracking-wider text-muted-foreground">
-                      Email
-                    </div>
-                    <a 
-                      href={`mailto:${siteSettings?.email || 'hello@limestonefields.com'}`}
-                      className="text-lg text-foreground hover:text-primary transition-colors block"
-                    >
-                      {siteSettings?.email || 'hello@limestonefields.com'}
-                    </a>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-8 space-y-3">
-                    <div className="text-sm uppercase tracking-wider text-muted-foreground">
-                      Location
-                    </div>
-                    <div className="text-muted-foreground">
-                      <p>Lake Limestone, Texas</p>
-                      <p className="text-sm">2 hours from Austin, Dallas, Houston</p>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-8 space-y-3">
-                    <div className="text-sm uppercase tracking-wider text-muted-foreground">
-                      Opening
-                    </div>
-                    <div className="text-lg text-foreground">
-                      {siteSettings?.openingDate || 'Spring 2026'}
-                    </div>
-                  </CardContent>
-                </Card>
+          {/* Contact info — three columns */}
+          <section className="bg-limestone-cream py-24 md:py-32">
+            <div className="container max-w-6xl mx-auto px-6">
+              <div className="grid gap-12 md:grid-cols-3">
+                <div className="space-y-4">
+                  <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                    EMAIL
+                  </p>
+                  <a
+                    href={`mailto:${siteSettings?.email || 'hello@limestonefields.com'}`}
+                    className="text-[18px] text-[#253136] leading-[1.55] underline underline-offset-4 hover:opacity-70 transition"
+                  >
+                    {siteSettings?.email || 'hello@limestonefields.com'}
+                  </a>
+                </div>
+                <div className="space-y-4">
+                  <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                    LOCATION
+                  </p>
+                  <p className="text-[18px] text-[#253136] leading-[1.55]">
+                    Lake Limestone, Texas
+                  </p>
+                  <p className="text-[18px] text-[#253136] leading-[1.55]">
+                    2 hours from Austin, Dallas, and Houston
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                    OPENING
+                  </p>
+                  <p className="text-[18px] text-[#253136] leading-[1.55]">
+                    {siteSettings?.openingDate || 'Spring 2026'}
+                  </p>
+                  <p className="font-body-secondary text-[17px] text-[#253136]/90 leading-[1.6] tracking-[0.03em] italic">
+                    Join the waitlist to be the first to know.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* Directions - Fallback */}
-          <section className="py-16 md:py-24 bg-muted/30">
-            <div className="container max-w-4xl mx-auto px-6">
-              <Card>
-                <CardContent className="p-8 md:p-12 space-y-6">
-                  <div>
-                    <h2 className="text-2xl font-headline text-foreground mb-4">
-                      How to Find Us
-                    </h2>
-                    <Separator className="mb-6" />
-                  </div>
-
-                  <div className="space-y-4 text-muted-foreground">
-                    <p>
-                      Detailed directions will be provided upon booking confirmation.
-                    </p>
-                    <p>
-                      General location: Lake Limestone is in East Central Texas,
-                      accessible via Highway 164.
-                      Specific property directions and gate codes
-                      will be sent to confirmed guests prior to arrival.
-                    </p>
-                  </div>
-
-                  <div className="pt-6">
-                    <h3 className="text-lg font-semibold text-foreground mb-4">
-                      Nearest Airports
-                    </h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>• Austin-Bergstrom International Airport (AUS) — 2 hours</li>
-                      <li>• Dallas/Fort Worth International Airport (DFW) — 2.5 hours</li>
-                      <li>• Houston George Bush Intercontinental Airport (IAH) — 2.5 hours</li>
-                    </ul>
-                    <p className="text-sm text-muted-foreground mt-4">
-                      We recommend renting a car. There are no ride-share services in the area.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+          {/* How to find us */}
+          <section className="py-24 md:py-32 bg-[#CBD2DA]">
+            <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-20 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
+              <div className="space-y-5">
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                  GETTING HERE
+                </p>
+                <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+                  How to Find Us
+                </h2>
+                <p className="text-[18px] text-[#253136] leading-[1.55]">
+                  Detailed directions will be provided upon booking confirmation.
+                  Lake Limestone is in East Central Texas, accessible via Highway 164.
+                  Specific property directions and gate codes are sent to confirmed
+                  guests prior to arrival.
+                </p>
+                <p className="font-body-secondary text-[17px] text-[#253136]/90 leading-[1.6] tracking-[0.03em] italic">
+                  Plan to rent a car. There are no ride-share services in the area.
+                  That is part of the appeal.
+                </p>
+              </div>
+              <div className="space-y-5 md:pt-16">
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                  NEAREST AIRPORTS
+                </p>
+                <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+                  About Two Hours Out
+                </h2>
+                <ul className="space-y-4 text-[18px] text-[#253136] leading-[1.55]">
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">AUSTIN</span>
+                    Austin-Bergstrom International (AUS) — 2 hours
+                  </li>
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">DALLAS</span>
+                    Dallas/Fort Worth International (DFW) — 2.5 hours
+                  </li>
+                  <li>
+                    <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">HOUSTON</span>
+                    George Bush Intercontinental (IAH) — 2.5 hours
+                  </li>
+                </ul>
+              </div>
             </div>
           </section>
         </>
       )}
 
-      {/* FAQ Section - Always show */}
+      {/* FAQ Section */}
       <FAQsSection />
 
-      {/* Waitlist Form - Always show */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      {/* Waitlist Form — dark bg section */}
+      <section className="py-24 md:py-32 bg-[#253136]">
         <div className="container max-w-4xl mx-auto px-6">
+          <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#b3c1ce] mb-5">
+            JOIN THE WAITLIST
+          </p>
+          <h2 className="text-[32px] font-headline leading-[1.37] text-[#f7f2e4] mb-10">
+            Be the First to Know When We Open
+          </h2>
           <WaitlistForm />
         </div>
       </section>
-    </main>
+    </>
   )
 }

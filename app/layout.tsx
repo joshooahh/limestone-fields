@@ -131,12 +131,57 @@ const ppKyoto = localFont({
 
 
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://limestonefields.com'
+
 export const metadata: Metadata = {
-
-  title: 'Limestone Fields',
-
-  description: 'A collection of cabins on Lake Limestone. Designed for rest, reflection, and the kind of clarity that comes from being still.',
-
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Limestone Fields — Lakefront Cabins & Event Venue, Lake Limestone TX',
+    template: '%s — Limestone Fields',
+  },
+  description:
+    'Ten custom-built cabins on 15 acres at Lake Limestone, Texas. A lakefront retreat and event venue for rest, reflection, weddings, and private gatherings — 2 hours from Austin, Dallas, and Houston.',
+  keywords: [
+    'Lake Limestone cabins',
+    'Texas lakefront retreat',
+    'cabin rental Texas',
+    'wedding venue Texas Hill Country',
+    'private event venue Texas',
+    'Lake Limestone wedding',
+    'Texas cabin getaway',
+    'Jewett TX lodging',
+    'lakefront event venue Texas',
+    'corporate retreat Texas',
+  ],
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: SITE_URL,
+    siteName: 'Limestone Fields',
+    title: 'Limestone Fields — Lakefront Cabins & Event Venue, Lake Limestone TX',
+    description:
+      'Ten custom-built cabins on 15 acres at Lake Limestone, Texas. A lakefront retreat and event venue — 2 hours from Austin, Dallas, and Houston.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Limestone Fields — Lakefront Cabins & Event Venue',
+    description:
+      'Ten custom-built cabins on 15 acres at Lake Limestone, Texas. Rest, reflection, weddings, and private gatherings.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
 }
 
 
