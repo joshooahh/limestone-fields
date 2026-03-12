@@ -2,10 +2,54 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import CabinCard from '@/components/sections/CabinCard'
 import Hero from '@/components/sections/Hero'
+import JsonLd from '@/components/seo/JsonLd'
 import { client } from '@/sanity/lib/client'
-import { cabinsQuery } from '@/sanity/queries'
-import type { Cabin } from '@/sanity/types'
+import { urlForImage } from '@/sanity/lib/image'
+import { cabinsQuery, pageQuery } from '@/sanity/queries'
+import type { Cabin, PageDocument } from '@/sanity/types'
 import { ArrowRight } from 'lucide-react'
+
+const lodgingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: 'Limestone Fields',
+  url: 'https://limestonefields.com/stay',
+  priceRange: '$250–$450 per night',
+  numberOfRooms: 10,
+  containsPlace: [
+    {
+      '@type': 'HotelRoom',
+      name: 'Standard Cabin',
+      description: '256 sq ft cabin with king bed sleeping alcove, private outdoor cedar soaking tub, built-in workstation, and individual HVAC. Sleeps 2.',
+      floorSize: { '@type': 'QuantitativeValue', value: 256, unitCode: 'FTK' },
+      occupancy: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 2 },
+      bed: { '@type': 'BedDetails', typeOfBed: 'King size bed', numberOfBeds: 1 },
+      amenityFeature: [
+        { '@type': 'LocationFeatureSpecification', name: 'Private outdoor cedar soaking tub', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Keyless smart lock', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Individual HVAC', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Built-in workstation', value: true },
+      ],
+    },
+    {
+      '@type': 'HotelRoom',
+      name: 'Premium Cabin',
+      description: '384 sq ft cabin with king bed, queen bunk beds, private outdoor cedar soaking tub, and premium bathroom fixtures. Sleeps up to 6.',
+      floorSize: { '@type': 'QuantitativeValue', value: 384, unitCode: 'FTK' },
+      occupancy: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 6 },
+      bed: [
+        { '@type': 'BedDetails', typeOfBed: 'King size bed', numberOfBeds: 1 },
+        { '@type': 'BedDetails', typeOfBed: 'Bunk bed', numberOfBeds: 1 },
+      ],
+      amenityFeature: [
+        { '@type': 'LocationFeatureSpecification', name: 'Private outdoor cedar soaking tub', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Queen bunk beds', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Premium bathroom fixtures', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Individual HVAC', value: true },
+      ],
+    },
+  ],
+}
 
 export const metadata: Metadata = {
   title: 'Stay',
@@ -21,15 +65,21 @@ export const metadata: Metadata = {
 }
 
 export default async function StayPage() {
-  const cabins = await client.fetch<Cabin[]>(cabinsQuery)
+  const [cabins, stayPage] = await Promise.all([
+    client.fetch<Cabin[]>(cabinsQuery),
+    client.fetch<PageDocument | null>(pageQuery, { slug: 'stay' }),
+  ])
 
   return (
     <>
+      <JsonLd data={lodgingSchema} />
       <Hero
         headline="The Cabins at Limestone Fields"
         subhead="Ten private cabins. Two thoughtful layouts. Everything you need, nothing you don't."
         ctaText="Join the Waitlist"
         ctaHref="/contact"
+        backgroundImage={stayPage?.heroImage ? urlForImage(stayPage.heroImage).width(1600).auto('format').url() : undefined}
+        backgroundImageAlt="Cabins at Limestone Fields"
       />
 
       {/* Intro blurb */}

@@ -53,6 +53,21 @@ export const policiesQuery = groq`
   }
 `
 
+export const homepageImagesQuery = groq`
+  *[_type == "homepageImages"][0] {
+    heroImage { asset, crop, hotspot },
+    placeShapedByLand { asset, crop, hotspot },
+    stayMain { asset, crop, hotspot },
+    stayDetail { asset, crop, hotspot },
+    experienceMain { asset, crop, hotspot },
+    experienceLeft { asset, crop, hotspot },
+    experienceRight { asset, crop, hotspot },
+    eventsMain { asset, crop, hotspot },
+    eventsLeft { asset, crop, hotspot },
+    eventsRight { asset, crop, hotspot },
+  }
+`
+
 export const pageQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
     title,

@@ -2,6 +2,10 @@ import type { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { client } from '@/sanity/lib/client'
+import { urlForImage } from '@/sanity/lib/image'
+import { pageQuery } from '@/sanity/queries'
+import type { PageDocument } from '@/sanity/types'
 
 export const metadata: Metadata = {
   title: 'Our Story',
@@ -16,13 +20,17 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://limestonefields.com/story' },
 }
 
-export default function StoryPage() {
+export default async function StoryPage() {
+  const storyPage = await client.fetch<PageDocument | null>(pageQuery, { slug: 'story' })
+
   return (
     <>
       <Hero
         headline="How Limestone Fields Came to Be"
         subhead="An idea among friends who valued quiet, land, and thoughtful work."
         eyebrow="Story"
+        backgroundImage={storyPage?.heroImage ? urlForImage(storyPage.heroImage).width(1600).auto('format').url() : undefined}
+        backgroundImageAlt="The story of Limestone Fields"
       />
 
       {/* The land + The Beginning — two-column */}

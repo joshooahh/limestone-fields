@@ -2,6 +2,10 @@ import type { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { client } from '@/sanity/lib/client'
+import { urlForImage } from '@/sanity/lib/image'
+import { pageQuery } from '@/sanity/queries'
+import type { PageDocument } from '@/sanity/types'
 
 export const metadata: Metadata = {
   title: 'The Experience',
@@ -16,13 +20,17 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://limestonefields.com/experience' },
 }
 
-export default function ExperiencePage() {
+export default async function ExperiencePage() {
+  const experiencePage = await client.fetch<PageDocument | null>(pageQuery, { slug: 'experience' })
+
   return (
     <>
       <Hero
         headline="Scheduled by the Sun"
         subhead="Life at Limestone Fields is shaped by land, weather, and time. No required schedule. No expectation to participate."
         eyebrow="Experience"
+        backgroundImage={experiencePage?.heroImage ? urlForImage(experiencePage.heroImage).width(1600).auto('format').url() : undefined}
+        backgroundImageAlt="Experience at Limestone Fields"
       />
 
       {/* Shared spaces + Working farm — two-column */}

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
+import { urlForImage } from '@/sanity/lib/image'
 import { pageQuery, siteSettingsQuery, faqsQuery } from '@/sanity/queries'
 import type { PageDocument, SiteSettings, Faq } from '@/sanity/types'
 import Hero from '@/components/sections/Hero'
@@ -60,6 +61,8 @@ export default async function ContactPage() {
         headline="Get in Touch"
         subhead="We're still building. But we're here."
         eyebrow="Contact"
+        backgroundImage={contactPage?.heroImage ? urlForImage(contactPage.heroImage).width(1600).auto('format').url() : undefined}
+        backgroundImageAlt="Contact Limestone Fields"
       />
 
       {/* Dynamic Sections from Sanity */}

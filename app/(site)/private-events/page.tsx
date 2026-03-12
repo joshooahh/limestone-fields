@@ -1,7 +1,42 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Hero from '@/components/sections/Hero'
+import JsonLd from '@/components/seo/JsonLd'
 import { ArrowRight } from 'lucide-react'
+import { client } from '@/sanity/lib/client'
+import { urlForImage } from '@/sanity/lib/image'
+import { pageQuery } from '@/sanity/queries'
+import type { PageDocument } from '@/sanity/types'
+
+const eventVenueSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'EventVenue',
+  name: 'Limestone Fields',
+  description: 'A private lakefront event venue on Lake Limestone, Texas. Available for intimate weddings, corporate retreats, and full property buyouts. One event at a time.',
+  url: 'https://limestonefields.com/private-events',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '159 LCR 890',
+    addressLocality: 'Jewett',
+    addressRegion: 'TX',
+    postalCode: '75846',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 31.3471,
+    longitude: -96.1502,
+  },
+  maximumAttendeeCapacity: 150,
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: 'Lakefront ceremony site', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Barn commons (1,200 sq ft)', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Outdoor chef kitchen', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Fire pits', value: true },
+    { '@type': 'LocationFeatureSpecification', name: '10 overnight cabins on site', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Full property exclusive use', value: true },
+  ],
+}
 
 export const metadata: Metadata = {
   title: 'Private Events',
@@ -16,13 +51,18 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://limestonefields.com/private-events' },
 }
 
-export default function PrivateEventsPage() {
+export default async function PrivateEventsPage() {
+  const privateEventsPage = await client.fetch<PageDocument | null>(pageQuery, { slug: 'private-events' })
+
   return (
     <>
+      <JsonLd data={eventVenueSchema} />
       <Hero
         headline="Gather with Intention"
         subhead="Limestone Fields is available for private events that value presence over production. We host one event at a time."
         eyebrow="Private Events"
+        backgroundImage={privateEventsPage?.heroImage ? urlForImage(privateEventsPage.heroImage).width(1600).auto('format').url() : undefined}
+        backgroundImageAlt="Private events at Limestone Fields"
       />
 
       {/* Weddings */}

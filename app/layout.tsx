@@ -161,12 +161,21 @@ export const metadata: Metadata = {
     title: 'Limestone Fields — Lakefront Cabins & Event Venue, Lake Limestone TX',
     description:
       'Ten custom-built cabins on 15 acres at Lake Limestone, Texas. A lakefront retreat and event venue — 2 hours from Austin, Dallas, and Houston.',
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Sunrise over Lake Limestone — Limestone Fields',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Limestone Fields — Lakefront Cabins & Event Venue',
     description:
       'Ten custom-built cabins on 15 acres at Lake Limestone, Texas. Rest, reflection, weddings, and private gatherings.',
+    images: [`${SITE_URL}/og-image.jpg`],
   },
   robots: {
     index: true,

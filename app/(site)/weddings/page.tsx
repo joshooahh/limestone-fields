@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
+import { urlForImage } from '@/sanity/lib/image'
 import { pageQuery } from '@/sanity/queries'
 import type { PageDocument } from '@/sanity/types'
 import Hero from '@/components/sections/Hero'
@@ -74,6 +75,8 @@ export default async function WeddingsPage() {
         eyebrow="Weddings at Limestone Fields"
         ctaText="Start an Inquiry"
         ctaHref="#inquiry"
+        backgroundImage={weddingsPage?.heroImage ? urlForImage(weddingsPage.heroImage).width(1600).auto('format').url() : undefined}
+        backgroundImageAlt="Weddings at Limestone Fields"
       />
 
       {/* Dynamic Sections from Sanity — overrides hardcoded content if configured */}

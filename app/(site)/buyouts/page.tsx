@@ -1,10 +1,43 @@
 import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
+import { urlForImage } from '@/sanity/lib/image'
 import { pageQuery } from '@/sanity/queries'
 import type { PageDocument } from '@/sanity/types'
 import Hero from '@/components/sections/Hero'
+import JsonLd from '@/components/seo/JsonLd'
 import PageSections from '@/components/sections/PageSections'
 import BuyoutInquiryForm from '@/components/forms/BuyoutInquiryForm'
+
+const buyoutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'EventVenue',
+  name: 'Limestone Fields — Full Property Buyout',
+  description: 'Exclusive use of the full Limestone Fields property for corporate retreats, leadership offsites, and private group gatherings. 10 cabins, 28–30 overnight guests, 1,200 sq ft Commons meeting space, and 15 acres on Lake Limestone.',
+  url: 'https://limestonefields.com/buyouts',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '159 LCR 890',
+    addressLocality: 'Jewett',
+    addressRegion: 'TX',
+    postalCode: '75846',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 31.3471,
+    longitude: -96.1502,
+  },
+  maximumAttendeeCapacity: 30,
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: '10 private overnight cabins', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Commons meeting space (1,200 sq ft)', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Indoor and outdoor chef kitchens', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Lakefront access', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Working permaculture farm', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Full property exclusive use', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Fire pits and outdoor gathering areas', value: true },
+  ],
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await client.fetch<PageDocument | null>(pageQuery, { slug: 'buyouts' })
@@ -29,12 +62,15 @@ export default async function BuyoutsPage() {
 
   return (
     <>
+      <JsonLd data={buyoutSchema} />
       <Hero
         headline="Reserve the Entire Property"
         subhead="Ten cabins. One commons barn. 1,200 feet of lakefront. Yours completely."
         eyebrow="Full Property Rental"
         ctaText="Start an Inquiry"
         ctaHref="#inquiry"
+        backgroundImage={buyoutsPage?.heroImage ? urlForImage(buyoutsPage.heroImage).width(1600).auto('format').url() : undefined}
+        backgroundImageAlt="Limestone Fields property buyout"
       />
 
       {/* Dynamic Sections from Sanity — overrides hardcoded content if configured */}

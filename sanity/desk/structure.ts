@@ -12,6 +12,14 @@ export const structure: StructureResolver = (S) =>
             .schemaType('siteSettings')
             .documentId('siteSettings')
         ),
+      S.listItem()
+        .title('Homepage Images')
+        .id('homepageImages')
+        .child(
+          S.document()
+            .schemaType('homepageImages')
+            .documentId('homepageImages')
+        ),
       S.divider(),
       S.listItem()
         .title('Pages')
