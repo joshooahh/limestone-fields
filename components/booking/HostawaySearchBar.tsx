@@ -1,32 +1,39 @@
 'use client'
 
-import Script from 'next/script'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 export default function HostawaySearchBar() {
-  const [loaded, setLoaded] = useState(false)
+  const initialized = useRef(false)
 
   useEffect(() => {
-    if (loaded && typeof window !== 'undefined' && window.searchBar) {
-      window.searchBar({
-        baseUrl: 'https://limestonefields.com/',
-        showLocation: false,
-        color: '#253136',
-        rounded: true,
-        openInNewTab: false,
-        font: 'Helvetica Neue',
-      })
-    }
-  }, [loaded])
+    if (initialized.current) return
 
-  return (
-    <>
-      <div id="hostaway-booking-widget" />
-      <Script
-        src="https://d2q3n06xhbi0am.cloudfront.net/widget.js?1640277196"
-        strategy="afterInteractive"
-        onLoad={() => setLoaded(true)}
-      />
-    </>
-  )
+    const init = () => {
+      if (typeof window.searchBar === 'function') {
+        initialized.current = true
+        window.searchBar({
+          baseUrl: 'https://limestonefields.com/',
+          showLocation: false,
+          color: '#253136',
+          rounded: true,
+          openInNewTab: false,
+          font: 'Helvetica Neue',
+        })
+      }
+    }
+
+    // If script already loaded
+    if (typeof window.searchBar === 'function') {
+      init()
+      return
+    }
+
+    const script = document.createElement('script')
+    script.src = 'https://d2q3n06xhbi0am.cloudfront.net/widget.js?1640277196'
+    script.async = true
+    script.onload = init
+    document.head.appendChild(script)
+  }, [])
+
+  return <div id="hostaway-booking-widget" />
 }

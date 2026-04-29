@@ -152,10 +152,10 @@ export default async function ExperiencePage() {
               that works too. Probably better than most things.
             </p>
             <Link
-              href="/contact"
+              href="/book"
               className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
             >
-              Join the Waitlist
+              Book Your Stay
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </div>
