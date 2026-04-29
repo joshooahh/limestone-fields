@@ -7,7 +7,7 @@ interface Props {
   numberOfMonths?: number
 }
 
-export default function HostawayCalendar({ listingId = 40467, numberOfMonths = 2 }: Props) {
+export default function HostawayCalendar({ listingId = 489941, numberOfMonths = 2 }: Props) {
   const initialized = useRef(false)
 
   useEffect(() => {

@@ -38,7 +38,7 @@ export default function BookPage() {
       {/* Calendar widget */}
       <section className="bg-limestone-cream pb-24 md:pb-36">
         <div className="container max-w-4xl mx-auto px-6">
-          <HostawayCalendar listingId={40467} numberOfMonths={2} />
+          <HostawayCalendar listingId={489941} numberOfMonths={2} />
         </div>
       </section>
 
