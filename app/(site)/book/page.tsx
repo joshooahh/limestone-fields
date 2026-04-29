@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import HostawayCalendar from '@/components/booking/HostawayCalendar'
+import CabinSelector from '@/components/booking/CabinSelector'
 import { ArrowRight } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -38,7 +38,7 @@ export default function BookPage() {
       {/* Calendar widget */}
       <section className="bg-limestone-cream pb-24 md:pb-36">
         <div className="container max-w-4xl mx-auto px-6">
-          <HostawayCalendar listingId={489941} numberOfMonths={2} />
+          <CabinSelector />
         </div>
       </section>
 
