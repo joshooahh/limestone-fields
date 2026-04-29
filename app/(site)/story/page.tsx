@@ -116,25 +116,20 @@ export default async function StoryPage() {
           </div>
           <div className="space-y-5 md:pt-16">
             <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
-              OPENING SOON
+              COME STAY
             </p>
             <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
-              Still Under the Same Sky
+              The Doors Are Open
             </h2>
             <p className="text-[18px] text-[#253136] leading-[1.55]">
-              The property is in the final stages before opening. The cabins are built.
-              The land is tended. The farm is active. We are finishing the details —
-              the small things that matter when you are trying to do something right.
-            </p>
-            <p className="text-[18px] text-[#253136] leading-[1.55]">
-              We expect to open Spring 2026. If you&apos;d like to know when the doors open,
-              the waitlist is the right place to start.
+              Ten private cabins on Lake Limestone, available now. Come for a few days.
+              Leave with more room to think.
             </p>
             <Link
-              href="/contact"
+              href="/book"
               className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
             >
-              Join the Waitlist
+              Check Availability
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </div>
