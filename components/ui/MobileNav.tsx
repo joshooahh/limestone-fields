@@ -51,7 +51,7 @@ export default function MobileNav({ bookingsOpen }: MobileNavProps) {
     return () => document.removeEventListener('keydown', onKey)
   }, [close])
 
-  const waitlistHref = bookingsOpen ? '/stay' : '/contact'
+  const waitlistHref = bookingsOpen ? '/book' : '/contact'
 
   return (
     <>

@@ -31,10 +31,10 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
           <nav className="pointer-events-auto hidden md:flex items-center gap-6 text-[16px] font-subhead uppercase tracking-[0.22em] text-[#f7f2e4] md:gap-8">
             <Link href="/private-events" className="transition hover:text-white">private events</Link>
             <Link
-              href={siteSettings?.bookingsOpen ? '/stay' : '/contact'}
+              href={siteSettings?.bookingsOpen ? '/book' : '/contact'}
               className="transition hover:text-white underline underline-offset-4"
             >
-              join waitlist
+              {siteSettings?.bookingsOpen ? 'book now' : 'join waitlist'}
             </Link>
           </nav>
 

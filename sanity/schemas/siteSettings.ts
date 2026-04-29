@@ -75,6 +75,7 @@ export default defineType({
         { name: 'headline', type: 'string', title: 'Headline' },
         { name: 'body', type: 'text', title: 'Body' },
         { name: 'buttonText', type: 'string', title: 'Button Text' },
+        { name: 'buttonHref', type: 'string', title: 'Button Link', description: 'e.g. /book or /contact' },
       ],
     }),
   ],

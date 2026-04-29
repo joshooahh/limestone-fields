@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/sections/Hero'
 import JsonLd from '@/components/seo/JsonLd'
+import HostawaySearchBar from '@/components/booking/HostawaySearchBar'
 import { ArrowRight } from 'lucide-react'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
@@ -110,11 +111,24 @@ export default async function HomePage() {
       <Hero
         headline="A Collection of Well-Appointed Cabins and Barn Accommodations, Each Designed for Rest and Renewal."
         subhead=""
-        ctaText="Join Waitlist"
-        ctaHref="/contact"
+        ctaText="Check Availability"
+        ctaHref="/book"
         backgroundImage={img(images?.heroImage, FIGMA_FALLBACKS.heroImage)}
         backgroundImageAlt="Sunrise over Lake Limestone"
       />
+
+      {/* Availability search bar — right below the hero for immediate conversion */}
+      <section className="bg-limestone-cream py-14 md:py-18 border-b border-[#253136]/10">
+        <div className="container max-w-4xl mx-auto px-6">
+          <p className="font-subhead text-[11px] tracking-[0.3em] uppercase text-[#253136]/50 text-center mb-6">
+            CHECK AVAILABILITY
+          </p>
+          <HostawaySearchBar />
+          <p className="text-center mt-5 text-[13px] font-subhead uppercase tracking-[0.2em] text-[#253136]/40">
+            From $250 / night · Lake Limestone, TX · 2 hrs from Austin, Dallas &amp; Houston
+          </p>
+        </div>
+      </section>
 
       <section className="bg-limestone-cream py-24 md:py-36">
         <div className="container max-w-2xl mx-auto px-6 text-center">
@@ -175,10 +189,10 @@ export default async function HomePage() {
               <li>Space for rest, reading, writing, and reflection</li>
             </ul>
             <Link
-              href="/stay"
+              href="/book"
               className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
             >
-              Booking Soon
+              Check Availability
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </div>

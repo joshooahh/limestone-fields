@@ -76,8 +76,8 @@ export default async function StayPage() {
       <Hero
         headline="The Cabins at Limestone Fields"
         subhead="Ten private cabins. Two thoughtful layouts. Everything you need, nothing you don't."
-        ctaText="Join the Waitlist"
-        ctaHref="/contact"
+        ctaText="Check Availability"
+        ctaHref="/book"
         backgroundImage={stayPage?.heroImage ? urlForImage(stayPage.heroImage).width(1600).auto('format').url() : undefined}
         backgroundImageAlt="Cabins at Limestone Fields"
       />
@@ -132,10 +132,10 @@ export default async function StayPage() {
                   <li>Climate Control and Modern Bath</li>
                 </ul>
                 <Link
-                  href="/contact"
+                  href="/book"
                   className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
                 >
-                  Join the Waitlist
+                  Check Availability
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
@@ -157,10 +157,10 @@ export default async function StayPage() {
                   what does a person actually need to feel settled?
                 </p>
                 <Link
-                  href="/contact"
+                  href="/book"
                   className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
                 >
-                  Join the Waitlist
+                  Check Availability
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
@@ -272,10 +272,10 @@ export default async function StayPage() {
               <li>Guests Comfortable with a Self-Guided Stay</li>
             </ul>
             <Link
-              href="/contact"
+              href="/book"
               className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
             >
-              Join the Waitlist
+              Check Availability
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </div>
