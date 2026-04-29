@@ -8,14 +8,17 @@ interface Props {
 }
 
 export default function HostawayCalendar({ listingId = 489941, numberOfMonths = 2 }: Props) {
-  const initialized = useRef(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (initialized.current) return
+    let cancelled = false
 
     const init = () => {
-      if (typeof window.hostawayCalendarWidget === 'function') {
-        initialized.current = true
+      if (cancelled) return
+      if (typeof window.hostawayCalendarWidget !== 'function') return
+      // Small delay to ensure the div is fully in the DOM
+      setTimeout(() => {
+        if (cancelled) return
         window.hostawayCalendarWidget({
           baseUrl: 'https://174771_1.holidayfuture.com/',
           listingId,
@@ -34,22 +37,38 @@ export default function HostawayCalendar({ listingId = 489941, numberOfMonths = 
             textColor: '#253136',
           },
         })
+      }, 50)
+    }
+
+    if (typeof window.hostawayCalendarWidget === 'function') {
+      init()
+    } else {
+      // Check if script already in DOM
+      const existing = document.querySelector(
+        'script[src="https://d2q3n06xhbi0am.cloudfront.net/calendar.js"]'
+      )
+      if (!existing) {
+        const script = document.createElement('script')
+        script.src = 'https://d2q3n06xhbi0am.cloudfront.net/calendar.js'
+        script.async = true
+        script.onload = init
+        document.head.appendChild(script)
+      } else {
+        // Script tag exists but function not ready yet — poll briefly
+        const poll = setInterval(() => {
+          if (typeof window.hostawayCalendarWidget === 'function') {
+            clearInterval(poll)
+            init()
+          }
+        }, 100)
+        setTimeout(() => clearInterval(poll), 5000)
       }
     }
 
-    // If script already loaded (e.g. navigating back to page)
-    if (typeof window.hostawayCalendarWidget === 'function') {
-      init()
-      return
+    return () => {
+      cancelled = true
     }
-
-    // Inject script tag manually — most reliable for third-party widgets
-    const script = document.createElement('script')
-    script.src = 'https://d2q3n06xhbi0am.cloudfront.net/calendar.js'
-    script.async = true
-    script.onload = init
-    document.head.appendChild(script)
   }, [listingId, numberOfMonths])
 
-  return <div id="hostaway-calendar-widget" />
+  return <div id="hostaway-calendar-widget" ref={containerRef} />
 }
