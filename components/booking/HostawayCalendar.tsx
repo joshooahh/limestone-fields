@@ -17,7 +17,7 @@ export default function HostawayCalendar({ listingId = 40467, numberOfMonths = 2
       if (typeof window.hostawayCalendarWidget === 'function') {
         initialized.current = true
         window.hostawayCalendarWidget({
-          baseUrl: 'https://174771-1.holidayfuture.com/',
+          baseUrl: 'https://174771_1.holidayfuture.com/',
           listingId,
           numberOfMonths,
           openInNewTab: false,
