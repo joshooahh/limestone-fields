@@ -76,29 +76,24 @@ const lodgingBusinessSchema = {
   touristType: ['Couples', 'Families', 'Groups', 'Corporate retreats', 'Wedding parties'],
 }
 
-// Figma fallbacks — used until Sanity images are uploaded
-const FIGMA_FALLBACKS = {
-  heroImage: 'https://www.figma.com/api/mcp/asset/f5dd992d-3f69-4a66-b52d-850d29e419f5',
-  placeShapedByLand: 'https://www.figma.com/api/mcp/asset/434bda16-4815-4526-ae3c-9b92e7e76547',
-  stayMain: 'https://www.figma.com/api/mcp/asset/901002cd-b473-4339-be4f-3f5f4fdc46fc',
-  stayDetail: 'https://www.figma.com/api/mcp/asset/ec75a44a-74c3-483e-96c1-4385f6fadaf3',
-  experienceMain: 'https://www.figma.com/api/mcp/asset/d1e4c5a1-65de-4223-b242-a7c08239913b',
-  experienceLeft: 'https://www.figma.com/api/mcp/asset/c09485a3-46da-4d00-8158-30a48c340889',
-  experienceRight: 'https://www.figma.com/api/mcp/asset/bc1cf922-45f2-4763-9f3c-3c76743c06e8',
-  eventsMain: 'https://www.figma.com/api/mcp/asset/db1f86a5-1173-4170-a05b-0a3326bbfbd8',
-  eventsLeft: 'https://www.figma.com/api/mcp/asset/c5cc9615-4fd5-4a4e-b362-f64c90f5dc0e',
-  eventsRight: 'https://www.figma.com/api/mcp/asset/ac8ab271-dcfe-4849-9e7e-8aee4ac7a5c6',
-}
-
 type HomepageImages = {
-  [K in keyof typeof FIGMA_FALLBACKS]?: SanityImage | null
+  heroImage?: SanityImage | null
+  placeShapedByLand?: SanityImage | null
+  stayMain?: SanityImage | null
+  stayDetail?: SanityImage | null
+  experienceMain?: SanityImage | null
+  experienceLeft?: SanityImage | null
+  experienceRight?: SanityImage | null
+  eventsMain?: SanityImage | null
+  eventsLeft?: SanityImage | null
+  eventsRight?: SanityImage | null
 }
 
-function img(sanityImage: SanityImage | null | undefined, fallback: string, width = 1400): string {
+function img(sanityImage: SanityImage | null | undefined, width = 1400): string | null {
   if (sanityImage?.asset) {
     return urlForImage(sanityImage).width(width).auto('format').url()
   }
-  return fallback
+  return null
 }
 
 export default async function HomePage() {
@@ -113,7 +108,7 @@ export default async function HomePage() {
         subhead=""
         ctaText="Check Availability"
         ctaHref="/book"
-        backgroundImage={img(images?.heroImage, FIGMA_FALLBACKS.heroImage)}
+        backgroundImage={img(images?.heroImage) ?? undefined}
         backgroundImageAlt="Sunrise over Lake Limestone"
       />
 
@@ -141,15 +136,17 @@ export default async function HomePage() {
 
       <section className="bg-limestone-cream py-16 md:py-24">
         <div className="mx-auto grid max-w-[1120px] items-center gap-12 px-6 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:px-16 lg:gap-20">
-          <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[480px] overflow-hidden rounded-lg shadow-sm">
-            <Image
-              src={img(images?.placeShapedByLand, FIGMA_FALLBACKS.placeShapedByLand)}
-              alt="Sunrise over the lake and surrounding fields"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 620px, (min-width: 768px) 60vw, 100vw"
-              priority
-            />
+          <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[480px] overflow-hidden rounded-lg shadow-sm bg-[#CBD2DA]">
+            {img(images?.placeShapedByLand) && (
+              <Image
+                src={img(images?.placeShapedByLand)!}
+                alt="Sunrise over the lake and surrounding fields"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 620px, (min-width: 768px) 60vw, 100vw"
+                priority
+              />
+            )}
           </div>
           <div className="space-y-6">
             <h2 className="text-[28px] md:text-[32px] font-headline leading-[1.37] text-[#253136]">
@@ -198,24 +195,28 @@ export default async function HomePage() {
           </div>
 
           <div className="relative h-[480px] md:h-[560px]">
-            <div className="absolute top-0 right-0 w-full h-full md:w-[390px] overflow-hidden rounded-lg">
-              <Image
-                src={img(images?.stayMain, FIGMA_FALLBACKS.stayMain)}
-                alt="Books and natural light"
-                fill
-                className="object-cover"
-                sizes="(min-width: 768px) 390px, 100vw"
-              />
+            <div className="absolute top-0 right-0 w-full h-full md:w-[390px] overflow-hidden rounded-lg bg-[#b3c1ce]">
+              {img(images?.stayMain) && (
+                <Image
+                  src={img(images?.stayMain)!}
+                  alt="Books and natural light"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 390px, 100vw"
+                />
+              )}
             </div>
-            <div className="absolute bottom-[-24px] right-[-16px] md:right-[-24px] w-[180px] h-[240px] md:w-[210px] md:h-[280px] overflow-hidden rounded-lg shadow-xl z-10 border-4 border-[#CBD2DA]">
-              <Image
-                src={img(images?.stayDetail, FIGMA_FALLBACKS.stayDetail, 400)}
-                alt="Quiet moment"
-                fill
-                className="object-cover"
-                sizes="210px"
-              />
-            </div>
+            {img(images?.stayDetail) && (
+              <div className="absolute bottom-[-24px] right-[-16px] md:right-[-24px] w-[180px] h-[240px] md:w-[210px] md:h-[280px] overflow-hidden rounded-lg shadow-xl z-10 border-4 border-[#CBD2DA] bg-[#b3c1ce]">
+                <Image
+                  src={img(images?.stayDetail)!}
+                  alt="Quiet moment"
+                  fill
+                  className="object-cover"
+                  sizes="210px"
+                />
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -223,33 +224,39 @@ export default async function HomePage() {
       <section className="py-24 md:py-32 bg-limestone-cream">
         <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
           <div className="order-2 md:order-1 space-y-4">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-              <Image
-                src={img(images?.experienceMain, FIGMA_FALLBACKS.experienceMain)}
-                alt="Morning at Limestone Fields"
-                fill
-                className="object-cover"
-                sizes="(min-width: 768px) 50vw, 100vw"
-              />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[#CBD2DA]">
+              {img(images?.experienceMain) && (
+                <Image
+                  src={img(images?.experienceMain)!}
+                  alt="Morning at Limestone Fields"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                />
+              )}
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="relative aspect-square overflow-hidden rounded-lg">
-                <Image
-                  src={img(images?.experienceLeft, FIGMA_FALLBACKS.experienceLeft, 600)}
-                  alt="Land and light"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 25vw, 50vw"
-                />
+              <div className="relative aspect-square overflow-hidden rounded-lg bg-[#CBD2DA]">
+                {img(images?.experienceLeft, 600) && (
+                  <Image
+                    src={img(images?.experienceLeft, 600)!}
+                    alt="Land and light"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 768px) 25vw, 50vw"
+                  />
+                )}
               </div>
-              <div className="relative aspect-square overflow-hidden rounded-lg">
-                <Image
-                  src={img(images?.experienceRight, FIGMA_FALLBACKS.experienceRight, 600)}
-                  alt="Growing season"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 25vw, 50vw"
-                />
+              <div className="relative aspect-square overflow-hidden rounded-lg bg-[#CBD2DA]">
+                {img(images?.experienceRight, 600) && (
+                  <Image
+                    src={img(images?.experienceRight, 600)!}
+                    alt="Growing season"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 768px) 25vw, 50vw"
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -320,33 +327,39 @@ export default async function HomePage() {
           </div>
 
           <div className="space-y-4">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-              <Image
-                src={img(images?.eventsMain, FIGMA_FALLBACKS.eventsMain)}
-                alt="Gather by the lake"
-                fill
-                className="object-cover"
-                sizes="(min-width: 768px) 50vw, 100vw"
-              />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[#b3c1ce]">
+              {img(images?.eventsMain) && (
+                <Image
+                  src={img(images?.eventsMain)!}
+                  alt="Gather by the lake"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                />
+              )}
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-                <Image
-                  src={img(images?.eventsLeft, FIGMA_FALLBACKS.eventsLeft, 600)}
-                  alt="Lakeside"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 25vw, 50vw"
-                />
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[#b3c1ce]">
+                {img(images?.eventsLeft, 600) && (
+                  <Image
+                    src={img(images?.eventsLeft, 600)!}
+                    alt="Lakeside"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 768px) 25vw, 50vw"
+                  />
+                )}
               </div>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-                <Image
-                  src={img(images?.eventsRight, FIGMA_FALLBACKS.eventsRight, 600)}
-                  alt="Fire pits for gathering"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 25vw, 50vw"
-                />
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[#b3c1ce]">
+                {img(images?.eventsRight, 600) && (
+                  <Image
+                    src={img(images?.eventsRight, 600)!}
+                    alt="Fire pits for gathering"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 768px) 25vw, 50vw"
+                  />
+                )}
               </div>
             </div>
           </div>

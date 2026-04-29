@@ -93,11 +93,11 @@ export default function BookPage() {
             QUESTIONS?
           </p>
           <h2 className="font-headline text-[36px] leading-[1.25] text-[#253136]">
-            We're here to help.
+            We&apos;re here to help.
           </h2>
           <p className="font-body-secondary text-lg text-[#253136]/70 leading-relaxed">
             If you have questions about the property, the cabins, or a specific stay,
-            reach out and we'll get back to you quickly.
+            reach out and we&apos;ll get back to you quickly.
           </p>
           <Link
             href="/contact"
