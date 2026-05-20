@@ -20,6 +20,14 @@ export const structure: StructureResolver = (S) =>
             .schemaType('homepageImages')
             .documentId('homepageImages')
         ),
+      S.listItem()
+        .title('Booking Page Images')
+        .id('bookingImages')
+        .child(
+          S.document()
+            .schemaType('bookingImages')
+            .documentId('bookingImages')
+        ),
       S.divider(),
       S.listItem()
         .title('Pages')

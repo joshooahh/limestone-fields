@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
+import type { Image as SanityImage } from 'sanity'
 import CabinBooking from '@/components/booking/CabinBooking'
+import { client } from '@/sanity/lib/client'
+import { urlForImage } from '@/sanity/lib/image'
+import { bookingImagesQuery } from '@/sanity/queries'
 
 export const metadata: Metadata = {
   title: 'Book',
@@ -14,7 +18,21 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://limestonefields.com/book' },
 }
 
-export default function BookPage() {
+type BookingImages = {
+  familyCabin?: SanityImage | null
+  traditionalCabin?: SanityImage | null
+  entireProperty?: SanityImage | null
+}
+
+export default async function BookPage() {
+  const raw = await client.fetch<BookingImages | null>(bookingImagesQuery).catch(() => null)
+
+  const images = {
+    familyCabin: raw?.familyCabin?.asset ? urlForImage(raw.familyCabin).width(900).auto('format').url() : null,
+    traditionalCabin: raw?.traditionalCabin?.asset ? urlForImage(raw.traditionalCabin).width(900).auto('format').url() : null,
+    entireProperty: raw?.entireProperty?.asset ? urlForImage(raw.entireProperty).width(900).auto('format').url() : null,
+  }
+
   return (
     <>
       {/* Header */}
@@ -32,7 +50,7 @@ export default function BookPage() {
         </div>
       </section>
 
-      <CabinBooking />
+      <CabinBooking images={images} />
     </>
   )
 }

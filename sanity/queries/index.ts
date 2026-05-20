@@ -68,6 +68,14 @@ export const homepageImagesQuery = groq`
   }
 `
 
+export const bookingImagesQuery = groq`
+  *[_type == "bookingImages"][0] {
+    familyCabin { asset, crop, hotspot },
+    traditionalCabin { asset, crop, hotspot },
+    entireProperty { asset, crop, hotspot },
+  }
+`
+
 export const pageQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
     title,

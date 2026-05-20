@@ -1,12 +1,23 @@
 'use client'
 
+import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+
+interface CabinImages {
+  familyCabin?: string | null
+  traditionalCabin?: string | null
+  entireProperty?: string | null
+}
+
+interface Props {
+  images?: CabinImages
+}
 
 const CABIN_TYPES = [
   {
     id: 'family',
-    listingId: 489935,
+    imageKey: 'familyCabin' as keyof CabinImages,
     bookingUrl: 'https://booking.limestonefields.com/listings/489935',
     name: 'Family-Sized Cabin',
     sleeps: 4,
@@ -25,7 +36,7 @@ const CABIN_TYPES = [
   },
   {
     id: 'traditional',
-    listingId: 489934,
+    imageKey: 'traditionalCabin' as keyof CabinImages,
     bookingUrl: 'https://booking.limestonefields.com/listings/489934',
     name: 'Traditional Cabin',
     sleeps: 2,
@@ -44,7 +55,7 @@ const CABIN_TYPES = [
   },
   {
     id: 'property',
-    listingId: 489941,
+    imageKey: 'entireProperty' as keyof CabinImages,
     bookingUrl: 'https://booking.limestonefields.com/listings/489941',
     name: 'Entire Property',
     sleeps: 26,
@@ -63,59 +74,69 @@ const CABIN_TYPES = [
   },
 ]
 
-export default function CabinBooking() {
+export default function CabinBooking({ images }: Props) {
   return (
     <div>
-      {CABIN_TYPES.map((cabin) => (
-        <section key={cabin.id} className={`${cabin.bg} py-20 md:py-28`}>
-          <div className="container max-w-6xl mx-auto px-6">
-            <div className="grid gap-12 md:gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
+      {CABIN_TYPES.map((cabin) => {
+        const imageUrl = images?.[cabin.imageKey]
+        return (
+          <section key={cabin.id} className={`${cabin.bg} py-20 md:py-28`}>
+            <div className="container max-w-6xl mx-auto px-6">
+              <div className="grid gap-12 md:gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
 
-              {/* Left — details + calendar */}
-              <div className="space-y-6">
-                <div>
-                  <p className="font-subhead text-[11px] tracking-[0.3em] uppercase text-[#253136]/50 mb-3">
-                    {cabin.layout}
+                {/* Left — details */}
+                <div className="space-y-6">
+                  <div>
+                    <p className="font-subhead text-[11px] tracking-[0.3em] uppercase text-[#253136]/50 mb-3">
+                      {cabin.layout}
+                    </p>
+                    <h2 className="font-headline text-[32px] leading-[1.25] text-[#253136] mb-1">
+                      {cabin.name}
+                    </h2>
+                    <p className="font-subhead text-[13px] tracking-[0.2em] uppercase text-[#253136]/60">
+                      Sleeps {cabin.sleeps} · {cabin.price}
+                    </p>
+                  </div>
+                  <p className="text-[18px] text-[#253136] leading-[1.55]">
+                    {cabin.description}
                   </p>
-                  <h2 className="font-headline text-[32px] leading-[1.25] text-[#253136] mb-1">
-                    {cabin.name}
-                  </h2>
-                  <p className="font-subhead text-[13px] tracking-[0.2em] uppercase text-[#253136]/60">
-                    Sleeps {cabin.sleeps} · {cabin.price}
-                  </p>
+                  <ul className="space-y-2">
+                    {cabin.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-[17px] text-[#253136] leading-[1.55]">
+                        <span className="mt-2 shrink-0 w-1 h-1 rounded-full bg-[#253136]/40 inline-block" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href={cabin.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
+                  >
+                    Check Availability
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
                 </div>
-                <p className="text-[18px] text-[#253136] leading-[1.55]">
-                  {cabin.description}
-                </p>
-                <ul className="space-y-2">
-                  {cabin.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-[17px] text-[#253136] leading-[1.55]">
-                      <span className="mt-2 shrink-0 w-1 h-1 rounded-full bg-[#253136]/40 inline-block" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
 
-                <a
-                  href={cabin.bookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
-                >
-                  Check Availability
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+                {/* Right — image */}
+                <div className="relative aspect-[4/3] md:aspect-auto md:h-[480px] overflow-hidden rounded-lg bg-[#b3c1ce] md:mt-8">
+                  {imageUrl && (
+                    <Image
+                      src={imageUrl}
+                      alt={cabin.name}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                    />
+                  )}
+                </div>
+
               </div>
-
-              {/* Right — image placeholder */}
-              <div className="relative aspect-[4/3] md:aspect-auto md:h-[480px] overflow-hidden rounded-lg bg-[#b3c1ce] md:mt-8">
-                {/* Upload cabin type images in Sanity to replace these placeholders */}
-              </div>
-
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        )
+      })}
 
       {/* Bottom CTA — contact form */}
       <section className="py-24 md:py-36 bg-[#253136] text-center">
