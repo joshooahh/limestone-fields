@@ -65,8 +65,6 @@ const CABIN_TYPES = [
 export default function CabinBooking() {
   const [selected, setSelected] = useState<string | null>(null)
 
-  const selectedType = CABIN_TYPES.find((c) => c.id === selected)
-
   return (
     <div>
       {CABIN_TYPES.map((cabin) => (
