@@ -1,22 +1,21 @@
 'use client'
 
-import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import HostawayCalendar from './HostawayCalendar'
 
 const CABIN_TYPES = [
   {
     id: 'family',
-    listingId: 480743,
+    listingId: 489935,
+    bookingUrl: 'https://booking.limestonefields.com/listings/489935',
     name: 'Family-Sized Cabin',
     sleeps: 4,
     layout: '1 bedroom · 1 bathroom',
     price: 'From $320 / night',
     features: [
-      'King Bed + Queen Bunk Beds',
+      'King Bed + Full-Sized Bunk Beds',
       'Private Outdoor Cedar Soaking Tub',
-      'Lake or Land Views',
+      'Lake Views',
       'Individual HVAC',
       'Keyless Smart Lock Entry',
     ],
@@ -26,7 +25,8 @@ const CABIN_TYPES = [
   },
   {
     id: 'traditional',
-    listingId: 489937,
+    listingId: 489934,
+    bookingUrl: 'https://booking.limestonefields.com/listings/489934',
     name: 'Traditional Cabin',
     sleeps: 2,
     layout: '1 bedroom · 1 bathroom',
@@ -34,7 +34,7 @@ const CABIN_TYPES = [
     features: [
       'King Bed',
       'Private Outdoor Cedar Soaking Tub',
-      'Lake or Land Views',
+      'Lake Views',
       'Built-in Workstation',
       'Keyless Smart Lock Entry',
     ],
@@ -45,6 +45,7 @@ const CABIN_TYPES = [
   {
     id: 'property',
     listingId: 489941,
+    bookingUrl: 'https://booking.limestonefields.com/listings/489941',
     name: 'Entire Property',
     sleeps: 26,
     layout: '10 cabins · Barn commons',
@@ -63,8 +64,6 @@ const CABIN_TYPES = [
 ]
 
 export default function CabinBooking() {
-  const [selected, setSelected] = useState<string | null>(null)
-
   return (
     <div>
       {CABIN_TYPES.map((cabin) => (
@@ -97,26 +96,15 @@ export default function CabinBooking() {
                   ))}
                 </ul>
 
-                {/* Check availability button or calendar */}
-                {selected === cabin.id ? (
-                  <div className="pt-2">
-                    <HostawayCalendar key={cabin.listingId} listingId={cabin.listingId} numberOfMonths={1} />
-                    <button
-                      onClick={() => setSelected(null)}
-                      className="mt-4 text-[13px] font-subhead uppercase tracking-[0.2em] text-[#253136]/50 hover:text-[#253136] transition"
-                    >
-                      ← Hide calendar
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => setSelected(cabin.id)}
-                    className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
-                  >
-                    Check Availability
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </button>
-                )}
+                <a
+                  href={cabin.bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
+                >
+                  Check Availability
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
               </div>
 
               {/* Right — image placeholder */}
