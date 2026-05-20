@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Hero from '@/components/sections/Hero'
 import JsonLd from '@/components/seo/JsonLd'
 import { ArrowRight } from 'lucide-react'
+import HostawaySearchBar from '@/components/booking/HostawaySearchBar'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { homepageImagesQuery } from '@/sanity/queries'
@@ -111,19 +112,13 @@ export default async function HomePage() {
         backgroundImageAlt="Sunrise over Lake Limestone"
       />
 
-      {/* Availability CTA bar */}
+      {/* Availability search bar */}
       <section className="bg-limestone-cream py-12 border-b border-[#253136]/10">
-        <div className="container max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="font-body-secondary text-[17px] text-[#253136]/70 italic text-center md:text-left">
+        <div className="container max-w-4xl mx-auto px-6">
+          <HostawaySearchBar />
+          <p className="text-center mt-4 font-body-secondary text-[15px] text-[#253136]/50 italic">
             From $250 / night · Lake Limestone, TX · 2 hrs from Austin, Dallas &amp; Houston
           </p>
-          <Link
-            href="/book"
-            className="shrink-0 inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
-          >
-            Check Availability
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
         </div>
       </section>
 
