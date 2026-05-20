@@ -106,17 +106,17 @@ export default async function HomePage() {
       <Hero
         headline="A Collection of Well-Appointed Cabins and Barn Accommodations, Each Designed for Rest and Renewal."
         subhead=""
-        ctaText="Check Availability"
-        ctaHref="/book"
         backgroundImage={img(images?.heroImage) ?? undefined}
         backgroundImageAlt="Sunrise over Lake Limestone"
       />
 
-      {/* Availability search bar */}
-      <section className="bg-limestone-cream py-12 border-b border-[#253136]/10">
-        <div className="container max-w-4xl mx-auto px-6">
-          <HostawaySearchBar />
-          <p className="text-center mt-4 font-body-secondary text-[15px] text-[#253136]/50 italic">
+      {/* Search bar floating up over hero boundary */}
+      <section className="bg-limestone-cream pb-8 border-b border-[#253136]/10">
+        <div className="container max-w-3xl mx-auto px-6 -mt-10 relative z-10">
+          <div className="shadow-xl rounded-[100px] overflow-hidden">
+            <HostawaySearchBar />
+          </div>
+          <p className="text-center mt-5 font-body-secondary text-[15px] text-[#253136]/50 italic">
             From $250 / night · Lake Limestone, TX · 2 hrs from Austin, Dallas &amp; Houston
           </p>
         </div>
