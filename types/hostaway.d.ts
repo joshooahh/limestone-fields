@@ -23,6 +23,7 @@ declare global {
     searchBar: (options: {
       baseUrl: string
       showLocation?: boolean
+      showGuests?: boolean
       color?: string
       rounded?: boolean
       openInNewTab?: boolean
