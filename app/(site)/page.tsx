@@ -113,9 +113,25 @@ export default async function HomePage() {
       {/* Search bar floating up over hero boundary */}
       <section className="bg-limestone-cream pb-8 border-b border-[#253136]/10">
         <div className="container max-w-3xl mx-auto px-6 -mt-10 relative z-10">
-          <div className="shadow-xl rounded-2xl overflow-hidden">
+
+          {/* Desktop: full Hostaway search widget */}
+          <div className="hidden md:block shadow-xl rounded-2xl overflow-hidden">
             <HostawaySearchBar />
           </div>
+
+          {/* Mobile: simple branded CTA button */}
+          <div className="md:hidden flex justify-center">
+            <a
+              href="https://booking.limestonefields.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-10 py-3.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] shadow-xl transition hover:bg-[#253136]/90"
+            >
+              Check Availability
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
+          </div>
+
           <p className="text-center mt-5 font-body-secondary text-[15px] text-[#253136]/50 italic">
             From $250 / night · Lake Limestone, TX · 2 hrs from Austin, Dallas &amp; Houston
           </p>
