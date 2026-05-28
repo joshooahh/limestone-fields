@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { client } from '@/sanity/lib/client'
