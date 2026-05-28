@@ -28,6 +28,14 @@ export const structure: StructureResolver = (S) =>
             .schemaType('bookingImages')
             .documentId('bookingImages')
         ),
+      S.listItem()
+        .title('Property Page Images')
+        .id('propertyImages')
+        .child(
+          S.document()
+            .schemaType('propertyImages')
+            .documentId('propertyImages')
+        ),
       S.divider(),
       S.listItem()
         .title('Pages')
@@ -45,6 +53,11 @@ export const structure: StructureResolver = (S) =>
         .title('Policies')
         .schemaType('policy')
         .child(S.documentTypeList('policy').title('Policies')),
+      S.divider(),
+      S.listItem()
+        .title('Team Members')
+        .schemaType('teamMember')
+        .child(S.documentTypeList('teamMember').title('Team Members')),
       S.divider(),
       S.listItem()
         .title('Waitlist Submissions')

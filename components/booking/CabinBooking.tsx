@@ -18,7 +18,7 @@ const CABIN_TYPES = [
   {
     id: 'family',
     imageKey: 'familyCabin' as keyof CabinImages,
-    bookingUrl: 'https://booking.limestonefields.com/listings/489935',
+    bookingUrl: '/book/family-cabin',
     name: 'Family-Sized Cabin',
     sleeps: 4,
     layout: '1 bedroom · 1 bathroom',
@@ -37,7 +37,7 @@ const CABIN_TYPES = [
   {
     id: 'traditional',
     imageKey: 'traditionalCabin' as keyof CabinImages,
-    bookingUrl: 'https://booking.limestonefields.com/listings/489934',
+    bookingUrl: '/book/traditional-cabin',
     name: 'Traditional Cabin',
     sleeps: 2,
     layout: '1 bedroom · 1 bathroom',
@@ -108,15 +108,25 @@ export default function CabinBooking({ images }: Props) {
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href={cabin.bookingUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
-                  >
-                    Check Availability
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
+                  {cabin.bookingUrl.startsWith('/') ? (
+                    <Link
+                      href={cabin.bookingUrl}
+                      className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
+                    >
+                      View Cabin Details
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  ) : (
+                    <a
+                      href={cabin.bookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
+                    >
+                      Check Availability
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
+                  )}
                 </div>
 
                 {/* Right — image */}

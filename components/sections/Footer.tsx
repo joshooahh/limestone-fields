@@ -123,6 +123,12 @@ export default function Footer({
               {footerCta?.buttonText ?? 'JOIN'}
             </Link>
             <div className="pt-2 space-y-1 text-[15px] leading-relaxed text-[#6b7280]">
+              <Link href="/story" className="block hover:text-[#e8e4dc] transition">
+                Our Story
+              </Link>
+              <Link href="/the-property" className="block hover:text-[#e8e4dc] transition">
+                The Property
+              </Link>
               <Link href="/policies/privacy" className="block hover:text-[#e8e4dc] transition">
                 Privacy Policy
               </Link>

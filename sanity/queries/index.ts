@@ -76,6 +76,29 @@ export const bookingImagesQuery = groq`
   }
 `
 
+export const teamMembersQuery = groq`
+  *[_type == "teamMember"] | order(order asc) {
+    _id,
+    name,
+    role,
+    bio,
+    photo { asset, crop, hotspot },
+    order
+  }
+`
+
+export const propertyImagesQuery = groq`
+  *[_type == "propertyImages"][0] {
+    heroImage { asset, crop, hotspot },
+    cabinsImages[] { asset, crop, hotspot },
+    barnImages[] { asset, crop, hotspot },
+    kitchenImages[] { asset, crop, hotspot },
+    lakeImages[] { asset, crop, hotspot },
+    farmImages[] { asset, crop, hotspot },
+    landImages[] { asset, crop, hotspot },
+  }
+`
+
 export const pageQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
     title,

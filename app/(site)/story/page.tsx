@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
+import type { Image as SanityImage } from 'sanity'
 import Hero from '@/components/sections/Hero'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
-import { pageQuery } from '@/sanity/queries'
+import { pageQuery, teamMembersQuery } from '@/sanity/queries'
 import type { PageDocument } from '@/sanity/types'
 
 export const metadata: Metadata = {
@@ -20,8 +22,20 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://limestonefields.com/story' },
 }
 
+type TeamMember = {
+  _id: string
+  name: string
+  role: string
+  bio?: string
+  photo?: SanityImage | null
+  order?: number
+}
+
 export default async function StoryPage() {
-  const storyPage = await client.fetch<PageDocument | null>(pageQuery, { slug: 'story' })
+  const [storyPage, team] = await Promise.all([
+    client.fetch<PageDocument | null>(pageQuery, { slug: 'story' }).catch(() => null),
+    client.fetch<TeamMember[]>(teamMembersQuery).catch(() => []),
+  ])
 
   return (
     <>
@@ -96,8 +110,65 @@ export default async function StoryPage() {
         </div>
       </section>
 
-      {/* What we believe + What's next — two-column */}
-      <section className="py-24 md:py-32 bg-limestone-cream">
+      {/* Team */}
+      {team.length > 0 && (
+        <section className="py-24 md:py-32 bg-limestone-cream">
+          <div className="container max-w-6xl mx-auto px-6">
+            <div className="mb-14">
+              <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] mb-4">
+                THE TEAM
+              </p>
+              <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136]">
+                The People Behind It
+              </h2>
+            </div>
+            <div className={`grid gap-12 md:gap-10 ${
+              team.length === 1
+                ? 'md:grid-cols-1 max-w-sm'
+                : team.length === 2
+                ? 'md:grid-cols-2'
+                : 'md:grid-cols-3'
+            }`}>
+              {team.map((member) => {
+                const photoUrl = member.photo?.asset
+                  ? urlForImage(member.photo).width(600).auto('format').url()
+                  : null
+                return (
+                  <div key={member._id} className="space-y-5">
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-[#b3c1ce]">
+                      {photoUrl && (
+                        <Image
+                          src={photoUrl}
+                          alt={member.name}
+                          fill
+                          className="object-cover object-top"
+                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        />
+                      )}
+                    </div>
+                    <div className="space-y-1.5">
+                      <h3 className="font-headline text-[22px] leading-[1.3] text-[#253136]">
+                        {member.name}
+                      </h3>
+                      <p className="font-subhead text-[11px] tracking-[0.25em] uppercase text-[#253136]/55">
+                        {member.role}
+                      </p>
+                    </div>
+                    {member.bio && (
+                      <p className="text-[17px] text-[#253136]/75 leading-[1.6]">
+                        {member.bio}
+                      </p>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* What we believe + Come Stay — two-column */}
+      <section className={`py-24 md:py-32 ${team.length > 0 ? 'bg-[#F9F4EE]' : 'bg-limestone-cream'}`}>
         <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-20 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
           <div className="space-y-5">
             <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">

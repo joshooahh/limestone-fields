@@ -19,7 +19,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
           <nav className="pointer-events-auto hidden md:flex items-center gap-6 text-[16px] font-subhead uppercase tracking-[0.22em] text-[#f7f2e4] md:gap-8">
             <Link href="/stay" className="transition hover:text-white">stay</Link>
             <Link href="/experience" className="transition hover:text-white">experience</Link>
-            <Link href="/story" className="transition hover:text-white">story</Link>
+            <Link href="/the-property" className="transition hover:text-white">the property</Link>
           </nav>
 
           {/* Logo — always visible */}

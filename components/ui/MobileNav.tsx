@@ -12,8 +12,9 @@ interface MobileNavProps {
 const NAV_LINKS = [
   { href: '/stay', label: 'Stay' },
   { href: '/experience', label: 'Experience' },
-  { href: '/story', label: 'Story' },
+  { href: '/the-property', label: 'The Property' },
   { href: '/private-events', label: 'Private Events' },
+  { href: '/story', label: 'Our Story' },
   { href: '/weddings', label: 'Weddings' },
   { href: '/buyouts', label: 'Buyouts' },
   { href: '/contact', label: 'Contact' },

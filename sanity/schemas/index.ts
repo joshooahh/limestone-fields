@@ -5,6 +5,8 @@ import policy from './policy'
 import siteSettings from './siteSettings'
 import homepageImages from './homepageImages'
 import bookingImages from './bookingImages'
+import propertyImages from './propertyImages'
+import teamMember from './teamMember'
 import waitlistSubmission from './waitlistSubmission'
 import buyoutInquiry from './buyoutInquiry'
 import contactSubmission from './contactSubmission'
@@ -17,6 +19,8 @@ export const schemaTypes = [
   siteSettings,
   homepageImages,
   bookingImages,
+  propertyImages,
+  teamMember,
   waitlistSubmission,
   buyoutInquiry,
   contactSubmission,
