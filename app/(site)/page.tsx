@@ -115,7 +115,7 @@ export default async function HomePage() {
         <div className="container max-w-3xl mx-auto px-6 -mt-10 relative z-10">
 
           {/* Desktop: full Hostaway search widget */}
-          <div className="hidden md:block shadow-xl rounded-2xl overflow-hidden">
+          <div className="hidden md:block shadow-xl rounded-2xl">
             <HostawaySearchBar />
           </div>
 
