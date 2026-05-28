@@ -10,7 +10,7 @@ import { propertyImagesQuery } from '@/sanity/queries'
 export const metadata: Metadata = {
   title: 'The Property — Limestone Fields',
   description:
-    'Fifteen acres on Lake Limestone, Texas. Ten private cabins, a 1,200 sq ft commons barn, a working permaculture farm, and 1,200 ft of private lakefront. 2 hours from Austin, Dallas, and Houston.',
+    'Sixteen acres on Lake Limestone, Texas. Ten private cabins, a 1,200 sq ft commons barn, a working permaculture farm, and 1,200 ft of private lakefront. 2 hours from Austin, Dallas, and Houston.',
   openGraph: {
     title: 'The Property — Limestone Fields',
     description:
@@ -179,7 +179,7 @@ export default async function ThePropertyPage() {
             The Property
           </h1>
           <p className="font-body-secondary text-lg text-white/70">
-            Fifteen acres · Ten cabins · 1,200 ft of private lakefront
+            Sixteen acres · Ten cabins · 1,200 ft of private lakefront
           </p>
         </div>
       </section>
@@ -188,7 +188,7 @@ export default async function ThePropertyPage() {
       <section className="bg-limestone-cream py-20 md:py-28">
         <div className="container max-w-2xl mx-auto px-6 text-center space-y-6">
           <p className="font-body-secondary text-xl md:text-2xl text-[#253136] leading-[1.6]">
-            Limestone Fields sits on fifteen acres at the edge of Lake Limestone — a working
+            Limestone Fields sits on sixteen acres at the edge of Lake Limestone — a working
             landscape of open fields, old woods, creek bottomland, and 1,200 feet of private
             shoreline.
           </p>
@@ -265,7 +265,7 @@ export default async function ThePropertyPage() {
 
       {/* The Land */}
       <PropertySection
-        label="FIFTEEN ACRES"
+        label="SIXTEEN ACRES"
         headline="The Land"
         description="Beyond the structures, the property is mostly undisturbed. Old post oaks and cedar elms. A creek that runs through the lower pasture. Open fields that shift with the seasons. Walking paths connect the cabins to the water's edge. The kind of place that asks you to slow down."
         urls={landUrls}
