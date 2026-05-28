@@ -13,6 +13,14 @@ export const structure: StructureResolver = (S) =>
             .documentId('siteSettings')
         ),
       S.listItem()
+        .title('SEO Settings')
+        .id('seoSettings')
+        .child(
+          S.document()
+            .schemaType('seoSettings')
+            .documentId('seoSettings')
+        ),
+      S.listItem()
         .title('Homepage Images')
         .id('homepageImages')
         .child(

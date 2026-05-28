@@ -16,6 +16,25 @@ export const cabinsQuery = groq`
   }
 `
 
+const seoPageFragment = `{ title, description, ogImage { asset, crop, hotspot } }`
+
+export const seoSettingsQuery = groq`
+  *[_type == "seoSettings"][0] {
+    home ${seoPageFragment},
+    stay ${seoPageFragment},
+    experience ${seoPageFragment},
+    theProperty ${seoPageFragment},
+    story ${seoPageFragment},
+    book ${seoPageFragment},
+    traditionalCabin ${seoPageFragment},
+    familyCabin ${seoPageFragment},
+    privateEvents ${seoPageFragment},
+    weddings ${seoPageFragment},
+    buyouts ${seoPageFragment},
+    contact ${seoPageFragment},
+  }
+`
+
 export const siteSettingsQuery = groq`
   *[_type == "siteSettings"][0] {
     title,

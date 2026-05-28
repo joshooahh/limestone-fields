@@ -3,6 +3,7 @@ import page from './page'
 import faq from './faq'
 import policy from './policy'
 import siteSettings from './siteSettings'
+import seoSettings from './seoSettings'
 import homepageImages from './homepageImages'
 import bookingImages from './bookingImages'
 import propertyImages from './propertyImages'
@@ -17,6 +18,7 @@ export const schemaTypes = [
   faq,
   policy,
   siteSettings,
+  seoSettings,
   homepageImages,
   bookingImages,
   propertyImages,

@@ -14,6 +14,7 @@ export default function HostawaySearchBar() {
         window.searchBar({
           baseUrl: 'https://booking.limestonefields.com/',
           showLocation: false,
+          showGuests: false,
           color: '#253136',
           rounded: true,
           openInNewTab: false,
