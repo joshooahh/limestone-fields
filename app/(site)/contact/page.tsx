@@ -6,7 +6,8 @@ import type { PageDocument, SiteSettings, Faq } from '@/sanity/types'
 import Hero from '@/components/sections/Hero'
 import PageSections from '@/components/sections/PageSections'
 import FAQsSection from '@/components/sections/FAQsSection'
-import WaitlistForm from '@/components/forms/WaitlistForm'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import JsonLd from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
@@ -59,7 +60,7 @@ export default async function ContactPage() {
       {faqPageSchema && <JsonLd data={faqPageSchema} />}
       <Hero
         headline="Get in Touch"
-        subhead="We're still building. But we're here."
+        subhead="Questions about a stay, an event, or the property — we're happy to help."
         eyebrow="Contact"
         backgroundImage={contactPage?.heroImage ? urlForImage(contactPage.heroImage).width(1600).auto('format').url() : undefined}
         backgroundImageAlt="Contact Limestone Fields"
@@ -89,22 +90,27 @@ export default async function ContactPage() {
                   <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
                     LOCATION
                   </p>
-                  <p className="text-[18px] text-[#253136] leading-[1.55]">
-                    Lake Limestone, Texas
-                  </p>
-                  <p className="text-[18px] text-[#253136] leading-[1.55]">
-                    2 hours from Austin, Dallas, and Houston
+                  <a
+                    href={siteSettings?.mapUrl || 'https://maps.google.com/?q=159+LCR+890+Jewett+TX+75846'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-[18px] text-[#253136] leading-[1.55] underline underline-offset-4 hover:opacity-70 transition"
+                  >
+                    159 LCR 890<br />Jewett, TX 75846
+                  </a>
+                  <p className="text-[17px] text-[#253136]/70 leading-[1.55]">
+                    2 hours from Austin, Dallas &amp; Houston
                   </p>
                 </div>
                 <div className="space-y-4">
                   <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
-                    OPENING
+                    RESPONSE TIME
                   </p>
                   <p className="text-[18px] text-[#253136] leading-[1.55]">
-                    {siteSettings?.openingDate || 'Spring 2026'}
+                    We respond within 24 hours.
                   </p>
                   <p className="font-body-secondary text-[17px] text-[#253136]/90 leading-[1.6] tracking-[0.03em] italic">
-                    Join the waitlist to be the first to know.
+                    For event inquiries, please include preferred dates and group size.
                   </p>
                 </div>
               </div>
@@ -162,16 +168,21 @@ export default async function ContactPage() {
       {/* FAQ Section */}
       <FAQsSection />
 
-      {/* Waitlist Form — dark bg section */}
+      {/* Book CTA */}
       <section className="py-24 md:py-32 bg-[#253136]">
-        <div className="container max-w-4xl mx-auto px-6">
-          <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#b3c1ce] mb-5">
-            JOIN THE WAITLIST
+        <div className="container max-w-4xl mx-auto px-6 text-center space-y-6">
+          <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#b3c1ce]">
+            READY TO BOOK
           </p>
-          <h2 className="text-[32px] font-headline leading-[1.37] text-[#f7f2e4] mb-10">
-            Be the First to Know When We Open
+          <h2 className="text-[32px] font-headline leading-[1.37] text-[#f7f2e4]">
+            Check availability and reserve your cabin.
           </h2>
-          <WaitlistForm />
+          <a
+            href="/book"
+            className="inline-flex items-center justify-center rounded-[78px] bg-[#f7f2e4] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#253136] transition hover:bg-[#e8e4dc]"
+          >
+            View Availability
+          </a>
         </div>
       </section>
     </>

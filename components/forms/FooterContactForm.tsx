@@ -56,6 +56,7 @@ export default function FooterContactForm() {
               <FormControl>
                 <Input
                   placeholder="Your Name*"
+                  required
                   className="rounded-none border-0 border-b border-[#e8e4dc]/50 bg-transparent px-0 py-2 text-[#e8e4dc] placeholder:text-[#e8e4dc]/50 focus-visible:ring-0 focus-visible:border-[#e8e4dc] focus-visible:border-b"
                   {...field}
                 />
@@ -74,6 +75,7 @@ export default function FooterContactForm() {
                 <Input
                   type="email"
                   placeholder="Email*"
+                  required
                   className="rounded-none border-0 border-b border-[#e8e4dc]/50 bg-transparent px-0 py-2 text-[#e8e4dc] placeholder:text-[#e8e4dc]/50 focus-visible:ring-0 focus-visible:border-[#e8e4dc] focus-visible:border-b"
                   {...field}
                 />

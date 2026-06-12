@@ -161,6 +161,37 @@ export default async function ExperiencePage() {
           </div>
         </div>
       </section>
+
+      {/* Private Events CTA */}
+      <section className="py-24 md:py-32 bg-[#253136]">
+        <div className="container max-w-4xl mx-auto px-6 text-center space-y-6">
+          <p className="font-subhead text-[11px] tracking-[0.3em] uppercase text-[#b3c1ce]/60">
+            PRIVATE EVENTS
+          </p>
+          <h2 className="font-headline text-[36px] md:text-[48px] leading-[1.2] text-[#f7f2e4]">
+            Bring your whole group.
+          </h2>
+          <p className="font-body-secondary text-lg text-[#f7f2e4]/70 leading-relaxed max-w-xl mx-auto">
+            The entire property is available for private buyouts — corporate retreats, creative
+            residencies, family gatherings, and weddings. Up to 26 guests, full exclusive use.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/private-events"
+              className="inline-flex items-center justify-center rounded-[78px] bg-[#f7f2e4] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#253136] transition hover:bg-[#e8e4dc]"
+            >
+              Private Buyouts
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+            <Link
+              href="/weddings"
+              className="inline-flex items-center justify-center rounded-[78px] border border-[#f7f2e4]/30 px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#f7f2e4]/70 transition hover:border-[#f7f2e4]/60 hover:text-[#f7f2e4]"
+            >
+              Weddings
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

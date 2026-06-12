@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
+import { client } from '@/sanity/lib/client'
+import { urlForImage } from '@/sanity/lib/image'
+import { seoSettingsQuery } from '@/sanity/queries'
 
 import './globals.css'
 
@@ -133,64 +136,68 @@ const ppKyoto = localFont({
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://limestonefields.com'
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: 'Limestone Fields — Lakefront Cabins & Event Venue, Lake Limestone TX',
-    template: '%s — Limestone Fields',
-  },
-  description:
-    'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. A lakefront retreat and event venue for rest, reflection, weddings, and private gatherings — 2 hours from Austin, Dallas, and Houston.',
-  keywords: [
-    'Lake Limestone cabins',
-    'Texas lakefront retreat',
-    'cabin rental Texas',
-    'wedding venue Texas Hill Country',
-    'private event venue Texas',
-    'Lake Limestone wedding',
-    'Texas cabin getaway',
-    'Jewett TX lodging',
-    'lakefront event venue Texas',
-    'corporate retreat Texas',
-  ],
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: SITE_URL,
-    siteName: 'Limestone Fields',
-    title: 'Limestone Fields — Lakefront Cabins & Event Venue, Lake Limestone TX',
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await client.fetch(seoSettingsQuery).catch(() => null)
+  const ogImage = seo?.home?.ogImage?.asset
+    ? urlForImage(seo.home.ogImage).width(1200).height(630).fit('crop').auto('format').url()
+    : null
+
+  const ogImages = ogImage
+    ? [{ url: ogImage, width: 1200, height: 630, alt: 'Limestone Fields — Lake Limestone, TX' }]
+    : []
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: 'Limestone Fields — Lakefront Cabins & Event Venue, Lake Limestone TX',
+      template: '%s — Limestone Fields',
+    },
     description:
-      'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. A lakefront retreat and event venue — 2 hours from Austin, Dallas, and Houston.',
-    images: [
-      {
-        url: `${SITE_URL}/og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: 'Sunrise over Lake Limestone — Limestone Fields',
-      },
+      'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. A lakefront retreat and event venue for rest, reflection, weddings, and private gatherings — 2 hours from Austin, Dallas, and Houston.',
+    keywords: [
+      'Lake Limestone cabins',
+      'Texas lakefront retreat',
+      'cabin rental Texas',
+      'wedding venue Texas Hill Country',
+      'private event venue Texas',
+      'Lake Limestone wedding',
+      'Texas cabin getaway',
+      'Jewett TX lodging',
+      'lakefront event venue Texas',
+      'corporate retreat Texas',
     ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Limestone Fields — Lakefront Cabins & Event Venue',
-    description:
-      'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. Rest, reflection, weddings, and private gatherings.',
-    images: [`${SITE_URL}/og-image.jpg`],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      url: SITE_URL,
+      siteName: 'Limestone Fields',
+      title: 'Limestone Fields — Lakefront Cabins & Event Venue, Lake Limestone TX',
+      description:
+        'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. A lakefront retreat and event venue — 2 hours from Austin, Dallas, and Houston.',
+      images: ogImages,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Limestone Fields — Lakefront Cabins & Event Venue',
+      description:
+        'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. Rest, reflection, weddings, and private gatherings.',
+      images: ogImage ? [ogImage] : [],
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-  alternates: {
-    canonical: SITE_URL,
-  },
+    alternates: {
+      canonical: SITE_URL,
+    },
+  }
 }
 
 

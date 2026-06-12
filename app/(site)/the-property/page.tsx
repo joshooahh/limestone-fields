@@ -273,6 +273,45 @@ export default async function ThePropertyPage() {
         bg="bg-limestone-cream"
       />
 
+      {/* Events CTA — two column */}
+      <section className="py-20 md:py-28 bg-[#253136]">
+        <div className="container max-w-6xl mx-auto px-6 grid gap-10 md:grid-cols-2">
+          <div className="space-y-5">
+            <p className="font-subhead text-[11px] tracking-[0.3em] uppercase text-[#b3c1ce]/60">WEDDINGS</p>
+            <h2 className="font-headline text-[28px] md:text-[36px] leading-[1.2] text-[#f7f2e4]">
+              A private lakefront wedding venue.
+            </h2>
+            <p className="font-body-secondary text-lg text-[#f7f2e4]/70 leading-relaxed">
+              Exclusive use of the full property. Ceremony, reception, rehearsal dinner,
+              and overnight accommodations for the entire wedding party.
+            </p>
+            <Link
+              href="/weddings"
+              className="inline-flex items-center justify-center rounded-[78px] bg-[#f7f2e4] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#253136] transition hover:bg-[#e8e4dc]"
+            >
+              Weddings at Limestone Fields
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+          <div className="space-y-5 md:pt-10">
+            <p className="font-subhead text-[11px] tracking-[0.3em] uppercase text-[#b3c1ce]/60">PRIVATE BUYOUTS</p>
+            <h2 className="font-headline text-[28px] md:text-[36px] leading-[1.2] text-[#f7f2e4]">
+              Rent the whole place.
+            </h2>
+            <p className="font-body-secondary text-lg text-[#f7f2e4]/70 leading-relaxed">
+              Corporate retreats, creative residencies, family reunions. Full exclusive
+              use of all 10 cabins, the barn, the kitchen, and the lake. Sleeps 26.
+            </p>
+            <Link
+              href="/private-events"
+              className="inline-flex items-center justify-center rounded-[78px] border border-[#f7f2e4]/30 px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#f7f2e4]/70 transition hover:border-[#f7f2e4]/60 hover:text-[#f7f2e4]"
+            >
+              Inquire About a Buyout
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Getting Here */}
       <section className="bg-[#CBD2DA] py-20 md:py-28">
         <div className="container max-w-4xl mx-auto px-6">
