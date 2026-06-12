@@ -19,10 +19,9 @@ const CABIN_TYPES = [
     id: 'family',
     imageKey: 'familyCabin' as keyof CabinImages,
     bookingUrl: '/book/family-cabin',
-    name: 'Family-Sized Cabin',
+    name: 'Cabin Suite',
     sleeps: 4,
     layout: '1 bedroom · 1 bathroom',
-    price: 'From $320 / night',
     features: [
       'King Bed + Full-Sized Bunk Beds',
       'Private Outdoor Cedar Soaking Tub',
@@ -38,10 +37,9 @@ const CABIN_TYPES = [
     id: 'traditional',
     imageKey: 'traditionalCabin' as keyof CabinImages,
     bookingUrl: '/book/traditional-cabin',
-    name: 'Traditional Cabin',
+    name: 'Standard Cabin',
     sleeps: 2,
     layout: '1 bedroom · 1 bathroom',
-    price: 'From $250 / night',
     features: [
       'King Bed',
       'Private Outdoor Cedar Soaking Tub',

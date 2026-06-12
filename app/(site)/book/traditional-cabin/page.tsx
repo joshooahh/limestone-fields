@@ -8,13 +8,13 @@ import { urlForImage } from '@/sanity/lib/image'
 import { bookingImagesQuery } from '@/sanity/queries'
 
 export const metadata: Metadata = {
-  title: 'Traditional Cabin — Limestone Fields',
+  title: 'Standard Cabin — Limestone Fields',
   description:
-    'Our original cabin layout. King bed, private cedar soaking tub, lake views, and a built-in workstation. From $250/night at Lake Limestone, TX.',
+    'Our original cabin layout. King bed, private cedar soaking tub, lake views, and a built-in workstation. At Lake Limestone, TX.',
   openGraph: {
-    title: 'Traditional Cabin — Limestone Fields',
+    title: 'Standard Cabin — Limestone Fields',
     description:
-      'Pared back and thoughtfully designed. King bed, private outdoor cedar soaking tub, and lake views from $250/night.',
+      'Pared back and thoughtfully designed. King bed, private outdoor cedar soaking tub, and lake views.',
     url: 'https://limestonefields.com/book/traditional-cabin',
   },
   alternates: { canonical: 'https://limestonefields.com/book/traditional-cabin' },
@@ -61,10 +61,10 @@ export default async function TraditionalCabinPage() {
             ← All Cabin Types
           </Link>
           <h1 className="font-headline text-[42px] md:text-[56px] leading-[1.15] text-[#253136] mb-4">
-            Traditional Cabin
+            Standard Cabin
           </h1>
           <p className="font-subhead text-[13px] tracking-[0.2em] uppercase text-[#253136]/60">
-            Sleeps 2 · 1 Bedroom · 1 Bathroom · From $250 / night
+            Sleeps 2 · 1 Bedroom · 1 Bathroom
           </p>
         </div>
       </section>
@@ -122,7 +122,7 @@ export default async function TraditionalCabinPage() {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
                 <p className="text-[14px] text-[#253136]/50 font-body-secondary italic">
-                  If your preferred dates aren&apos;t available, other traditional cabins may be open —{' '}
+                  If your preferred dates aren&apos;t available, other standard cabins may be open —{' '}
                   <Link href="/contact" className="underline underline-offset-2 hover:text-[#253136]/70 transition">
                     reach out and we&apos;ll help
                   </Link>.
@@ -135,7 +135,7 @@ export default async function TraditionalCabinPage() {
               {imageUrl && (
                 <Image
                   src={imageUrl}
-                  alt="Traditional Cabin at Limestone Fields"
+                  alt="Standard Cabin at Limestone Fields"
                   fill
                   className="object-cover"
                   sizes="(min-width: 768px) 50vw, 100vw"

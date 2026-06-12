@@ -51,8 +51,8 @@ export default defineType({
     { ...pageField('story', 'Our Story', '/story'), group: 'main' },
     // Booking
     { ...pageField('book', 'Book / Reservations', '/book'), group: 'booking' },
-    { ...pageField('traditionalCabin', 'Traditional Cabin', '/book/traditional-cabin'), group: 'booking' },
-    { ...pageField('familyCabin', 'Family-Sized Cabin', '/book/family-cabin'), group: 'booking' },
+    { ...pageField('traditionalCabin', 'Standard Cabin', '/book/traditional-cabin'), group: 'booking' },
+    { ...pageField('familyCabin', 'Cabin Suite', '/book/family-cabin'), group: 'booking' },
     // Events
     { ...pageField('privateEvents', 'Private Events', '/private-events'), group: 'events' },
     { ...pageField('weddings', 'Weddings', '/weddings'), group: 'events' },

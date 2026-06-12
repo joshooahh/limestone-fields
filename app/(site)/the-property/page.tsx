@@ -205,7 +205,7 @@ export default async function ThePropertyPage() {
       <PropertySection
         label="ACCOMMODATIONS"
         headline="The Cabins"
-        description="Ten private cabins sit across the property in two layouts — traditional (sleeps 2) and family-sized (sleeps 4). Each has a king bed, private outdoor cedar soaking tub, lake views, and individual HVAC. Natural materials. Quiet interiors. Nothing superfluous."
+        description="Ten private cabins sit across the property in two layouts — standard (sleeps 2) and cabin suites (sleeps 4). Each has a king bed, private outdoor cedar soaking tub, lake views, and individual HVAC. Natural materials. Quiet interiors. Nothing superfluous."
         urls={cabinsUrls}
         alts={['Cabin exterior', 'Cabin interior', 'Cedar soaking tub']}
         bg="bg-[#F9F4EE]"
@@ -328,7 +328,6 @@ export default async function ThePropertyPage() {
             Come see it for yourself.
           </h2>
           <p className="font-body-secondary text-lg text-[#f7f2e4]/70 leading-relaxed">
-            Traditional cabins from $250 / night. Family-sized from $320 / night.
             Private property buyouts available.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

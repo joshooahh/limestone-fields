@@ -12,11 +12,11 @@ import type { PageDocument } from '@/sanity/types'
 export const metadata: Metadata = {
   title: 'Our Story',
   description:
-    'Limestone Fields began as an idea among friends who valued quiet, land, and thoughtful work. 15 acres on Lake Limestone, Texas — built around the concept of hospitality as hermitage.',
+    'Limestone Fields began as an idea among friends who valued quiet, land, and thoughtful work. 16 acres on Lake Limestone, Texas — built around the concept of hospitality as hermitage.',
   openGraph: {
     title: 'Our Story — Limestone Fields',
     description:
-      'How Limestone Fields came to be. 15 acres on Lake Limestone, built around the concept of hospitality as hermitage.',
+      'How Limestone Fields came to be. 16 acres on Lake Limestone, built around the concept of hospitality as hermitage.',
     url: 'https://limestonefields.com/story',
   },
   alternates: { canonical: 'https://limestonefields.com/story' },

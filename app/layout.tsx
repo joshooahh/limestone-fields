@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-
+import Script from 'next/script'
 import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 
@@ -140,7 +140,7 @@ export const metadata: Metadata = {
     template: '%s — Limestone Fields',
   },
   description:
-    'Ten custom-built cabins on 15 acres at Lake Limestone, Texas. A lakefront retreat and event venue for rest, reflection, weddings, and private gatherings — 2 hours from Austin, Dallas, and Houston.',
+    'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. A lakefront retreat and event venue for rest, reflection, weddings, and private gatherings — 2 hours from Austin, Dallas, and Houston.',
   keywords: [
     'Lake Limestone cabins',
     'Texas lakefront retreat',
@@ -160,7 +160,7 @@ export const metadata: Metadata = {
     siteName: 'Limestone Fields',
     title: 'Limestone Fields — Lakefront Cabins & Event Venue, Lake Limestone TX',
     description:
-      'Ten custom-built cabins on 15 acres at Lake Limestone, Texas. A lakefront retreat and event venue — 2 hours from Austin, Dallas, and Houston.',
+      'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. A lakefront retreat and event venue — 2 hours from Austin, Dallas, and Houston.',
     images: [
       {
         url: `${SITE_URL}/og-image.jpg`,
@@ -174,7 +174,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Limestone Fields — Lakefront Cabins & Event Venue',
     description:
-      'Ten custom-built cabins on 15 acres at Lake Limestone, Texas. Rest, reflection, weddings, and private gatherings.',
+      'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. Rest, reflection, weddings, and private gatherings.',
     images: [`${SITE_URL}/og-image.jpg`],
   },
   robots: {
@@ -216,6 +216,20 @@ export default function RootLayout({
     >
 
       <body className={abcMarfa.className}>
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-3NKQWWLYT9"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-3NKQWWLYT9');
+          `}
+        </Script>
 
         {children}
 

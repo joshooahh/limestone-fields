@@ -13,7 +13,7 @@ import type { Image as SanityImage } from 'sanity'
 export const metadata: Metadata = {
   title: 'Limestone Fields — Lakefront Cabins & Event Venue, Lake Limestone TX',
   description:
-    'Ten custom-built cabins on 15 acres at Lake Limestone, Texas. A lakefront creative retreat and event venue for rest, reflection, weddings, and private gatherings. 2 hours from Austin, Dallas, and Houston.',
+    'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. A lakefront creative retreat and event venue for rest, reflection, weddings, and private gatherings. 2 hours from Austin, Dallas, and Houston.',
   alternates: { canonical: 'https://limestonefields.com' },
 }
 
@@ -22,7 +22,7 @@ const lodgingBusinessSchema = {
   '@type': 'LodgingBusiness',
   name: 'Limestone Fields',
   description:
-    'A lakefront creative retreat and event venue set on 15 acres at Lake Limestone, Texas. Ten custom-built cabins, a 1,200 sq ft commons building with indoor and outdoor chef\'s kitchens, and a working permaculture farm.',
+    'A lakefront creative retreat and event venue set on 16 acres at Lake Limestone, Texas. Ten custom-built cabins, a 1,200 sq ft commons building with indoor and outdoor chef\'s kitchens, and a working permaculture farm.',
   url: 'https://limestonefields.com',
   email: 'hello@limestonefields.com',
   address: {
@@ -39,7 +39,6 @@ const lodgingBusinessSchema = {
     longitude: -96.1502,
   },
   numberOfRooms: 10,
-  priceRange: '$250–$450 per night',
   openingDate: '2026-04-15',
   amenityFeature: [
     { '@type': 'LocationFeatureSpecification', name: 'Private outdoor cedar soaking tub', value: true },
@@ -63,13 +62,13 @@ const lodgingBusinessSchema = {
     },
     {
       '@type': 'HotelRoom',
-      name: 'Premium Cabin',
-      description: '384 sq ft premium cabin with king bed, queen bunk beds, private outdoor cedar soaking tub, and premium bathroom fixtures. Sleeps up to 6.',
+      name: 'Cabin Suite',
+      description: '384 sq ft cabin suite with king bed and two full beds, private outdoor cedar soaking tub, and individual HVAC. Sleeps up to 4.',
       floorSize: { '@type': 'QuantitativeValue', value: 384, unitCode: 'FTK' },
-      occupancy: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 6 },
+      occupancy: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 4 },
       bed: [
         { '@type': 'BedDetails', typeOfBed: 'King size bed', numberOfBeds: 1 },
-        { '@type': 'BedDetails', typeOfBed: 'Bunk bed', numberOfBeds: 1 },
+        { '@type': 'BedDetails', typeOfBed: 'Full size bed', numberOfBeds: 2 },
       ],
     },
   ],
@@ -133,7 +132,7 @@ export default async function HomePage() {
           </div>
 
           <p className="text-center mt-5 font-body-secondary text-[15px] text-[#253136]/50 italic">
-            From $250 / night · Lake Limestone, TX · 2 hrs from Austin, Dallas &amp; Houston
+            Lake Limestone, TX · 2 hrs from Austin, Dallas &amp; Houston
           </p>
         </div>
       </section>

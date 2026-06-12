@@ -12,7 +12,7 @@ const buyoutSchema = {
   '@context': 'https://schema.org',
   '@type': 'EventVenue',
   name: 'Limestone Fields — Full Property Buyout',
-  description: 'Exclusive use of the full Limestone Fields property for corporate retreats, leadership offsites, and private group gatherings. 10 cabins, 28–30 overnight guests, 1,200 sq ft Commons meeting space, and 15 acres on Lake Limestone.',
+  description: 'Exclusive use of the full Limestone Fields property for corporate retreats, leadership offsites, and private group gatherings. 10 cabins, 28–30 overnight guests, 1,200 sq ft Commons meeting space, and 16 acres on Lake Limestone.',
   url: 'https://limestonefields.com/buyouts',
   address: {
     '@type': 'PostalAddress',
@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: page?.seo?.metaTitle ?? 'Property Buyouts — Limestone Fields, Lake Limestone TX',
       description:
         page?.seo?.metaDescription ??
-        'Exclusive use of Limestone Fields for corporate retreats and private group events. 10 cabins, Commons meeting space, and 15 acres on Lake Limestone.',
+        'Exclusive use of Limestone Fields for corporate retreats and private group events. 10 cabins, Commons meeting space, and 16 acres on Lake Limestone.',
       url: 'https://limestonefields.com/buyouts',
     },
     alternates: { canonical: 'https://limestonefields.com/buyouts' },
@@ -103,7 +103,7 @@ export default async function BuyoutsPage() {
                 <ul className="space-y-5 text-[18px] text-[#253136] leading-[1.55]">
                   <li>
                     <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">CAPACITY</span>
-                    Accommodations for up to 32 guests across 10 cabins. All standard cabin amenities.
+                    Accommodations for up to 26 guests across 10 cabins. All standard cabin amenities.
                   </li>
                   <li>
                     <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">COMMONS BARN</span>

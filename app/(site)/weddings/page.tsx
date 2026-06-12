@@ -166,7 +166,7 @@ export default async function WeddingsPage() {
                   </li>
                   <li>
                     <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">ACCOMMODATIONS</span>
-                    Ten cabins for the wedding party — sleeps 28–30. Bridal and groom&apos;s suites.
+                    Ten cabins for the wedding party — sleeps 26. Bridal and groom&apos;s suites.
                   </li>
                   <li>
                     <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">WEEKEND TIMELINE</span>

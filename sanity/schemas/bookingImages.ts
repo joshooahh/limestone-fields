@@ -7,16 +7,16 @@ export default defineType({
   fields: [
     defineField({
       name: 'familyCabin',
-      title: 'Family-Sized Cabin',
+      title: 'Cabin Suite',
       type: 'image',
-      description: 'Photo shown for the Family-Sized Cabin (sleeps 4) on the /book page',
+      description: 'Photo shown for the Cabin Suite (sleeps 4) on the /book page',
       options: { hotspot: true },
     }),
     defineField({
       name: 'traditionalCabin',
-      title: 'Traditional Cabin',
+      title: 'Standard Cabin',
       type: 'image',
-      description: 'Photo shown for the Traditional Cabin (sleeps 2) on the /book page',
+      description: 'Photo shown for the Standard Cabin (sleeps 2) on the /book page',
       options: { hotspot: true },
     }),
     defineField({

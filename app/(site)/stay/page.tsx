@@ -14,7 +14,6 @@ const lodgingSchema = {
   '@type': 'LodgingBusiness',
   name: 'Limestone Fields',
   url: 'https://limestonefields.com/stay',
-  priceRange: '$250–$450 per night',
   numberOfRooms: 10,
   containsPlace: [
     {
@@ -33,7 +32,7 @@ const lodgingSchema = {
     },
     {
       '@type': 'HotelRoom',
-      name: 'Premium Cabin',
+      name: 'Cabin Suite',
       description: '384 sq ft cabin with king bed, queen bunk beds, private outdoor cedar soaking tub, and premium bathroom fixtures. Sleeps up to 6.',
       floorSize: { '@type': 'QuantitativeValue', value: 384, unitCode: 'FTK' },
       occupancy: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 6 },
@@ -54,11 +53,11 @@ const lodgingSchema = {
 export const metadata: Metadata = {
   title: 'Stay',
   description:
-    'Ten private cabins on 15 acres at Lake Limestone, Texas. Seven standard cabins (256 sq ft, king bed, cedar soaking tub) and three premium cabins (384 sq ft, sleeps up to 6). From $250/night. 2 hours from Austin, Dallas, and Houston.',
+    'Ten private cabins on 16 acres at Lake Limestone, Texas. Seven standard cabins (256 sq ft, king bed, cedar soaking tub) and three cabin suites (384 sq ft, sleeps up to 4). 2 hours from Austin, Dallas, and Houston.',
   openGraph: {
     title: 'Stay at Limestone Fields — Private Lakefront Cabins',
     description:
-      'Ten custom-built cabins on Lake Limestone. Every cabin includes a private outdoor cedar soaking tub, king bed, and access to the shared Commons kitchen. From $250/night.',
+      'Ten custom-built cabins on Lake Limestone. Every cabin includes a private outdoor cedar soaking tub, king bed, and access to the shared Commons kitchen.',
     url: 'https://limestonefields.com/stay',
   },
   alternates: { canonical: 'https://limestonefields.com/stay' },

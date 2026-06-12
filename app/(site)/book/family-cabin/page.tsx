@@ -8,13 +8,13 @@ import { urlForImage } from '@/sanity/lib/image'
 import { bookingImagesQuery } from '@/sanity/queries'
 
 export const metadata: Metadata = {
-  title: 'Family-Sized Cabin — Limestone Fields',
+  title: 'Cabin Suite — Limestone Fields',
   description:
-    'Our larger cabin layout. King bed, full-sized bunk beds, private cedar soaking tub, and lake views. Sleeps 4, from $320/night at Lake Limestone, TX.',
+    'Our larger cabin layout. King bed, full-sized bunk beds, private cedar soaking tub, and lake views. Sleeps 4 at Lake Limestone, TX.',
   openGraph: {
-    title: 'Family-Sized Cabin — Limestone Fields',
+    title: 'Cabin Suite — Limestone Fields',
     description:
-      'Designed for couples or small families. King bed, full-sized bunk beds, private outdoor cedar soaking tub, lake views. From $320/night.',
+      'Designed for couples or small families. King bed, full-sized bunk beds, private outdoor cedar soaking tub, lake views.',
     url: 'https://limestonefields.com/book/family-cabin',
   },
   alternates: { canonical: 'https://limestonefields.com/book/family-cabin' },
@@ -60,10 +60,10 @@ export default async function FamilyCabinPage() {
             ← All Cabin Types
           </Link>
           <h1 className="font-headline text-[42px] md:text-[56px] leading-[1.15] text-[#253136] mb-4">
-            Family-Sized Cabin
+            Cabin Suite
           </h1>
           <p className="font-subhead text-[13px] tracking-[0.2em] uppercase text-[#253136]/60">
-            Sleeps 4 · 1 Bedroom · 1 Bathroom · From $320 / night
+            Sleeps 4 · 1 Bedroom · 1 Bathroom
           </p>
         </div>
       </section>
@@ -77,7 +77,7 @@ export default async function FamilyCabinPage() {
             <div className="space-y-8">
               <p className="text-[18px] text-[#253136] leading-[1.6]">
                 Our larger cabin layout — designed for couples or small families who want more room
-                to spread out. A king bed, full-sized bunk beds for kids or extra guests, a private
+                to spread out. A king bed and two full beds for kids or extra guests, a private
                 outdoor cedar soaking tub, and lake views. Same quiet intention as the rest of the
                 property, with a bit more space.
               </p>
@@ -121,7 +121,7 @@ export default async function FamilyCabinPage() {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
                 <p className="text-[14px] text-[#253136]/50 font-body-secondary italic">
-                  If your preferred dates aren&apos;t available, other family-sized cabins may be open —{' '}
+                  If your preferred dates aren&apos;t available, other cabin suites may be open —{' '}
                   <Link href="/contact" className="underline underline-offset-2 hover:text-[#253136]/70 transition">
                     reach out and we&apos;ll help
                   </Link>.
@@ -134,7 +134,7 @@ export default async function FamilyCabinPage() {
               {imageUrl && (
                 <Image
                   src={imageUrl}
-                  alt="Family-Sized Cabin at Limestone Fields"
+                  alt="Cabin Suite at Limestone Fields"
                   fill
                   className="object-cover"
                   sizes="(min-width: 768px) 50vw, 100vw"

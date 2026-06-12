@@ -8,11 +8,11 @@ import { bookingImagesQuery } from '@/sanity/queries'
 export const metadata: Metadata = {
   title: 'Book',
   description:
-    'Check availability and book a private cabin at Limestone Fields on Lake Limestone, Texas. From $250/night. 2 hours from Austin, Dallas, and Houston.',
+    'Check availability and book a private cabin at Limestone Fields on Lake Limestone, Texas.. 2 hours from Austin, Dallas, and Houston.',
   openGraph: {
     title: 'Book a Cabin — Limestone Fields',
     description:
-      'Check availability and reserve your cabin at Limestone Fields. Private lakefront cabins from $250/night.',
+      'Check availability and reserve your cabin at Limestone Fields. Private lakefront cabins on Lake Limestone.',
     url: 'https://limestonefields.com/book',
   },
   alternates: { canonical: 'https://limestonefields.com/book' },

@@ -106,7 +106,7 @@ export default async function PrivateEventsPage() {
               Full Exclusive Access
             </h2>
             <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
-              <li>All 10 Cabins (up to 32 guests)</li>
+              <li>All 10 Cabins (sleeps 26)</li>
               <li>1,200 sq ft Commons Barn with Full Kitchen</li>
               <li>1,200 ft of Private Lakefront</li>
               <li>Walking Paths and Open Land</li>
