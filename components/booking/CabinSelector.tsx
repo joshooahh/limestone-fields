@@ -85,7 +85,7 @@ export default function CabinSelector() {
             Check availability and book {selectedCabin.label} directly through our booking portal.
           </p>
           <a
-            href={`https://booking.limestonefields.com/listings/${selectedCabin.id}`}
+            href={`https://174771_1.holidayfuture.com/listings/${selectedCabin.id}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"

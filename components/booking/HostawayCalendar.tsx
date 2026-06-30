@@ -20,7 +20,7 @@ export default function HostawayCalendar({ listingId = 489941, numberOfMonths = 
       setTimeout(() => {
         if (cancelled) return
         window.hostawayCalendarWidget({
-          baseUrl: 'https://booking.limestonefields.com/',
+          baseUrl: 'https://174771_1.holidayfuture.com/',
           listingId,
           numberOfMonths,
           openInNewTab: false,

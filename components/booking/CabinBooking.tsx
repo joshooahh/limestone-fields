@@ -54,7 +54,7 @@ const CABIN_TYPES = [
   {
     id: 'property',
     imageKey: 'entireProperty' as keyof CabinImages,
-    bookingUrl: 'https://booking.limestonefields.com/listings/489941',
+    bookingUrl: 'https://174771_1.holidayfuture.com/listings/489941',
     name: 'Entire Property',
     sleeps: 26,
     layout: '10 cabins · Barn commons',

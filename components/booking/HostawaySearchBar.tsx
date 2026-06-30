@@ -12,7 +12,7 @@ export default function HostawaySearchBar() {
       if (typeof window.searchBar === 'function') {
         initialized.current = true
         window.searchBar({
-          baseUrl: 'https://booking.limestonefields.com/',
+          baseUrl: 'https://174771_1.holidayfuture.com/',
           showLocation: false,
           color: '#253136',
           rounded: true,
