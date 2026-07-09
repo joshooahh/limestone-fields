@@ -1,9 +1,5 @@
 import type { Metadata } from 'next'
-import type { Image as SanityImage } from 'sanity'
 import Link from 'next/link'
-import { client } from '@/sanity/lib/client'
-import { propertyImagesQuery } from '@/sanity/queries'
-import { imgUrl } from '@/lib/sanity-image'
 import JsonLd from '@/components/seo/JsonLd'
 import BlogBreadcrumb from '@/components/blog/BlogBreadcrumb'
 import BlogFigure from '@/components/blog/BlogFigure'
@@ -14,42 +10,28 @@ import BlogProse from '@/components/blog/BlogProse'
 
 const CANONICAL = 'https://limestonefields.com/blog/corporate-retreat-venues-texas'
 
-type PropertyImages = {
-  heroImage?: SanityImage | null
-  barnImages?: SanityImage[] | null
-  kitchenImages?: SanityImage[] | null
-}
+const FEATURED_IMAGE = '/images/blog/corporate-retreat-hero.jpg'
+const INLINE_IMAGE = '/images/blog/corporate-retreat-inline.jpg'
 
-async function getImages() {
-  const raw = await client.fetch<PropertyImages | null>(propertyImagesQuery).catch(() => null)
-  return {
-    featured: imgUrl(raw?.barnImages?.[0] ?? raw?.heroImage, 1600),
-    barn: imgUrl(raw?.kitchenImages?.[0] ?? raw?.barnImages?.[1] ?? raw?.barnImages?.[0], 1400),
-  }
-}
-
-export async function generateMetadata(): Promise<Metadata> {
-  const { featured } = await getImages()
-  return {
-    title: { absolute: 'Corporate Retreat Venues in Texas | Limestone Fields' },
+export const metadata: Metadata = {
+  title: { absolute: 'Corporate Retreat Venues in Texas | Limestone Fields' },
+  description:
+    "Corporate retreat venues in Texas are easy to find; a whole-property lake buyout isn't. Book all 10 cabins on Lake Limestone. Check availability today.",
+  alternates: { canonical: CANONICAL },
+  openGraph: {
+    type: 'article',
+    title: 'Corporate Retreat Venues in Texas | Limestone Fields',
     description:
-      "Corporate retreat venues in Texas are easy to find; a whole-property lake buyout isn't. Book all 10 cabins on Lake Limestone. Check availability today.",
-    alternates: { canonical: CANONICAL },
-    openGraph: {
-      type: 'article',
-      title: 'Corporate Retreat Venues in Texas | Limestone Fields',
-      description:
-        'Buy out all ten lakefront cabins on 16 acres at Lake Limestone. One group, whole property, two hours from Austin, Dallas, and Houston.',
-      url: CANONICAL,
-      images: featured ? [{ url: featured, width: 1600, height: 900 }] : [],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'Corporate Retreat Venues in Texas | Limestone Fields',
-      description: 'A whole-property lakefront buyout for team offsites and retreats, two hours from Austin, Dallas, and Houston.',
-      images: featured ? [featured] : [],
-    },
-  }
+      'Buy out all ten lakefront cabins on 16 acres at Lake Limestone. One group, whole property, two hours from Austin, Dallas, and Houston.',
+    url: CANONICAL,
+    images: [{ url: FEATURED_IMAGE, width: 1600, height: 900 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Corporate Retreat Venues in Texas | Limestone Fields',
+    description: 'A whole-property lakefront buyout for team offsites and retreats, two hours from Austin, Dallas, and Houston.',
+    images: [FEATURED_IMAGE],
+  },
 }
 
 const toc = [
@@ -152,9 +134,7 @@ const jsonLd = [
   },
 ]
 
-export default async function CorporateRetreatVenuesTexasPage() {
-  const { featured, barn } = await getImages()
-
+export default function CorporateRetreatVenuesTexasPage() {
   return (
     <>
       <JsonLd data={jsonLd} />
@@ -177,8 +157,8 @@ export default async function CorporateRetreatVenuesTexasPage() {
             </div>
 
             <BlogFigure
-              src={featured}
-              alt="Corporate retreat venues in Texas — lakefront cabins and barn at Lake Limestone available for a whole-property buyout"
+              src={FEATURED_IMAGE}
+              alt="Corporate retreat venues in Texas — an aerial view of the cabins and pond at Limestone Fields, available for a whole-property buyout"
               aspect="aspect-[16/9]"
               priority
             />
@@ -245,9 +225,9 @@ export default async function CorporateRetreatVenuesTexasPage() {
               </p>
 
               <BlogFigure
-                src={barn}
-                alt="Shared barn and communal kitchen used for team offsites at a Texas corporate retreat venue"
-                caption="The shared barn doubles as a natural meeting space for the whole group."
+                src={INLINE_IMAGE}
+                alt="Steaks and broccolini cooking on the Santa Maria grill at a Texas corporate retreat venue"
+                caption="Dinner from the outdoor kitchen — one of the ways the whole group ends up in the same place."
               />
 
               <h2 id="space">The space: barn, cabins, and 16 acres</h2>

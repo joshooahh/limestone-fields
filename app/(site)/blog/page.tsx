@@ -1,11 +1,7 @@
 import type { Metadata } from 'next'
-import type { Image as SanityImage } from 'sanity'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
-import { client } from '@/sanity/lib/client'
-import { propertyImagesQuery } from '@/sanity/queries'
-import { imgUrls } from '@/lib/sanity-image'
 import { blogPosts } from '@/lib/blog-posts'
 
 export const metadata: Metadata = {
@@ -21,28 +17,14 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://limestonefields.com/blog' },
 }
 
-type PropertyImages = {
-  cabinsImages?: SanityImage[] | null
-  barnImages?: SanityImage[] | null
-  lakeImages?: SanityImage[] | null
-  landImages?: SanityImage[] | null
+const cardImage: Record<string, string> = {
+  'weekend-getaway-from-dallas': '/images/blog/weekend-getaway-hero.jpg',
+  'corporate-retreat-venues-texas': '/images/blog/corporate-retreat-hero.jpg',
+  'deep-work-retreat': '/images/blog/deep-work-hero.jpg',
+  'intimate-wedding-venues-texas': '/images/blog/wedding-hero.jpg',
 }
 
-export default async function BlogIndexPage() {
-  const raw = await client.fetch<PropertyImages | null>(propertyImagesQuery).catch(() => null)
-
-  const cabins = imgUrls(raw?.cabinsImages)
-  const barn = imgUrls(raw?.barnImages)
-  const lake = imgUrls(raw?.lakeImages)
-  const land = imgUrls(raw?.landImages)
-
-  const cardImage: Record<string, string | null> = {
-    'weekend-getaway-from-dallas': lake[0] ?? land[0] ?? null,
-    'corporate-retreat-venues-texas': barn[0] ?? cabins[0] ?? null,
-    'deep-work-retreat': cabins[0] ?? cabins[1] ?? null,
-    'intimate-wedding-venues-texas': lake[1] ?? lake[0] ?? null,
-  }
-
+export default function BlogIndexPage() {
   return (
     <>
       {/* Header */}

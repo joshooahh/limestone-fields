@@ -1,9 +1,5 @@
 import type { Metadata } from 'next'
-import type { Image as SanityImage } from 'sanity'
 import Link from 'next/link'
-import { client } from '@/sanity/lib/client'
-import { propertyImagesQuery } from '@/sanity/queries'
-import { imgUrl } from '@/lib/sanity-image'
 import JsonLd from '@/components/seo/JsonLd'
 import BlogBreadcrumb from '@/components/blog/BlogBreadcrumb'
 import BlogFigure from '@/components/blog/BlogFigure'
@@ -14,41 +10,28 @@ import BlogProse from '@/components/blog/BlogProse'
 
 const CANONICAL = 'https://limestonefields.com/blog/deep-work-retreat'
 
-type PropertyImages = {
-  heroImage?: SanityImage | null
-  cabinsImages?: SanityImage[] | null
-}
+const FEATURED_IMAGE = '/images/blog/deep-work-hero.jpg'
+const INLINE_IMAGE = '/images/blog/deep-work-inline.jpg'
 
-async function getImages() {
-  const raw = await client.fetch<PropertyImages | null>(propertyImagesQuery).catch(() => null)
-  return {
-    featured: imgUrl(raw?.cabinsImages?.[0] ?? raw?.heroImage, 1600),
-    interior: imgUrl(raw?.cabinsImages?.[1] ?? raw?.cabinsImages?.[0], 1400),
-  }
-}
-
-export async function generateMetadata(): Promise<Metadata> {
-  const { featured } = await getImages()
-  return {
-    title: { absolute: 'Deep Work Retreat in Texas | Limestone Fields' },
+export const metadata: Metadata = {
+  title: { absolute: 'Deep Work Retreat in Texas | Limestone Fields' },
+  description:
+    'A deep work retreat in Texas with no TVs and no noise — a quiet lakefront cabin two hours from Austin, Dallas, and Houston. Book time to actually think.',
+  alternates: { canonical: CANONICAL },
+  openGraph: {
+    type: 'article',
+    title: 'Deep Work Retreat in Texas | Limestone Fields',
     description:
-      'A deep work retreat in Texas with no TVs and no noise — a quiet lakefront cabin two hours from Austin, Dallas, and Houston. Book time to actually think.',
-    alternates: { canonical: CANONICAL },
-    openGraph: {
-      type: 'article',
-      title: 'Deep Work Retreat in Texas | Limestone Fields',
-      description:
-        'A quiet lakefront cabin built for focus. No televisions, no schedule — just space to think, two hours from Austin, Dallas, and Houston.',
-      url: CANONICAL,
-      images: featured ? [{ url: featured, width: 1600, height: 900 }] : [],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'Deep Work Retreat in Texas | Limestone Fields',
-      description: 'A quiet lakefront cabin built for focus. No televisions, no schedule — just space to think.',
-      images: featured ? [featured] : [],
-    },
-  }
+      'A quiet lakefront cabin built for focus. No televisions, no schedule — just space to think, two hours from Austin, Dallas, and Houston.',
+    url: CANONICAL,
+    images: [{ url: FEATURED_IMAGE, width: 1600, height: 900 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Deep Work Retreat in Texas | Limestone Fields',
+    description: 'A quiet lakefront cabin built for focus. No televisions, no schedule — just space to think.',
+    images: [FEATURED_IMAGE],
+  },
 }
 
 const toc = [
@@ -151,9 +134,7 @@ const jsonLd = [
   },
 ]
 
-export default async function DeepWorkRetreatPage() {
-  const { featured, interior } = await getImages()
-
+export default function DeepWorkRetreatPage() {
   return (
     <>
       <JsonLd data={jsonLd} />
@@ -176,8 +157,8 @@ export default async function DeepWorkRetreatPage() {
             </div>
 
             <BlogFigure
-              src={featured}
-              alt="Deep work retreat in Texas — a quiet lakefront cabin with a desk and generous windows at Lake Limestone"
+              src={FEATURED_IMAGE}
+              alt="Deep work retreat in Texas — a desk by the window with a guitar on the wall, set up for quiet focus"
               aspect="aspect-[16/9]"
               priority
             />
@@ -250,9 +231,9 @@ export default async function DeepWorkRetreatPage() {
               </p>
 
               <BlogFigure
-                src={interior}
-                alt="Quiet cabin interior with generous windows, set up for a deep work retreat in Texas"
-                caption="Quiet interiors and generous windows — built for presence, not performance."
+                src={INLINE_IMAGE}
+                alt="A guest writing in a journal beneath a hanging guitar, deep work retreat in Texas"
+                caption="Quiet interiors, built for presence, not performance."
               />
 
               <h2 id="rhythm">The rhythm of a retreat here</h2>

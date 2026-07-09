@@ -1,9 +1,5 @@
 import type { Metadata } from 'next'
-import type { Image as SanityImage } from 'sanity'
 import Link from 'next/link'
-import { client } from '@/sanity/lib/client'
-import { propertyImagesQuery } from '@/sanity/queries'
-import { imgUrl } from '@/lib/sanity-image'
 import JsonLd from '@/components/seo/JsonLd'
 import BlogBreadcrumb from '@/components/blog/BlogBreadcrumb'
 import BlogFigure from '@/components/blog/BlogFigure'
@@ -14,44 +10,28 @@ import BlogProse from '@/components/blog/BlogProse'
 
 const CANONICAL = 'https://limestonefields.com/blog/weekend-getaway-from-dallas'
 
-type PropertyImages = {
-  heroImage?: SanityImage | null
-  lakeImages?: SanityImage[] | null
-  landImages?: SanityImage[] | null
-  farmImages?: SanityImage[] | null
-}
+const FEATURED_IMAGE = '/images/blog/weekend-getaway-hero.jpg'
+const INLINE_IMAGE = '/images/blog/weekend-getaway-inline.jpg'
 
-async function getImages() {
-  const raw = await client.fetch<PropertyImages | null>(propertyImagesQuery).catch(() => null)
-  return {
-    featured: imgUrl(raw?.heroImage, 1600),
-    morning: imgUrl(raw?.lakeImages?.[0], 1400),
-    evening: imgUrl(raw?.landImages?.[0] ?? raw?.farmImages?.[0], 1400),
-  }
-}
-
-export async function generateMetadata(): Promise<Metadata> {
-  const { featured } = await getImages()
-  return {
-    title: { absolute: 'Weekend Getaway From Dallas | Limestone Fields' },
+export const metadata: Metadata = {
+  title: { absolute: 'Weekend Getaway From Dallas | Limestone Fields' },
+  description:
+    'A weekend getaway from Dallas that feels like rest. Ten lakefront cabins on 16 acres at Lake Limestone, two hours south. Check availability and book.',
+  alternates: { canonical: CANONICAL },
+  openGraph: {
+    type: 'article',
+    title: 'Weekend Getaway From Dallas | Limestone Fields',
     description:
-      'A weekend getaway from Dallas that feels like rest. Ten lakefront cabins on 16 acres at Lake Limestone, two hours south. Check availability and book.',
-    alternates: { canonical: CANONICAL },
-    openGraph: {
-      type: 'article',
-      title: 'Weekend Getaway From Dallas | Limestone Fields',
-      description:
-        'Ten lakefront cabins on 16 acres at Lake Limestone, two hours south of Dallas. A weekend that actually feels like rest.',
-      url: CANONICAL,
-      images: featured ? [{ url: featured, width: 1600, height: 900 }] : [],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'Weekend Getaway From Dallas | Limestone Fields',
-      description: 'Ten lakefront cabins on 16 acres at Lake Limestone, two hours south of Dallas.',
-      images: featured ? [featured] : [],
-    },
-  }
+      'Ten lakefront cabins on 16 acres at Lake Limestone, two hours south of Dallas. A weekend that actually feels like rest.',
+    url: CANONICAL,
+    images: [{ url: FEATURED_IMAGE, width: 1600, height: 900 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Weekend Getaway From Dallas | Limestone Fields',
+    description: 'Ten lakefront cabins on 16 acres at Lake Limestone, two hours south of Dallas.',
+    images: [FEATURED_IMAGE],
+  },
 }
 
 const toc = [
@@ -155,9 +135,7 @@ const jsonLd = [
   },
 ]
 
-export default async function WeekendGetawayFromDallasPage() {
-  const { featured, morning, evening } = await getImages()
-
+export default function WeekendGetawayFromDallasPage() {
   return (
     <>
       <JsonLd data={jsonLd} />
@@ -180,8 +158,8 @@ export default async function WeekendGetawayFromDallasPage() {
             </div>
 
             <BlogFigure
-              src={featured}
-              alt="Weekend getaway from Dallas — sunrise over lakefront cabins at Lake Limestone, Texas"
+              src={FEATURED_IMAGE}
+              alt="Weekend getaway from Dallas — soaking in a cedar tub overlooking Lake Limestone, Texas"
               aspect="aspect-[16/9]"
               priority
             />
@@ -220,9 +198,9 @@ export default async function WeekendGetawayFromDallasPage() {
               </p>
 
               <BlogFigure
-                src={morning}
-                alt="Morning light over Lake Limestone, a two-hour weekend getaway from Dallas"
-                caption="Morning on Lake Limestone, about two hours south of Dallas."
+                src={INLINE_IMAGE}
+                alt="Stepping out for coffee on a weekend getaway from Dallas at Limestone Fields"
+                caption="Mornings move slowly here — coffee, then whatever the day asks for."
               />
 
               <h2 id="why-here">Why choose a lakefront cabin over another weekend trip?</h2>
@@ -275,11 +253,6 @@ export default async function WeekendGetawayFromDallasPage() {
                 the rest of the time is yours. Most guests describe the same thing afterward: they
                 actually slept, and they actually thought.
               </p>
-
-              <BlogFigure
-                src={evening}
-                alt="Fire pit at dusk on a weekend getaway from Dallas at Limestone Fields"
-              />
 
               <h2 id="nearby">What&apos;s nearby — and what isn&apos;t</h2>
               <p>

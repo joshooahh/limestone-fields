@@ -1,9 +1,5 @@
 import type { Metadata } from 'next'
-import type { Image as SanityImage } from 'sanity'
 import Link from 'next/link'
-import { client } from '@/sanity/lib/client'
-import { propertyImagesQuery } from '@/sanity/queries'
-import { imgUrl } from '@/lib/sanity-image'
 import JsonLd from '@/components/seo/JsonLd'
 import BlogBreadcrumb from '@/components/blog/BlogBreadcrumb'
 import BlogFigure from '@/components/blog/BlogFigure'
@@ -14,42 +10,28 @@ import BlogProse from '@/components/blog/BlogProse'
 
 const CANONICAL = 'https://limestonefields.com/blog/intimate-wedding-venues-texas'
 
-type PropertyImages = {
-  heroImage?: SanityImage | null
-  lakeImages?: SanityImage[] | null
-  landImages?: SanityImage[] | null
-}
+const FEATURED_IMAGE = '/images/blog/wedding-hero.jpg'
+const INLINE_IMAGE = '/images/blog/wedding-inline.jpg'
 
-async function getImages() {
-  const raw = await client.fetch<PropertyImages | null>(propertyImagesQuery).catch(() => null)
-  return {
-    featured: imgUrl(raw?.lakeImages?.[1] ?? raw?.lakeImages?.[0] ?? raw?.heroImage, 1600),
-    ceremony: imgUrl(raw?.lakeImages?.[0] ?? raw?.landImages?.[0], 1400),
-  }
-}
-
-export async function generateMetadata(): Promise<Metadata> {
-  const { featured } = await getImages()
-  return {
-    title: { absolute: 'Intimate Wedding Venues in Texas | Limestone Fields' },
+export const metadata: Metadata = {
+  title: { absolute: 'Intimate Wedding Venues in Texas | Limestone Fields' },
+  description:
+    'Intimate wedding venues in Texas where everyone stays the weekend. One event at a time on Lake Limestone, full property yours. See dates and inquire.',
+  alternates: { canonical: CANONICAL },
+  openGraph: {
+    type: 'article',
+    title: 'Intimate Wedding Venues in Texas | Limestone Fields',
     description:
-      'Intimate wedding venues in Texas where everyone stays the weekend. One event at a time on Lake Limestone, full property yours. See dates and inquire.',
-    alternates: { canonical: CANONICAL },
-    openGraph: {
-      type: 'article',
-      title: 'Intimate Wedding Venues in Texas | Limestone Fields',
-      description:
-        'A lakefront wedding where everyone stays the weekend. One event at a time on 16 acres at Lake Limestone, the full property yours.',
-      url: CANONICAL,
-      images: featured ? [{ url: featured, width: 1600, height: 900 }] : [],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'Intimate Wedding Venues in Texas | Limestone Fields',
-      description: 'A lakefront wedding where everyone stays the weekend. One event at a time, the full property yours.',
-      images: featured ? [featured] : [],
-    },
-  }
+      'A lakefront wedding where everyone stays the weekend. One event at a time on 16 acres at Lake Limestone, the full property yours.',
+    url: CANONICAL,
+    images: [{ url: FEATURED_IMAGE, width: 1600, height: 900 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Intimate Wedding Venues in Texas | Limestone Fields',
+    description: 'A lakefront wedding where everyone stays the weekend. One event at a time, the full property yours.',
+    images: [FEATURED_IMAGE],
+  },
 }
 
 const toc = [
@@ -152,9 +134,7 @@ const jsonLd = [
   },
 ]
 
-export default async function IntimateWeddingVenuesTexasPage() {
-  const { featured, ceremony } = await getImages()
-
+export default function IntimateWeddingVenuesTexasPage() {
   return (
     <>
       <JsonLd data={jsonLd} />
@@ -177,8 +157,8 @@ export default async function IntimateWeddingVenuesTexasPage() {
             </div>
 
             <BlogFigure
-              src={featured}
-              alt="Intimate wedding venues in Texas — a lakefront ceremony site at Lake Limestone with cabins nearby"
+              src={FEATURED_IMAGE}
+              alt="Intimate wedding venues in Texas — the still lakefront at Limestone Fields, with cabins visible across the water"
               aspect="aspect-[16/9]"
               priority
             />
@@ -241,9 +221,9 @@ export default async function IntimateWeddingVenuesTexasPage() {
               </p>
 
               <BlogFigure
-                src={ceremony}
-                alt="Lakefront ceremony site at an intimate wedding venue in Texas, Limestone Fields on Lake Limestone"
-                caption="A lakefront ceremony site — the land does most of the decorating."
+                src={INLINE_IMAGE}
+                alt="Cabins with private cedar soaking tubs at an intimate wedding venue in Texas, Limestone Fields on Lake Limestone"
+                caption="On-site lodging means the celebration doesn't end when the reception does."
               />
 
               <h2 id="property">The property: lake, barn, and cabins</h2>
