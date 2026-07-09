@@ -42,6 +42,7 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
           <Link href="/stay" className="transition hover:text-white">stay</Link>
           <Link href="/experience" className="transition hover:text-white">experience</Link>
           <Link href="/the-property" className="transition hover:text-white">the property</Link>
+          <Link href="/blog" className="transition hover:text-white">journal</Link>
         </nav>
 
         {/* Logo */}

@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import { client } from '@/sanity/lib/client'
 import { policiesQuery } from '@/sanity/queries'
 import type { Policy } from '@/sanity/types'
+import { blogPosts } from '@/lib/blog-posts'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://limestonefields.com'
 
@@ -67,6 +68,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${SITE_URL}/blog`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    ...blogPosts.map((post) => ({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.isoDate),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
     ...policyRoutes,
   ]
 }

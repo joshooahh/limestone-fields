@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { href: '/stay', label: 'Stay' },
   { href: '/experience', label: 'Experience' },
   { href: '/the-property', label: 'The Property' },
+  { href: '/blog', label: 'Journal' },
   { href: '/private-events', label: 'Private Events' },
   { href: '/story', label: 'Our Story' },
   { href: '/weddings', label: 'Weddings' },
