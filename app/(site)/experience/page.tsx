@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import FromTheJournal from '@/components/blog/FromTheJournal'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { pageQuery } from '@/sanity/queries'
@@ -161,6 +162,8 @@ export default async function ExperiencePage() {
           </div>
         </div>
       </section>
+
+      <FromTheJournal slug="deep-work-retreat" className="bg-limestone-cream" />
 
       {/* Private Events CTA */}
       <section className="py-24 md:py-32 bg-[#253136]">

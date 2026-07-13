@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import CabinCard from '@/components/sections/CabinCard'
 import Hero from '@/components/sections/Hero'
+import FromTheJournal from '@/components/blog/FromTheJournal'
 import JsonLd from '@/components/seo/JsonLd'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
@@ -280,6 +281,8 @@ export default async function StayPage() {
           </div>
         </div>
       </section>
+
+      <FromTheJournal slug="weekend-getaway-from-dallas" className="bg-[#F9F4EE]" />
     </>
   )
 }

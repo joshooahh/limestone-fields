@@ -7,7 +7,8 @@ import { ArrowRight } from 'lucide-react'
 import HostawaySearchBar from '@/components/booking/HostawaySearchBar'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
-import { homepageImagesQuery } from '@/sanity/queries'
+import { homepageImagesQuery, siteSettingsQuery } from '@/sanity/queries'
+import { ORGANIZATION_ID } from '@/lib/schema-constants'
 import type { Image as SanityImage } from 'sanity'
 
 export const metadata: Metadata = {
@@ -17,14 +18,17 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://limestonefields.com' },
 }
 
-const lodgingBusinessSchema = {
+const baseLodgingBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LodgingBusiness',
+  '@id': ORGANIZATION_ID,
   name: 'Limestone Fields',
   description:
     'A lakefront creative retreat and event venue set on 16 acres at Lake Limestone, Texas. Ten custom-built cabins, a 1,200 sq ft commons building with indoor and outdoor chef\'s kitchens, and a working permaculture farm.',
   url: 'https://limestonefields.com',
   email: 'hello@limestonefields.com',
+  telephone: '+1-254-265-6258',
+  logo: 'https://limestonefields.com/logos/primary/logo-dark.png',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '159 LCR 890',
@@ -75,6 +79,10 @@ const lodgingBusinessSchema = {
   touristType: ['Couples', 'Families', 'Groups', 'Corporate retreats', 'Wedding parties'],
 }
 
+type SiteSettings = {
+  socialLinks?: { label?: string; url?: string }[] | null
+}
+
 type HomepageImages = {
   heroImage?: SanityImage | null
   placeShapedByLand?: SanityImage | null
@@ -96,7 +104,19 @@ function img(sanityImage: SanityImage | null | undefined, width = 1400): string 
 }
 
 export default async function HomePage() {
-  const images = await client.fetch<HomepageImages | null>(homepageImagesQuery).catch(() => null)
+  const [images, siteSettings] = await Promise.all([
+    client.fetch<HomepageImages | null>(homepageImagesQuery).catch(() => null),
+    client.fetch<SiteSettings | null>(siteSettingsQuery).catch(() => null),
+  ])
+
+  const sameAs = (siteSettings?.socialLinks ?? [])
+    .map((l) => l?.url)
+    .filter((url): url is string => Boolean(url))
+
+  const lodgingBusinessSchema = {
+    ...baseLodgingBusinessSchema,
+    ...(sameAs.length > 0 ? { sameAs } : {}),
+  }
 
   return (
     <>

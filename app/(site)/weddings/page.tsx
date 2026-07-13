@@ -7,6 +7,7 @@ import Hero from '@/components/sections/Hero'
 import PageSections from '@/components/sections/PageSections'
 import WeddingInquiryForm from '@/components/forms/WeddingInquiryForm'
 import JsonLd from '@/components/seo/JsonLd'
+import FromTheJournal from '@/components/blog/FromTheJournal'
 
 const eventVenueSchema = {
   '@context': 'https://schema.org',
@@ -253,6 +254,8 @@ export default async function WeddingsPage() {
           </section>
         </>
       )}
+
+      <FromTheJournal slug="intimate-wedding-venues-texas" className="bg-[#F9F4EE]" />
 
       {/* Inquiry Form — dark bg section */}
       <section id="inquiry" className="py-24 md:py-32 bg-[#253136]">

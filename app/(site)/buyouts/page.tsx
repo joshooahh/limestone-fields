@@ -7,6 +7,7 @@ import Hero from '@/components/sections/Hero'
 import JsonLd from '@/components/seo/JsonLd'
 import PageSections from '@/components/sections/PageSections'
 import BuyoutInquiryForm from '@/components/forms/BuyoutInquiryForm'
+import FromTheJournal from '@/components/blog/FromTheJournal'
 
 const buyoutSchema = {
   '@context': 'https://schema.org',
@@ -232,6 +233,8 @@ export default async function BuyoutsPage() {
           </section>
         </>
       )}
+
+      <FromTheJournal slug="corporate-retreat-venues-texas" className="bg-limestone-cream" />
 
       {/* Inquiry Form — dark bg section */}
       <section id="inquiry" className="py-24 md:py-32 bg-[#253136]">

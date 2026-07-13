@@ -31,6 +31,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# manual Sanity upload staging (not app code)
+/sanity-uploads
+
+# business deliverables (not app code) — client-facing docs, not part of the site
+/*.docx
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
