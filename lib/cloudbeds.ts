@@ -38,3 +38,17 @@ export const CLOUDBEDS_ROOM_TYPES = {
   /** Cabin Suite page. */
   cabinSuite: 'CS',
 } as const
+
+/**
+ * Numeric Room Type IDs (`rid`) from Cloudbeds Settings > Property >
+ * Accommodations. These are a *different* identifier than the abbreviation
+ * codes above — used by <cb-accommodation-date-picker> (the per-room-type
+ * calendar embed on /stay), not the popup Book Now button.
+ */
+export const CLOUDBEDS_ROOM_TYPE_IDS = {
+  standardCabin: '245506389131456',
+  /** Not used on /stay yet (only 3 calendars were requested) — kept here in case a dedicated accessible-cabin calendar is wanted later. */
+  standardAccessibleCabin: '249798235385984',
+  cabinSuite: '249802008461504',
+  fullProperty: '252597914378432',
+} as const

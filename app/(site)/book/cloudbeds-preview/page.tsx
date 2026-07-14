@@ -1,5 +1,6 @@
 import CloudbedsBookButton from '@/components/booking/CloudbedsBookButton'
-import { CLOUDBEDS_ROOM_TYPES } from '@/lib/cloudbeds'
+import CloudbedsAccommodationCalendar from '@/components/booking/CloudbedsAccommodationCalendar'
+import { CLOUDBEDS_ROOM_TYPES, CLOUDBEDS_ROOM_TYPE_IDS } from '@/lib/cloudbeds'
 
 // Intentionally not linked from nav, sitemap, or any other page — a QA-only
 // route for validating the Cloudbeds embed before cutover. Safe to leave
@@ -51,6 +52,38 @@ export default function CloudbedsPreviewPage() {
           Check: does the panel open, does it show the right cabin type filtered, does the
           address bar pick up ?room_type=..., does styling look reasonably on-brand, does
           checkout complete end to end with a test/real reservation.
+        </div>
+
+        <div className="space-y-10 pt-4 border-t border-[#253136]/10">
+          <div className="text-center space-y-2">
+            <h2 className="font-headline text-[24px] text-[#253136]">Per-room-type calendars (for /stay)</h2>
+            <p className="text-[14px] text-[#253136]/50 font-body-secondary italic">
+              Uses a second Cloudbeds script with an unconfirmed config value (data-island) —
+              see the comment in app/layout.tsx. If nothing renders below, that&apos;s the first
+              thing to check with Cloudbeds support.
+            </p>
+          </div>
+
+          <div className="text-center space-y-3">
+            <p className="font-subhead text-[13px] tracking-[0.2em] uppercase text-[#253136]/60">
+              Full Property
+            </p>
+            <CloudbedsAccommodationCalendar rid={CLOUDBEDS_ROOM_TYPE_IDS.fullProperty} />
+          </div>
+
+          <div className="text-center space-y-3">
+            <p className="font-subhead text-[13px] tracking-[0.2em] uppercase text-[#253136]/60">
+              Standard Cabin
+            </p>
+            <CloudbedsAccommodationCalendar rid={CLOUDBEDS_ROOM_TYPE_IDS.standardCabin} />
+          </div>
+
+          <div className="text-center space-y-3">
+            <p className="font-subhead text-[13px] tracking-[0.2em] uppercase text-[#253136]/60">
+              Cabin Suite
+            </p>
+            <CloudbedsAccommodationCalendar rid={CLOUDBEDS_ROOM_TYPE_IDS.cabinSuite} />
+          </div>
         </div>
       </div>
     </section>
