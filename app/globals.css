@@ -160,21 +160,34 @@
 }
 
 /*
-  Force our brand color on this widget's own Search button — confirmed live
-  that Cloudbeds' account-level "Primary color" setting isn't reaching this
-  particular embed type (still renders their default teal/mint). !important
-  because Cloudbeds appears to set color via inline style, which normal
+  Force our brand color on this widget's own Search button only —
+  confirmed live via computed styles that Cloudbeds' account-level "Primary
+  color" setting isn't reaching this embed type (still renders their
+  default teal/mint), and that the Check-in/Check-out fields are also
+  <button> elements, so an earlier version of this rule that targeted
+  every button inside the widget incorrectly turned the date fields into
+  dark pills too. Cloudbeds gives the actual submit button a stable class,
+  `cb-search-button` (confirmed via devtools) — scope to that specifically
+  and leave the date fields alone.
+  !important because Cloudbeds sets color via inline style, which normal
   cascade specificity can't beat. Doesn't reach the calendar's internal date
   highlighting — no documented hook for that; flagged to Cloudbeds support.
 */
-.lf-cb-property-picker button {
+.lf-cb-property-picker .cb-search-button {
   background-color: #253136 !important;
   color: #b3c1ce !important;
   border-radius: 78px !important;
 }
 
-.lf-cb-property-picker button:hover {
+.lf-cb-property-picker .cb-search-button:hover:not(:disabled) {
   background-color: rgba(37, 49, 54, 0.9) !important;
+}
+
+/* Muted brand navy instead of Cloudbeds' generic gray when no dates are picked yet. */
+.lf-cb-property-picker .cb-search-button:disabled {
+  background-color: rgba(37, 49, 54, 0.35) !important;
+  color: rgba(179, 193, 206, 0.7) !important;
+  cursor: not-allowed !important;
 }
 
 /*
