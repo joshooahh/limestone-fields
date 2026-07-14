@@ -127,6 +127,7 @@ export default async function HomePage() {
         subhead=""
         backgroundImage={img(images?.heroImage) ?? undefined}
         backgroundImageAlt="Sunrise over Lake Limestone"
+        backgroundVideo="/videos/hero.mp4"
       />
 
       {/* Search bar floating up over hero boundary */}
