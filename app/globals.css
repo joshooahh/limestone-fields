@@ -157,3 +157,17 @@
   width: 100%;
   font-family: var(--font-inter), sans-serif;
 }
+
+/*
+  Josh asked for just Check-in / Check-out — no Guests field exists in this
+  Cloudbeds component to begin with (confirmed in their docs: it only ever
+  supports check-in, check-out, and a promo/group code), so the only extra
+  element to remove is the Promo/Group Code input. There's no component
+  attribute to hide it, so this targets it by placeholder text via :has() —
+  untested against the real rendered markup until this is live in a browser.
+  If it doesn't hide cleanly, this is the first thing to inspect/adjust.
+*/
+.lf-cb-property-picker div:has(> input[placeholder*="Promo" i]),
+.lf-cb-property-picker div:has(> input[placeholder*="Code" i]) {
+  display: none !important;
+}
