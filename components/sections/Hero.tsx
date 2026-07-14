@@ -12,6 +12,14 @@ interface HeroProps {
   /** Optional full-bleed background image (e.g. hero photo). When set, text and CTA use light styling. */
   backgroundImage?: string
   backgroundImageAlt?: string
+  /**
+   * Optional full-bleed background video (e.g. /videos/hero.mp4). Takes
+   * priority over backgroundImage when both are set — backgroundImage is
+   * still used as the <video> poster (shown before the video loads/if it
+   * fails), so keep passing both. Video always autoplays muted and loops;
+   * browsers require muted for autoplay to work at all.
+   */
+  backgroundVideo?: string
 }
 
 export default function Hero({
@@ -22,8 +30,9 @@ export default function Hero({
   eyebrow,
   backgroundImage,
   backgroundImageAlt = '',
+  backgroundVideo,
 }: HeroProps) {
-  const hasImage = Boolean(backgroundImage)
+  const hasImage = Boolean(backgroundImage) || Boolean(backgroundVideo)
 
   return (
     <section
@@ -32,17 +41,33 @@ export default function Hero({
         !hasImage && 'bg-limestone-cream'
       )}
     >
-      {hasImage && backgroundImage && (
+      {hasImage && (
         <>
           <div className="absolute inset-0 -z-20">
-            <Image
-              src={backgroundImage}
-              alt={backgroundImageAlt}
-              fill
-              className="object-cover"
-              priority
-              sizes="100vw"
-            />
+            {backgroundVideo ? (
+              <video
+                className="h-full w-full object-cover"
+                src={backgroundVideo}
+                poster={backgroundImage}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                aria-hidden
+              />
+            ) : (
+              backgroundImage && (
+                <Image
+                  src={backgroundImage}
+                  alt={backgroundImageAlt}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="100vw"
+                />
+              )
+            )}
           </div>
           <div className="absolute inset-0 -z-10 bg-black/40" aria-hidden />
         </>
