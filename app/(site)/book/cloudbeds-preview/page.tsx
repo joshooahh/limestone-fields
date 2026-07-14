@@ -57,6 +57,11 @@ export default function CloudbedsPreviewPage() {
         <div className="space-y-10 pt-4 border-t border-[#253136]/10">
           <div className="text-center space-y-2">
             <h2 className="font-headline text-[24px] text-[#253136]">Per-room-type calendars (for /stay)</h2>
+            <p className="text-[14px] text-[#253136]/50 font-body-secondary italic">
+              Each calendar defaults to redirecting back to this same page (not Cloudbeds&apos;
+              hosted engine) with the picked dates as query params — the matching Book Now
+              button below it should then show those same dates pre-filled on reload.
+            </p>
           </div>
 
           <div className="text-center space-y-3">
@@ -64,6 +69,9 @@ export default function CloudbedsPreviewPage() {
               Full Property
             </p>
             <CloudbedsAccommodationCalendar rid={CLOUDBEDS_ROOM_TYPE_IDS.fullProperty} />
+            <div className="pt-2">
+              <CloudbedsBookButton label="Check Availability" />
+            </div>
           </div>
 
           <div className="text-center space-y-3">
@@ -71,6 +79,9 @@ export default function CloudbedsPreviewPage() {
               Standard Cabin
             </p>
             <CloudbedsAccommodationCalendar rid={CLOUDBEDS_ROOM_TYPE_IDS.standardCabin} />
+            <div className="pt-2">
+              <CloudbedsBookButton roomType={CLOUDBEDS_ROOM_TYPES.standardCabin} label="Check Availability" />
+            </div>
           </div>
 
           <div className="text-center space-y-3">
@@ -78,6 +89,9 @@ export default function CloudbedsPreviewPage() {
               Cabin Suite
             </p>
             <CloudbedsAccommodationCalendar rid={CLOUDBEDS_ROOM_TYPE_IDS.cabinSuite} />
+            <div className="pt-2">
+              <CloudbedsBookButton roomType={CLOUDBEDS_ROOM_TYPES.cabinSuite} label="Check Availability" />
+            </div>
           </div>
         </div>
       </div>
