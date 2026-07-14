@@ -1,5 +1,6 @@
 import CloudbedsBookButton from '@/components/booking/CloudbedsBookButton'
 import CloudbedsAccommodationCalendar from '@/components/booking/CloudbedsAccommodationCalendar'
+import CloudbedsPropertyDatePicker from '@/components/booking/CloudbedsPropertyDatePicker'
 import { CLOUDBEDS_ROOM_TYPES, CLOUDBEDS_ROOM_TYPE_IDS } from '@/lib/cloudbeds'
 
 // Intentionally not linked from nav, sitemap, or any other page — a QA-only
@@ -92,6 +93,35 @@ export default function CloudbedsPreviewPage() {
             <div className="pt-2">
               <CloudbedsBookButton roomType={CLOUDBEDS_ROOM_TYPES.cabinSuite} label="Check Availability" />
             </div>
+          </div>
+        </div>
+
+        <div className="space-y-10 pt-4 border-t border-[#253136]/10">
+          <div className="text-center space-y-2">
+            <h2 className="font-headline text-[24px] text-[#253136]">Homepage search bar (property-wide)</h2>
+            <p className="text-[14px] text-[#253136]/50 font-body-secondary italic">
+              Candidate replacement for the old Hostaway search bar. Same redirect-back
+              pattern as the calendars above — picking dates should bring you back here
+              with them pre-filled into the Book Now button below.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <p className="text-center font-subhead text-[13px] tracking-[0.2em] uppercase text-[#253136]/60">
+              Horizontal (desktop)
+            </p>
+            <CloudbedsPropertyDatePicker layout="horizontal" label="Check Availability" />
+          </div>
+
+          <div className="space-y-3">
+            <p className="text-center font-subhead text-[13px] tracking-[0.2em] uppercase text-[#253136]/60">
+              Vertical (mobile)
+            </p>
+            <CloudbedsPropertyDatePicker layout="vertical" label="Check Availability" />
+          </div>
+
+          <div className="text-center pt-2">
+            <CloudbedsBookButton label="Check Availability" />
           </div>
         </div>
       </div>

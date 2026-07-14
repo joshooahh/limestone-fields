@@ -148,3 +148,12 @@
 .lf-cb-book-button button:hover {
   background-color: rgba(37, 49, 54, 0.9);
 }
+
+/*
+  Cloudbeds <cb-property-date-picker> — property-wide search bar.
+  Same caveat as above: best-effort only until seen live in a browser.
+*/
+.lf-cb-property-picker {
+  width: 100%;
+  font-family: var(--font-inter), sans-serif;
+}
