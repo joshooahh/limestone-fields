@@ -57,11 +57,6 @@ export default function CloudbedsPreviewPage() {
         <div className="space-y-10 pt-4 border-t border-[#253136]/10">
           <div className="text-center space-y-2">
             <h2 className="font-headline text-[24px] text-[#253136]">Per-room-type calendars (for /stay)</h2>
-            <p className="text-[14px] text-[#253136]/50 font-body-secondary italic">
-              Uses a second Cloudbeds script with an unconfirmed config value (data-island) —
-              see the comment in app/layout.tsx. If nothing renders below, that&apos;s the first
-              thing to check with Cloudbeds support.
-            </p>
           </div>
 
           <div className="text-center space-y-3">

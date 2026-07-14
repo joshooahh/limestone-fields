@@ -5,7 +5,6 @@ import localFont from 'next/font/local'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { seoSettingsQuery } from '@/sanity/queries'
-import { CLOUDBEDS_PROPERTY_CODE } from '@/lib/cloudbeds'
 
 import './globals.css'
 
@@ -227,34 +226,22 @@ export default function RootLayout({
 
         {/*
           Cloudbeds Booking Engine — Immersive Experience 2.0.
-          beforeInteractive so the custom elements (<cb-book-now-button>,
-          <cb-immersive-experience>) are registered before any page tries to
-          use them. Not wired into any live button yet — see
-          components/booking/CloudbedsBookButton.tsx.
+          One script covers every embed type we use: <cb-book-now-button>,
+          <cb-property-date-picker>, and <cb-accommodation-date-picker>
+          (confirmed against Cloudbeds' current docs — an earlier draft of
+          their Accommodation Date Picker article suggested a separate
+          hotels.cloudbeds.com bundle with a data-island value; that's since
+          been corrected/clarified to use this same script).
+          beforeInteractive so the custom elements are registered before any
+          page tries to use them. Not wired into any live button yet — see
+          components/booking/CloudbedsBookButton.tsx and
+          CloudbedsAccommodationCalendar.tsx.
           If a cookie-consent manager (CMP) is ever added to this site, add
           the matching "ignore" attribute here per Cloudbeds' CMP guidance
           (e.g. data-cookieconsent="ignore" for Cookiebot).
         */}
         <Script
           src="https://static1.cloudbeds.com/booking-engine/latest/static/js/immersive-experience/cb-immersive-experience.js"
-          strategy="beforeInteractive"
-        />
-
-        {/*
-          Second Cloudbeds script, specifically for <cb-accommodation-date-picker>
-          (per-room-type calendars on /stay) — this embed type is on a
-          different/newer bundle than the one above, per Cloudbeds' own docs.
-          Missing data-island: Cloudbeds' dashboard doesn't currently surface
-          a personalized code snippet for this embed (confirmed with Josh —
-          nothing shown under Embeds > Accommodation Date Picker beyond the
-          generic preview graphic). Attempting without it for now; if the
-          calendars don't render on /book/cloudbeds-preview, this is the
-          first thing to check with Cloudbeds support.
-        */}
-        <Script
-          src="https://hotels.cloudbeds.com/cb-immersive-experience.js"
-          data-environment="prod"
-          data-property-code={CLOUDBEDS_PROPERTY_CODE}
           strategy="beforeInteractive"
         />
 

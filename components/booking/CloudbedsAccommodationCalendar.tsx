@@ -16,9 +16,9 @@ interface Props {
  * that combines all 10 cabins). Guest picks dates, then is sent to the
  * hosted Booking Engine with that room type and dates pre-filled.
  *
- * Requires the second Cloudbeds script in app/layout.tsx
- * (hotels.cloudbeds.com/cb-immersive-experience.js) to have loaded — see the
- * comment there about the still-unconfirmed data-island value.
+ * Uses the same Cloudbeds script already loaded in app/layout.tsx as the
+ * other embeds (cb-book-now-button, cb-property-date-picker) — no separate
+ * script needed for this one.
  */
 export default function CloudbedsAccommodationCalendar({
   rid,
