@@ -113,3 +113,38 @@
   }
 
 }
+
+
+
+/*
+  Cloudbeds Booking Engine — Immersive Experience 2.0 "Book Now" button.
+  Passed via the `class-name` attribute in components/booking/CloudbedsBookButton.tsx.
+  Best-effort match to the site's existing pill-button treatment
+  (see e.g. the "Check Availability" buttons elsewhere) — Cloudbeds renders
+  this element itself, so the exact selector may need a small tweak once
+  it's actually visible in a browser (regular class rules only, no Tailwind
+  @apply here since this targets markup we don't control).
+*/
+.lf-cb-book-button,
+.lf-cb-book-button button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 78px;
+  background-color: #253136;
+  color: #b3c1ce;
+  padding: 0.625rem 2rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.lf-cb-book-button:hover,
+.lf-cb-book-button button:hover {
+  background-color: rgba(37, 49, 54, 0.9);
+}

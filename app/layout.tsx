@@ -224,6 +224,21 @@ export default function RootLayout({
 
       <body className={abcMarfa.className}>
 
+        {/*
+          Cloudbeds Booking Engine — Immersive Experience 2.0.
+          beforeInteractive so the custom elements (<cb-book-now-button>,
+          <cb-immersive-experience>) are registered before any page tries to
+          use them. Not wired into any live button yet — see
+          components/booking/CloudbedsBookButton.tsx.
+          If a cookie-consent manager (CMP) is ever added to this site, add
+          the matching "ignore" attribute here per Cloudbeds' CMP guidance
+          (e.g. data-cookieconsent="ignore" for Cookiebot).
+        */}
+        <Script
+          src="https://static1.cloudbeds.com/booking-engine/latest/static/js/immersive-experience/cb-immersive-experience.js"
+          strategy="beforeInteractive"
+        />
+
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-3NKQWWLYT9"
