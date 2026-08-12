@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
@@ -18,8 +21,14 @@ interface HeroProps {
    * still used as the <video> poster (shown before the video loads/if it
    * fails), so keep passing both. Video always autoplays muted and loops;
    * browsers require muted for autoplay to work at all.
+   *
+   * Pass an array to rotate between multiple clips — one is picked at
+   * random per page load (client-side, after mount, so the initial
+   * server-rendered HTML stays deterministic and there's no hydration
+   * mismatch). The first array entry is what server-rendered HTML shows
+   * briefly before the client swap.
    */
-  backgroundVideo?: string
+  backgroundVideo?: string | string[]
 }
 
 export default function Hero({
@@ -32,7 +41,21 @@ export default function Hero({
   backgroundImageAlt = '',
   backgroundVideo,
 }: HeroProps) {
-  const hasImage = Boolean(backgroundImage) || Boolean(backgroundVideo)
+  const videoOptions = Array.isArray(backgroundVideo)
+    ? backgroundVideo
+    : backgroundVideo
+      ? [backgroundVideo]
+      : []
+  const [videoSrc, setVideoSrc] = useState<string | undefined>(videoOptions[0])
+
+  useEffect(() => {
+    if (videoOptions.length > 1) {
+      setVideoSrc(videoOptions[Math.floor(Math.random() * videoOptions.length)])
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(videoOptions)])
+
+  const hasImage = Boolean(backgroundImage) || videoOptions.length > 0
 
   return (
     <section
@@ -44,10 +67,11 @@ export default function Hero({
       {hasImage && (
         <>
           <div className="absolute inset-0 -z-20">
-            {backgroundVideo ? (
+            {videoSrc ? (
               <video
+                key={videoSrc}
                 className="h-full w-full object-cover"
-                src={backgroundVideo}
+                src={videoSrc}
                 poster={backgroundImage}
                 autoPlay
                 muted
