@@ -4,8 +4,9 @@
  * Docs: https://myfrontdesk.cloudbeds.com/hc/en-us/articles/32048321731739
  *
  * This is config only — see components/booking/CloudbedsBookButton.tsx for
- * the actual embed. Nothing here is wired into live buttons yet; Hostaway
- * remains the live booking provider until an explicit cutover.
+ * the actual embed. Wired into all live booking buttons as of the Hostaway
+ * cutover; components/booking/Hostaway* and CabinSelector.tsx are now
+ * orphaned (kept temporarily in case of rollback).
  */
 
 /** From the Booking Engine link: https://us2.cloudbeds.com/reservation/{PROPERTY_CODE} */

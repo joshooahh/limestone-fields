@@ -4,7 +4,8 @@ import Image from 'next/image'
 import Hero from '@/components/sections/Hero'
 import JsonLd from '@/components/seo/JsonLd'
 import { ArrowRight } from 'lucide-react'
-import HostawaySearchBar from '@/components/booking/HostawaySearchBar'
+import CloudbedsPropertyDatePicker from '@/components/booking/CloudbedsPropertyDatePicker'
+import CloudbedsBookButton from '@/components/booking/CloudbedsBookButton'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { homepageImagesQuery, siteSettingsQuery } from '@/sanity/queries'
@@ -127,29 +128,27 @@ export default async function HomePage() {
         subhead=""
         backgroundImage={img(images?.heroImage) ?? undefined}
         backgroundImageAlt="Sunrise over Lake Limestone"
-        backgroundVideo="/videos/hero.mp4"
+        backgroundVideo={['/videos/hero.mp4', '/videos/hero-2.mp4']}
       />
 
       {/* Search bar floating up over hero boundary */}
       <section className="bg-limestone-cream pb-8 border-b border-[#253136]/10">
         <div className="container max-w-3xl mx-auto px-6 -mt-10 relative z-10">
 
-          {/* Desktop: full Hostaway search widget */}
+          {/* Desktop: Cloudbeds property-wide date picker. customUrl={false}
+              hands off straight to Cloudbeds' hosted booking engine after
+              dates are picked, same off-site-completion pattern the old
+              Hostaway widget used. */}
           <div className="hidden md:block shadow-xl rounded-2xl">
-            <HostawaySearchBar />
+            <CloudbedsPropertyDatePicker layout="horizontal" label="Check Availability" customUrl={false} />
           </div>
 
-          {/* Mobile: simple branded CTA button */}
+          {/* Mobile: on-page slide-in panel instead of a link out */}
           <div className="md:hidden flex justify-center">
-            <a
-              href="https://174771_1.holidayfuture.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <CloudbedsBookButton
+              label="Check Availability"
               className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-10 py-3.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] shadow-xl transition hover:bg-[#253136]/90"
-            >
-              Check Availability
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
+            />
           </div>
 
           <p className="text-center mt-5 font-body-secondary text-[15px] text-[#253136]/50 italic">

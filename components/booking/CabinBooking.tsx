@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import CloudbedsBookButton from './CloudbedsBookButton'
 
 interface CabinImages {
   familyCabin?: string | null
@@ -54,7 +55,7 @@ const CABIN_TYPES = [
   {
     id: 'property',
     imageKey: 'entireProperty' as keyof CabinImages,
-    bookingUrl: 'https://174771_1.holidayfuture.com/listings/489941',
+    bookingUrl: 'cloudbeds',
     name: 'Entire Property',
     sleeps: 26,
     layout: '10 cabins · Barn commons',
@@ -115,15 +116,14 @@ export default function CabinBooking({ images }: Props) {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   ) : (
-                    <a
-                      href={cabin.bookingUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    // Entire Property is a virtual room type Cloudbeds surfaces
+                    // automatically from occupancy — no dedicated room_type code
+                    // to link to directly (see lib/cloudbeds.ts), so this opens
+                    // the general popup and lets the guest's party size resolve it.
+                    <CloudbedsBookButton
+                      label="Check Availability"
                       className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
-                    >
-                      Check Availability
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </a>
+                    />
                   )}
                 </div>
 

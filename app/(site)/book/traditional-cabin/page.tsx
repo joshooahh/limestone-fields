@@ -6,6 +6,8 @@ import { ArrowRight } from 'lucide-react'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { bookingImagesQuery } from '@/sanity/queries'
+import CloudbedsBookButton from '@/components/booking/CloudbedsBookButton'
+import { CLOUDBEDS_ROOM_TYPES } from '@/lib/cloudbeds'
 
 export const metadata: Metadata = {
   title: 'Standard Cabin — Limestone Fields',
@@ -112,15 +114,11 @@ export default async function TraditionalCabinPage() {
               </div>
 
               <div className="pt-2 space-y-4">
-                <a
-                  href="https://174771_1.holidayfuture.com/listings/489934"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <CloudbedsBookButton
+                  roomType={CLOUDBEDS_ROOM_TYPES.standardCabin}
+                  label="Check Availability"
                   className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-3 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
-                >
-                  Check Availability
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+                />
                 <p className="text-[14px] text-[#253136]/50 font-body-secondary italic">
                   If your preferred dates aren&apos;t available, other standard cabins may be open —{' '}
                   <Link href="/contact" className="underline underline-offset-2 hover:text-[#253136]/70 transition">
