@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import Hero from '@/components/sections/Hero'
 import JsonLd from '@/components/seo/JsonLd'
 import RetreatReservationForm from '@/components/forms/RetreatReservationForm'
@@ -94,6 +95,37 @@ const eventSchema = {
 
 const BOOK_BTN =
   'inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-3 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#f7f2e4] transition hover:bg-[#253136]/90'
+
+/** Property photos for this page. All live in /public/images/writers-retreat. */
+const PHOTOS = {
+  aerial: { src: '/images/writers-retreat/aerial.jpg', w: 2400, h: 1350, alt: 'Aerial view of the cabins around the pond at Limestone Fields, with Lake Limestone beyond' },
+  cabinsDusk: { src: '/images/writers-retreat/cabins-dusk.jpg', w: 2000, h: 1333, alt: 'Cabins at dusk with the windows lit, red chairs on each porch' },
+  bedroom: { src: '/images/writers-retreat/bedroom.jpg', w: 1501, h: 1000, alt: 'Inside a cabin: king bed, wood headboard, and a glass door onto the deck' },
+  kayak: { src: '/images/writers-retreat/kayak.jpg', w: 2000, h: 1071, alt: 'A guest kayaking across Lake Limestone under a big sky' },
+  ducks: { src: '/images/writers-retreat/ducks.jpg', w: 2000, h: 1031, alt: 'The farm ducks walking through the grass' },
+  wildflowers: { src: '/images/writers-retreat/wildflowers.jpg', w: 2000, h: 1031, alt: 'A field of yellow wildflowers at the edge of the woods' },
+} as const
+
+type PhotoKey = keyof typeof PHOTOS
+
+function Photo({
+  id,
+  className = '',
+  sizes = '(min-width: 1024px) 60vw, 100vw',
+  priority = false,
+}: {
+  id: PhotoKey
+  className?: string
+  sizes?: string
+  priority?: boolean
+}) {
+  const p = PHOTOS[id]
+  return (
+    <div className={`relative overflow-hidden rounded-md bg-[#b3c1ce]/30 ${className}`}>
+      <Image src={p.src} alt={p.alt} fill sizes={sizes} priority={priority} className="object-cover" />
+    </div>
+  )
+}
 
 const PILLARS = [
   {
@@ -282,6 +314,10 @@ export default function WritersRetreatPage() {
             choose.
           </p>
         </div>
+        <div className="container max-w-6xl mx-auto px-6 mt-16 md:mt-20 grid gap-4 md:grid-cols-[2fr_1fr]">
+          <Photo id="aerial" className="aspect-[16/9]" sizes="(min-width: 768px) 66vw, 100vw" />
+          <Photo id="ducks" className="aspect-[16/9] md:aspect-auto" sizes="(min-width: 768px) 33vw, 100vw" />
+        </div>
       </section>
 
       {/* Taking care of the writer */}
@@ -311,6 +347,17 @@ export default function WritersRetreatPage() {
           </div>
         </div>
       </section>
+
+      {/* Cabins at dusk */}
+      <div className="relative h-[52vh] min-h-[320px] md:h-[68vh] bg-[#253136]">
+        <Image
+          src={PHOTOS.cabinsDusk.src}
+          alt={PHOTOS.cabinsDusk.alt}
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
 
       {/* Four pillars */}
       <section className="py-20 md:py-28 bg-[#F9F4EE]">
@@ -375,13 +422,16 @@ export default function WritersRetreatPage() {
       {/* The shape of the days */}
       <section id="weekend" className="bg-limestone-cream py-24 md:py-32">
         <div className="container max-w-6xl mx-auto px-6">
-          <div className="max-w-xl mb-14">
-            <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>The shape of the days</p>
-            <h2 className={H2}>A light rhythm, not a schedule.</h2>
-            <p className="text-[18px] text-[#253136]/75 leading-[1.6] mt-5">
-              A few gentle anchors a day, with the afternoons left wide open for writing and rest.
-              Every session is optional. Arrive Thursday night if you&rsquo;d like to settle in ahead.
-            </p>
+          <div className="grid gap-10 md:grid-cols-[1fr_1.2fr] items-center mb-16">
+            <div className="max-w-xl">
+              <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>The shape of the days</p>
+              <h2 className={H2}>A light rhythm, not a schedule.</h2>
+              <p className="text-[18px] text-[#253136]/75 leading-[1.6] mt-5">
+                A few gentle anchors a day, with the afternoons left wide open for writing and rest.
+                Every session is optional. Arrive Thursday night if you&rsquo;d like to settle in ahead.
+              </p>
+            </div>
+            <Photo id="kayak" className="aspect-[16/9]" sizes="(min-width: 768px) 55vw, 100vw" />
           </div>
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
             {DAYS.map((d) => (
@@ -405,9 +455,12 @@ export default function WritersRetreatPage() {
       {/* Together */}
       <section className="py-24 md:py-32 bg-[#F9F4EE] border-y border-[#253136]/10">
         <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:grid-cols-[0.9fr_1.1fr] items-start">
-          <div>
-            <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>Twelve writers, one table</p>
-            <h2 className={H2}>The company is part of the work.</h2>
+          <div className="space-y-8">
+            <div>
+              <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>Twelve writers, one table</p>
+              <h2 className={H2}>The company is part of the work.</h2>
+            </div>
+            <Photo id="wildflowers" className="aspect-[4/3]" sizes="(min-width: 768px) 45vw, 100vw" />
           </div>
           <div className="space-y-5 text-[18px] text-[#253136]/80 leading-[1.65]">
             <p>
@@ -466,6 +519,7 @@ export default function WritersRetreatPage() {
                   Book Your Cabin
                 </a>
               </div>
+              <Photo id="bedroom" className="aspect-[3/2] mt-10" sizes="(min-width: 768px) 50vw, 100vw" />
             </div>
             <ul className="space-y-4 pt-2">
               {INCLUDED.map((item) => (
