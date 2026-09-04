@@ -226,11 +226,11 @@ const FAQS: [string, string][] = [
   ],
   [
     'How do I hold my place?',
-    'Book your cabin through the link on this page. It opens our booking system with the retreat rate already applied. A 50% deposit confirms the cabin, and the balance is due the day you check in. Twelve places, first come. If you would rather talk to a person first, use the form below and the hosts will hold a cabin for you.',
+    'Book your cabin through the link on this page. It opens our booking system with the retreat rate already applied. A 50% deposit confirms the cabin, and the balance is charged 30 days before arrival. Twelve places, first come. If you would rather talk to a person first, use the form below and the hosts will hold a cabin for you.',
   ],
   [
     'What if I have to cancel?',
-    'The 50% deposit is non-refundable once your cabin is booked. If you cancel within 31 days of arrival, any amount already paid is non-refundable, and no-shows are treated as cancellations. The full terms are shown before you confirm. If something changes, write to the hosts first; with twelve places, we can often help a cabin find its next writer.',
+    'Cancel more than 31 days before arrival and the 50% deposit is kept; nothing further is charged. Within 31 days of arrival the full amount is non-refundable, and no-shows are treated as cancellations. The full terms are shown before you confirm. If something changes, write to the hosts first; with twelve places, we can often help a cabin find its next writer.',
   ],
   [
     'How do I get there, and what do I bring?',

@@ -29,5 +29,5 @@ export const RETREAT_REPLY_TO = 'josh@limestonefields.com'
 export const RETREAT_BOOKING_URL =
   'https://us2.cloudbeds.com/en/reservation/N1pYag/?allotment_block_code=b827423&currency=usd&checkin=2026-11-06&checkout=2026-11-09'
 
-/** Payment terms set on the block: half at booking, the rest on arrival. */
-export const RETREAT_DEPOSIT_TERMS = 'A 50% deposit confirms your cabin when you book. The balance is due the day you check in.'
+/** Payment terms set on the Cloudbeds block: half at booking, the rest 30 days before arrival. */
+export const RETREAT_DEPOSIT_TERMS = 'A 50% deposit confirms your cabin when you book. The balance is charged 30 days before arrival.'

@@ -84,7 +84,7 @@ export default function RetreatReservationForm() {
         <p className="text-[18px] text-[#b3c1ce] leading-[1.55]">
           {isQuestion
             ? 'Your question went to the hosts at Limestone Fields and Sobremesa. One of us will reply within two business days.'
-            : 'Within two business days the hosts will reply with your cabin held and the link to book it. A 50% deposit confirms it; the balance is due when you check in. Check your inbox for a short note from us in the meantime.'}
+            : 'Within two business days the hosts will reply with your cabin held and the link to book it. A 50% deposit confirms it; the balance is charged 30 days before arrival. Check your inbox for a short note from us in the meantime.'}
         </p>
       </div>
     )
