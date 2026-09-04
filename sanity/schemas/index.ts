@@ -11,6 +11,7 @@ import teamMember from './teamMember'
 import waitlistSubmission from './waitlistSubmission'
 import buyoutInquiry from './buyoutInquiry'
 import contactSubmission from './contactSubmission'
+import retreatReservation from './retreatReservation'
 
 export const schemaTypes = [
   cabin,
@@ -26,4 +27,5 @@ export const schemaTypes = [
   waitlistSubmission,
   buyoutInquiry,
   contactSubmission,
+  retreatReservation,
 ]
