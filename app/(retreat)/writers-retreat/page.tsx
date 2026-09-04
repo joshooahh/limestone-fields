@@ -21,7 +21,7 @@ import {
  *
  * Booking model: guests book directly into the Sobremesa Magazine allotment
  * block in Cloudbeds (RETREAT_BOOKING_URL); the all-inclusive rate lives on
- * that rate plan. 50% deposit at booking, balance on the day of check-in. The
+ * that rate plan. 50% deposit at booking, balance charged 30 days before arrival. The
  * form below is for questions, or for anyone who'd rather have a cabin held.
  */
 
