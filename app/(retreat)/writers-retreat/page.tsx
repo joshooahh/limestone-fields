@@ -297,6 +297,7 @@ export default function WritersRetreatPage() {
       <Hero
         eyebrow="Writers Retreat · Nov 6–9, 2026 · Lake Limestone, TX"
         headline="Time to write."
+        kicker="In partnership with Sobremesa"
         subhead="Three nights on the lake with eleven other writers, a chef from Austin, and nothing on the calendar you have to keep."
         ctaText="Book Your Cabin"
         ctaHref={RETREAT_BOOKING_URL}

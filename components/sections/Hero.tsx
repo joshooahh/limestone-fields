@@ -8,6 +8,8 @@ import { cn } from '@/lib/utils'
 
 interface HeroProps {
   headline: string
+  /** Optional short line directly under the headline, e.g. "In partnership with Sobremesa". */
+  kicker?: string
   subhead: string
   ctaText?: string
   ctaHref?: string
@@ -33,6 +35,7 @@ interface HeroProps {
 
 export default function Hero({
   headline,
+  kicker,
   subhead,
   ctaText,
   ctaHref = '/contact',
@@ -116,6 +119,16 @@ export default function Hero({
           >
             {headline}
           </h1>
+          {kicker && (
+            <p
+              className={cn(
+                '-mt-5 md:-mt-6 font-body-secondary italic text-xl md:text-2xl leading-snug',
+                hasImage ? 'text-[#f7e7d5]' : 'text-[#253136]/80'
+              )}
+            >
+              {kicker}
+            </p>
+          )}
           {subhead && (
             <p
               className={cn(
