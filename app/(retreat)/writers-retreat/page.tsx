@@ -105,7 +105,16 @@ const PHOTOS = {
   kayak: { src: '/images/writers-retreat/kayak.jpg', w: 2000, h: 1071, alt: 'A guest kayaking across Lake Limestone under a big sky' },
   ducks: { src: '/images/writers-retreat/ducks.jpg', w: 2000, h: 1031, alt: 'The farm ducks walking through the grass' },
   wildflowers: { src: '/images/writers-retreat/wildflowers.jpg', w: 2000, h: 1031, alt: 'A field of yellow wildflowers at the edge of the woods' },
+  katie: { src: '/images/writers-retreat/katie-rice.jpg', w: 1067, h: 1600, alt: 'Katie Rice at a Sobremesa Magazine stand, under a striped umbrella' },
 } as const
+
+/** Sobremesa Magazine covers, volumes 2 through 5. */
+const COVERS = [
+  { src: '/images/writers-retreat/sobremesa-vol-2.jpg', alt: 'Sobremesa Magazine, Volume 2 cover' },
+  { src: '/images/writers-retreat/sobremesa-vol-3.jpg', alt: 'Sobremesa Magazine, Volume 3 cover' },
+  { src: '/images/writers-retreat/sobremesa-vol-4.jpg', alt: 'Sobremesa Magazine, Volume 4 cover' },
+  { src: '/images/writers-retreat/sobremesa-vol-5.jpg', alt: 'Sobremesa Magazine, Volume 5 cover' },
+]
 
 type PhotoKey = keyof typeof PHOTOS
 
@@ -411,6 +420,14 @@ export default function WritersRetreatPage() {
               ))}
             </ul>
           </div>
+          <div className="space-y-4">
+            <div className="grid grid-cols-4 gap-3">
+              {COVERS.map((c) => (
+                <div key={c.src} className="relative aspect-[3413/4488] overflow-hidden rounded-sm shadow-md bg-[#F9F4EE]">
+                  <Image src={c.src} alt={c.alt} fill sizes="(min-width: 768px) 12vw, 25vw" className="object-cover" />
+                </div>
+              ))}
+            </div>
           <div className="bg-[#253136] text-[#F7E7D5] p-9 md:p-10 rounded-sm">
             <p className="font-subhead text-[11px] tracking-[0.26em] uppercase text-[#D39B75]">About Sobremesa</p>
             <blockquote className="font-body-secondary italic text-[22px] leading-[1.45] mt-5 mb-5">
@@ -419,6 +436,7 @@ export default function WritersRetreatPage() {
               from around the world.
             </blockquote>
             <a href={SOBREMESA_URL} target="_blank" rel="noopener noreferrer" className="font-subhead text-[11px] tracking-[0.16em] uppercase text-[#b3c1ce] underline underline-offset-4 hover:text-[#F7E7D5]">sobremesamagazine.com</a>
+          </div>
           </div>
         </div>
       </section>
@@ -489,7 +507,9 @@ export default function WritersRetreatPage() {
 
       {/* Facilitator */}
       <section id="facilitator" className="bg-limestone-cream py-24 md:py-32">
-        <div className="container max-w-4xl mx-auto px-6">
+        <div className="container max-w-6xl mx-auto px-6 grid gap-10 md:gap-16 md:grid-cols-[2fr_3fr] items-start">
+          <Photo id="katie" className="aspect-[3/4] max-w-md" sizes="(min-width: 768px) 40vw, 100vw" />
+          <div>
           <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>Your facilitator</p>
           <h2 className={`${H2} mb-8`}>Katie Rice</h2>
           <div className="space-y-5 max-w-2xl">
@@ -502,6 +522,7 @@ export default function WritersRetreatPage() {
                 {para}
               </p>
             ))}
+          </div>
           </div>
         </div>
       </section>
