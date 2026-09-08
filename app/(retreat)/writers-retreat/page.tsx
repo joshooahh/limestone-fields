@@ -41,8 +41,6 @@ export const metadata: Metadata = {
     images: [{ url: 'https://limestonefields.com/images/writers-retreat/hero.jpg', width: 2200, height: 1466 }],
   },
   alternates: { canonical: PAGE_URL },
-  // Unlisted until the joint announcement. Remove to go public.
-  robots: { index: false, follow: false },
 }
 
 const eventSchema = {
