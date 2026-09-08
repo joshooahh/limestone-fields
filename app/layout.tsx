@@ -222,7 +222,32 @@ export default function RootLayout({
 
     >
 
+      <head>
+        {/* Google Tag Manager — GTM-5NBW8QT2. Raw inline script (not next/script)
+            so it renders directly in <head>; Next still emits its own font
+            preloads and metadata ahead of it, which is expected. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5NBW8QT2');`,
+          }}
+        />
+      </head>
+
       <body className={abcMarfa.className}>
+
+        {/* Google Tag Manager (noscript) — must be the first thing inside <body> */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5NBW8QT2"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
 
         {/*
           Cloudbeds Booking Engine — Immersive Experience 2.0.
