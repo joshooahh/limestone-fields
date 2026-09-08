@@ -27,6 +27,7 @@ import {
  */
 
 const PAGE_URL = 'https://limestonefields.com/writers-retreat'
+const SOBREMESA_URL = 'https://www.sobremesamagazine.com/'
 
 export const metadata: Metadata = {
   title: 'A Writers Retreat — Limestone Fields × Sobremesa',
@@ -144,7 +145,7 @@ const PILLARS = [
     n: '03',
     title: 'Gather',
     body:
-      'Eleven other people who also cleared their calendar to write. Paired walks. A reading circle by the fire. Company when you want it, and none when you don’t.',
+      'Eleven other people who also cleared their calendar to write. Take a walk with another writer. Join the reading circle by the fire. Company when you want it, and none when you don’t.',
   },
   {
     n: '04',
@@ -159,8 +160,8 @@ const DAYS = [
     date: 'Fri · Nov 6',
     title: 'Arrival',
     items: [
-      ['3pm onward', 'Arrive, settle into your cabin, walk the shore'],
-      ['6:30pm', 'Welcome dinner at The Commons: the first woodfired feast, and the first long table'],
+      ['3pm onward', 'Arrive, settle into your cabin, get to know the property'],
+      ['6:30pm', 'Welcome dinner at The Commons: get to know the other writers around the first woodfired feast'],
       ['8pm', 'Sobremesa. Lingering at the table, then an outdoor fire'],
     ],
   },
@@ -168,13 +169,13 @@ const DAYS = [
     date: 'Sat · Nov 7',
     title: 'Plant & feast',
     items: [
-      ['8:30am', 'Breakfast at The Commons: eggs from our hens, whatever the garden gives that morning, real coffee'],
+      ['8:30am', 'Breakfast at The Commons: expect eggs from our hens, garden-fresh produce, real coffee'],
       ['9:30am', 'Morning prompt and gathering'],
       ['11am', 'On the farm: plant garlic for a spring harvest'],
       ['12:30pm', 'Picnic basket delivered to your cabin door, so the afternoon stays yours'],
-      ['1–5pm', 'Protected writing time. Or the kayak, the cedar tub, a nap'],
+      ['1–5pm', 'Protected writing time. Or clear your mind on the kayak, in the cedar tub, or by taking a nap'],
       ['5pm', 'Optional paired walk-and-talk with a prompt'],
-      ['6:30pm', 'The feast: the chef’s marquee dinner, cooked over wood, served slow'],
+      ['6:30pm', 'The feast: a marquee dinner where the chef pulls out all the stops'],
       ['8pm', 'Reading circle: bring a piece by a writer you admire'],
     ],
   },
@@ -184,11 +185,11 @@ const DAYS = [
     items: [
       ['8:30am', 'Breakfast at The Commons'],
       ['9:30am', 'Morning prompt and gathering'],
-      ['11am', 'Harvest walk for tonight’s table, egg collection, a visit with the Highland cattle'],
+      ['11am', 'Harvest walk to gather from the farm for dinner, egg collection, a visit with the Highland cattle'],
       ['12:30pm', 'Picnic basket delivered'],
       ['1–5pm', 'Protected writing time'],
       ['5pm', 'Optional paired walk-and-talk, new pairs'],
-      ['6:30pm', 'Cook the harvest together over the fire, with the chef at your elbow'],
+      ['6:30pm', 'The chef guides us through cooking the harvest together over the fire'],
       ['8pm', 'Reading circle: share a short piece of your own, if you like'],
     ],
   },
@@ -246,7 +247,7 @@ const FAQS: [string, string][] = [
   ],
   [
     'I don’t love group activities.',
-    'Neither do a lot of writers. Everything social is optional and small: a paired walk, a reading circle where you can listen instead of read. The one thing we ask is that you come to the table. Sobremesa is, after all, the word for what happens after the meal.',
+    'Neither do a lot of writers. Everything social is optional and small: a walk with another writer, a reading circle where you can listen instead of read. The one thing we ask is that you come to the table. Sobremesa is, after all, the word for what happens after the meal.',
   ],
   [
     'What is the food, really?',
@@ -379,26 +380,29 @@ export default function WritersRetreatPage() {
         <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-20 md:grid-cols-[1.1fr_0.9fr] items-center">
           <div className="space-y-5">
             <p className={`${EYEBROW} text-[#3D1212]`}>The table · with Sobremesa</p>
-            <h2 className={H2}>The kind of meal you write about later.</h2>
+            <h2 className={H2}>A weekend curated by the mind behind Sobremesa Magazine.</h2>
             <p className="text-[18px] text-[#253136]/80 leading-[1.6]">
-              Sobremesa is a magazine about food, so the table is not a detail here. It is half the
-              point. A chef from Austin moves onto the property for the weekend and cooks every meal
-              from The Commons, our barn kitchen, where a Santa Maria grill and a woodfired oven are
-              going as the light drops over the lake.
+              <a href={SOBREMESA_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-[#3D1212]/40 hover:decoration-[#3D1212]">Sobremesa</a>{' '}
+              is a magazine about food, lingering, and sharing. This weekend, created with Katie Rice,
+              the founder and editor of the magazine, is built around the same principles. Good food
+              fuels good writing, and time around the table with other creatives matters. So we&rsquo;re
+              bringing a chef in from Austin to cook every meal in The Commons, our barn kitchen, where
+              a Santa Maria grill and a woodfired oven are going as the light drops over the lake.
             </p>
             <p className="text-[18px] text-[#253136]/80 leading-[1.6]">
               The menu is written the week of, around what the farm is giving: eggs from our hens,
               cool-season greens and roots from the garden, herbs cut that morning, meat from Texas
-              ranches we know. Dinners are multi-course and unhurried. One seating, one long table,
-              and then the sobremesa, the part after the meal that gives the magazine its name.
+              ranches we know. We&rsquo;ll all join together around one long table for dinner, and
+              then the <em>sobremesa</em>, the part after the meal that gives the magazine its name.
             </p>
-            <ul className="space-y-3 pt-2">
+            <p className="text-[18px] text-[#253136]/80 leading-[1.6] pt-2">Here&rsquo;s what to expect:</p>
+            <ul className="space-y-3">
               {[
-                'Friday: a welcome feast cooked over wood, the first long table',
-                'Saturday: the chef’s marquee dinner, the one you’ll describe to people at home',
+                'Friday: a welcome feast cooked over wood',
+                'Saturday: the chef’s marquee dinner',
                 'Sunday: you harvest, you cook alongside the chef, you eat what you made',
                 'Every day: farm breakfast at The Commons, a picnic basket at your cabin door for lunch',
-                'Dietary needs planned into the menu from the start, not worked around later',
+                'Dietary needs? Let us know and we can accommodate you',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-[17px] text-[#253136] leading-[1.55]">
                   <span className="mt-2.5 shrink-0 w-1 h-1 rounded-full bg-[#3D1212]/60 inline-block" />
@@ -414,7 +418,7 @@ export default function WritersRetreatPage() {
               A magazine of art and writing about food, five years in print, with writers and artists
               from around the world.
             </blockquote>
-            <p className="font-subhead text-[11px] tracking-[0.16em] uppercase text-[#b3c1ce]">Sobremesa Magazine</p>
+            <a href={SOBREMESA_URL} target="_blank" rel="noopener noreferrer" className="font-subhead text-[11px] tracking-[0.16em] uppercase text-[#b3c1ce] underline underline-offset-4 hover:text-[#F7E7D5]">sobremesamagazine.com</a>
           </div>
         </div>
       </section>
@@ -470,14 +474,14 @@ export default function WritersRetreatPage() {
               can&rsquo;t.
             </p>
             <p>
-              We keep the group to twelve so it stays a circle, not a crowd. You&rsquo;ll walk in
-              pairs with a prompt, read aloud by the fire if you want to and listen if you
-              don&rsquo;t, and sit down to dinner with the same faces each night until they stop being
-              strangers. No workshopping unless you ask for it. No pitching. No networking.
+              We keep the group to twelve so it stays a circle, not a crowd. We hope you get
+              protected time to yourself, and also the chance to meet a few other writers you connect
+              with. We&rsquo;ll make time for group conversation and leave plenty of room for
+              one-on-one conversations.
             </p>
             <p>
-              People leave these weekends with pages. They also leave with two or three people who
-              will ask, in February, how the book is going.
+              You&rsquo;ll leave this weekend with some new pages, and hopefully some new writing
+              friends.
             </p>
           </div>
         </div>
@@ -489,7 +493,11 @@ export default function WritersRetreatPage() {
           <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>Your facilitator</p>
           <h2 className={`${H2} mb-8`}>Katie Rice</h2>
           <div className="space-y-5 max-w-2xl">
-            {KATIE_BIO.map((para) => (
+            <p className="text-[18px] text-[#253136]/85 leading-[1.65]">
+              <a href={SOBREMESA_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-[#253136]/30 hover:decoration-[#253136]">Sobremesa Magazine</a>
+              {KATIE_BIO[0].replace('Sobremesa Magazine', '')}
+            </p>
+            {KATIE_BIO.slice(1).map((para) => (
               <p key={para.slice(0, 40)} className="text-[18px] text-[#253136]/85 leading-[1.65]">
                 {para}
               </p>
@@ -503,12 +511,13 @@ export default function WritersRetreatPage() {
         <div className="container max-w-6xl mx-auto px-6">
           <div className="grid gap-12 md:gap-16 md:grid-cols-[1fr_1fr] items-start mb-16">
             <div>
-              <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>One price, the whole weekend</p>
-              <h2 className={H2}>What $1,600 actually buys.</h2>
+              <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>Pricing</p>
+              <h2 className={H2}>One price, the whole weekend.</h2>
               <p className="text-[18px] text-[#253136]/75 leading-[1.6] mt-5">
-                It is a real number, so here is what it covers. Put the pieces side by side and it
-                is roughly what three nights in a lakefront cabin and eight chef-cooked meals would
-                cost on their own, before anyone lit the fire, wrote the prompts, or held the space.
+                Once you get here, everything is covered. All meals, lodging, facilitation, and
+                recreation. Three nights in a lakefront cabin, eight chef-cooked meals, nighttime
+                fires, writing prompts, long conversations about art, and above all else, quiet time
+                to do your work.
               </p>
               <p className="text-[18px] text-[#253136]/75 leading-[1.6] mt-4">
                 Twelve places in total. Prices are per person and include everything below.
