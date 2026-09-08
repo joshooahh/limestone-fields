@@ -16,9 +16,6 @@ import {
  * Writers Retreat — Limestone Fields × Sobremesa · Nov 6–9, 2026.
  *
  * Lives in the (retreat) route group: no site nav, minimal footer, so the page
- * is a single path to reserving a place. Unlisted until the joint
- * announcement (week of Sep 8): noindex below, not in the sitemap. To launch,
- * remove the `robots` block in metadata and add the route to app/sitemap.ts.
  *
  * Booking model: guests book directly into the Sobremesa Magazine allotment
  * block in Cloudbeds (RETREAT_BOOKING_URL); the all-inclusive rate lives on
