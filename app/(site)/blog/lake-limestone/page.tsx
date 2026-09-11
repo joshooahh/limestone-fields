@@ -43,7 +43,7 @@ const toc = [
   { id: 'where', label: 'Where is Lake Limestone?' },
   { id: 'how-built', label: 'How the lake came to be' },
   { id: 'fishing', label: 'What is the fishing like?' },
-  { id: 'ecology', label: 'Eagles, egrets, and the edge of two ecoregions' },
+  { id: 'ecology', label: 'Eagles, otters, beavers, and the edge of two ecoregions' },
   { id: 'history', label: 'The history around the lake' },
   { id: 'access', label: 'Public parks, boat ramps, and marinas' },
   { id: 'quiet', label: 'Why it stays quiet' },
@@ -74,6 +74,11 @@ const faqs = [
       'Yes. A pair of bald eagles has lived on the lake for about 25 years and has built at least five nests near the dam. Bald eagles in Texas nest from October through July, so winter and early spring are the best months to watch for them.',
   },
   {
+    question: 'What wildlife can I see at Lake Limestone?',
+    answer:
+      'Bald eagles, great blue herons and egrets, wood ducks, kingfishers, hawks, and wintering waterfowl on the water. Along the shore, white-tailed deer, beavers, and North American river otters, which have returned to the Navasota and Brazos river systems. At Limestone Fields a resident beaver has built a dam on the property, and the skies are dark enough to see the Milky Way on a clear night.',
+  },
+  {
     question: 'Is Lake Limestone good for swimming and kayaking?',
     answer:
       'Yes. The water is stained rather than clear, which is normal for an East Texas reservoir, and the many coves and creek arms are well suited to paddling. Guests at Limestone Fields launch kayaks straight from the property’s private shoreline.',
@@ -101,7 +106,7 @@ const jsonLd = [
     author: { '@type': 'Organization', name: 'Limestone Fields', url: 'https://limestonefields.com/story' },
     publisher: PUBLISHER,
     datePublished: '2026-09-11T09:00:00-05:00',
-    dateModified: '2026-09-11T09:00:00-05:00',
+    dateModified: '2026-09-11T14:00:00-05:00',
     mainEntityOfPage: CANONICAL,
     about: { '@id': 'https://limestonefields.com/blog/lake-limestone#lake' },
   },
@@ -292,7 +297,7 @@ export default function LakeLimestoneGuidePage() {
                 spots.
               </p>
 
-              <h2 id="ecology">Eagles, egrets, and the edge of two ecoregions</h2>
+              <h2 id="ecology">Eagles, otters, beavers, and the edge of two ecoregions</h2>
               <p>
                 Lake Limestone lies on a seam. To the west is the Blackland Prairie, the deep
                 dark soil that once grew tall grass and later cotton. To the east is the Post
@@ -308,14 +313,25 @@ export default function LakeLimestoneGuidePage() {
                 five nests near the dam, most recently moving to a new tree nearby. Bald eagles in
                 Texas nest from October through July. Eggs are laid mostly in December, chicks
                 hatch in January, and the young are flying by spring, so winter and early spring
-                are the best months to see them hunting the open water.
+                are the best months to see them hunting the open water. They range the whole
+                lake. One of them came in low over our cove and settled on a snag close enough to
+                see the yellow of its beak and the white of its head without binoculars, then
+                sat there watching the water as if we were the visitors, which we were.
               </p>
               <p>
                 The birding does not stop there. Great blue herons stalk the shallows, and egrets
                 gather in the marshes at dusk. Wood ducks, belted kingfishers, and red-tailed
                 hawks work the creek arms, and migrating waterfowl use the lake in winter.
-                Beavers and white-tailed deer are common along the Navasota corridor. At
-                Limestone Fields the domestic side of the ecology is a{' '}
+                White-tailed deer are everywhere along the Navasota corridor.
+              </p>
+              <p>
+                Then there are the animals you hear before you see. A large beaver lives on our
+                property and has built a dam across the drainage that feeds our cove, which is
+                about as clear a sign as a landowner can get that the water is healthy. North
+                American river otters, once nearly gone from Texas, have moved back into the
+                Navasota and Brazos river systems, and Lake Limestone is otter country now: watch
+                the still coves at first light for a wake with a whiskered head at the front of
+                it. At Limestone Fields the domestic side of the ecology is a{' '}
                 <Link href="/experience">working permaculture farm</Link> with Highland cattle,
                 ducks, and laying hens, sixteen acres from the water.
               </p>
@@ -412,8 +428,10 @@ export default function LakeLimestoneGuidePage() {
               </p>
               <p>
                 The result is a lake where you can paddle for an hour on a Saturday in June and
-                pass two bass boats. Nights are dark enough to see the Milky Way. In the morning
-                the loudest thing is the ducks. For anglers it means fish that are not pressured
+                pass two bass boats. And it means dark skies. There is no city glow on any
+                horizon, so on a clear, moonless night the Milky Way runs bank to bank over the
+                water and the fire pit is the brightest thing for miles. In the morning the
+                loudest thing is the ducks. For anglers it means fish that are not pressured
                 the way they are on the metro lakes. For everyone else it means the thing that is
                 hardest to find within two hours of a Texas city, which is quiet.
               </p>
