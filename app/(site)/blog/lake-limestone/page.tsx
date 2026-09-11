@@ -133,7 +133,7 @@ const jsonLd = [
     name: 'Limestone Fields',
     description:
       'Ten private lakefront cabins on 16 acres of Lake Limestone, Texas, with a commons barn, a working farm, and 1,200 feet of private shoreline. Two hours from Austin, Dallas, and Houston.',
-    url: 'https://limestonefields.com/stay',
+    url: 'https://limestonefields.com/',
     telephone: '+1-254-265-6258',
     priceRange: '$$$',
     image: `https://limestonefields.com${IMG_AERIAL}`,
