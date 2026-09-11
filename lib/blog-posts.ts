@@ -11,6 +11,14 @@ export interface BlogPostSummary {
 
 export const blogPosts: BlogPostSummary[] = [
   {
+    slug: 'lake-limestone',
+    category: 'The Lake',
+    title: 'Lake Limestone, Texas: A Guide to the Quiet Lake',
+    dek: 'Where it is, how it was built, the fishing, the eagles, the history on its banks, and where to stay on one of the least developed lakes in Texas.',
+    publishedDate: 'September 11, 2026',
+    isoDate: '2026-09-11',
+  },
+  {
     slug: 'weekend-getaway-from-dallas',
     category: 'Getaways',
     title: 'Weekend Getaway From Dallas: Lakefront Cabins Two Hours South',

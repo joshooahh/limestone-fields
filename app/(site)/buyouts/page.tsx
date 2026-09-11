@@ -14,7 +14,7 @@ const buyoutSchema = {
   '@context': 'https://schema.org',
   '@type': 'EventVenue',
   name: 'Limestone Fields — Full Property Buyout',
-  description: 'Exclusive use of the full Limestone Fields property for corporate retreats, leadership offsites, and private group gatherings. 10 cabins, 28–30 overnight guests, 1,200 sq ft Commons meeting space, and 16 acres on Lake Limestone.',
+  description: 'Exclusive use of the full Limestone Fields property for corporate retreats, leadership offsites, and private group gatherings. 10 cabins, 26 overnight guests, 1,200 sq ft Commons meeting space, and 16 acres on Lake Limestone.',
   url: 'https://limestonefields.com/buyouts',
   address: {
     '@type': 'PostalAddress',
@@ -29,7 +29,7 @@ const buyoutSchema = {
     latitude: 31.3471,
     longitude: -96.1502,
   },
-  maximumAttendeeCapacity: 30,
+  maximumAttendeeCapacity: 50,
   amenityFeature: [
     { '@type': 'LocationFeatureSpecification', name: '10 private overnight cabins', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Commons meeting space (1,200 sq ft)', value: true },
@@ -47,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: page?.seo?.metaTitle ?? 'Property Buyouts & Corporate Retreats',
     description:
       page?.seo?.metaDescription ??
-      'Book Limestone Fields as a full property buyout for corporate retreats, leadership offsites, or private group gatherings. 10 cabins, 28–30 overnight guests, and a 1,200 sq ft meeting space on Lake Limestone, Texas.',
+      'Book Limestone Fields as a full property buyout for corporate retreats, leadership offsites, or private group gatherings. 10 cabins, 26 overnight guests, and a 1,200 sq ft meeting space on Lake Limestone, Texas.',
     openGraph: {
     images: OG_IMAGES,
       title: page?.seo?.metaTitle ?? 'Property Buyouts — Limestone Fields, Lake Limestone TX',

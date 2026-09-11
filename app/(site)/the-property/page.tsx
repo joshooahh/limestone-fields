@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import JsonLd from '@/components/seo/JsonLd'
+import FromTheJournal from '@/components/blog/FromTheJournal'
 import { webPageSchema, OG_IMAGES } from '@/lib/schema-constants'
 import type { Image as SanityImage } from 'sanity'
 import Image from 'next/image'
@@ -390,6 +391,7 @@ export default async function ThePropertyPage() {
           </div>
         </div>
       </section>
+      <FromTheJournal slug="lake-limestone" className="bg-[#F9F4EE]" />
     </>
   )
 }

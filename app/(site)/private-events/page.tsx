@@ -30,7 +30,7 @@ const eventVenueSchema = {
     latitude: 31.3471,
     longitude: -96.1502,
   },
-  maximumAttendeeCapacity: 150,
+  maximumAttendeeCapacity: 50,
   amenityFeature: [
     { '@type': 'LocationFeatureSpecification', name: 'Lakefront ceremony site', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Barn commons (1,200 sq ft)', value: true },
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     images: OG_IMAGES,
     title: 'Private Events at Limestone Fields — Lake Limestone, TX',
     description:
-      'Intimate weddings and private gatherings on Lake Limestone. Full property exclusive use. Up to 150 guests for ceremonies, 120 for receptions. BYOC model.',
+      'Intimate weddings and private gatherings on Lake Limestone. Full property exclusive use. Up to 50 guests for the day, 26 overnight across ten cabins.',
     url: 'https://limestonefields.com/private-events',
   },
   alternates: { canonical: 'https://limestonefields.com/private-events' },
@@ -143,7 +143,7 @@ export default async function PrivateEventsPage() {
             </p>
             <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
               <li>Lakefront Ceremony Setting</li>
-              <li>On-Site Guest Cabins for 28–30</li>
+              <li>On-Site Guest Cabins for 26</li>
               <li>Barn Common Area and Kitchen</li>
               <li>Fire Pits and Outdoor Gathering Spaces</li>
             </ul>
@@ -164,7 +164,7 @@ export default async function PrivateEventsPage() {
             </h2>
             <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
               <li>Up to 50 guests for the ceremony and reception</li>
-              <li>28–30 guests overnight in the cabins</li>
+              <li>26 guests overnight in the cabins</li>
               <li>Friday arrival through Sunday departure</li>
               <li>One wedding at a time — full property exclusivity</li>
             </ul>

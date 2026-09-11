@@ -220,7 +220,7 @@ export default async function WeddingsPage() {
                   </li>
                   <li>
                     <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">OVERNIGHT GUESTS</span>
-                    28–30 across all ten cabins
+                    26 across all ten cabins
                   </li>
                   <li>
                     <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">TIMELINE</span>

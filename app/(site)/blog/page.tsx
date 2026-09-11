@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 }
 
 const cardImage: Record<string, string> = {
+  'lake-limestone': '/images/blog/lake-limestone-hero.jpg',
   'weekend-getaway-from-dallas': '/images/blog/weekend-getaway-hero.jpg',
   'corporate-retreat-venues-texas': '/images/blog/corporate-retreat-hero.jpg',
   'deep-work-retreat': '/images/blog/deep-work-hero.jpg',
