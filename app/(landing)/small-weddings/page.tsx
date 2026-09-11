@@ -33,11 +33,11 @@ const PAGE_URL = 'https://limestonefields.com/small-weddings'
 export const metadata: Metadata = {
   title: 'Small Weddings on Lake Limestone — Limestone Fields',
   description:
-    'A small wedding where everyone stays. Up to 50 guests for the ceremony, ten private lakefront cabins for your closest people, a barn for dinner and dancing, and the whole property to yourselves for the weekend. Two hours from Austin, Dallas, and Houston.',
+    'A small wedding where every guest sleeps on the property. Ten private lakefront cabins for 26 people, a barn for dinner and dancing, and the whole place to yourselves for the weekend. Two hours from Austin, Dallas, and Houston.',
   openGraph: {
     title: 'Small Weddings on Lake Limestone — Limestone Fields',
     description:
-      'Marry the people who matter, all in one place. Lakefront ceremony for up to 50, ten cabins so your closest people stay, one wedding at a time.',
+      'A wedding weekend for 26. Everyone you love, sleeping on the property, thirty steps from the ceremony and the fire. One wedding at a time.',
     url: PAGE_URL,
     images: [{ url: 'https://limestonefields.com/images/writers-retreat/cabins-dusk.jpg', width: 2000, height: 1333 }],
   },
@@ -49,10 +49,10 @@ const schema = {
   '@type': 'EventVenue',
   name: 'Limestone Fields — Small Weddings',
   description:
-    'An intimate lakefront wedding venue on Lake Limestone, Texas. Ceremony for up to 50, ten private cabins for overnight guests, 1,200 sq ft barn for the reception. One wedding at a time, full property exclusive use.',
+    'An intimate lakefront wedding venue on Lake Limestone, Texas. Ten private cabins sleeping 26, a lakefront ceremony site, and a 1,200 sq ft barn for the reception. One wedding at a time, full property exclusive use.',
   url: PAGE_URL,
   address: LF_ADDRESS,
-  maximumAttendeeCapacity: 50,
+  maximumAttendeeCapacity: 26,
 }
 
 export default function SmallWeddingsPage() {
@@ -60,15 +60,15 @@ export default function SmallWeddingsPage() {
     <LandingShell
       tagline="Small weddings · Lake Limestone"
       footerTitle="Small weddings at Limestone Fields"
-      footerSub="Up to 50 guests · Ten cabins · One wedding at a time"
+      footerSub="Ten cabins · Sleeps 26 · One wedding at a time"
     >
       <JsonLd data={schema} />
 
       <Hero
         eyebrow="Small weddings · Lake Limestone, Texas"
-        headline="Marry the people who matter. All of them, in one place."
-        kicker="A weekend, not a day"
-        subhead="Up to fifty guests. Ten cabins for the ones who can't leave early. One wedding at a time, on sixteen acres of lake and land that do the decorating for you."
+        headline="A wedding where everyone stays."
+        kicker="Twenty-six guests. Ten cabins. One weekend."
+        subhead="Every person you invite sleeps on the property, thirty steps from the ceremony and the fire. One wedding at a time, on sixteen acres of lake and land that do the decorating for you."
         ctaText="Start an Inquiry"
         ctaHref="#inquire"
         backgroundImage="/images/writers-retreat/cabins-dusk.jpg"
@@ -77,8 +77,8 @@ export default function SmallWeddingsPage() {
 
       <Statement eyebrow="The idea">
         <p>
-          Most weddings end at midnight when everyone drives off to separate hotels. Here, the night keeps going.
-          Your closest people are already home, thirty steps away, and the fire is still lit.
+          Most weddings end at midnight when everyone drives off to separate hotels. Here, nobody drives anywhere.
+          All twenty-six of your people are already home, thirty steps away, and the fire is still lit.
         </p>
         <p>
           Friday you arrive and rehearse. Saturday you marry on the water and dance in the barn. Sunday you make
@@ -88,17 +88,19 @@ export default function SmallWeddingsPage() {
       </Statement>
 
       <Argument
-        eyebrow="Why small"
+        eyebrow="Why twenty-six"
         lead="You already know the guest list you actually want. It's shorter than the one you feel obligated to send."
       >
         <p>
-          Fifty people is the number where everyone in the room is someone you&rsquo;d call on a bad day. There is no
-          table of coworkers&rsquo; spouses. No cousin you last saw in 2011. Every toast lands, because every person
-          there knows the story.
+          Twenty-six is the number where everyone in the room is someone you&rsquo;d call on a bad day. Parents,
+          siblings, the friends who have known you both the longest. There is no table of coworkers&rsquo; spouses.
+          No cousin you last saw in 2011. Every toast lands, because every person there knows the story.
         </p>
         <p>
-          Small also means the money goes where you can feel it: the food, the band, the extra night. Instead of
-          feeding a hundred and fifty people you barely know, you host a weekend for the ones you love.
+          It is also exactly how many people ten cabins hold. So the guest list and the property agree with each
+          other: nobody is sent to a hotel, nobody leaves early, and the money goes where you can feel it. The
+          food, the band, the extra night. Instead of feeding a hundred and fifty people you barely know, you host
+          a weekend for the ones you love.
         </p>
         <p>
           And it means we can give you the whole place. One wedding at a time. No other event on the grounds, no
@@ -110,9 +112,9 @@ export default function SmallWeddingsPage() {
 
       <Pillars
         items={[
-          { n: '01', title: 'Marry on the water', body: 'A lakefront ceremony site with open sky, 1,200 feet of private shoreline behind you, and a sound system so the vows carry to the back row.' },
+          { n: '01', title: 'Marry on the water', body: 'A lakefront ceremony site with open sky and 1,200 feet of private shoreline behind you. With twenty-six guests, the back row is still close enough to see you cry.' },
           { n: '02', title: 'Dance in the barn', body: 'The Commons: a 1,200 sq ft barn with a full kitchen, long tables, string lights, and a pergola outside for the part of the night that moves to the fire.' },
-          { n: '03', title: 'Everyone stays', body: 'Ten brand-new cabins on the property, each with a king bed and a private outdoor cedar soaking tub. Your inner circle sleeps where you celebrate. No shuttles, no hotel blocks.' },
+          { n: '03', title: 'Everyone stays', body: 'Ten brand-new cabins on the property, each with a king bed and a private outdoor cedar soaking tub. Every guest sleeps where you celebrate. No shuttles, no hotel blocks, no goodbyes at midnight.' },
           { n: '04', title: 'Your vendors, your vision', body: 'Bring your own caterer, florist, photographer, and music. We share our preferred list, then get out of your way. The land needs very little help.' },
         ]}
       />
@@ -123,14 +125,14 @@ export default function SmallWeddingsPage() {
         title="The space, and everything in it."
         intro="A weekend at Limestone Fields comes with the whole property. Here is what that means in practice."
         items={[
-          'Lakefront ceremony site, set for up to 50, with sound system',
+          'Lakefront ceremony site with sound system',
           'The Commons barn (1,200 sq ft) with full chef’s kitchen, tables, chairs, string lights, and uplighting',
           'Outdoor pergola, fire pits, and the outdoor kitchen with Santa Maria grill',
-          'All ten cabins for two nights: king beds, private cedar soaking tubs, sleeps 26',
+          'All ten cabins for two nights: king beds, private cedar soaking tubs. Every one of your 26 guests sleeps on the property',
           'Bridal suite and groom’s suite for getting ready',
           'Friday evening space for the rehearsal dinner, Sunday morning for a slow brunch',
           'Kayaks, walking paths, the working farm, and 16 acres to wander between moments',
-          'Parking for 50+ vehicles',
+          'Parking for everyone, right on the property',
         ]}
         photo="barnKitchen"
         footnote="You arrange: caterer and bar, a day-of coordinator, florals, music, and photography. Pricing and availability on inquiry."
@@ -177,7 +179,7 @@ export default function SmallWeddingsPage() {
         <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:grid-cols-[0.9fr_1.1fr] items-start">
           <div className="space-y-8">
             <div>
-              <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>Where they sleep</p>
+              <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>Where everyone sleeps</p>
               <h2 className={H2}>Ten cabins, thirty steps from the dance floor.</h2>
             </div>
             <Photo id="bedroom" className="aspect-[4/3]" sizes="(min-width: 768px) 45vw, 100vw" />
@@ -189,9 +191,9 @@ export default function SmallWeddingsPage() {
               outdoor cedar soaking tub and fire pit.
             </p>
             <p>
-              Twenty-six people can sleep on the property. Most couples give the cabins to parents, siblings, the
-              wedding party, and the friends who traveled farthest. Everyone else stays in Jewett or Groesbeck,
-              fifteen minutes away, and drives home after the last dance.
+              Twenty-six people sleep on the property, which is the whole guest list. Parents in the suites with
+              room for the grandkids. Siblings and the wedding party in the cabins along the water. The two of you
+              in whichever one you like best. Nobody books a hotel. Nobody drives home after the last dance.
             </p>
             <p>
               The point is what happens between the events. Coffee on the porch with your sister the morning of.
@@ -204,24 +206,23 @@ export default function SmallWeddingsPage() {
 
       <Fit
         yes={[
-          'Your ideal guest list is fifty people or fewer, and you mean it',
+          'Your guest list is twenty-six people or fewer, and you want every one of them to stay',
           'You want a weekend with your people, not a six-hour production',
           'You like the idea of a lake, a barn, and a fire more than a ballroom',
           'You have, or want to hire, a coordinator and caterer you trust',
           'You would rather spend on the food and the band than on a bigger room',
         ]}
         no={[
-          'You need seating for more than fifty at the ceremony or reception',
+          'Your guest list is bigger than the cabins; twenty-six is the number here',
           'You want a venue that handles catering, planning, and coordination in-house',
           'You are picturing a late-night club set; the music has a curfew here',
-          'Everyone needs to sleep on site; the cabins hold twenty-six',
         ]}
       />
 
       <Numbers
         items={[
-          ['Guests', 'Up to 50 for the ceremony and reception'],
-          ['Overnight', '26 across ten cabins; 3 suites sleep four'],
+          ['Guests', '26, and every one of them stays'],
+          ['Cabins', 'Ten: 7 with a king bed, 3 suites that sleep four'],
           ['Timeline', 'Friday from 2pm to Sunday by 11am'],
           ['Location', 'Lake Limestone, TX. Two hours from Austin, Dallas, and Houston'],
         ]}
@@ -231,7 +232,8 @@ export default function SmallWeddingsPage() {
         items={[
           ['What does it cost?', 'Pricing depends on your dates and how you want to use the property, so we send it with your proposal rather than posting a single number. Tell us your date and headcount below and you will have a real figure within two business days.'],
           ['Do you provide catering?', 'No, and on purpose. You bring the caterer, bar, and coordinator you trust, and the food is yours instead of a venue menu. The Commons has a full chef’s kitchen and an outdoor kitchen with a Santa Maria grill, and we will send you the vendors who already know the property.'],
-          ['Can all our guests stay on site?', 'Twenty-six can. Ten cabins: seven with a king bed for two, three suites that sleep four. The rest stay in Jewett or Groesbeck, about fifteen minutes away. Most couples give the cabins to family and the wedding party.'],
+          ['Can all our guests stay on site?', 'Yes. That is the point. Ten cabins sleep twenty-six: seven with a king bed for two, three suites that sleep four. Build the guest list to the cabins and nobody needs a hotel.'],
+          ['What if our list is a little over twenty-six?', 'Tell us the real number. A few extra guests can join for the day and stay in Jewett or Groesbeck, fifteen minutes away. But the weekend works best when everyone who is there at midnight is also there at breakfast.'],
           ['What if it rains?', 'The Commons barn holds your reception either way, and a ceremony can move inside or under the pergola. Your coordinator will have a weather plan; we will walk it with them.'],
           ['Is there a music curfew?', 'Yes. We are on a lake with neighbors, so amplified music ends at a set hour. Ask us for the specifics and we will help you build the night around it. The fire pit has no curfew.'],
           ['Can we come see it first?', 'Please do. Tell us in the form and we will set up a visit. Better still, book a regular weekend in a cabin and see how the place feels when it is quiet.'],
@@ -245,7 +247,7 @@ export default function SmallWeddingsPage() {
       <Inquire
         eyebrow="Start here"
         title="Tell us about the two of you."
-        intro="Your date, your headcount, and whatever you are picturing. We reply within two business days with availability, pricing, and honest answers."
+        intro="Your date, your guest list, and whatever you are picturing. We reply within two business days with availability, pricing, and honest answers."
       >
         <EventInquiryForm
           eventType="small_wedding"
