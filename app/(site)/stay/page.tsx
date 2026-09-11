@@ -52,9 +52,9 @@ const lodgingSchema = {
 }
 
 export const metadata: Metadata = {
-  title: 'Stay',
+  title: 'Cabin Rentals on Lake Limestone, TX',
   description:
-    'Ten private cabins on 16 acres at Lake Limestone, Texas. Seven standard cabins (256 sq ft, king bed, cedar soaking tub) and three cabin suites (384 sq ft, sleeps up to 4). 2 hours from Austin, Dallas, and Houston.',
+    'Book one of 10 private lakefront cabins at Limestone Fields on Lake Limestone, Texas. King beds, cedar soaking tubs, lake views. Two hours from Austin, Dallas, and Houston.',
   openGraph: {
     title: 'Stay at Limestone Fields — Private Lakefront Cabins',
     description:

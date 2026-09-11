@@ -5,6 +5,7 @@ import localFont from 'next/font/local'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { seoSettingsQuery } from '@/sanity/queries'
+import { DEFAULT_OG_IMAGE } from '@/lib/schema-constants'
 
 import './globals.css'
 
@@ -140,11 +141,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const seo = await client.fetch(seoSettingsQuery).catch(() => null)
   const ogImage = seo?.home?.ogImage?.asset
     ? urlForImage(seo.home.ogImage).width(1200).height(630).fit('crop').auto('format').url()
-    : null
+    : DEFAULT_OG_IMAGE
 
-  const ogImages = ogImage
-    ? [{ url: ogImage, width: 1200, height: 630, alt: 'Limestone Fields — Lake Limestone, TX' }]
-    : []
+  const ogImages = [{ url: ogImage, width: 1200, height: 630, alt: 'Limestone Fields — Lake Limestone, TX' }]
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -181,7 +180,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'Limestone Fields — Lakefront Cabins & Event Venue',
       description:
         'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. Rest, reflection, weddings, and private gatherings.',
-      images: ogImage ? [ogImage] : [],
+      images: [ogImage],
     },
     robots: {
       index: true,

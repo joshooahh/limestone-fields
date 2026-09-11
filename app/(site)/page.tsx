@@ -13,7 +13,7 @@ import { ORGANIZATION_ID } from '@/lib/schema-constants'
 import type { Image as SanityImage } from 'sanity'
 
 export const metadata: Metadata = {
-  title: 'Limestone Fields — Lakefront Cabins & Event Venue, Lake Limestone TX',
+  title: { absolute: 'Limestone Fields — Lakefront Cabins & Event Venue, Lake Limestone TX' },
   description:
     'Ten custom-built cabins on 16 acres at Lake Limestone, Texas. A lakefront creative retreat and event venue for rest, reflection, weddings, and private gatherings. 2 hours from Austin, Dallas, and Houston.',
   alternates: { canonical: 'https://limestonefields.com' },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const baseLodgingBusinessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'LodgingBusiness',
+  '@type': ['LodgingBusiness', 'Organization'],
   '@id': ORGANIZATION_ID,
   name: 'Limestone Fields',
   description:

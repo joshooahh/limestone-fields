@@ -129,6 +129,9 @@ export default function Footer({
               <Link href="/the-property" className="block hover:text-[#e8e4dc] transition">
                 The Property
               </Link>
+              <Link href="/faq" className="block hover:text-[#e8e4dc] transition">
+                FAQ
+              </Link>
               <Link href="/policies/privacy" className="block hover:text-[#e8e4dc] transition">
                 Privacy Policy
               </Link>

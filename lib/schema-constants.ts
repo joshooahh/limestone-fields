@@ -8,3 +8,47 @@
  * of Limestone Fields back to one consistent entity.
  */
 export const ORGANIZATION_ID = 'https://limestonefields.com/#organization'
+
+export const SITE_URL = 'https://limestonefields.com'
+
+/**
+ * Default social-share image (aerial of the cabins and pond), used whenever a
+ * page has no image of its own and Sanity's SEO Settings document has none.
+ * Cropped to the 1200x630 Open Graph ratio by Sanity's image CDN.
+ */
+export const DEFAULT_OG_IMAGE =
+  'https://cdn.sanity.io/images/ve6k1p3k/production/7d112e41d8431e2973f3a02f4011d2cd2e5b86c7-7574x4260.jpg?w=1200&h=630&fit=crop&auto=format'
+
+export const LOGO_URL = `${SITE_URL}/logos/primary/logo-dark.png`
+
+/**
+ * Inline publisher for Article schema. Google's Article validation needs the
+ * publisher's name and logo on the same page, so this carries them while
+ * still pointing at the sitewide entity via @id.
+ */
+export const PUBLISHER = {
+  '@type': 'Organization',
+  '@id': ORGANIZATION_ID,
+  name: 'Limestone Fields',
+  url: SITE_URL,
+  logo: { '@type': 'ImageObject', url: LOGO_URL },
+}
+
+/**
+ * Lightweight WebPage block for interior pages that don't carry their own
+ * business schema. Ties the page to the sitewide entity by @id so nothing on
+ * the site is structurally unconnected.
+ */
+export function webPageSchema(path: string, name: string, description: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    url: `${SITE_URL}${path}`,
+    name,
+    description,
+    isPartOf: { '@type': 'WebSite', url: SITE_URL, name: 'Limestone Fields' },
+    about: { '@id': ORGANIZATION_ID },
+    mainEntity: { '@id': ORGANIZATION_ID },
+    primaryImageOfPage: { '@type': 'ImageObject', url: DEFAULT_OG_IMAGE },
+  }
+}

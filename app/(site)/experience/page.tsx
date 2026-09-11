@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import JsonLd from '@/components/seo/JsonLd'
+import { webPageSchema } from '@/lib/schema-constants'
 import Hero from '@/components/sections/Hero'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
@@ -9,9 +11,9 @@ import { pageQuery } from '@/sanity/queries'
 import type { PageDocument } from '@/sanity/types'
 
 export const metadata: Metadata = {
-  title: 'The Experience',
+  title: 'Farm, Lake & Barn Life on Lake Limestone, TX',
   description:
-    'Life at Limestone Fields is shaped by land, weather, and time. A working permaculture farm, shared Commons kitchen, lake access, and the kind of quiet that restores. No required schedule.',
+    'Walk the farm, cook in the outdoor kitchen, and spend quiet days on the water at Limestone Fields, a private lakefront retreat on Lake Limestone, Texas. No required schedule.',
   openGraph: {
     title: 'The Experience at Limestone Fields',
     description:
@@ -26,6 +28,7 @@ export default async function ExperiencePage() {
 
   return (
     <>
+      <JsonLd data={webPageSchema('/experience', 'The Experience — Limestone Fields', 'The farm, the outdoor kitchen, the lake, and quiet days with no required schedule at Limestone Fields.')} />
       <Hero
         headline="Scheduled by the Sun"
         subhead="Life at Limestone Fields is shaped by land, weather, and time. No required schedule. No expectation to participate."

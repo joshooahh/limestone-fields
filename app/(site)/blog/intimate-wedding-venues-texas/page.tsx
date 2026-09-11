@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import JsonLd from '@/components/seo/JsonLd'
-import { ORGANIZATION_ID } from '@/lib/schema-constants'
+import { ORGANIZATION_ID, PUBLISHER } from '@/lib/schema-constants'
 import BlogBreadcrumb from '@/components/blog/BlogBreadcrumb'
 import BlogFigure from '@/components/blog/BlogFigure'
 import BlogToc from '@/components/blog/BlogToc'
@@ -82,7 +82,7 @@ const jsonLd = [
       'Intimate wedding venues in Texas where everyone stays the weekend. One event at a time on Lake Limestone, the full property yours.',
     image: 'https://limestonefields.com/blog/images/intimate-wedding-venues-texas.jpg',
     author: { '@type': 'Organization', name: 'Limestone Fields', url: 'https://limestonefields.com/story' },
-    publisher: { '@id': ORGANIZATION_ID },
+    publisher: PUBLISHER,
     datePublished: '2026-07-07',
     dateModified: '2026-07-07',
     mainEntityOfPage: CANONICAL,

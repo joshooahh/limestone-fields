@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import JsonLd from '@/components/seo/JsonLd'
-import { ORGANIZATION_ID } from '@/lib/schema-constants'
+import { ORGANIZATION_ID, PUBLISHER } from '@/lib/schema-constants'
 import BlogBreadcrumb from '@/components/blog/BlogBreadcrumb'
 import BlogFigure from '@/components/blog/BlogFigure'
 import BlogToc from '@/components/blog/BlogToc'
@@ -82,7 +82,7 @@ const jsonLd = [
       'A weekend getaway from Dallas that actually feels like rest. Ten lakefront cabins on 16 acres at Lake Limestone, two hours south.',
     image: 'https://limestonefields.com/blog/images/weekend-getaway-from-dallas.jpg',
     author: { '@type': 'Organization', name: 'Limestone Fields', url: 'https://limestonefields.com/story' },
-    publisher: { '@id': ORGANIZATION_ID },
+    publisher: PUBLISHER,
     datePublished: '2026-07-07',
     dateModified: '2026-07-07',
     mainEntityOfPage: CANONICAL,

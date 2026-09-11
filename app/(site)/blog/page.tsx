@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
+import JsonLd from '@/components/seo/JsonLd'
+import { webPageSchema } from '@/lib/schema-constants'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { blogPosts } from '@/lib/blog-posts'
 
 export const metadata: Metadata = {
-  title: 'Journal — Limestone Fields',
+  title: 'The Journal',
   description:
-    'Field notes on rest, retreats, and gathering at Limestone Fields — ten lakefront cabins on 16 acres at Lake Limestone, Texas.',
+    'Stories and guides on lakefront retreats, private events, weddings, and life at Limestone Fields on Lake Limestone, Texas.',
   openGraph: {
-    title: 'Journal — Limestone Fields',
+    title: 'The Journal — Limestone Fields, Lake Limestone TX',
     description:
       'Field notes on rest, retreats, and gathering on Lake Limestone, Texas.',
     url: 'https://limestonefields.com/blog',
@@ -27,6 +29,7 @@ const cardImage: Record<string, string> = {
 export default function BlogIndexPage() {
   return (
     <>
+      <JsonLd data={webPageSchema('/blog', 'The Journal — Limestone Fields', 'Stories and guides on lakefront retreats, private events, weddings, and life at Limestone Fields on Lake Limestone, Texas.')} />
       {/* Header */}
       <section className="bg-limestone-cream pt-40 pb-20 md:pt-48 md:pb-24">
         <div className="container max-w-3xl mx-auto px-6 text-center space-y-5">

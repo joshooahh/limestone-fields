@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import JsonLd from '@/components/seo/JsonLd'
+import { webPageSchema } from '@/lib/schema-constants'
 import type { Image as SanityImage } from 'sanity'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,11 +10,11 @@ import { urlForImage } from '@/sanity/lib/image'
 import { propertyImagesQuery } from '@/sanity/queries'
 
 export const metadata: Metadata = {
-  title: 'The Property — Limestone Fields',
+  title: 'Cabins, Barn & Lakefront on Lake Limestone, TX',
   description:
-    'Sixteen acres on Lake Limestone, Texas. Ten private cabins, a 1,200 sq ft commons barn, a working permaculture farm, and 1,200 ft of private lakefront. 2 hours from Austin, Dallas, and Houston.',
+    'Tour the property: 10 cabins, a commons barn, a working farm, and 1,200 ft of private lakefront on Lake Limestone, Texas. 2 hours from Austin, Dallas, and Houston.',
   openGraph: {
-    title: 'The Property — Limestone Fields',
+    title: 'The Property — Limestone Fields, Lake Limestone TX',
     description:
       'A photo tour of Limestone Fields — the cabins, the barn, the outdoor kitchen, the lake, the farm, and the land.',
     url: 'https://limestonefields.com/the-property',
@@ -158,6 +160,7 @@ export default async function ThePropertyPage() {
 
   return (
     <>
+      <JsonLd data={webPageSchema('/the-property', 'The Property — Limestone Fields', 'Ten cabins, a commons barn, a working farm, and 1,200 feet of private lakefront on Lake Limestone, Texas.')} />
       {/* Hero */}
       <section className="relative h-[85vh] min-h-[540px] bg-[#253136]">
         {heroUrl && (

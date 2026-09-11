@@ -39,9 +39,9 @@ const eventVenueSchema = {
 }
 
 export const metadata: Metadata = {
-  title: 'Private Events',
+  title: 'Private Event Venue & Full Property Buyouts',
   description:
-    'Limestone Fields hosts one event at a time — full property exclusive use. Intimate lakefront weddings (up to 150 guests), property buyouts, and private gatherings on Lake Limestone, Texas.',
+    'Host a wedding, corporate retreat, or reunion with exclusive use of all 10 cabins, the barn, and 1,200 ft of lakefront on Lake Limestone, Texas. Sleeps 26, near Austin, Dallas, and Houston.',
   openGraph: {
     title: 'Private Events at Limestone Fields — Lake Limestone, TX',
     description:

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import JsonLd from '@/components/seo/JsonLd'
-import { ORGANIZATION_ID } from '@/lib/schema-constants'
+import { ORGANIZATION_ID, PUBLISHER } from '@/lib/schema-constants'
 import BlogBreadcrumb from '@/components/blog/BlogBreadcrumb'
 import BlogFigure from '@/components/blog/BlogFigure'
 import BlogToc from '@/components/blog/BlogToc'
@@ -82,7 +82,7 @@ const jsonLd = [
       "Corporate retreat venues in Texas are easy to find; a whole-property lake buyout isn't. Book all ten cabins on Lake Limestone.",
     image: 'https://limestonefields.com/blog/images/corporate-retreat-venues-texas.jpg',
     author: { '@type': 'Organization', name: 'Limestone Fields', url: 'https://limestonefields.com/story' },
-    publisher: { '@id': ORGANIZATION_ID },
+    publisher: PUBLISHER,
     datePublished: '2026-07-07',
     dateModified: '2026-07-07',
     mainEntityOfPage: CANONICAL,
