@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES } from '@/lib/schema-constants'
 import Link from 'next/link'
 import CabinCard from '@/components/sections/CabinCard'
 import Hero from '@/components/sections/Hero'
@@ -56,6 +57,7 @@ export const metadata: Metadata = {
   description:
     'Book one of 10 private lakefront cabins at Limestone Fields on Lake Limestone, Texas. King beds, cedar soaking tubs, lake views. Two hours from Austin, Dallas, and Houston.',
   openGraph: {
+    images: OG_IMAGES,
     title: 'Stay at Limestone Fields — Private Lakefront Cabins',
     description:
       'Ten custom-built cabins on Lake Limestone. Every cabin includes a private outdoor cedar soaking tub, king bed, and access to the shared Commons kitchen.',

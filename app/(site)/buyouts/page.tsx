@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES } from '@/lib/schema-constants'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { pageQuery } from '@/sanity/queries'
@@ -48,6 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
       page?.seo?.metaDescription ??
       'Book Limestone Fields as a full property buyout for corporate retreats, leadership offsites, or private group gatherings. 10 cabins, 28–30 overnight guests, and a 1,200 sq ft meeting space on Lake Limestone, Texas.',
     openGraph: {
+    images: OG_IMAGES,
       title: page?.seo?.metaTitle ?? 'Property Buyouts — Limestone Fields, Lake Limestone TX',
       description:
         page?.seo?.metaDescription ??

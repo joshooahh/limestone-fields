@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES } from '@/lib/schema-constants'
 import type { Image as SanityImage } from 'sanity'
 import CabinBooking from '@/components/booking/CabinBooking'
 import { client } from '@/sanity/lib/client'
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   description:
     'Check availability and book a private cabin at Limestone Fields on Lake Limestone, Texas.. 2 hours from Austin, Dallas, and Houston.',
   openGraph: {
+    images: OG_IMAGES,
     title: 'Book a Cabin — Limestone Fields',
     description:
       'Check availability and reserve your cabin at Limestone Fields. Private lakefront cabins on Lake Limestone.',

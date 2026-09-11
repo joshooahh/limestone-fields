@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES } from '@/lib/schema-constants'
 import type { Image as SanityImage } from 'sanity'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   description:
     'Our larger cabin layout. King bed, full-sized bunk beds, private cedar soaking tub, and lake views. Sleeps 4 at Lake Limestone, TX.',
   openGraph: {
+    images: OG_IMAGES,
     title: 'Cabin Suite — Limestone Fields',
     description:
       'Designed for couples or small families. King bed, full-sized bunk beds, private outdoor cedar soaking tub, lake views.',

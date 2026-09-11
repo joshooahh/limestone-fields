@@ -52,3 +52,6 @@ export function webPageSchema(path: string, name: string, description: string) {
     primaryImageOfPage: { '@type': 'ImageObject', url: DEFAULT_OG_IMAGE },
   }
 }
+
+/** Ready-to-spread Open Graph image list for pages that define their own openGraph block (which replaces the root one). */
+export const OG_IMAGES = [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: 'Limestone Fields — Lake Limestone, TX' }]

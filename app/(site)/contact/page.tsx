@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES } from '@/lib/schema-constants'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { pageQuery, siteSettingsQuery, faqsQuery } from '@/sanity/queries'
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
   description:
     'Get in touch with Limestone Fields. Located at 159 LCR 890, Jewett TX 75846 — 2 hours from Austin, Dallas, and Houston. Join the waitlist or inquire about events.',
   openGraph: {
+    images: OG_IMAGES,
     title: 'Contact Limestone Fields — Jewett, TX',
     description:
       'Located at Lake Limestone, Texas. 2 hours from Austin, Dallas, and Houston. Join the waitlist or inquire about events.',

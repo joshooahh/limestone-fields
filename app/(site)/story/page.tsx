@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES } from '@/lib/schema-constants'
 import type { Image as SanityImage } from 'sanity'
 import Hero from '@/components/sections/Hero'
 import Link from 'next/link'
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   description:
     'Limestone Fields began as an idea among friends who valued quiet, land, and thoughtful work. 16 acres on Lake Limestone, Texas — built around the concept of hospitality as hermitage.',
   openGraph: {
+    images: OG_IMAGES,
     title: 'Our Story — Limestone Fields',
     description:
       'How Limestone Fields came to be. 16 acres on Lake Limestone, built around the concept of hospitality as hermitage.',

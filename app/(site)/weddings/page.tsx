@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES } from '@/lib/schema-constants'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { pageQuery } from '@/sanity/queries'
@@ -54,6 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
       page?.seo?.metaDescription ??
       'Host your wedding at Limestone Fields on Lake Limestone, Texas. Intimate lakefront ceremony for up to 50 guests, 10 private cabins for overnight guests, and a 1,200 sq ft barn reception space. Full property exclusive use. 2 hours from Austin, Dallas, and Houston.',
     openGraph: {
+    images: OG_IMAGES,
       title: page?.seo?.metaTitle ?? 'Weddings at Limestone Fields — Lake Limestone, TX',
       description:
         page?.seo?.metaDescription ??

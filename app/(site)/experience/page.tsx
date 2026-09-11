@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import JsonLd from '@/components/seo/JsonLd'
-import { webPageSchema } from '@/lib/schema-constants'
+import { webPageSchema, OG_IMAGES } from '@/lib/schema-constants'
 import Hero from '@/components/sections/Hero'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   description:
     'Walk the farm, cook in the outdoor kitchen, and spend quiet days on the water at Limestone Fields, a private lakefront retreat on Lake Limestone, Texas. No required schedule.',
   openGraph: {
+    images: OG_IMAGES,
     title: 'The Experience at Limestone Fields',
     description:
       'A working permaculture farm, shared chef\'s kitchen, lake frontage, and the kind of quiet that restores. Life here is scheduled by the sun.',

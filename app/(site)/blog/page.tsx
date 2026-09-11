@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import JsonLd from '@/components/seo/JsonLd'
-import { webPageSchema } from '@/lib/schema-constants'
+import { webPageSchema, OG_IMAGES } from '@/lib/schema-constants'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description:
     'Stories and guides on lakefront retreats, private events, weddings, and life at Limestone Fields on Lake Limestone, Texas.',
   openGraph: {
+    images: OG_IMAGES,
     title: 'The Journal — Limestone Fields, Lake Limestone TX',
     description:
       'Field notes on rest, retreats, and gathering on Lake Limestone, Texas.',

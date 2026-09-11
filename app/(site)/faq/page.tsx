@@ -4,7 +4,7 @@ import { PortableText, toPlainText } from '@portabletext/react'
 import type { PortableTextBlock } from '@portabletext/types'
 import { client } from '@/sanity/lib/client'
 import JsonLd from '@/components/seo/JsonLd'
-import { ORGANIZATION_ID, SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/schema-constants'
+import { ORGANIZATION_ID, SITE_URL, DEFAULT_OG_IMAGE, OG_IMAGES } from '@/lib/schema-constants'
 import {
   Accordion,
   AccordionContent,
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   description:
     'Where Limestone Fields is, what the cabins are like, lake access, weddings and buyouts, pets, minimum stays, and cancellations. Straight answers about a private lakefront retreat on Lake Limestone, Texas.',
   openGraph: {
+    images: OG_IMAGES,
     title: 'Frequently Asked Questions — Limestone Fields',
     description:
       'Straight answers about staying at Limestone Fields: location, cabins, the lake, events, and policies.',

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES } from '@/lib/schema-constants'
 import Link from 'next/link'
 import Hero from '@/components/sections/Hero'
 import JsonLd from '@/components/seo/JsonLd'
@@ -43,6 +44,7 @@ export const metadata: Metadata = {
   description:
     'Host a wedding, corporate retreat, or reunion with exclusive use of all 10 cabins, the barn, and 1,200 ft of lakefront on Lake Limestone, Texas. Sleeps 26, near Austin, Dallas, and Houston.',
   openGraph: {
+    images: OG_IMAGES,
     title: 'Private Events at Limestone Fields — Lake Limestone, TX',
     description:
       'Intimate weddings and private gatherings on Lake Limestone. Full property exclusive use. Up to 150 guests for ceremonies, 120 for receptions. BYOC model.',

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import JsonLd from '@/components/seo/JsonLd'
-import { webPageSchema } from '@/lib/schema-constants'
+import { webPageSchema, OG_IMAGES } from '@/lib/schema-constants'
 import type { Image as SanityImage } from 'sanity'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   description:
     'Tour the property: 10 cabins, a commons barn, a working farm, and 1,200 ft of private lakefront on Lake Limestone, Texas. 2 hours from Austin, Dallas, and Houston.',
   openGraph: {
+    images: OG_IMAGES,
     title: 'The Property — Limestone Fields, Lake Limestone TX',
     description:
       'A photo tour of Limestone Fields — the cabins, the barn, the outdoor kitchen, the lake, the farm, and the land.',
