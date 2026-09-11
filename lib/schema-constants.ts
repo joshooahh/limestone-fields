@@ -55,3 +55,84 @@ export function webPageSchema(path: string, name: string, description: string) {
 
 /** Ready-to-spread Open Graph image list for pages that define their own openGraph block (which replaces the root one). */
 export const OG_IMAGES = [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: 'Limestone Fields — Lake Limestone, TX' }]
+
+/** The property as an event venue: one entity, declared on /private-events, referenced elsewhere. */
+export const VENUE_ID = `${SITE_URL}/#venue`
+
+export const AREA_SERVED = [
+  { '@type': 'City', name: 'Austin', sameAs: 'https://en.wikipedia.org/wiki/Austin,_Texas' },
+  { '@type': 'City', name: 'Dallas', sameAs: 'https://en.wikipedia.org/wiki/Dallas' },
+  { '@type': 'City', name: 'Houston', sameAs: 'https://en.wikipedia.org/wiki/Houston' },
+  { '@type': 'State', name: 'Texas', sameAs: 'https://en.wikipedia.org/wiki/Texas' },
+]
+
+export function breadcrumbSchema(items: [string, string][]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map(([name, path], i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name,
+      item: `${SITE_URL}${path}`,
+    })),
+  }
+}
+
+/**
+ * Schema for a sales landing page that sells one use of the property
+ * (a small wedding, a company retreat, a family reunion). The page is not a
+ * new venue; it is a Service the venue provides. Provider and location both
+ * resolve to the sitewide entities so every landing page strengthens the same
+ * knowledge-graph record instead of fragmenting it.
+ */
+export function landingPageSchema(opts: {
+  path: string
+  name: string
+  serviceType: string
+  description: string
+  audienceType: string
+  image: string
+  capacity: number
+}) {
+  const url = `${SITE_URL}${opts.path}`
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${url}#service`,
+      name: opts.name,
+      serviceType: opts.serviceType,
+      description: opts.description,
+      url,
+      image: opts.image,
+      provider: { '@id': ORGANIZATION_ID },
+      areaServed: AREA_SERVED,
+      audience: { '@type': 'Audience', audienceType: opts.audienceType },
+      availableChannel: {
+        '@type': 'ServiceChannel',
+        serviceUrl: `${url}#inquire`,
+        availableLanguage: 'en',
+      },
+      offers: {
+        '@type': 'Offer',
+        url: `${url}#inquire`,
+        availability: 'https://schema.org/InStock',
+        priceCurrency: 'USD',
+        description: 'Full-property exclusive use. Pricing by proposal after inquiry.',
+        eligibleQuantity: { '@type': 'QuantitativeValue', maxValue: opts.capacity, unitText: 'guests' },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      url,
+      name: opts.name,
+      description: opts.description,
+      isPartOf: { '@type': 'WebSite', url: SITE_URL, name: 'Limestone Fields' },
+      about: { '@id': VENUE_ID },
+      mainEntity: { '@id': `${url}#service` },
+      primaryImageOfPage: { '@type': 'ImageObject', url: opts.image },
+    },
+  ]
+}

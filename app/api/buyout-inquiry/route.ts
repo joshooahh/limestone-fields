@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid submission' }, { status: 400 })
     }
 
-    const { name, email, phone, company, preferredDates, groupSize, eventType, additionalDetails } = parsed.data
+    const { name, email, phone, company, preferredDates, groupSize, eventType, additionalDetails, source } = parsed.data
 
     // Save to Sanity
     await client.create({
@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
       groupSize,
       eventType,
       additionalDetails,
+      source,
       submittedAt: new Date().toISOString(),
     })
 
@@ -53,6 +54,7 @@ export async function POST(request: NextRequest) {
         ${groupSize ? `<p style="font-family:sans-serif;"><strong>Group Size:</strong> ${groupSize}</p>` : ''}
         ${preferredDates ? `<p style="font-family:sans-serif;"><strong>Preferred Dates:</strong> ${preferredDates}</p>` : ''}
         ${additionalDetails ? `<p style="font-family:sans-serif;"><strong>Additional Details:</strong><br/>${additionalDetails}</p>` : ''}
+        ${source ? `<p style="font-family:sans-serif;font-size:12px;color:#6b7280;"><strong>Source:</strong> ${source}</p>` : ''}
         <hr style="margin-top:24px;border:none;border-top:1px solid #e5e7eb;"/>
         <p style="font-family:sans-serif;font-size:12px;color:#9ca3af;">Submitted via limestonefields.com</p>
       `,

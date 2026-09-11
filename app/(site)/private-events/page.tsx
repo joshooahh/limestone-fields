@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { OG_IMAGES } from '@/lib/schema-constants'
+import { OG_IMAGES, VENUE_ID, ORGANIZATION_ID } from '@/lib/schema-constants'
 import Link from 'next/link'
 import Hero from '@/components/sections/Hero'
 import JsonLd from '@/components/seo/JsonLd'
@@ -12,7 +12,9 @@ import type { PageDocument } from '@/sanity/types'
 const eventVenueSchema = {
   '@context': 'https://schema.org',
   '@type': 'EventVenue',
+  '@id': VENUE_ID,
   name: 'Limestone Fields',
+  parentOrganization: { '@id': ORGANIZATION_ID },
   description: 'A private lakefront event venue on Lake Limestone, Texas. Available for intimate weddings, corporate retreats, and full property buyouts. One event at a time.',
   url: 'https://limestonefields.com/private-events',
   address: {
@@ -169,6 +171,37 @@ export default async function PrivateEventsPage() {
             <p className="text-[18px] text-[#253136] leading-[1.55]">
               Small enough that every person in the room is someone who matters.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Specific-need landing pages */}
+      <section className="py-20 md:py-24 bg-[#F9F4EE] border-t border-[#253136]/10">
+        <div className="container max-w-6xl mx-auto px-6">
+          <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]/60 mb-4">
+            Planning something specific?
+          </p>
+          <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136] mb-10">
+            Three ways people use the whole property.
+          </h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              ['/small-weddings', 'Small weddings', 'A wedding where everyone stays. Up to 26 overnight, ceremony for 50, one wedding at a time.'],
+              ['/company-retreats', 'Company retreats', 'Get the whole team in one place, then get quiet. Sessions in the barn, cabins for everyone.'],
+              ['/family-reunions', 'Family reunions', 'Ten cabins so every household has its own door, one barn kitchen for every meal.'],
+            ].map(([href, title, body]) => (
+              <Link
+                key={href}
+                href={href}
+                className="group block bg-limestone-cream border border-[#253136]/15 rounded-md p-8 transition hover:border-[#253136]/40"
+              >
+                <h3 className="font-headline text-[24px] leading-[1.25] text-[#253136] mb-3">{title}</h3>
+                <p className="text-[16px] text-[#253136]/75 leading-[1.6] mb-5">{body}</p>
+                <span className="font-subhead text-[11px] tracking-[0.22em] uppercase text-[#253136]/60 group-hover:text-[#253136] transition">
+                  See how it works →
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

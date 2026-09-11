@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
 import JsonLd from '@/components/seo/JsonLd'
+import { landingPageSchema, breadcrumbSchema } from '@/lib/schema-constants'
 import LandingShell from '@/components/landing/LandingShell'
 import EventInquiryForm from '@/components/forms/EventInquiryForm'
 import {
@@ -12,7 +13,6 @@ import {
   Fit,
   H2,
   Inquire,
-  LF_ADDRESS,
   Numbers,
   Photo,
   PhotoBand,
@@ -31,7 +31,7 @@ import {
 const PAGE_URL = 'https://limestonefields.com/company-retreats'
 
 export const metadata: Metadata = {
-  title: 'Company Retreats & Executive Offsites — Limestone Fields',
+  title: 'Company Retreats & Executive Offsites on Lake Limestone',
   description:
     'Buy out a lakefront property for your team. Ten private cabins, a 1,200 sq ft barn for sessions and meals, 16 acres of quiet on Lake Limestone, and no other guests. Two hours from Austin, Dallas, and Houston.',
   openGraph: {
@@ -44,16 +44,19 @@ export const metadata: Metadata = {
   alternates: { canonical: PAGE_URL },
 }
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'EventVenue',
-  name: 'Limestone Fields — Company Retreats',
-  description:
-    'Full-property buyout for corporate retreats, executive offsites, and small-company gatherings. Ten cabins sleeping 26, a 1,200 sq ft barn with full kitchen for sessions and meals, 16 acres on Lake Limestone, Texas.',
-  url: PAGE_URL,
-  address: LF_ADDRESS,
-  maximumAttendeeCapacity: 50,
-}
+const schema = [
+  ...landingPageSchema({
+    path: '/company-retreats',
+    name: 'Company retreats and executive offsites at Limestone Fields',
+    serviceType: 'Corporate retreat venue rental, full-property buyout',
+    description:
+      'Buy out a lakefront property for your team. Ten private cabins, a 1,200 sq ft barn for sessions and meals, 16 acres of quiet on Lake Limestone, and no other guests. Two hours from Austin, Dallas, and Houston.',
+    audienceType: 'Leadership teams and small companies planning an offsite',
+    image: 'https://limestonefields.com/images/landing/aerial-wide.jpg',
+    capacity: 50,
+  }),
+  breadcrumbSchema([['Home', '/'], ['Private Events', '/private-events'], ['Company Retreats', '/company-retreats']]),
+]
 
 export default function CompanyRetreatsPage() {
   return (

@@ -19,6 +19,8 @@ export const buyoutInquirySchema = z.object({
   groupSize: z.coerce.number().min(1, 'Group size is required'),
   eventType: z.string().min(1, 'Event type is required'),
   additionalDetails: z.string().default(''),
+  /** Where the lead came from: landing path plus any utm_* params. Set by the form, not the user. */
+  source: z.string().max(500).default(''),
 })
 
 export type BuyoutInquiryFormData = z.infer<typeof buyoutInquirySchema>

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import JsonLd from '@/components/seo/JsonLd'
 import type { ReactNode } from 'react'
 import {
   Accordion,
@@ -275,8 +276,18 @@ export function Numbers({ items }: { items: [string, string][] }) {
 }
 
 export function FAQ({ items, closing }: { items: [string, string][]; closing?: string }) {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map(([q, a]) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }
   return (
     <section className="bg-limestone-cream py-24 md:py-32">
+      <JsonLd data={faqSchema} />
       <div className="container max-w-4xl mx-auto px-6">
         <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>Questions, answered</p>
         <h2 className={`${H2} mb-10`}>The things people ask before they reach out.</h2>

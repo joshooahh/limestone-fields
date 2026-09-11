@@ -57,6 +57,13 @@ export default defineType({
       type: 'text',
     }),
     defineField({
+      name: 'source',
+      title: 'Lead Source',
+      type: 'string',
+      description: 'Landing page path plus utm/gclid params and referrer, captured automatically.',
+      readOnly: true,
+    }),
+    defineField({
       name: 'submittedAt',
       title: 'Submitted At',
       type: 'datetime',

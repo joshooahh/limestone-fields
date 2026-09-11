@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
 import JsonLd from '@/components/seo/JsonLd'
+import { landingPageSchema, breadcrumbSchema } from '@/lib/schema-constants'
 import LandingShell from '@/components/landing/LandingShell'
 import EventInquiryForm from '@/components/forms/EventInquiryForm'
 import {
@@ -12,7 +13,6 @@ import {
   Fit,
   H2,
   Inquire,
-  LF_ADDRESS,
   Numbers,
   Photo,
   PhotoBand,
@@ -31,7 +31,7 @@ import {
 const PAGE_URL = 'https://limestonefields.com/family-reunions'
 
 export const metadata: Metadata = {
-  title: 'Family Reunions on Lake Limestone — Limestone Fields',
+  title: 'Family Reunions on Lake Limestone',
   description:
     'Rent the whole place for the whole family. Ten private cabins, a barn kitchen big enough for everyone, a working farm the kids will not want to leave, and a lake out front. Two hours from Austin, Dallas, and Houston.',
   openGraph: {
@@ -44,16 +44,19 @@ export const metadata: Metadata = {
   alternates: { canonical: PAGE_URL },
 }
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'EventVenue',
-  name: 'Limestone Fields — Family Reunions',
-  description:
-    'Full-property rental for family reunions and milestone gatherings. Ten cabins sleeping 26, a 1,200 sq ft barn with full kitchen, a working farm, and 16 acres on Lake Limestone, Texas.',
-  url: PAGE_URL,
-  address: LF_ADDRESS,
-  maximumAttendeeCapacity: 50,
-}
+const schema = [
+  ...landingPageSchema({
+    path: '/family-reunions',
+    name: 'Family reunions at Limestone Fields',
+    serviceType: 'Family reunion venue rental, full-property buyout',
+    description:
+      'Rent the whole place for the whole family. Ten private cabins, a barn kitchen big enough for everyone, a working farm the kids will not want to leave, and a lake out front. Two hours from Austin, Dallas, and Houston.',
+    audienceType: 'Extended families planning a multi-day reunion',
+    image: 'https://limestonefields.com/images/writers-retreat/aerial.jpg',
+    capacity: 50,
+  }),
+  breadcrumbSchema([['Home', '/'], ['Private Events', '/private-events'], ['Family Reunions', '/family-reunions']]),
+]
 
 export default function FamilyReunionsPage() {
   return (

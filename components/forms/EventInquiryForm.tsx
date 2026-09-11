@@ -29,6 +29,16 @@ interface Props {
  * /api/buyout-inquiry route, so submissions land in Sanity as Buyout Inquiry
  * documents and email hello@ exactly like the /buyouts and /weddings forms.
  */
+/** Landing path + utm_* params + referrer, so ad and search leads are attributable in Sanity and the email. */
+function leadSource(): string {
+  if (typeof window === 'undefined') return ''
+  const params = new URLSearchParams(window.location.search)
+  const utm = Array.from(params.entries()).filter(([k]) => k.startsWith('utm_') || k === 'gclid' || k === 'fbclid')
+  const parts = [window.location.pathname, ...utm.map(([k, v]) => `${k}=${v}`)]
+  if (document.referrer) parts.push(`ref=${document.referrer}`)
+  return parts.join(' ').slice(0, 500)
+}
+
 export default function EventInquiryForm({
   eventType,
   companyLabel,
@@ -65,7 +75,7 @@ export default function EventInquiryForm({
       const response = await fetch('/api/buyout-inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, eventType }),
+        body: JSON.stringify({ ...data, eventType, source: leadSource() }),
       })
       if (response.ok) setSubmitted(true)
       else setFailed(true)

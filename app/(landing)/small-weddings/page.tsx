@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
 import JsonLd from '@/components/seo/JsonLd'
+import { landingPageSchema, breadcrumbSchema } from '@/lib/schema-constants'
 import LandingShell from '@/components/landing/LandingShell'
 import EventInquiryForm from '@/components/forms/EventInquiryForm'
 import {
@@ -12,7 +13,6 @@ import {
   Fit,
   H2,
   Inquire,
-  LF_ADDRESS,
   Numbers,
   Photo,
   PhotoBand,
@@ -31,7 +31,7 @@ import {
 const PAGE_URL = 'https://limestonefields.com/small-weddings'
 
 export const metadata: Metadata = {
-  title: 'Small Weddings on Lake Limestone — Limestone Fields',
+  title: 'Small Weddings on Lake Limestone',
   description:
     'A small wedding where every guest sleeps on the property. Ten private lakefront cabins for 26 people, a barn for dinner and dancing, and the whole place to yourselves for the weekend. Two hours from Austin, Dallas, and Houston.',
   openGraph: {
@@ -44,16 +44,19 @@ export const metadata: Metadata = {
   alternates: { canonical: PAGE_URL },
 }
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'EventVenue',
-  name: 'Limestone Fields — Small Weddings',
-  description:
-    'An intimate lakefront wedding venue on Lake Limestone, Texas. Ten private cabins sleeping 26, a lakefront ceremony site, and a 1,200 sq ft barn for the reception. One wedding at a time, full property exclusive use.',
-  url: PAGE_URL,
-  address: LF_ADDRESS,
-  maximumAttendeeCapacity: 26,
-}
+const schema = [
+  ...landingPageSchema({
+    path: '/small-weddings',
+    name: 'Small wedding weekends at Limestone Fields',
+    serviceType: 'Small wedding venue rental, full-property buyout',
+    description:
+      'A small wedding where every guest sleeps on the property. Ten private lakefront cabins for 26 people, a barn for dinner and dancing, and the whole place to yourselves for the weekend. Two hours from Austin, Dallas, and Houston.',
+    audienceType: 'Couples planning a small wedding of up to 26 overnight guests',
+    image: 'https://limestonefields.com/images/writers-retreat/cabins-dusk.jpg',
+    capacity: 50,
+  }),
+  breadcrumbSchema([['Home', '/'], ['Private Events', '/private-events'], ['Small Weddings', '/small-weddings']]),
+]
 
 export default function SmallWeddingsPage() {
   return (
