@@ -83,8 +83,8 @@ const jsonLd = [
     image: 'https://limestonefields.com/blog/images/intimate-wedding-venues-texas.jpg',
     author: { '@type': 'Organization', name: 'Limestone Fields', url: 'https://limestonefields.com/story' },
     publisher: PUBLISHER,
-    datePublished: '2026-07-07',
-    dateModified: '2026-07-07',
+    datePublished: '2026-07-07T09:00:00-05:00',
+    dateModified: '2026-07-07T09:00:00-05:00',
     mainEntityOfPage: CANONICAL,
   },
   {
@@ -104,6 +104,7 @@ const jsonLd = [
       'An intimate lakefront wedding venue on 16 acres at Lake Limestone, Texas. One event at a time with a full-property buyout and on-site lodging in ten cabins, two hours from Austin, Dallas, and Houston.',
     url: 'https://limestonefields.com/weddings',
     telephone: '+1-254-265-6258',
+    priceRange: '$$$',
     image: 'https://limestonefields.com/blog/images/intimate-wedding-venues-texas.jpg',
     address: {
       '@type': 'PostalAddress',

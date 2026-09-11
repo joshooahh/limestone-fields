@@ -9,7 +9,7 @@ import CloudbedsBookButton from '@/components/booking/CloudbedsBookButton'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { homepageImagesQuery, siteSettingsQuery } from '@/sanity/queries'
-import { ORGANIZATION_ID } from '@/lib/schema-constants'
+import { ORGANIZATION_ID, DEFAULT_OG_IMAGE } from '@/lib/schema-constants'
 import type { Image as SanityImage } from 'sanity'
 
 export const metadata: Metadata = {
@@ -30,6 +30,8 @@ const baseLodgingBusinessSchema = {
   email: 'hello@limestonefields.com',
   telephone: '+1-254-265-6258',
   logo: 'https://limestonefields.com/logos/primary/logo-dark.png',
+  image: [DEFAULT_OG_IMAGE.split('?')[0]],
+  priceRange: '$$$',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '159 LCR 890',

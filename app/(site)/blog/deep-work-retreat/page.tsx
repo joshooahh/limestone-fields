@@ -83,8 +83,8 @@ const jsonLd = [
     image: 'https://limestonefields.com/blog/images/deep-work-retreat.jpg',
     author: { '@type': 'Organization', name: 'Limestone Fields', url: 'https://limestonefields.com/story' },
     publisher: PUBLISHER,
-    datePublished: '2026-07-07',
-    dateModified: '2026-07-07',
+    datePublished: '2026-07-07T09:00:00-05:00',
+    dateModified: '2026-07-07T09:00:00-05:00',
     mainEntityOfPage: CANONICAL,
   },
   {
@@ -104,6 +104,7 @@ const jsonLd = [
       'Ten custom-built lakefront cabins on 16 acres at Lake Limestone, Texas — a quiet creative retreat for deep work, writing, and reflection, two hours from Austin, Dallas, and Houston.',
     url: 'https://limestonefields.com/stay',
     telephone: '+1-254-265-6258',
+    priceRange: '$$$',
     image: 'https://limestonefields.com/blog/images/deep-work-retreat.jpg',
     address: {
       '@type': 'PostalAddress',
