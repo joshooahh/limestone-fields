@@ -314,9 +314,8 @@ export default function LakeLimestoneGuidePage() {
                 Texas nest from October through July. Eggs are laid mostly in December, chicks
                 hatch in January, and the young are flying by spring, so winter and early spring
                 are the best months to see them hunting the open water. They range the whole
-                lake. One of them came in low over our cove and settled on a snag close enough to
-                see the yellow of its beak and the white of its head without binoculars, then
-                sat there watching the water as if we were the visitors, which we were.
+                lake, and we have had one of them close enough to see the yellow of its beak
+                without binoculars.
               </p>
               <p>
                 The birding does not stop there. Great blue herons stalk the shallows, and egrets
