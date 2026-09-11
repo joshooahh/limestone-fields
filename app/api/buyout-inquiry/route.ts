@@ -3,6 +3,15 @@ import { client } from '@/sanity/lib/client'
 import { buyoutInquirySchema } from '@/lib/validations'
 import { resend, CONTACT_EMAIL, FROM_EMAIL } from '@/lib/email'
 
+const EVENT_LABEL: Record<string, string> = {
+  small_wedding: 'small wedding',
+  company_retreat: 'company retreat',
+  family_reunion: 'family reunion',
+  executive_retreat: 'executive retreat',
+  creative_intensive: 'creative intensive',
+  wedding_celebration: 'wedding/celebration',
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
@@ -33,7 +42,7 @@ export async function POST(request: NextRequest) {
       from: FROM_EMAIL,
       to: CONTACT_EMAIL,
       replyTo: email,
-      subject: `New ${eventType ?? 'buyout'} inquiry from ${name}`,
+      subject: `New ${EVENT_LABEL[eventType] ?? eventType ?? 'buyout'} inquiry from ${name}`,
       html: `
         <h2 style="font-family:sans-serif;color:#253136;">New Inquiry — Limestone Fields</h2>
         <p style="font-family:sans-serif;"><strong>Name:</strong> ${name}</p>
