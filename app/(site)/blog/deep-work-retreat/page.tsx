@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import JsonLd from '@/components/seo/JsonLd'
-import { ORGANIZATION_ID, PUBLISHER } from '@/lib/schema-constants'
+import { PUBLISHER } from '@/lib/schema-constants'
 import BlogBreadcrumb from '@/components/blog/BlogBreadcrumb'
 import BlogFigure from '@/components/blog/BlogFigure'
 import BlogToc from '@/components/blog/BlogToc'
