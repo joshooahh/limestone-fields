@@ -123,6 +123,14 @@ export interface SiteSettings {
     body?: string
     buttonText?: string
   }
+  announcement?: Announcement
+}
+
+export interface Announcement {
+  enabled?: boolean
+  text?: string
+  linkLabel?: string
+  href?: string
 }
 
 export interface Faq {

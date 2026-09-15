@@ -68,6 +68,18 @@ export default defineType({
       description: 'Toggle to enable booking functionality',
     }),
     defineField({
+      name: 'announcement',
+      title: 'Homepage Announcement Banner',
+      type: 'object',
+      description: 'A thin strip above the header on the homepage for limited-time announcements. Turn off when it is no longer current.',
+      fields: [
+        { name: 'enabled', type: 'boolean', title: 'Show banner', initialValue: false },
+        { name: 'text', type: 'string', title: 'Text', description: 'One short line, e.g. "Nov 6–9: A Writers Retreat with Sobremesa Magazine."' },
+        { name: 'linkLabel', type: 'string', title: 'Link label', description: 'e.g. "Twelve places. Book yours"' },
+        { name: 'href', type: 'string', title: 'Link', description: 'e.g. /writers-retreat or a full URL' },
+      ],
+    }),
+    defineField({
       name: 'footerCta',
       title: 'Footer CTA',
       type: 'object',

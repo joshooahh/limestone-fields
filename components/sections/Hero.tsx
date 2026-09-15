@@ -63,7 +63,8 @@ export default function Hero({
   return (
     <section
       className={cn(
-        'relative isolate overflow-hidden py-28 md:py-40',
+        // Top padding grows by --announcement-h when the homepage announcement banner is showing.
+        'relative isolate overflow-hidden pb-28 md:pb-40 pt-[calc(7rem+var(--announcement-h,0px))] md:pt-[calc(10rem+var(--announcement-h,0px))]',
         !hasImage && 'bg-limestone-cream'
       )}
     >

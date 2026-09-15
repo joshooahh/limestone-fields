@@ -31,7 +31,7 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
 
   return (
     <header
-      className={`pointer-events-none fixed inset-x-0 top-0 z-30 transition-colors duration-300 ${
+      className={`pointer-events-none fixed inset-x-0 top-[var(--announcement-h,0px)] z-30 transition-colors duration-300 ${
         dark ? 'bg-[#253136] shadow-sm' : 'bg-transparent'
       }`}
     >

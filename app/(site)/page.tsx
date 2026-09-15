@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/sections/Hero'
+import AnnouncementBanner from '@/components/ui/AnnouncementBanner'
+import type { Announcement } from '@/sanity/types'
 import JsonLd from '@/components/seo/JsonLd'
 import { ArrowRight } from 'lucide-react'
 import CloudbedsPropertyDatePicker from '@/components/booking/CloudbedsPropertyDatePicker'
@@ -84,6 +86,7 @@ const baseLodgingBusinessSchema = {
 
 type SiteSettings = {
   socialLinks?: { label?: string; url?: string }[] | null
+  announcement?: Announcement | null
 }
 
 type HomepageImages = {
@@ -124,6 +127,8 @@ export default async function HomePage() {
   return (
     <>
       <JsonLd data={lodgingBusinessSchema} />
+
+      <AnnouncementBanner announcement={siteSettings?.announcement} />
 
       <Hero
         headline="A Collection of Well-Appointed Cabins and Barn Accommodations, Each Designed for Rest and Renewal."

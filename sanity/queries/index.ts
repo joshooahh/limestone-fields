@@ -49,7 +49,8 @@ export const siteSettingsQuery = groq`
     },
     openingDate,
     bookingsOpen,
-    footerCta
+    footerCta,
+    announcement
   }
 `
 
