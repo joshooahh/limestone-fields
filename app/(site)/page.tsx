@@ -131,7 +131,7 @@ export default async function HomePage() {
       <AnnouncementBanner announcement={siteSettings?.announcement} />
 
       <Hero
-        headline="A Collection of Well-Appointed Cabins and Barn Accommodations, Each Designed for Rest and Renewal."
+        headline="A collection of well-appointed cabins designed for rest & renewal."
         subhead=""
         backgroundImage={img(images?.heroImage) ?? undefined}
         backgroundImageAlt="Sunrise over Lake Limestone"
