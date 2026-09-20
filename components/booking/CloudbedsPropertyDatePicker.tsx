@@ -22,7 +22,7 @@ interface Props {
  * Renders a Cloudbeds <cb-property-date-picker> — a property-wide
  * (all room types combined) search bar: check-in, check-out, and a search
  * button. This is the closest Cloudbeds equivalent to the old
- * HostawaySearchBar on the homepage.
+ * search bar on the homepage.
  *
  * Unlike the popup Book Now button, this one shows Cloudbeds' own inline
  * calendar UI directly on the page (not a slide-in panel) — clicking search

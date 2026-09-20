@@ -142,8 +142,7 @@ export default async function HomePage() {
 
           {/* Desktop: Cloudbeds property-wide date picker. customUrl={false}
               hands off straight to Cloudbeds' hosted booking engine after
-              dates are picked, same off-site-completion pattern the old
-              Hostaway widget used. */}
+              dates are picked. */}
           <div className="hidden md:block shadow-xl rounded-2xl">
             <CloudbedsPropertyDatePicker layout="horizontal" label="Check Availability" customUrl={false} />
           </div>
