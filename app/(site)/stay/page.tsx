@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { OG_IMAGES } from '@/lib/schema-constants'
+import { OG_IMAGES, webPageSchema } from '@/lib/schema-constants'
 import Link from 'next/link'
 import CabinCard from '@/components/sections/CabinCard'
 import Hero from '@/components/sections/Hero'
@@ -11,46 +11,11 @@ import { cabinsQuery, pageQuery } from '@/sanity/queries'
 import type { Cabin, PageDocument } from '@/sanity/types'
 import { ArrowRight } from 'lucide-react'
 
-const lodgingSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'LodgingBusiness',
-  name: 'Limestone Fields',
-  url: 'https://limestonefields.com/stay',
-  numberOfRooms: 10,
-  containsPlace: [
-    {
-      '@type': 'HotelRoom',
-      name: 'Standard Cabin',
-      description: '256 sq ft cabin with king bed sleeping alcove, private outdoor cedar soaking tub, built-in workstation, and individual HVAC. Sleeps 2.',
-      floorSize: { '@type': 'QuantitativeValue', value: 256, unitCode: 'FTK' },
-      occupancy: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 2 },
-      bed: { '@type': 'BedDetails', typeOfBed: 'King size bed', numberOfBeds: 1 },
-      amenityFeature: [
-        { '@type': 'LocationFeatureSpecification', name: 'Private outdoor cedar soaking tub', value: true },
-        { '@type': 'LocationFeatureSpecification', name: 'Keyless smart lock', value: true },
-        { '@type': 'LocationFeatureSpecification', name: 'Individual HVAC', value: true },
-        { '@type': 'LocationFeatureSpecification', name: 'Built-in workstation', value: true },
-      ],
-    },
-    {
-      '@type': 'HotelRoom',
-      name: 'Cabin Suite',
-      description: '384 sq ft cabin with king bed, queen bunk beds, private outdoor cedar soaking tub, and premium bathroom fixtures. Sleeps up to 6.',
-      floorSize: { '@type': 'QuantitativeValue', value: 384, unitCode: 'FTK' },
-      occupancy: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 6 },
-      bed: [
-        { '@type': 'BedDetails', typeOfBed: 'King size bed', numberOfBeds: 1 },
-        { '@type': 'BedDetails', typeOfBed: 'Bunk bed', numberOfBeds: 1 },
-      ],
-      amenityFeature: [
-        { '@type': 'LocationFeatureSpecification', name: 'Private outdoor cedar soaking tub', value: true },
-        { '@type': 'LocationFeatureSpecification', name: 'Queen bunk beds', value: true },
-        { '@type': 'LocationFeatureSpecification', name: 'Premium bathroom fixtures', value: true },
-        { '@type': 'LocationFeatureSpecification', name: 'Individual HVAC', value: true },
-      ],
-    },
-  ],
-}
+const pageSchema = webPageSchema(
+  '/stay',
+  'Cabin Rentals on Lake Limestone, TX — Limestone Fields',
+  'Ten private lakefront cabins at Limestone Fields on Lake Limestone, Texas. King beds, cedar soaking tubs, lake views.'
+)
 
 export const metadata: Metadata = {
   title: 'Cabin Rentals on Lake Limestone, TX',
@@ -74,7 +39,7 @@ export default async function StayPage() {
 
   return (
     <>
-      <JsonLd data={lodgingSchema} />
+      <JsonLd data={pageSchema} />
       <Hero
         headline="The Cabins at Limestone Fields"
         subhead="Ten private cabins. Two thoughtful layouts. Everything you need, nothing you don't."

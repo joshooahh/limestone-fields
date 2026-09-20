@@ -48,7 +48,6 @@ const baseLodgingBusinessSchema = {
     longitude: -96.1502,
   },
   numberOfRooms: 10,
-  openingDate: '2026-04-15',
   amenityFeature: [
     { '@type': 'LocationFeatureSpecification', name: 'Private outdoor cedar soaking tub', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'King bed', value: true },
@@ -81,7 +80,6 @@ const baseLodgingBusinessSchema = {
       ],
     },
   ],
-  touristType: ['Couples', 'Families', 'Groups', 'Corporate retreats', 'Wedding parties'],
 }
 
 type SiteSettings = {
