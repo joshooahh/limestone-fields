@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'A Writers Retreat — Limestone Fields × Sobremesa · Nov 6–9, 2026',
     description:
-      'Three nights to rest, write, and eat well. A private lakefront cabin, an Austin chef cooking over fire, and eleven other writers who came for the same reason. Twelve places.',
+      'Three nights to rest, write, and eat well. A private lakefront cabin, chef Hannah Slattery cooking over fire, and eleven other writers who came for the same reason. Twelve places.',
     url: PAGE_URL,
     images: [{ url: 'https://limestonefields.com/images/writers-retreat/hero.jpg', width: 2200, height: 1466 }],
   },
@@ -103,6 +103,9 @@ const PHOTOS = {
   ducks: { src: '/images/writers-retreat/ducks.jpg', w: 2000, h: 1031, alt: 'The farm ducks walking through the grass' },
   wildflowers: { src: '/images/writers-retreat/wildflowers.jpg', w: 2000, h: 1031, alt: 'A field of yellow wildflowers at the edge of the woods' },
   katie: { src: '/images/writers-retreat/katie-rice.jpg', w: 1067, h: 1600, alt: 'Katie Rice at a Sobremesa Magazine stand, under a striped umbrella' },
+  hannahPortrait: { src: '/images/writers-retreat/hannah-portrait.jpg', w: 1200, h: 1600, alt: 'Chef Hannah Slattery in a red dress in her garden kitchen' },
+  hannahMilking: { src: '/images/writers-retreat/hannah-milking.jpg', w: 1200, h: 1600, alt: 'Hannah Slattery milking a Jersey cow' },
+  hannahPolaroid: { src: '/images/writers-retreat/hannah-polaroid.jpg', w: 1129, h: 1600, alt: 'A Polaroid of Hannah Slattery in a wide-brimmed hat, holding a small dog' },
 } as const
 
 /** Sobremesa Magazine covers, volumes 2 through 5. */
@@ -157,7 +160,7 @@ const PILLARS = [
     n: '04',
     title: 'Eat well',
     body:
-      'A chef from Austin, in residence all weekend, cooking over wood from our barn kitchen. Eight meals, from Friday’s welcome dinner to Monday’s slow breakfast, all taken care of.',
+      'Chef Hannah Slattery, in residence all weekend, cooking over wood from our barn kitchen. Eight meals, from Friday’s welcome dinner to Monday’s slow breakfast, all taken care of.',
   },
 ]
 
@@ -212,7 +215,7 @@ const DAYS = [
 
 const INCLUDED = [
   'Three nights in a brand-new private cabin on Lake Limestone, with a private outdoor cedar soaking tub, a king bed, and a built-in writing desk',
-  'Every meal from Friday dinner through Monday breakfast, cooked on site by a chef from Austin',
+  'Every meal from Friday dinner through Monday breakfast, cooked on site by chef Hannah Slattery',
   'Morning prompts, paired walk-and-talks, and two evening reading circles, all optional',
   'Two farm sessions: planting garlic, and a harvest walk for Sunday’s table',
   'A weekend among twelve writers, with a facilitator who has run writers’ conferences for a decade',
@@ -257,7 +260,7 @@ const FAQS: [string, string][] = [
   ],
   [
     'What is the food, really?',
-    'A chef from Austin lives on the property for the weekend and cooks every meal from The Commons, our barn kitchen with a Santa Maria grill and a woodfired oven. Dinners are multi-course and built around what the farm gives that week. Lunches arrive at your cabin in a basket. Tell us your dietary needs when you reserve and the menu is planned around them, not adjusted after the fact.',
+    'Chef Hannah Slattery lives on the property for the weekend and cooks every meal from The Commons, our barn kitchen with a Santa Maria grill and a woodfired oven. Her background is in functional nutrition and regenerative farming: seasonal, real ingredients, no seed oils, built around what the farm gives that week. Lunches arrive at your cabin in a basket. Tell us your dietary needs when you reserve and the menu is planned around them, not adjusted after the fact.',
   ],
   [
     'Can I bring someone?',
@@ -295,7 +298,7 @@ export default function WritersRetreatPage() {
         eyebrow="Writers Retreat · Nov 6–9, 2026 · Lake Limestone, TX"
         headline="Time to write."
         kicker="In partnership with Sobremesa"
-        subhead="Three nights on the lake with eleven other writers, a chef from Austin, and nothing on the calendar you have to keep."
+        subhead="Three nights on the lake with eleven other writers, a chef cooking over fire, and nothing on the calendar you have to keep."
         ctaText="Book Your Cabin"
         ctaHref={RETREAT_BOOKING_URL}
         backgroundImage="/images/writers-retreat/hero.jpg"
@@ -393,7 +396,7 @@ export default function WritersRetreatPage() {
               is a magazine about food, lingering, and sharing. This weekend, created with Katie Rice,
               the founder and editor of the magazine, is built around the same principles. Good food
               fuels good writing, and time around the table with other creatives matters. So we&rsquo;re
-              bringing a chef in from Austin to cook every meal in The Commons, our barn kitchen, where
+              bringing in chef Hannah Slattery to cook every meal in The Commons, our barn kitchen, where
               a Santa Maria grill and a woodfired oven are going as the light drops over the lake.
             </p>
             <p className="text-[18px] text-[#253136]/80 leading-[1.6]">
@@ -521,6 +524,39 @@ export default function WritersRetreatPage() {
               </p>
             ))}
           </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The chef */}
+      <section id="chef" className="py-24 md:py-32 bg-[#F7E7D5]">
+        <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-16 md:grid-cols-[3fr_2fr] items-start">
+          <div>
+            <p className={`${EYEBROW} text-[#3D1212] mb-4`}>Your chef</p>
+            <h2 className={`${H2} mb-8`}>Hannah Slattery</h2>
+            <div className="space-y-5 max-w-2xl text-[18px] text-[#253136]/85 leading-[1.65]">
+              <p>
+                Hannah is a private chef and caterer who cooks the way this retreat is built: thoughtful without
+                being fussy. She came to the kitchen by way of functional nutrition and regenerative farming, so her
+                food starts with real, seasonal ingredients, skips the seed oils, and leans on flavor and a beautiful
+                plate rather than technique for its own sake.
+              </p>
+              <p>
+                She believes food is how people heal and how they come together, and she writes every menu for the
+                people at the table. For the retreat that means eight meals built around what the farm gives that
+                week, planned from the start around every dietary need in the room, and cooked over wood in The
+                Commons while you write.
+              </p>
+              <p>
+                Hannah loves vintage, hospitality, and the plain pleasure of a great meal shared. Expect food that is
+                nourishing and a little nostalgic, and dinners you will still be describing in February.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <Photo id="hannahPortrait" className="aspect-[3/4] col-span-2" sizes="(min-width: 768px) 40vw, 100vw" />
+            <Photo id="hannahMilking" className="aspect-[3/4]" sizes="(min-width: 768px) 20vw, 50vw" />
+            <Photo id="hannahPolaroid" className="aspect-[3/4]" sizes="(min-width: 768px) 20vw, 50vw" />
           </div>
         </div>
       </section>
