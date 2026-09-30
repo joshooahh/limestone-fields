@@ -62,8 +62,15 @@ export default function CloudbedsBookButton({
     const url = new URL(window.location.href)
     let changed = false
 
-    if (roomType && url.searchParams.get('room_type') !== roomType) {
-      url.searchParams.set('room_type', roomType)
+    // room_type pre-filtering is disabled (Sep 30, 2026): Cloudbeds' "latest"
+    // widget crashes ("Whoops, there was an issue with your request") when a
+    // room_type filter is set and any room type is unavailable for the dates —
+    // its unavailable-room objects have no shortTitle, and the filter calls
+    // shortTitle.toLowerCase(). Strip it, including from old shared links.
+    // Restore `url.searchParams.set('room_type', roomType)` once Cloudbeds fixes it.
+    void roomType
+    if (url.searchParams.has('room_type')) {
+      url.searchParams.delete('room_type')
       changed = true
     }
 
