@@ -9,6 +9,8 @@ import { ArrowRight } from 'lucide-react'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { propertyImagesQuery } from '@/sanity/queries'
+import SectionGallery from '@/components/gallery/SectionGallery'
+import { GALLERY, type GalleryPhoto } from '@/lib/gallery'
 
 export const metadata: Metadata = {
   title: 'Cabins, Barn & Lakefront on Lake Limestone, TX',
@@ -26,12 +28,6 @@ export const metadata: Metadata = {
 
 type PropertyImages = {
   heroImage?: SanityImage | null
-  cabinsImages?: SanityImage[] | null
-  barnImages?: SanityImage[] | null
-  kitchenImages?: SanityImage[] | null
-  lakeImages?: SanityImage[] | null
-  farmImages?: SanityImage[] | null
-  landImages?: SanityImage[] | null
 }
 
 function imgUrl(sanityImage: SanityImage | null | undefined, width = 1400): string | null {
@@ -41,65 +37,12 @@ function imgUrl(sanityImage: SanityImage | null | undefined, width = 1400): stri
   return null
 }
 
-function imgUrls(images: SanityImage[] | null | undefined, width = 1200): string[] {
-  if (!images) return []
-  return images
-    .map((img) => imgUrl(img, width))
-    .filter((url): url is string => url !== null)
-}
-
-interface PhotoGridProps {
-  urls: string[]
-  alts: string[]
-}
-
-function PhotoGrid({ urls, alts }: PhotoGridProps) {
-  if (urls.length === 0) return null
-
-  if (urls.length === 1) {
-    return (
-      <div className="relative w-full aspect-[16/9] overflow-hidden rounded-lg bg-[#b3c1ce]">
-        <Image src={urls[0]} alt={alts[0] ?? ''} fill className="object-cover" sizes="100vw" />
-      </div>
-    )
-  }
-
-  if (urls.length === 2) {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {urls.map((url, i) => (
-          <div key={i} className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[#b3c1ce]">
-            <Image src={url} alt={alts[i] ?? ''} fill className="object-cover" sizes="(min-width: 768px) 50vw, 100vw" />
-          </div>
-        ))}
-      </div>
-    )
-  }
-
-  // 3 photos: large left + two stacked right
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-3">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[#b3c1ce]">
-        <Image src={urls[0]} alt={alts[0] ?? ''} fill className="object-cover" sizes="(min-width: 768px) 60vw, 100vw" />
-      </div>
-      <div className="grid grid-rows-2 gap-3">
-        <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden rounded-lg bg-[#b3c1ce]">
-          <Image src={urls[1]} alt={alts[1] ?? ''} fill className="object-cover" sizes="(min-width: 768px) 40vw, 100vw" />
-        </div>
-        <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden rounded-lg bg-[#b3c1ce]">
-          <Image src={urls[2]} alt={alts[2] ?? ''} fill className="object-cover" sizes="(min-width: 768px) 40vw, 100vw" />
-        </div>
-      </div>
-    </div>
-  )
-}
-
 interface SectionProps {
+  id: string
   label: string
   headline: string
   description: string
-  urls: string[]
-  alts: string[]
+  photos: GalleryPhoto[]
   bg: string
   textColor?: string
   labelColor?: string
@@ -108,11 +51,11 @@ interface SectionProps {
 }
 
 function PropertySection({
+  id,
   label,
   headline,
   description,
-  urls,
-  alts,
+  photos,
   bg,
   textColor = 'text-[#253136]',
   labelColor = 'text-[#253136]/50',
@@ -120,7 +63,7 @@ function PropertySection({
   cta,
 }: SectionProps) {
   return (
-    <section className={`${bg} py-20 md:py-28`}>
+    <section id={id} className={`${bg} scroll-mt-20 py-20 md:py-28`}>
       <div className="container max-w-6xl mx-auto px-6 space-y-10">
         <div className="max-w-2xl mx-auto text-center space-y-4">
           <p className={`font-subhead text-[11px] tracking-[0.3em] uppercase ${labelColor}`}>
@@ -134,10 +77,12 @@ function PropertySection({
           </p>
           {cta}
         </div>
-        {urls.length > 0 && (
-          <PhotoGrid urls={urls} alts={alts} />
+        {photos.length > 0 && (
+          <div className={textColor}>
+            <SectionGallery photos={photos} label={headline} />
+          </div>
         )}
-        {urls.length === 0 && (
+        {photos.length === 0 && (
           <div className="w-full aspect-[16/9] rounded-lg bg-[#b3c1ce]/40 flex items-center justify-center">
             <p className={`font-subhead text-[11px] tracking-[0.2em] uppercase ${labelColor}`}>
               Photos coming soon
@@ -153,12 +98,6 @@ export default async function ThePropertyPage() {
   const raw = await client.fetch<PropertyImages | null>(propertyImagesQuery).catch(() => null)
 
   const heroUrl = imgUrl(raw?.heroImage, 2000)
-  const cabinsUrls = imgUrls(raw?.cabinsImages)
-  const barnUrls = imgUrls(raw?.barnImages)
-  const kitchenUrls = imgUrls(raw?.kitchenImages)
-  const lakeUrls = imgUrls(raw?.lakeImages)
-  const farmUrls = imgUrls(raw?.farmImages)
-  const landUrls = imgUrls(raw?.landImages)
 
   return (
     <>
@@ -208,11 +147,11 @@ export default async function ThePropertyPage() {
 
       {/* The Cabins */}
       <PropertySection
+        id="cabins"
         label="ACCOMMODATIONS"
         headline="The Cabins"
         description="Ten private cabins sit across the property in two layouts — standard (sleeps 2) and cabin suites (sleeps 4). Each has a king bed, private outdoor cedar soaking tub, lake views, and individual HVAC. Natural materials. Quiet interiors. Nothing superfluous."
-        urls={cabinsUrls}
-        alts={['Cabin exterior', 'Cabin interior', 'Cedar soaking tub']}
+        photos={GALLERY.cabins}
         bg="bg-[#F9F4EE]"
         cta={
           <Link
@@ -227,31 +166,31 @@ export default async function ThePropertyPage() {
 
       {/* The Commons Barn */}
       <PropertySection
+        id="barn"
         label="SHARED SPACES"
         headline="The Commons Barn"
         description="A 1,200 sq ft post-and-beam barn anchors the property as the shared gathering space. Inside: a full chef's kitchen, long communal tables, and a wood-burning fireplace. Open to all guests throughout the day. Available for private buyout for events."
-        urls={barnUrls}
-        alts={['Commons barn exterior', 'Barn interior', 'Chef\'s kitchen']}
+        photos={GALLERY.barn}
         bg="bg-limestone-cream"
       />
 
       {/* The Outdoor Kitchen */}
       <PropertySection
+        id="kitchen"
         label="OUTDOOR COOKING"
         headline="The Outdoor Kitchen"
         description="Adjacent to the barn, the outdoor kitchen centers on a Santa Maria-style wood-fired grill. Built for the kind of cooking that takes the better part of an afternoon — whole animals, cast iron, smoke. An outdoor dining area seats a full group."
-        urls={kitchenUrls}
-        alts={['Santa Maria grill', 'Outdoor kitchen', 'Outdoor dining']}
+        photos={GALLERY.kitchen}
         bg="bg-[#CBD2DA]"
       />
 
       {/* The Lake */}
       <PropertySection
+        id="lake"
         label="WATERFRONT"
         headline="The Lake"
         description="Limestone Fields has 1,200 feet of private frontage on Lake Limestone. The shoreline is undeveloped — no docks, no jet skis, no crowds. Kayaks, canoes, and fishing from the bank. Mornings on the water are quiet. Evenings are better."
-        urls={lakeUrls}
-        alts={['Lake Limestone shoreline', 'Water view', 'Lakefront at sunset']}
+        photos={GALLERY.lake}
         bg="bg-[#253136]"
         textColor="text-[#f7f2e4]"
         labelColor="text-[#b3c1ce]/60"
@@ -260,21 +199,21 @@ export default async function ThePropertyPage() {
 
       {/* The Farm */}
       <PropertySection
+        id="farm"
         label="WORKING LAND"
         headline="The Farm"
         description="A working permaculture farm runs along the southern edge of the property. Seasonal vegetables, herbs, fruit trees, and a small flock of chickens. Guests are welcome to walk the beds, pick what's ripe, and bring it to the kitchen. The farm operates year-round."
-        urls={farmUrls}
-        alts={['Permaculture farm beds', 'Seasonal crops', 'Farm detail']}
+        photos={GALLERY.farm}
         bg="bg-[#F9F4EE]"
       />
 
       {/* The Land */}
       <PropertySection
+        id="land"
         label="SIXTEEN ACRES"
         headline="The Land"
         description="Beyond the structures, the property is mostly undisturbed. Old post oaks and cedar elms. A creek that runs through the lower pasture. Open fields that shift with the seasons. Walking paths connect the cabins to the water's edge. The kind of place that asks you to slow down."
-        urls={landUrls}
-        alts={['Creek through the pasture', 'Post oak woods', 'Open fields at golden hour']}
+        photos={GALLERY.land}
         bg="bg-limestone-cream"
       />
 

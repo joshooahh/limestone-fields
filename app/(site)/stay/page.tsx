@@ -66,9 +66,17 @@ export default async function StayPage() {
           <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] mb-5">
             THE CABINS
           </p>
-          <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136] mb-12">
+          <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136] mb-4">
             Two Layouts. Same Intention.
           </h2>
+          <p className="mb-12">
+            <Link
+              href="/the-property#cabins"
+              className="font-subhead text-[13px] uppercase tracking-[0.22em] text-[#253136] underline underline-offset-4 transition hover:text-[#253136]/70"
+            >
+              See photos of the cabin interiors
+            </Link>
+          </p>
           {cabins?.length ? (
             <div className="space-y-16">
               {cabins.map((cabin) => (
