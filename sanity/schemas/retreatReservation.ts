@@ -19,6 +19,7 @@ export default defineType({
         list: [
           { title: 'Reservation request', value: 'reserve' },
           { title: 'Question', value: 'question' },
+          { title: 'Interest in a future date', value: 'interest' },
         ],
       },
       initialValue: 'reserve',
@@ -93,7 +94,7 @@ export default defineType({
       const dateLabel = submittedAt ? new Date(submittedAt).toLocaleDateString() : 'No date'
       return {
         title: name || 'Untitled request',
-        subtitle: `${intent === 'question' ? 'question' : cabinPreference ?? 'cabin?'} • ${status ?? 'new'} • ${dateLabel}`,
+        subtitle: `${intent === 'question' ? 'question' : intent === 'interest' ? 'interest list' : cabinPreference ?? 'cabin?'} • ${status ?? 'new'} • ${dateLabel}`,
       }
     },
   },

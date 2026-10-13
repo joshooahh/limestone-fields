@@ -24,7 +24,7 @@ function escapeHtml(value: string): string {
 }
 
 /**
- * Writers Retreat (Limestone Fields × Sobremesa, Nov 6–9 2026) reservation
+ * Writers Retreat (Limestone Fields × Sobremesa) reservation
  * requests. Rooms for those dates are held in Cloudbeds under the Sobremesa
  * Magazine group block, so this is request → personal confirmation → deposit,
  * not a self-serve booking. Saves to Sanity, notifies the team, and sends the
@@ -40,7 +40,8 @@ export async function POST(request: NextRequest) {
     }
 
     const { intent, name, email, phone, cabinPreference, occupancy, earlyArrival, dietary, notes } = parsed.data
-    const isQuestion = intent === 'question'
+    const isInterest = intent === 'interest'
+    const isQuestion = intent === 'question' || isInterest
 
     await client.create({
       _type: 'retreatReservation',
@@ -72,11 +73,13 @@ export async function POST(request: NextRequest) {
       from: FROM_EMAIL,
       to: RETREAT_NOTIFY_EMAILS,
       replyTo: email,
-      subject: isQuestion
-        ? `Writers Retreat question — ${name}`
-        : `Writers Retreat reservation request — ${name}`,
+      subject: isInterest
+        ? `Writers Retreat interest list — ${name}`
+        : isQuestion
+          ? `Writers Retreat question — ${name}`
+          : `Writers Retreat reservation request — ${name}`,
       html: `
-        <h2 style="font-family:sans-serif;color:#253136;">Writers Retreat — ${isQuestion ? 'new question' : 'new reservation request'}</h2>
+        <h2 style="font-family:sans-serif;color:#253136;">Writers Retreat — ${isInterest ? 'new interest-list signup' : isQuestion ? 'new question' : 'new reservation request'}</h2>
         <p style="font-family:sans-serif;"><strong>Name:</strong> ${safe.name}</p>
         <p style="font-family:sans-serif;"><strong>Email:</strong> <a href="mailto:${safe.email}">${safe.email}</a></p>
         ${phone ? `<p style="font-family:sans-serif;"><strong>Phone:</strong> ${safe.phone}</p>` : ''}
@@ -103,14 +106,26 @@ export async function POST(request: NextRequest) {
       from: FROM_EMAIL,
       to: email,
       replyTo: RETREAT_REPLY_TO,
-      subject: isQuestion
-        ? 'We got your question — Writers Retreat, Nov 6–9'
-        : 'Your place at the table — Writers Retreat, Nov 6–9',
-      html: isQuestion
+      subject: isInterest
+        ? 'You’re on the list — Writers Retreat at Limestone Fields'
+        : isQuestion
+          ? 'We got your question — Writers Retreat'
+          : 'Your place at the table — Writers Retreat',
+      html: isInterest
         ? `
         <div style="font-family:Georgia,serif;color:#253136;max-width:560px;line-height:1.6;">
           <p>Hi ${firstName},</p>
-          <p>Thanks for writing about the Writers Retreat at Limestone Fields with Sobremesa, November 6–9, 2026.</p>
+          <p>Thanks for raising your hand for the Writers Retreat at Limestone Fields with Sobremesa.</p>
+          <p>We haven't set the next date yet. When we do, you'll hear first, with first pick of the twelve places. Until then, nothing to do.</p>
+          ${safe.notes ? `<p style="font-size:14px;color:#686121;">You wrote:<br/>${safe.notes.replace(/\n/g, '<br/>')}</p>` : ''}
+          <p>— Limestone Fields &amp; Sobremesa</p>
+        </div>
+      `
+        : isQuestion
+        ? `
+        <div style="font-family:Georgia,serif;color:#253136;max-width:560px;line-height:1.6;">
+          <p>Hi ${firstName},</p>
+          <p>Thanks for writing about the Writers Retreat at Limestone Fields with Sobremesa.</p>
           <p>Your question went to the hosts at Limestone Fields and Sobremesa. One of us will reply within two business days.</p>
           <p style="font-size:14px;color:#686121;">You asked:<br/>${safe.notes.replace(/\n/g, '<br/>')}</p>
           <p>— Limestone Fields &amp; Sobremesa</p>

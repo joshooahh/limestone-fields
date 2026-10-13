@@ -2,9 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/sections/Hero'
-import JsonLd from '@/components/seo/JsonLd'
-import RetreatReservationForm from '@/components/forms/RetreatReservationForm'
-import { RETREAT_BOOKING_URL, RETREAT_DEPOSIT_TERMS } from '@/lib/retreat'
+import RetreatInterestForm from '@/components/forms/RetreatInterestForm'
 import {
   Accordion,
   AccordionContent,
@@ -13,16 +11,12 @@ import {
 } from '@/components/ui/accordion'
 
 /**
- * Writers Retreat — Limestone Fields × Sobremesa · Nov 6–9, 2026.
+ * Writers Retreat — Limestone Fields × Sobremesa.
  *
- * Lives in the (retreat) route group: no site nav, minimal footer, so the page
- * is a single path to booking. Public and in the sitemap since Sep 8, 2026;
- * kept out of the main site nav by design.
- *
- * Booking model: guests book directly into the Sobremesa Magazine allotment
- * block in Cloudbeds (RETREAT_BOOKING_URL); the all-inclusive rate lives on
- * that rate plan. 50% deposit at booking, balance charged 30 days before arrival. The
- * form below is for questions, or for anyone who'd rather have a cabin held.
+ * The first run (planned for Nov 6–9, 2026) did not fill and the Cloudbeds
+ * block was released on Oct 13, 2026. The page now collects interest for a
+ * future date: no dates, no booking links, one form that joins the list.
+ * Lives in the (retreat) route group: no site nav, minimal footer.
  */
 
 const PAGE_URL = 'https://limestonefields.com/writers-retreat'
@@ -31,68 +25,17 @@ const SOBREMESA_URL = 'https://www.sobremesamagazine.com/'
 export const metadata: Metadata = {
   title: 'A Writers Retreat — Limestone Fields × Sobremesa',
   description:
-    'Three nights to rest, write, and eat well. A small writers retreat on Lake Limestone, Texas, Nov 6–9, 2026, hosted by Limestone Fields and Sobremesa magazine. Twelve places.',
+    'Three nights to rest, write, and eat well. A small writers retreat on Lake Limestone, Texas, hosted by Limestone Fields and Sobremesa magazine. Twelve places. Join the list for the next date.',
   openGraph: {
-    title: 'A Writers Retreat — Limestone Fields × Sobremesa · Nov 6–9, 2026',
+    title: 'A Writers Retreat — Limestone Fields × Sobremesa',
     description:
-      'Three nights to rest, write, and eat well. A private lakefront cabin, Austin chef Hannah Slattery cooking over fire, and eleven other writers who came for the same reason. Twelve places.',
+      'Three nights to rest, write, and eat well. A private lakefront cabin, Austin chef Hannah Slattery cooking over fire, and eleven other writers who came for the same reason. Join the list for the next date.',
     url: PAGE_URL,
     images: [{ url: 'https://limestonefields.com/images/writers-retreat/hero.jpg', width: 2200, height: 1466 }],
   },
   alternates: { canonical: PAGE_URL },
 }
 
-const eventSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Event',
-  name: 'Writers Retreat — Limestone Fields × Sobremesa',
-  description:
-    'A small writers retreat: three nights of rest, writing, and long unhurried tables at Limestone Fields on Lake Limestone, Texas.',
-  startDate: '2026-11-06T15:00:00-06:00',
-  endDate: '2026-11-09T11:00:00-06:00',
-  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-  eventStatus: 'https://schema.org/EventScheduled',
-  maximumAttendeeCapacity: 12,
-  url: PAGE_URL,
-  image: 'https://limestonefields.com/images/writers-retreat/hero.jpg',
-  location: {
-    '@type': 'Place',
-    name: 'Limestone Fields',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '159 LCR 890',
-      addressLocality: 'Jewett',
-      addressRegion: 'TX',
-      postalCode: '75846',
-      addressCountry: 'US',
-    },
-  },
-  organizer: [
-    { '@type': 'Organization', name: 'Limestone Fields', url: 'https://limestonefields.com' },
-    { '@type': 'Organization', name: 'Sobremesa Magazine' },
-  ],
-  offers: [
-    {
-      '@type': 'Offer',
-      name: 'Standard Cabin — single occupancy, per person, all-inclusive',
-      price: '1600',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/LimitedAvailability',
-      url: RETREAT_BOOKING_URL,
-    },
-    {
-      '@type': 'Offer',
-      name: 'Cabin Suite — per person, double occupancy, all-inclusive',
-      price: '1450',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/LimitedAvailability',
-      url: RETREAT_BOOKING_URL,
-    },
-  ],
-}
-
-const BOOK_BTN =
-  'inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-3 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#f7f2e4] transition hover:bg-[#253136]/90'
 
 /** Property photos for this page. All live in /public/images/writers-retreat. */
 const PHOTOS = {
@@ -166,7 +109,7 @@ const PILLARS = [
 
 const DAYS = [
   {
-    date: 'Fri · Nov 6',
+    date: 'Friday',
     title: 'Arrival',
     items: [
       ['3pm onward', 'Arrive, settle into your cabin, get to know the property'],
@@ -175,7 +118,7 @@ const DAYS = [
     ],
   },
   {
-    date: 'Sat · Nov 7',
+    date: 'Saturday',
     title: 'Plant & feast',
     items: [
       ['8:30am', 'Breakfast at The Commons: expect eggs from our hens, garden-fresh produce, real coffee'],
@@ -189,7 +132,7 @@ const DAYS = [
     ],
   },
   {
-    date: 'Sun · Nov 8',
+    date: 'Sunday',
     title: 'Harvest & cook',
     items: [
       ['8:30am', 'Breakfast at The Commons'],
@@ -203,7 +146,7 @@ const DAYS = [
     ],
   },
   {
-    date: 'Mon · Nov 9',
+    date: 'Monday',
     title: 'Departure',
     items: [
       ['9am', 'Slow breakfast at The Commons'],
@@ -230,7 +173,7 @@ const CABINS = [
     per: 'per person, all-inclusive',
     body:
       'Our original cabin, and we hold it for one on purpose. King bed, private outdoor cedar soaking tub, lake views, and a desk that faces the water. Real solitude between the shared meals.',
-    details: ['3 nights, all meals, all programming', 'Add Thursday night: +$100'],
+    details: ['3 nights, all meals, all programming', 'Early-arrival night available'],
     href: '/book/traditional-cabin',
   },
   {
@@ -240,7 +183,7 @@ const CABINS = [
     per: 'per person, sharing · $1,900 on your own',
     body:
       'More room to spread out, and the option to bring a friend or partner who also wants three days to write. Each guest is included in every meal and every session.',
-    details: ['3 nights, all meals, all programming, per person', 'Add Thursday night: +$150'],
+    details: ['3 nights, all meals, all programming, per person', 'Early-arrival night available'],
     href: '/book/family-cabin',
   },
 ]
@@ -267,16 +210,16 @@ const FAQS: [string, string][] = [
     'Yes, in a suite. Both of you are included in every meal and session, at $1,450 per person. Standard cabins are held for one so that everyone who wants a room of their own has one.',
   ],
   [
-    'How do I hold my place?',
-    'Book your cabin through the link on this page. It opens our booking system with the retreat rate already applied. A 50% deposit confirms the cabin, and the balance is charged 30 days before arrival. Twelve places, first come. If you would rather talk to a person first, use the form below and the hosts will hold a cabin for you.',
+    'When is the next retreat?',
+    'Not set yet. We are gathering a list first, then choosing a date that works for the people on it. Leave your name below and you will hear before anyone else, with first pick of the cabins. Tell us which seasons work for you; that helps us choose.',
   ],
   [
-    'What if I have to cancel?',
-    'Cancel more than 31 days before arrival and the 50% deposit is kept; nothing further is charged. Within 31 days of arrival the full amount is non-refundable, and no-shows are treated as cancellations. The full terms are shown before you confirm. If something changes, write to the hosts first; with twelve places, we can often help a cabin find its next writer.',
+    'Does joining the list commit me to anything?',
+    'No. It means one email from us when the date is set, with the details and a link to book. Nothing is charged and nothing is held until you decide.',
   ],
   [
     'How do I get there, and what do I bring?',
-    'Limestone Fields is at 159 LCR 890 in Jewett, Texas, about two hours from Dallas, Austin, and Houston. Arrive Friday from 3pm. Bring the project you keep circling, something to read aloud, and layers: November here means mild days and cool nights by the fire.',
+    'Limestone Fields is at 159 LCR 890 in Jewett, Texas, about two hours from Dallas, Austin, and Houston. Bring the project you keep circling, something to read aloud, and layers: November here means mild days and cool nights by the fire.',
   ],
 ]
 
@@ -292,15 +235,13 @@ const H2 = 'font-headline text-[32px] md:text-[40px] leading-[1.2] text-[#253136
 export default function WritersRetreatPage() {
   return (
     <>
-      <JsonLd data={eventSchema} />
-
       <Hero
-        eyebrow="Writers Retreat · Nov 6–9, 2026 · Lake Limestone, TX"
+        eyebrow="Writers Retreat · Lake Limestone, TX · Next date coming"
         headline="Time to write."
         kicker="In partnership with Sobremesa"
         subhead="Three nights on the lake with eleven other writers, a chef from Austin, and nothing on the calendar you have to keep."
-        ctaText="Book Your Cabin"
-        ctaHref={RETREAT_BOOKING_URL}
+        ctaText="Join the List"
+        ctaHref="#reserve"
         backgroundImage="/images/writers-retreat/hero.jpg"
         backgroundImageAlt="Evening fire at Limestone Fields"
       />
@@ -451,7 +392,7 @@ export default function WritersRetreatPage() {
               <h2 className={H2}>A light rhythm, not a schedule.</h2>
               <p className="text-[18px] text-[#253136]/75 leading-[1.6] mt-5">
                 A few gentle anchors a day, with the afternoons left wide open for writing and rest.
-                Every session is optional. Arrive Thursday night if you&rsquo;d like to settle in ahead.
+                Every session is optional. An early-arrival night the evening before is usually on offer.
               </p>
             </div>
             <Photo id="kayak" className="aspect-[16/9]" sizes="(min-width: 768px) 55vw, 100vw" />
@@ -568,6 +509,9 @@ export default function WritersRetreatPage() {
             <div>
               <p className={`${EYEBROW} text-[#253136]/60 mb-4`}>Pricing</p>
               <h2 className={H2}>One price, the whole weekend.</h2>
+              <p className="text-[14px] text-[#253136]/55 font-body-secondary italic mt-3">
+                Pricing from the first run. The next date may differ a little; people on the list hear first.
+              </p>
               <p className="text-[18px] text-[#253136]/75 leading-[1.6] mt-5">
                 Once you get here, everything is covered. All meals, lodging, facilitation, and
                 recreation. Three nights in a lakefront cabin, eight chef-cooked meals, nighttime
@@ -576,13 +520,7 @@ export default function WritersRetreatPage() {
               </p>
               <p className="text-[18px] text-[#253136]/75 leading-[1.6] mt-4">
                 Twelve places in total. Prices are per person and include everything below.
-                {' '}{RETREAT_DEPOSIT_TERMS}
               </p>
-              <div className="mt-8">
-                <a href={RETREAT_BOOKING_URL} target="_blank" rel="noopener noreferrer" className={BOOK_BTN}>
-                  Book Your Cabin
-                </a>
-              </div>
               <Photo id="bedroom" className="aspect-[3/2] mt-10" sizes="(min-width: 768px) 50vw, 100vw" />
             </div>
             <ul className="space-y-4 pt-2">
@@ -614,14 +552,6 @@ export default function WritersRetreatPage() {
                     <p className="font-subhead text-[10px] tracking-[0.16em] uppercase text-[#253136]/55 mt-2">{c.per}</p>
                   </div>
                   <div className="flex flex-col items-end gap-3">
-                    <a
-                      href={RETREAT_BOOKING_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-6 py-2.5 text-[11px] font-subhead uppercase tracking-[0.22em] text-[#f7f2e4] transition hover:bg-[#253136]/90"
-                    >
-                      Book
-                    </a>
                     <Link
                       href={c.href}
                       className="font-subhead text-[11px] tracking-[0.22em] uppercase text-[#253136]/60 underline underline-offset-4 hover:text-[#253136] transition"
@@ -668,7 +598,7 @@ export default function WritersRetreatPage() {
         <div className="container max-w-6xl mx-auto px-6 grid gap-10 md:grid-cols-3">
           {[
             ['Where', '159 LCR 890, Jewett, Texas. On Lake Limestone, about two hours from Dallas, Austin, and Houston.'],
-            ['When', 'Arrive Friday, Nov 6 from 3pm. Depart Monday, Nov 9 by 11am. Optional early arrival Thursday, Nov 5.'],
+            ['When', 'Three nights, Friday afternoon to Monday morning, on a date we will set with the people on the list.'],
             ['Who', 'Twelve writers, one facilitator, one chef. Any genre, any stage. Bring the thing you keep circling.'],
           ].map(([k, v]) => (
             <div key={k}>
@@ -682,30 +612,15 @@ export default function WritersRetreatPage() {
       {/* Reserve */}
       <section id="reserve" className="py-24 md:py-32 bg-[#253136]">
         <div className="container max-w-4xl mx-auto px-6">
-          <p className={`${EYEBROW} text-[#b3c1ce] mb-5`}>Save your spot at the table</p>
+          <p className={`${EYEBROW} text-[#b3c1ce] mb-5`}>Join the list</p>
           <h2 className="text-[32px] md:text-[40px] font-headline leading-[1.2] text-[#f7f2e4] mb-5">
-            Ready? Book your cabin. Not yet? Ask us anything.
+            Be the first to know the next date.
           </h2>
-          <p className="text-[18px] text-[#b3c1ce] leading-[1.6] max-w-2xl mb-8">
-            Booking takes a few minutes and opens with the retreat rate already applied. {RETREAT_DEPOSIT_TERMS}
-            {' '}Twelve places, first come.
+          <p className="text-[18px] text-[#b3c1ce] leading-[1.6] max-w-2xl mb-10">
+            We will set it with the people on this list, and you will have first pick of the twelve
+            places. One email when it is decided. No commitment until then.
           </p>
-          <div className="mb-14">
-            <a
-              href={RETREAT_BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-[78px] bg-[#f7f2e4] px-10 py-3.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#253136] transition hover:bg-[#f7e7d5]"
-            >
-              Book Your Cabin
-            </a>
-          </div>
-          <p className={`${EYEBROW} text-[#b3c1ce] mb-3`}>Or talk to the hosts first</p>
-          <p className="text-[17px] text-[#b3c1ce] leading-[1.6] max-w-2xl mb-8">
-            A question about the weekend, the food, the writing, or who else is coming. Or ask us to
-            hold a cabin while you decide.
-          </p>
-          <RetreatReservationForm />
+          <RetreatInterestForm />
         </div>
       </section>
     </>

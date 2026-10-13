@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import Logo from '@/components/ui/Logo'
-import { RETREAT_BOOKING_URL } from '@/lib/retreat'
 
 /**
  * Stripped-down header for the Writers Retreat page. No site nav: the only
@@ -30,15 +29,13 @@ export default function RetreatHeader() {
         <Logo variant="primary" theme="light" href="/" className="h-8 w-auto md:h-10" priority />
         <div className="flex items-center gap-6">
           <span className="hidden sm:inline font-subhead text-[12px] tracking-[0.22em] uppercase text-[#f7f2e4]/80">
-            with Sobremesa · Nov 6–9
+            with Sobremesa · Next date coming
           </span>
           <a
-            href={RETREAT_BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#reserve"
             className="font-subhead text-[13px] tracking-[0.22em] uppercase text-[#f7f2e4] underline underline-offset-4 transition hover:text-white"
           >
-            Book your cabin
+            Join the list
           </a>
         </div>
       </div>

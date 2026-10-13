@@ -38,8 +38,8 @@ export type ContactFormInput = z.input<typeof contactSchema>
 
 export const retreatReservationSchema = z
   .object({
-    /** "reserve" = request a place; "question" = just asking, no cabin needed. */
-    intent: z.enum(['reserve', 'question']).default('reserve'),
+    /** "reserve" = request a place; "question" = just asking; "interest" = join the list for a future date. */
+    intent: z.enum(['reserve', 'question', 'interest']).default('reserve'),
     name: z.string().min(1, 'Name is required'),
     email: z.string().email('Enter a valid email'),
     phone: z.string().default(''),
@@ -60,3 +60,16 @@ export const retreatReservationSchema = z
 
 export type RetreatReservationFormData = z.infer<typeof retreatReservationSchema>
 export type RetreatReservationFormInput = z.input<typeof retreatReservationSchema>
+
+/** "First word" sign-ups from Art of Living School class pages (/school/[slug]). */
+export const schoolInterestSchema = z.object({
+  classSlug: z.string().min(1).max(80),
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().email('Enter a valid email'),
+  phone: z.string().default(''),
+  bringingSomeone: z.boolean().default(false),
+  notes: z.string().max(2000).default(''),
+})
+
+export type SchoolInterestFormData = z.infer<typeof schoolInterestSchema>
+export type SchoolInterestFormInput = z.input<typeof schoolInterestSchema>

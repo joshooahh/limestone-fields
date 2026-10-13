@@ -18,7 +18,7 @@ const DISMISS_KEY = 'lf-announcement-dismissed'
 
 /** Used when Sanity has no announcement saved yet. Sanity wins once it does. */
 export const DEFAULT_ANNOUNCEMENT: Announcement = {
-  enabled: true,
+  enabled: false,
   text: 'Nov 6–9: A Writers Retreat with Sobremesa Magazine.',
   linkLabel: 'Twelve places. Save yours',
   href: '/writers-retreat',
