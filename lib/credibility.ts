@@ -8,7 +8,7 @@
  */
 
 export const AIRBNB = {
-  /** Whole-property listing; its host card shows the all-listings rating and review count. */
+  /** Whole-property listing; its host card shows the all-listings rating and review count. For our records only: the site doesn't link out to Airbnb, we want direct bookings. */
   url: 'https://www.airbnb.com/rooms/1674132817665414161',
   rating: '4.98',
   reviews: 58,
