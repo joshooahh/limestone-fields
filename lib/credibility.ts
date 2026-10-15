@@ -18,6 +18,8 @@ export const AIRBNB = {
 
 export type PressItem = {
   name: string
+  /** LF-ink version of the outlet's mark in public/logos/press. Omit to render the name as text. */
+  logo?: { src: string; width: number; height: number }
   /** Where the name links. Omit when the piece is print-only. */
   url?: string
   date: string
@@ -30,18 +32,21 @@ export type PressItem = {
 export const PRESS: PressItem[] = [
   {
     name: 'CultureMap',
+    logo: { src: '/logos/press/culturemap.png', width: 663, height: 96 },
     url: 'https://austin.culturemap.com/news/travel/limestone-fields-opening-jewett/',
     date: 'May–June 2026',
     detail: 'Opening stories on CultureMap Austin, Dallas and San Antonio, and June travel roundups on Austin, Dallas, Houston and Fort Worth',
   },
   {
     name: 'KXAN Studio 512',
+    logo: { src: '/logos/press/kxan-studio-512.png', width: 367, height: 100 },
     url: 'https://www.kxan.com/studio-512/escape-to-limestone-fields-a-scenic-texas-retreat-with-farm-experiences-tomato-tips-and-digital-detox-living/',
     date: 'May 26, 2026',
     detail: 'Trisha Bates on Austin’s NBC station: the farm, tomato tips and unplugged cabins',
   },
   {
     name: 'Tribeza',
+    logo: { src: '/logos/press/tribeza.png', width: 412, height: 87 },
     url: 'https://tribeza.com/culture/texas-travel/tribeza-2026-summer-getaway-guide/',
     date: 'July/August 2026',
     detail: 'Summer Getaway Guide, print and online (sponsored placement)',
