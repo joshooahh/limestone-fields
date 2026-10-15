@@ -97,7 +97,7 @@ export default function Hero({
               )
             )}
           </div>
-          <div className="absolute inset-0 -z-10 bg-black/40" aria-hidden />
+          <div className="absolute inset-0 -z-10 bg-black/25" aria-hidden />
         </>
       )}
       <div className="container mx-auto px-6">
