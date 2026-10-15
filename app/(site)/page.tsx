@@ -176,7 +176,7 @@ export default async function HomePage() {
             {img(images?.placeShapedByLand) && (
               <Image
                 src={img(images?.placeShapedByLand)!}
-                alt="Sunrise over the lake and surrounding fields"
+                alt="Three cabins beside the pond at golden hour, with Lake Limestone behind"
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 620px, (min-width: 768px) 60vw, 100vw"
@@ -235,7 +235,7 @@ export default async function HomePage() {
               {img(images?.stayMain) && (
                 <Image
                   src={img(images?.stayMain)!}
-                  alt="Books and natural light"
+                  alt="Cabin bedroom with a wood-framed bed, patterned rug and linen curtains"
                   fill
                   className="object-cover"
                   sizes="(min-width: 768px) 390px, 100vw"
@@ -246,7 +246,7 @@ export default async function HomePage() {
               <div className="absolute bottom-[-24px] right-[-16px] md:right-[-24px] w-[180px] h-[240px] md:w-[210px] md:h-[280px] overflow-hidden rounded-lg shadow-xl z-10 border-4 border-[#CBD2DA] bg-[#b3c1ce]">
                 <Image
                   src={img(images?.stayDetail)!}
-                  alt="Quiet moment"
+                  alt="Cabin bathroom with an arched mirror and live-edge wood vanity"
                   fill
                   className="object-cover"
                   sizes="210px"
@@ -264,7 +264,7 @@ export default async function HomePage() {
               {img(images?.experienceMain) && (
                 <Image
                   src={img(images?.experienceMain)!}
-                  alt="Morning at Limestone Fields"
+                  alt="Cooking over the wood-fired grill at the outdoor kitchen"
                   fill
                   className="object-cover"
                   sizes="(min-width: 768px) 50vw, 100vw"
@@ -276,7 +276,7 @@ export default async function HomePage() {
                 {img(images?.experienceLeft, 600) && (
                   <Image
                     src={img(images?.experienceLeft, 600)!}
-                    alt="Land and light"
+                    alt="Cutting zinnias in the garden"
                     fill
                     className="object-cover"
                     sizes="(min-width: 768px) 25vw, 50vw"
@@ -287,7 +287,7 @@ export default async function HomePage() {
                 {img(images?.experienceRight, 600) && (
                   <Image
                     src={img(images?.experienceRight, 600)!}
-                    alt="Growing season"
+                    alt="Kayaking through the reeds on Lake Limestone"
                     fill
                     className="object-cover"
                     sizes="(min-width: 768px) 25vw, 50vw"
@@ -367,7 +367,7 @@ export default async function HomePage() {
               {img(images?.eventsMain) && (
                 <Image
                   src={img(images?.eventsMain)!}
-                  alt="Gather by the lake"
+                  alt="The commons barn lounge with leather sofas and artwork"
                   fill
                   className="object-cover"
                   sizes="(min-width: 768px) 50vw, 100vw"
@@ -379,7 +379,7 @@ export default async function HomePage() {
                 {img(images?.eventsLeft, 600) && (
                   <Image
                     src={img(images?.eventsLeft, 600)!}
-                    alt="Lakeside"
+                    alt="Guests sharing a meal at the long table in the barn"
                     fill
                     className="object-cover"
                     sizes="(min-width: 768px) 25vw, 50vw"
@@ -390,7 +390,7 @@ export default async function HomePage() {
                 {img(images?.eventsRight, 600) && (
                   <Image
                     src={img(images?.eventsRight, 600)!}
-                    alt="Fire pits for gathering"
+                    alt="Rolling pasta by hand in the barn kitchen"
                     fill
                     className="object-cover"
                     sizes="(min-width: 768px) 25vw, 50vw"
