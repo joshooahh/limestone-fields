@@ -1,7 +1,8 @@
+import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { AIRBNB, GUEST_QUOTES } from '@/lib/credibility'
+import { GUEST_QUOTES } from '@/lib/credibility'
 
-/** Three guest quotes, verbatim from Airbnb, with a way to read the rest. */
+/** Three guest quotes, verbatim from Airbnb reviews, followed by a direct-booking CTA (no link out to Airbnb). */
 export default function GuestQuotes() {
   const quotes = GUEST_QUOTES.filter((q) => q.featured).slice(0, 3)
 
@@ -32,15 +33,13 @@ export default function GuestQuotes() {
         </div>
 
         <div className="mt-14 text-center">
-          <a
-            href={AIRBNB.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-subhead text-[12px] uppercase tracking-[0.22em] text-[#253136] underline underline-offset-4 transition hover:text-[#253136]/70"
+          <Link
+            href="/book"
+            className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
           >
-            Read all {AIRBNB.reviews} reviews on Airbnb
-            <ArrowRight className="h-4 w-4" />
-          </a>
+            Check Availability
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>
