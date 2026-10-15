@@ -8,6 +8,8 @@ import JsonLd from '@/components/seo/JsonLd'
 import { ArrowRight } from 'lucide-react'
 import CloudbedsPropertyDatePicker from '@/components/booking/CloudbedsPropertyDatePicker'
 import CloudbedsBookButton from '@/components/booking/CloudbedsBookButton'
+import ProofBar from '@/components/sections/ProofBar'
+import GuestQuotes from '@/components/sections/GuestQuotes'
 import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { homepageImagesQuery, siteSettingsQuery } from '@/sanity/queries'
@@ -170,6 +172,8 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <ProofBar />
+
       <section className="bg-limestone-cream py-16 md:py-24">
         <div className="mx-auto grid max-w-[1120px] items-center gap-12 px-6 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:px-16 lg:gap-20">
           <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[480px] overflow-hidden rounded-lg shadow-sm bg-[#CBD2DA]">
@@ -256,6 +260,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <GuestQuotes />
 
       <section className="py-24 md:py-32 bg-limestone-cream">
         <div className="container max-w-6xl mx-auto px-6 grid gap-12 md:gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
