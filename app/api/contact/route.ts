@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { client } from '@/sanity/lib/client'
 import { contactSchema } from '@/lib/validations'
 import { resend, CONTACT_EMAIL, FROM_EMAIL } from '@/lib/email'
+import { notifyConcierge } from '@/lib/concierge'
 
 export async function POST(request: NextRequest) {
   try {
@@ -38,6 +39,17 @@ export async function POST(request: NextRequest) {
         <hr style="margin-top:24px;border:none;border-top:1px solid #e5e7eb;"/>
         <p style="font-family:sans-serif;font-size:12px;color:#9ca3af;">Submitted via limestonefields.com</p>
       `,
+    })
+
+    // Concierge replies by email (the contact form has no phone or SMS consent). Fails soft.
+    await notifyConcierge({
+      form: 'contact',
+      name,
+      email,
+      contactPreference: 'email',
+      smsConsent: false,
+      fields: { message },
+      submittedAt: new Date().toISOString(),
     })
 
     return NextResponse.json({ success: true })

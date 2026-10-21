@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { client } from '@/sanity/lib/client'
 import { retreatReservationSchema } from '@/lib/validations'
 import { resend, FROM_EMAIL } from '@/lib/email'
+import { notifyConcierge } from '@/lib/concierge'
 import { RETREAT_NOTIFY_EMAILS, RETREAT_REPLY_TO, RETREAT_BOOKING_URL, RETREAT_DEPOSIT_TERMS } from '@/lib/retreat'
 
 const CABIN_LABEL: Record<string, string> = {
@@ -142,6 +143,18 @@ export async function POST(request: NextRequest) {
           <p>— Limestone Fields &amp; Sobremesa</p>
         </div>
       `,
+    })
+
+    // Concierge gets a copy so questions are answered quickly. Email only: this form has no SMS consent. Fails soft.
+    await notifyConcierge({
+      form: 'retreat-reservation',
+      name,
+      email,
+      phone,
+      contactPreference: 'email',
+      smsConsent: false,
+      fields: { intent, cabinPreference, occupancy, earlyArrival, dietary, notes },
+      submittedAt: new Date().toISOString(),
     })
 
     return NextResponse.json({ success: true })

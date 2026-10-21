@@ -57,6 +57,20 @@ export default defineType({
       type: 'text',
     }),
     defineField({
+      name: 'contactPreference',
+      title: 'Prefers to hear from us by',
+      type: 'string',
+      options: { list: [{ title: 'Text', value: 'text' }, { title: 'Email', value: 'email' }] },
+      readOnly: true,
+    }),
+    defineField({
+      name: 'smsConsent',
+      title: 'Agreed to texts (TCPA consent)',
+      type: 'boolean',
+      description: 'Ticked the SMS consent box on the form. Do not text this guest from the concierge if false.',
+      readOnly: true,
+    }),
+    defineField({
       name: 'source',
       title: 'Lead Source',
       type: 'string',

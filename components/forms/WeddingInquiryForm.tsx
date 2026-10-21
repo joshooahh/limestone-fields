@@ -14,16 +14,32 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import ContactPreferenceFields from './ContactPreferenceFields'
 
-const weddingSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().default(''),
-  partnerName: z.string().default(''),
-  weddingDate: z.string().min(1, 'Wedding date is required'),
-  guestCount: z.coerce.number().min(1, 'Guest count is required'),
-  additionalDetails: z.string().default(''),
-})
+const weddingSchema = z
+  .object({
+    name: z.string().min(1, 'Name is required'),
+    email: z.string().email('Invalid email address'),
+    phone: z
+      .string()
+      .min(1, 'Mobile number is required')
+      .refine((v) => v.replace(/\D/g, '').length >= 10, 'Enter a valid mobile number'),
+    partnerName: z.string().default(''),
+    weddingDate: z.string().min(1, 'Wedding date is required'),
+    guestCount: z.coerce.number().min(1, 'Guest count is required'),
+    additionalDetails: z.string().default(''),
+    contactPreference: z.enum(['text', 'email']).default('text'),
+    smsConsent: z.boolean().default(false),
+  })
+  .superRefine((data, ctx) => {
+    if (data.contactPreference === 'text' && !data.smsConsent) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['smsConsent'],
+        message: 'To hear from us by text, please check the box (or choose email).',
+      })
+    }
+  })
 
 type WeddingFormInput = z.input<typeof weddingSchema>
 
@@ -41,8 +57,11 @@ export default function WeddingInquiryForm() {
       weddingDate: '',
       guestCount: 0,
       additionalDetails: '',
+      contactPreference: 'text',
+      smsConsent: false,
     },
   })
+  const preference = form.watch('contactPreference')
 
   const onSubmit = async (data: WeddingFormInput) => {
     setIsSubmitting(true)
@@ -50,13 +69,15 @@ export default function WeddingInquiryForm() {
       const buyoutData = {
         name: data.name,
         email: data.email,
-        phone: data.phone || '',
+        phone: data.phone,
+        contactPreference: data.contactPreference,
+        smsConsent: data.smsConsent,
         company: data.partnerName
           ? `Wedding: ${data.name} & ${data.partnerName}`
           : `Wedding: ${data.name}`,
         preferredDates: data.weddingDate,
         groupSize: data.guestCount,
-        eventType: 'Wedding/Celebration',
+        eventType: 'wedding_celebration',
         additionalDetails: data.additionalDetails || '',
       }
 
@@ -81,8 +102,8 @@ export default function WeddingInquiryForm() {
           We&rsquo;ll be in touch.
         </h3>
         <p className="text-[18px] text-[#b3c1ce] leading-[1.55]">
-          Thanks for reaching out. We&rsquo;ll send you detailed information and
-          pricing within two business days.
+          Thanks for reaching out. You&rsquo;ll hear from us in the next few minutes by text or email,
+          and one of us will follow up personally about your celebration.
         </p>
       </div>
     )
@@ -119,30 +140,25 @@ export default function WeddingInquiryForm() {
           />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email *</FormLabel>
-                <FormControl><Input type="email" {...field} /></FormControl>
-                <FormMessage className="text-[#f7e7d5] text-xs" />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Phone</FormLabel>
-                <FormControl><Input type="tel" {...field} /></FormControl>
-                <FormMessage className="text-[#f7e7d5] text-xs" />
-              </FormItem>
-            )}
-          />
-        </div>
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email *</FormLabel>
+              <FormControl><Input type="email" autoComplete="email" {...field} /></FormControl>
+              <FormMessage className="text-[#f7e7d5] text-xs" />
+            </FormItem>
+          )}
+        />
+
+        <ContactPreferenceFields
+          control={form.control}
+          phoneName="phone"
+          preferenceName="contactPreference"
+          consentName="smsConsent"
+          preference={preference}
+        />
 
         <div className="grid gap-4 md:grid-cols-2">
           <FormField

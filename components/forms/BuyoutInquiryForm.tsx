@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { buyoutInquirySchema, type BuyoutInquiryFormInput } from '@/lib/validations'
+import ContactPreferenceFields from './ContactPreferenceFields'
 
 export default function BuyoutInquiryForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -37,8 +38,11 @@ export default function BuyoutInquiryForm() {
       groupSize: 0,
       eventType: '',
       additionalDetails: '',
+      contactPreference: 'text',
+      smsConsent: false,
     },
   })
+  const preference = form.watch('contactPreference')
 
   const onSubmit = async (data: BuyoutInquiryFormInput) => {
     setIsSubmitting(true)
@@ -64,8 +68,8 @@ export default function BuyoutInquiryForm() {
           We&rsquo;ll be in touch.
         </h3>
         <p className="text-[18px] text-[#b3c1ce] leading-[1.55]">
-          We&rsquo;ll review your request and send you a detailed proposal within
-          two business days.
+          Thanks. You&rsquo;ll hear from us in the next few minutes by text or email with
+          availability for your dates and our rates. A person follows up on anything we can&rsquo;t answer right away.
         </p>
       </div>
     )
@@ -89,30 +93,25 @@ export default function BuyoutInquiryForm() {
           )}
         />
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email *</FormLabel>
-                <FormControl><Input type="email" {...field} /></FormControl>
-                <FormMessage className="text-[#f7e7d5] text-xs" />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Phone</FormLabel>
-                <FormControl><Input type="tel" {...field} /></FormControl>
-                <FormMessage className="text-[#f7e7d5] text-xs" />
-              </FormItem>
-            )}
-          />
-        </div>
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email *</FormLabel>
+              <FormControl><Input type="email" autoComplete="email" {...field} /></FormControl>
+              <FormMessage className="text-[#f7e7d5] text-xs" />
+            </FormItem>
+          )}
+        />
+
+        <ContactPreferenceFields
+          control={form.control}
+          phoneName="phone"
+          preferenceName="contactPreference"
+          consentName="smsConsent"
+          preference={preference}
+        />
 
         <FormField
           control={form.control}
@@ -214,9 +213,8 @@ export default function BuyoutInquiryForm() {
         </button>
 
         <p className="text-[13px] text-[#b3c1ce] leading-relaxed">
-          Buyout bookings require a minimum 3-night stay. Pricing is customized based on
-          dates, group size, and specific needs. We&rsquo;ll respond within two business
-          days with a detailed proposal.
+          Whole-property buyouts have a two-night minimum (three for weddings). We reply within
+          minutes with availability and rates, and a person follows up on anything else.
         </p>
       </form>
     </Form>
