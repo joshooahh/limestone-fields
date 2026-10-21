@@ -131,13 +131,9 @@ export default async function HomePage() {
 
       <Hero
         eyebrow="Whole-property buyouts"
-        headline="Take the whole property."
+        headline="A collection of well-appointed cabins designed for rest & renewal."
         kicker="Come remember why you started."
         subhead="Ten cabins, a barn kitchen, and 1,200 feet of lakefront on Lake Limestone. Your group, and no one else."
-        ctaText="Start a buyout inquiry"
-        ctaHref="/buyouts#inquiry"
-        secondaryCtaText="Or book a single cabin"
-        secondaryCtaHref="/book"
         backgroundImage={img(images?.heroImage) ?? undefined}
         backgroundImageAlt="Sunrise over Lake Limestone"
         backgroundVideo={['/videos/hero.mp4', '/videos/hero-2.mp4']}
