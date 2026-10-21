@@ -13,6 +13,9 @@ interface HeroProps {
   subhead: string
   ctaText?: string
   ctaHref?: string
+  /** Optional quieter second path, shown as a text link beside the primary button. */
+  secondaryCtaText?: string
+  secondaryCtaHref?: string
   eyebrow?: string
   /** Optional full-bleed background image (e.g. hero photo). When set, text and CTA use light styling. */
   backgroundImage?: string
@@ -39,6 +42,8 @@ export default function Hero({
   subhead,
   ctaText,
   ctaHref = '/contact',
+  secondaryCtaText,
+  secondaryCtaHref = '/book',
   eyebrow,
   backgroundImage,
   backgroundImageAlt = '',
@@ -141,7 +146,7 @@ export default function Hero({
             </p>
           )}
           {ctaText && (
-            <div className="flex items-center justify-center gap-3 pt-4">
+            <div className="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row sm:gap-8">
               <Link
                 href={ctaHref}
                 className={cn(
@@ -153,6 +158,17 @@ export default function Hero({
                 <span>{ctaText}</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
+              {secondaryCtaText && (
+                <Link
+                  href={secondaryCtaHref}
+                  className={cn(
+                    'font-subhead text-[13px] uppercase tracking-[0.22em] underline underline-offset-[6px] transition',
+                    hasImage ? 'text-[#f7f2e4]/85 hover:text-white' : 'text-[#253136]/70 hover:text-[#253136]'
+                  )}
+                >
+                  {secondaryCtaText}
+                </Link>
+              )}
             </div>
           )}
         </div>

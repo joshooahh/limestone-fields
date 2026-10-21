@@ -52,3 +52,55 @@ export const CLOUDBEDS_ROOM_TYPE_IDS = {
   cabinSuite: '249802008461504',
   fullProperty: '252597914378432',
 } as const
+
+/** Minimum stay for the whole property (nights). Rates and availability live in Cloudbeds. */
+export const FULL_PROPERTY_MIN_NIGHTS = 2
+
+const CLOUDBEDS_ENGINE_BASE = `https://us2.cloudbeds.com/en/reservation/${CLOUDBEDS_PROPERTY_CODE}/`
+
+/**
+ * Hosted booking-engine link for a stay. Defaults to the whole property
+ * (Full Property room type) — the site's default ask. Pass
+ * `wholeProperty: false` for a search across single cabins, which simply
+ * omits accommodation_types. No prices are ever hardcoded; Cloudbeds owns them.
+ */
+export function cloudbedsBookingUrl(opts: {
+  checkin: string
+  checkout: string
+  guests?: number
+  wholeProperty?: boolean
+}): string {
+  const { checkin, checkout, guests = 1, wholeProperty = true } = opts
+  const params = new URLSearchParams({
+    currency: 'usd',
+    checkin,
+    checkout,
+    guests: String(guests),
+  })
+  if (wholeProperty) {
+    params.set('accommodation_types', CLOUDBEDS_ROOM_TYPE_IDS.fullProperty)
+  }
+  return `${CLOUDBEDS_ENGINE_BASE}?${params.toString()}`
+}
+
+/** YYYY-MM-DD in the browser's local time zone. */
+export function toDateParam(d: Date): string {
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+export function addDaysToParam(param: string, n: number): string {
+  const [y, m, d] = param.split('-').map(Number)
+  return toDateParam(new Date(y, m - 1, d + n))
+}
+
+/** Starting dates for a search: the first Friday at least a week out, for the minimum stay. Browser-only (uses local time). */
+export function defaultStayDates(nights = FULL_PROPERTY_MIN_NIGHTS): { checkin: string; checkout: string } {
+  const d = new Date()
+  d.setDate(d.getDate() + 7)
+  while (d.getDay() !== 5) d.setDate(d.getDate() + 1)
+  const checkin = toDateParam(d)
+  return { checkin, checkout: addDaysToParam(checkin, nights) }
+}

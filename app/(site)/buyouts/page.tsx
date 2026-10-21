@@ -8,6 +8,7 @@ import Hero from '@/components/sections/Hero'
 import JsonLd from '@/components/seo/JsonLd'
 import PageSections from '@/components/sections/PageSections'
 import BuyoutInquiryForm from '@/components/forms/BuyoutInquiryForm'
+import PropertyDateSearch from '@/components/booking/PropertyDateSearch'
 import FromTheJournal from '@/components/blog/FromTheJournal'
 
 const buyoutSchema = {
@@ -70,11 +71,18 @@ export default async function BuyoutsPage() {
         headline="Reserve the Entire Property"
         subhead="Ten cabins. One commons barn. 1,200 feet of lakefront. Yours completely."
         eyebrow="Full Property Rental"
-        ctaText="Start an Inquiry"
+        ctaText="Start an inquiry"
         ctaHref="#inquiry"
         backgroundImage={buyoutsPage?.heroImage ? urlForImage(buyoutsPage.heroImage).width(1600).auto('format').url() : undefined}
         backgroundImageAlt="Limestone Fields property buyout"
       />
+
+      {/* Date search, whole property by default */}
+      <section id="dates" className="bg-limestone-cream pb-10">
+        <div className="container max-w-3xl mx-auto px-6 -mt-10 relative z-10">
+          <PropertyDateSearch />
+        </div>
+      </section>
 
       {/* Dynamic Sections from Sanity — overrides hardcoded content if configured */}
       {buyoutsPage?.sections && buyoutsPage.sections.length > 0 ? (

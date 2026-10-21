@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import CloudbedsBookButton from './CloudbedsBookButton'
 
 interface CabinImages {
   familyCabin?: string | null
@@ -16,6 +15,24 @@ interface Props {
 }
 
 const CABIN_TYPES = [
+  {
+    id: 'property',
+    imageKey: 'entireProperty' as keyof CabinImages,
+    bookingUrl: 'cloudbeds',
+    name: 'The Whole Property',
+    sleeps: 26,
+    layout: '10 cabins · Barn commons',
+    features: [
+      'All 10 Private Cabins',
+      '1,200 sq ft Commons Barn',
+      'Full Chef\'s Kitchen',
+      '1,200 ft of Private Lakefront',
+      'Working Permaculture Farm',
+    ],
+    description:
+      'Take all ten cabins and the barn for your group. Family reunions, team offsites, or any gathering that wants the land to itself.',
+    bg: 'bg-[#CBD2DA]',
+  },
   {
     id: 'family',
     imageKey: 'familyCabin' as keyof CabinImages,
@@ -52,25 +69,6 @@ const CABIN_TYPES = [
       'Our original cabin layout — pared back and thoughtfully designed. Everything you need to settle in and slow down. Nothing superfluous.',
     bg: 'bg-limestone-cream',
   },
-  {
-    id: 'property',
-    imageKey: 'entireProperty' as keyof CabinImages,
-    bookingUrl: 'cloudbeds',
-    name: 'Entire Property',
-    sleeps: 26,
-    layout: '10 cabins · Barn commons',
-    price: 'Inquire for pricing',
-    features: [
-      'All 10 Private Cabins',
-      '1,200 sq ft Commons Barn',
-      'Full Chef\'s Kitchen',
-      '1,200 ft of Private Lakefront',
-      'Working Permaculture Farm',
-    ],
-    description:
-      'Reserve the entire property for your group. Ideal for family reunions, corporate retreats, or any gathering that deserves full privacy and space.',
-    bg: 'bg-[#CBD2DA]',
-  },
 ]
 
 export default function CabinBooking({ images }: Props) {
@@ -93,7 +91,7 @@ export default function CabinBooking({ images }: Props) {
                       {cabin.name}
                     </h2>
                     <p className="font-subhead text-[13px] tracking-[0.2em] uppercase text-[#253136]/60">
-                      Sleeps {cabin.sleeps} · {cabin.price}
+                      Sleeps {cabin.sleeps}
                     </p>
                   </div>
                   <p className="text-[18px] text-[#253136] leading-[1.55]">
@@ -116,14 +114,15 @@ export default function CabinBooking({ images }: Props) {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   ) : (
-                    // Entire Property is a virtual room type Cloudbeds surfaces
-                    // automatically from occupancy — no dedicated room_type code
-                    // to link to directly (see lib/cloudbeds.ts), so this opens
-                    // the general popup and lets the guest's party size resolve it.
-                    <CloudbedsBookButton
-                      label="Check Availability"
+                    // Whole property is the default ask: dates live on /buyouts and
+                    // hand off to Cloudbeds with the Full Property type selected.
+                    <Link
+                      href="/buyouts#dates"
                       className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
-                    />
+                    >
+                      Check the whole property
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
                   )}
                 </div>
 

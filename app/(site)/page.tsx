@@ -6,8 +6,7 @@ import AnnouncementBanner from '@/components/ui/AnnouncementBanner'
 import type { Announcement } from '@/sanity/types'
 import JsonLd from '@/components/seo/JsonLd'
 import { ArrowRight } from 'lucide-react'
-import CloudbedsPropertyDatePicker from '@/components/booking/CloudbedsPropertyDatePicker'
-import CloudbedsBookButton from '@/components/booking/CloudbedsBookButton'
+import PropertyDateSearch from '@/components/booking/PropertyDateSearch'
 import ProofBar from '@/components/sections/ProofBar'
 import GuestQuotes from '@/components/sections/GuestQuotes'
 import { client } from '@/sanity/lib/client'
@@ -131,35 +130,50 @@ export default async function HomePage() {
       <AnnouncementBanner announcement={siteSettings?.announcement} />
 
       <Hero
-        headline="A collection of well-appointed cabins designed for rest & renewal."
-        subhead=""
+        eyebrow="Whole-property buyouts"
+        headline="Take the whole property."
+        kicker="Come remember why you started."
+        subhead="Ten cabins, a barn kitchen, and 1,200 feet of lakefront on Lake Limestone. Your group, and no one else."
+        ctaText="Start a buyout inquiry"
+        ctaHref="/buyouts#inquiry"
+        secondaryCtaText="Or book a single cabin"
+        secondaryCtaHref="/book"
         backgroundImage={img(images?.heroImage) ?? undefined}
         backgroundImageAlt="Sunrise over Lake Limestone"
         backgroundVideo={['/videos/hero.mp4', '/videos/hero-2.mp4']}
       />
 
-      {/* Search bar floating up over hero boundary */}
-      <section className="bg-limestone-cream pb-8 border-b border-[#253136]/10">
+      {/* Date search floating up over the hero boundary. Defaults to the whole
+          property; single cabins are the link underneath. */}
+      <section id="dates" className="bg-limestone-cream pb-10 border-b border-[#253136]/10">
         <div className="container max-w-3xl mx-auto px-6 -mt-10 relative z-10">
-
-          {/* Desktop: Cloudbeds property-wide date picker. customUrl={false}
-              hands off straight to Cloudbeds' hosted booking engine after
-              dates are picked. */}
-          <div className="hidden md:block shadow-xl rounded-2xl">
-            <CloudbedsPropertyDatePicker layout="horizontal" label="Check Availability" customUrl={false} />
-          </div>
-
-          {/* Mobile: on-page slide-in panel instead of a link out */}
-          <div className="md:hidden flex justify-center">
-            <CloudbedsBookButton
-              label="Check Availability"
-              className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-10 py-3.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] shadow-xl transition hover:bg-[#253136]/90"
-            />
-          </div>
-
-          <p className="text-center mt-5 font-body-secondary text-[15px] text-[#253136]/50 italic">
+          <PropertyDateSearch />
+          <p className="text-center mt-3 font-body-secondary text-[15px] text-[#253136]/50 italic">
             Lake Limestone, TX · 2 hrs from Austin, Dallas &amp; Houston
           </p>
+        </div>
+      </section>
+
+      {/* The whole property, in a few lines */}
+      <section className="bg-[#253136] py-20 md:py-28">
+        <div className="container max-w-3xl mx-auto px-6 text-center space-y-6">
+          <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#b3c1ce]">
+            THE WHOLE PROPERTY
+          </p>
+          <h2 className="text-[32px] md:text-[36px] font-headline leading-[1.37] text-[#f7f2e4]">
+            Ten cabins, one barn, nobody else.
+          </h2>
+          <p className="font-body-secondary text-lg md:text-xl text-[#f7f2e4]/80 leading-relaxed">
+            Groups take all of it for reunions, team offsites, and long weekends with
+            people they love. Sleeps 26. The gate closes behind you and the land is yours.
+          </p>
+          <Link
+            href="/buyouts"
+            className="inline-flex items-center justify-center rounded-[78px] bg-[#f7f2e4] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#253136] transition hover:bg-[#f7e7d5]"
+          >
+            See how a buyout works
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
         </div>
       </section>
 
@@ -229,7 +243,7 @@ export default async function HomePage() {
               href="/book"
               className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
             >
-              Check Availability
+              Book a single cabin
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </div>

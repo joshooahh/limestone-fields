@@ -47,7 +47,7 @@ export default async function BookPage() {
             Choose Your Stay
           </h1>
           <p className="font-body-secondary text-lg text-[#253136]/70 leading-relaxed">
-            Three ways to stay at Limestone Fields. Select a cabin type to check availability and book.
+            Start with the whole property, or choose a single cabin.
           </p>
         </div>
       </section>
