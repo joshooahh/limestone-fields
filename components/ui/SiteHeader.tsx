@@ -31,8 +31,8 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
 
   const linkClass = 'transition hover:text-white whitespace-nowrap'
   const navClass =
-    'pointer-events-auto hidden md:flex items-center gap-7 lg:gap-9 text-[12px] lg:text-[13px] font-subhead uppercase tracking-[0.16em] text-[#f7f2e4]/90'
-  const bookHref = bookingsOpen ? '/book' : '/contact'
+    'pointer-events-auto hidden md:flex items-center gap-3.5 lg:gap-9 text-[10.5px] lg:text-[13px] font-subhead uppercase tracking-[0.1em] lg:tracking-[0.16em] text-[#f7f2e4]/90'
+  const bookHref = bookingsOpen ? '/buyouts#dates' : '/contact'
   const bookLabel = bookingsOpen ? 'Book now' : 'Join waitlist'
 
   return (
@@ -53,6 +53,12 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
 
         {/* Desktop: left nav */}
         <nav className={`${navClass} justify-start`}>
+          <Link
+            href="/buyouts"
+            className={`${linkClass} !text-white border-b border-[#f7f2e4]/70 pb-0.5 font-semibold`}
+          >
+            Buyouts
+          </Link>
           <Link href="/stay" className={linkClass}>Stay</Link>
           <Link href="/experience" className={linkClass}>Experience</Link>
           <Link href="/the-property" className={linkClass}>The Property</Link>
@@ -68,16 +74,37 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
         <nav className={`${navClass} justify-end`}>
           <Link href="/blog" className={linkClass}>Journal</Link>
           <Link href="/private-events" className={linkClass}>Private Events</Link>
-          <Link
-            href={bookHref}
-            className={`whitespace-nowrap rounded-[78px] border px-5 py-2 transition ${
-              dark
-                ? 'border-[#f7f2e4] bg-[#f7f2e4] text-[#253136] hover:bg-[#f7e7d5]'
-                : 'border-[#f7f2e4]/60 bg-[rgba(247,242,228,0.18)] text-[#f7f2e4] backdrop-blur-[2px] hover:bg-[rgba(247,242,228,0.32)]'
-            }`}
-          >
-            {bookLabel}
-          </Link>
+          {/* Book now defaults to the whole property; a single cabin is the alternative. */}
+          <div className="group relative">
+            <Link
+              href={bookHref}
+              className={`block whitespace-nowrap rounded-[78px] border px-5 py-2 transition ${
+                dark
+                  ? 'border-[#f7f2e4] bg-[#f7f2e4] text-[#253136] hover:bg-[#f7e7d5]'
+                  : 'border-[#f7f2e4]/60 bg-[rgba(247,242,228,0.18)] text-[#f7f2e4] backdrop-blur-[2px] hover:bg-[rgba(247,242,228,0.32)]'
+              }`}
+            >
+              {bookLabel}
+            </Link>
+            {bookingsOpen && (
+              <div className="invisible absolute right-0 top-full z-40 pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <div className="min-w-[210px] rounded-xl bg-[#f7f2e4] py-2 shadow-xl">
+                  <Link
+                    href="/buyouts#dates"
+                    className="block whitespace-nowrap px-5 py-2.5 text-[#253136] transition hover:bg-[#f7e7d5]"
+                  >
+                    The whole property
+                  </Link>
+                  <Link
+                    href="/book"
+                    className="block whitespace-nowrap px-5 py-2.5 text-[#253136]/70 transition hover:bg-[#f7e7d5] hover:text-[#253136]"
+                  >
+                    A single cabin
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
         </nav>
 
         {/* Mobile: hamburger + drawer */}

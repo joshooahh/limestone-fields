@@ -10,6 +10,7 @@ interface MobileNavProps {
 }
 
 const NAV_LINKS = [
+  { href: '/buyouts', label: 'Buyouts' },
   { href: '/stay', label: 'Stay' },
   { href: '/experience', label: 'Experience' },
   { href: '/the-property', label: 'The Property' },
@@ -17,7 +18,6 @@ const NAV_LINKS = [
   { href: '/private-events', label: 'Private Events' },
   { href: '/story', label: 'Our Story' },
   { href: '/weddings', label: 'Weddings' },
-  { href: '/buyouts', label: 'Buyouts' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -53,7 +53,7 @@ export default function MobileNav({ bookingsOpen }: MobileNavProps) {
     return () => document.removeEventListener('keydown', onKey)
   }, [close])
 
-  const waitlistHref = bookingsOpen ? '/book' : '/contact'
+  const waitlistHref = bookingsOpen ? '/buyouts#dates' : '/contact'
 
   return (
     <>
@@ -108,7 +108,7 @@ export default function MobileNav({ bookingsOpen }: MobileNavProps) {
         </div>
 
         {/* Nav links */}
-        <nav className="flex flex-col justify-center flex-1 px-8 pb-16 gap-1">
+        <nav className="flex flex-col flex-1 overflow-y-auto px-8 pb-8 gap-1">
           {NAV_LINKS.map(({ href, label }, i) => (
             <Link
               key={href}
@@ -116,7 +116,7 @@ export default function MobileNav({ bookingsOpen }: MobileNavProps) {
               onClick={close}
               style={{ transitionDelay: open ? `${i * 40}ms` : '0ms' }}
               className={[
-                'font-headline text-[36px] leading-[1.15] text-[#f7f2e4] py-3',
+                'font-headline text-[30px] leading-[1.15] text-[#f7f2e4] py-2',
                 'border-b border-[#f7f2e4]/10',
                 'transition-[color,opacity,transform] duration-300',
                 'hover:text-[#b3c1ce]',
@@ -132,7 +132,7 @@ export default function MobileNav({ bookingsOpen }: MobileNavProps) {
           <div
             style={{ transitionDelay: open ? `${NAV_LINKS.length * 40}ms` : '0ms' }}
             className={[
-              'pt-8 transition-[opacity,transform] duration-300',
+              'flex flex-wrap items-center gap-x-6 gap-y-4 pt-6 transition-[opacity,transform] duration-300',
               open ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2',
             ].join(' ')}
           >
@@ -141,8 +141,17 @@ export default function MobileNav({ bookingsOpen }: MobileNavProps) {
               onClick={close}
               className="inline-flex items-center justify-center rounded-[78px] bg-[#f7f2e4] px-8 py-3 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#253136] transition hover:bg-[#f7e7d5]"
             >
-              {bookingsOpen ? 'Book Now' : 'Join Waitlist'}
+              {bookingsOpen ? 'Book the property' : 'Join Waitlist'}
             </Link>
+            {bookingsOpen && (
+              <Link
+                href="/book"
+                onClick={close}
+                className="font-subhead text-[12px] uppercase tracking-[0.22em] text-[#f7f2e4]/70 underline underline-offset-[6px] transition hover:text-[#f7f2e4]"
+              >
+                Or a single cabin
+              </Link>
+            )}
           </div>
         </nav>
 

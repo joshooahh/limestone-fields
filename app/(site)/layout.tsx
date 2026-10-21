@@ -26,7 +26,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
           headline: siteSettings?.footerCta?.headline,
           body: siteSettings?.footerCta?.body,
           buttonText: siteSettings?.footerCta?.buttonText,
-          buttonHref: siteSettings?.bookingsOpen ? '/book' : '/contact',
+          buttonHref: siteSettings?.bookingsOpen ? '/buyouts#dates' : '/contact',
         }}
       />
     </div>

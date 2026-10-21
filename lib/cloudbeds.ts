@@ -52,3 +52,33 @@ export const CLOUDBEDS_ROOM_TYPE_IDS = {
   cabinSuite: '249802008461504',
   fullProperty: '252597914378432',
 } as const
+
+/** Minimum stay for the whole property (nights). Rates and availability live in Cloudbeds. */
+export const FULL_PROPERTY_MIN_NIGHTS = 2
+
+const CLOUDBEDS_ENGINE_BASE = `https://us2.cloudbeds.com/en/reservation/${CLOUDBEDS_PROPERTY_CODE}/`
+
+/**
+ * Hosted booking-engine link for a stay. Defaults to the whole property
+ * (Full Property room type) — the site's default ask. Pass
+ * `wholeProperty: false` for a search across single cabins, which simply
+ * omits accommodation_types. No prices are ever hardcoded; Cloudbeds owns them.
+ */
+export function cloudbedsBookingUrl(opts: {
+  checkin: string
+  checkout: string
+  guests?: number
+  wholeProperty?: boolean
+}): string {
+  const { checkin, checkout, guests = 1, wholeProperty = true } = opts
+  const params = new URLSearchParams({
+    currency: 'usd',
+    checkin,
+    checkout,
+    guests: String(guests),
+  })
+  if (wholeProperty) {
+    params.set('accommodation_types', CLOUDBEDS_ROOM_TYPE_IDS.fullProperty)
+  }
+  return `${CLOUDBEDS_ENGINE_BASE}?${params.toString()}`
+}
