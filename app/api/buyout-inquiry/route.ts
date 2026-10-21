@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { client } from '@/sanity/lib/client'
 import { buyoutInquirySchema } from '@/lib/validations'
 import { resend, CONTACT_EMAIL, FROM_EMAIL } from '@/lib/email'
+import { notifyConcierge } from '@/lib/concierge'
 
 const EVENT_LABEL: Record<string, string> = {
   small_wedding: 'small wedding',
@@ -21,7 +22,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid submission' }, { status: 400 })
     }
 
-    const { name, email, phone, company, preferredDates, groupSize, eventType, additionalDetails, source } = parsed.data
+    const { name, email, phone, company, preferredDates, groupSize, eventType, additionalDetails, source, contactPreference, smsConsent } = parsed.data
+    const submittedAt = new Date().toISOString()
 
     // Save to Sanity
     await client.create({
@@ -35,7 +37,9 @@ export async function POST(request: NextRequest) {
       eventType,
       additionalDetails,
       source,
-      submittedAt: new Date().toISOString(),
+      contactPreference,
+      smsConsent,
+      submittedAt,
     })
 
     // Send notification email
@@ -48,7 +52,8 @@ export async function POST(request: NextRequest) {
         <h2 style="font-family:sans-serif;color:#253136;">New Inquiry — Limestone Fields</h2>
         <p style="font-family:sans-serif;"><strong>Name:</strong> ${name}</p>
         <p style="font-family:sans-serif;"><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-        ${phone ? `<p style="font-family:sans-serif;"><strong>Phone:</strong> ${phone}</p>` : ''}
+        <p style="font-family:sans-serif;"><strong>Mobile:</strong> ${phone}</p>
+        <p style="font-family:sans-serif;"><strong>Prefers:</strong> ${contactPreference === 'text' ? 'text' : 'email'}${smsConsent ? ' (agreed to texts)' : ' (no text consent)'}</p>
         ${company ? `<p style="font-family:sans-serif;"><strong>Company:</strong> ${company}</p>` : ''}
         ${eventType ? `<p style="font-family:sans-serif;"><strong>Event Type:</strong> ${eventType}</p>` : ''}
         ${groupSize ? `<p style="font-family:sans-serif;"><strong>Group Size:</strong> ${groupSize}</p>` : ''}
@@ -58,6 +63,19 @@ export async function POST(request: NextRequest) {
         <hr style="margin-top:24px;border:none;border-top:1px solid #e5e7eb;"/>
         <p style="font-family:sans-serif;font-size:12px;color:#9ca3af;">Submitted via limestonefields.com</p>
       `,
+    })
+
+    // Hand to the concierge so the guest hears back within a minute. Fails soft.
+    await notifyConcierge({
+      form: 'buyout-inquiry',
+      name,
+      email,
+      phone,
+      contactPreference,
+      smsConsent,
+      fields: { company, preferredDates, groupSize, eventType, additionalDetails },
+      source,
+      submittedAt,
     })
 
     return NextResponse.json({ success: true })

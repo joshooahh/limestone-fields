@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { client } from '@/sanity/lib/client'
 import { schoolInterestSchema } from '@/lib/validations'
 import { resend, FROM_EMAIL } from '@/lib/email'
+import { notifyConcierge } from '@/lib/concierge'
 import { SCHOOL_NOTIFY_EMAILS, SCHOOL_REPLY_TO, getSchoolClass } from '@/lib/school'
 
 function escapeHtml(value: string): string {
@@ -85,6 +86,18 @@ export async function POST(request: NextRequest) {
           <p>— Limestone Fields</p>
         </div>
       `,
+    })
+
+    // Concierge gets a copy. Email only: this form has no SMS consent. Fails soft.
+    await notifyConcierge({
+      form: 'school-interest',
+      name,
+      email,
+      phone,
+      contactPreference: 'email',
+      smsConsent: false,
+      fields: { classSlug, classTitle: schoolClass.title, bringingSomeone, notes },
+      submittedAt: new Date().toISOString(),
     })
 
     return NextResponse.json({ success: true })

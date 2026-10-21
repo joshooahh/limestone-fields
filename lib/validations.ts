@@ -10,18 +10,40 @@ export const waitlistSchema = z.object({
 export type WaitlistFormData = z.infer<typeof waitlistSchema>
 export type WaitlistFormInput = z.input<typeof waitlistSchema>
 
-export const buyoutInquirySchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Enter a valid email'),
-  phone: z.string().default(''),
-  company: z.string().default(''),
-  preferredDates: z.string().min(1, 'Preferred dates are required'),
-  groupSize: z.coerce.number().min(1, 'Group size is required'),
-  eventType: z.string().min(1, 'Event type is required'),
-  additionalDetails: z.string().default(''),
-  /** Where the lead came from: landing path plus any utm_* params. Set by the form, not the user. */
-  source: z.string().max(500).default(''),
-})
+/**
+ * Phone, email and SMS consent are required so the inquiry concierge can reply
+ * within a minute by the guest's preferred channel. `smsConsent` is the TCPA
+ * opt-in; it must be true to text. `contactPreference` defaults to text.
+ */
+export const buyoutInquirySchema = z
+  .object({
+    name: z.string().min(1, 'Name is required'),
+    email: z.string().email('Enter a valid email'),
+    phone: z
+      .string()
+      .min(1, 'Mobile number is required')
+      .refine((v) => v.replace(/\D/g, '').length >= 10, 'Enter a valid mobile number'),
+    company: z.string().default(''),
+    preferredDates: z.string().min(1, 'Preferred dates are required'),
+    groupSize: z.coerce.number().min(1, 'Group size is required'),
+    eventType: z.string().min(1, 'Event type is required'),
+    additionalDetails: z.string().default(''),
+    /** How the guest wants to hear from us. Text is the default. */
+    contactPreference: z.enum(['text', 'email']).default('text'),
+    /** TCPA consent to receive texts about this inquiry. Required to text. */
+    smsConsent: z.boolean().default(false),
+    /** Where the lead came from: landing path plus any utm_* params. Set by the form, not the user. */
+    source: z.string().max(500).default(''),
+  })
+  .superRefine((data, ctx) => {
+    if (data.contactPreference === 'text' && !data.smsConsent) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['smsConsent'],
+        message: 'To hear from us by text, please check the box (or choose email).',
+      })
+    }
+  })
 
 export type BuyoutInquiryFormData = z.infer<typeof buyoutInquirySchema>
 export type BuyoutInquiryFormInput = z.input<typeof buyoutInquirySchema>

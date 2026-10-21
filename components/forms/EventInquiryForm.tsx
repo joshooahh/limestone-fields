@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { buyoutInquirySchema, type BuyoutInquiryFormInput } from '@/lib/validations'
+import ContactPreferenceFields from './ContactPreferenceFields'
 
 const ERROR_CLASS = 'text-[#f7e7d5] text-xs'
 
@@ -65,8 +66,11 @@ export default function EventInquiryForm({
       groupSize: undefined,
       eventType,
       additionalDetails: '',
+      contactPreference: 'text',
+      smsConsent: false,
     },
   })
+  const preference = form.watch('contactPreference')
 
   const onSubmit = async (data: BuyoutInquiryFormInput) => {
     setIsSubmitting(true)
@@ -92,8 +96,8 @@ export default function EventInquiryForm({
       <div className="max-w-2xl py-12 space-y-4">
         <h3 className="text-[28px] font-headline leading-[1.37] text-[#f7f2e4]">We&rsquo;ll be in touch.</h3>
         <p className="text-[18px] text-[#b3c1ce] leading-[1.55]">
-          Thanks for reaching out. Within two business days we&rsquo;ll reply with availability, pricing, and
-          honest answers to anything you asked. If a call would help, say so and we&rsquo;ll set one up.
+          Thanks. You&rsquo;ll hear from us in the next few minutes by text or email with availability
+          and rates. A person follows up on anything we can&rsquo;t answer right away, and if a call would help, just say so.
         </p>
       </div>
     )
@@ -132,30 +136,25 @@ export default function EventInquiryForm({
           )}
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email *</FormLabel>
-                <FormControl><Input type="email" autoComplete="email" {...field} /></FormControl>
-                <FormMessage className={ERROR_CLASS} />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Phone</FormLabel>
-                <FormControl><Input type="tel" autoComplete="tel" {...field} /></FormControl>
-                <FormMessage className={ERROR_CLASS} />
-              </FormItem>
-            )}
-          />
-        </div>
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email *</FormLabel>
+              <FormControl><Input type="email" autoComplete="email" {...field} /></FormControl>
+              <FormMessage className={ERROR_CLASS} />
+            </FormItem>
+          )}
+        />
+
+        <ContactPreferenceFields
+          control={form.control}
+          phoneName="phone"
+          preferenceName="contactPreference"
+          consentName="smsConsent"
+          preference={preference}
+        />
 
         <div className="grid gap-4 md:grid-cols-2">
           <FormField
