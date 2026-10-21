@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Logo from '@/components/ui/Logo'
+import { cloudbedsBookingUrl, defaultStayDates } from '@/lib/cloudbeds'
 import MobileNav from '@/components/ui/MobileNav'
 
 // Pages that don't start with a dark hero image — show dark header immediately
@@ -19,6 +20,11 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
     (prefix) => pathname === prefix || pathname.startsWith(prefix + '/')
   )
   const [scrolled, setScrolled] = useState(false)
+  // Whole-property availability search on Cloudbeds. Dates are filled in after mount.
+  const [propertyUrl, setPropertyUrl] = useState('/buyouts#dates')
+  useEffect(() => {
+    setPropertyUrl(cloudbedsBookingUrl(defaultStayDates()))
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -32,7 +38,7 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
   const linkClass = 'transition hover:text-white whitespace-nowrap'
   const navClass =
     'pointer-events-auto hidden md:flex items-center gap-3.5 lg:gap-9 text-[10.5px] lg:text-[13px] font-subhead uppercase tracking-[0.1em] lg:tracking-[0.16em] text-[#f7f2e4]/90'
-  const bookHref = bookingsOpen ? '/buyouts#dates' : '/contact'
+  const bookHref = bookingsOpen ? propertyUrl : '/contact'
   const bookLabel = bookingsOpen ? 'Book now' : 'Join waitlist'
 
   return (
@@ -90,7 +96,7 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
               <div className="invisible absolute right-0 top-full z-40 pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                 <div className="min-w-[210px] rounded-xl bg-[#f7f2e4] py-2 shadow-xl">
                   <Link
-                    href="/buyouts#dates"
+                    href={propertyUrl}
                     className="block whitespace-nowrap px-5 py-2.5 text-[#253136] transition hover:bg-[#f7e7d5]"
                   >
                     The whole property

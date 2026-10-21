@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Logo from './Logo'
+import { cloudbedsBookingUrl, defaultStayDates } from '@/lib/cloudbeds'
 
 interface MobileNavProps {
   bookingsOpen?: boolean
@@ -23,6 +24,10 @@ const NAV_LINKS = [
 
 export default function MobileNav({ bookingsOpen }: MobileNavProps) {
   const [open, setOpen] = useState(false)
+  const [propertyUrl, setPropertyUrl] = useState('/buyouts#dates')
+  useEffect(() => {
+    setPropertyUrl(cloudbedsBookingUrl(defaultStayDates()))
+  }, [])
   const pathname = usePathname()
 
   const close = useCallback(() => setOpen(false), [])
@@ -53,7 +58,7 @@ export default function MobileNav({ bookingsOpen }: MobileNavProps) {
     return () => document.removeEventListener('keydown', onKey)
   }, [close])
 
-  const waitlistHref = bookingsOpen ? '/buyouts#dates' : '/contact'
+  const waitlistHref = bookingsOpen ? propertyUrl : '/contact'
 
   return (
     <>
