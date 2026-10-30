@@ -109,7 +109,7 @@ export default async function StayPage() {
                   INCLUDED
                 </p>
                 <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
-                  <li>Queen Bed with Natural Linens</li>
+                  <li>King Bed with Natural Linens</li>
                   <li>Private Outdoor Soaking Tub or Porch</li>
                   <li>Writing Desk and Seating Area</li>
                   <li>Climate Control and Modern Bath</li>

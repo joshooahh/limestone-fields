@@ -94,8 +94,6 @@ export const GALLERY: Record<GallerySectionId, GalleryPhoto[]> = {
   barn: [
     p('barn-lounge-art-sofas', 2000, 1333, 'Richard Casteel',
       'Commons barn lounge with leather sofas, a burl-wood table and colorful artwork'),
-    p('barn-lounge-leather-sofas', 2000, 1333, 'Richard Casteel',
-      'Commons barn lounge with tan and brown leather sofas and French doors'),
     p('barn-kitchen-sofa', 2000, 1333, 'Richard Casteel',
       'Commons barn open kitchen with a farm table, pendant lights and a leather sofa'),
     p('barn-kitchen-range-lounge', 2000, 1333, 'Richard Casteel',
@@ -108,8 +106,6 @@ export const GALLERY: Record<GallerySectionId, GalleryPhoto[]> = {
       'Leather sofas and armchairs around a burl-wood coffee table, with a window to the trees'),
     p('barn-kitchen-farm-table', 2000, 1333, 'Richard Casteel',
       'Commons barn kitchen with a long farm table, steel fridge and pendant lights'),
-    p('barn-kitchen-stools', 2000, 1333, 'Richard Casteel',
-      'Commons barn kitchen with a wooden farm table and metal stools'),
     p('barn-coffee-chemex', 2000, 1333, 'Richard Casteel',
       'Chemex coffee and steel cups on the commons barn coffee counter'),
     p('barn-coffee-bar', 2000, 1333, 'Richard Casteel',
@@ -134,10 +130,6 @@ export const GALLERY: Record<GallerySectionId, GalleryPhoto[]> = {
       'The white commons barn with a metal roof under an oak branch, seen from the lawn'),
     p('barn-exterior-evening', 2000, 1333, 'Richard Casteel',
       'The commons barn at evening beneath a wide sky'),
-    p('barn-exterior-sunset-clouds', 2000, 1333, 'Richard Casteel',
-      'The commons barn on its rise at sunset with clouds overhead'),
-    p('barn-exterior-patio', 2000, 1333, 'Richard Casteel',
-      'The commons barn and its patio with a bench and glass doors, at dusk'),
   ],
   // The Outdoor Kitchen
   kitchen: [
