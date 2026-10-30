@@ -33,6 +33,25 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://limestonefields.com/stay' },
 }
 
+/** The photo tour for a cabin type, shown right under its description. */
+function cabinTour(title: string | undefined) {
+  const t = (title ?? '').toLowerCase()
+  if (t.includes('suite')) return { id: 'cabin-suite', label: 'The Cabin Suite', photos: CABIN_SUITE_GALLERY }
+  if (t.includes('standard')) return { id: 'standard-cabin', label: 'The Standard Cabin', photos: STANDARD_CABIN_GALLERY }
+  return null
+}
+
+function CabinTour({ id, label, photos }: { id: string; label: string; photos: typeof STANDARD_CABIN_GALLERY }) {
+  return (
+    <div id={id} className="scroll-mt-24 pt-10 text-[#253136]">
+      <p className="mb-5 font-subhead text-[11px] uppercase tracking-[0.3em] text-[#253136]/50">
+        A LOOK INSIDE {label.toUpperCase()}
+      </p>
+      <SectionGallery photos={photos} label={label} />
+    </div>
+  )
+}
+
 export default async function StayPage() {
   const [cabins, stayPage] = await Promise.all([
     client.fetch<Cabin[]>(cabinsQuery),
@@ -86,10 +105,16 @@ export default async function StayPage() {
             </Link>
           </p>
           {cabins?.length ? (
-            <div className="space-y-16">
-              {cabins.map((cabin) => (
-                <CabinCard key={cabin._id} cabin={cabin} />
-              ))}
+            <div className="space-y-24">
+              {cabins.map((cabin) => {
+                const tour = cabinTour(cabin.title)
+                return (
+                  <div key={cabin._id}>
+                    <CabinCard cabin={cabin} />
+                    {tour && <CabinTour {...tour} />}
+                  </div>
+                )
+              })}
             </div>
           ) : (
             <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
@@ -149,47 +174,12 @@ export default async function StayPage() {
               </div>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Photo tours, one per cabin type */}
-      <section id="standard-cabin" className="scroll-mt-20 bg-limestone-cream py-20 md:py-28">
-        <div className="container max-w-6xl mx-auto px-6 space-y-10">
-          <div className="max-w-2xl mx-auto text-center space-y-4">
-            <p className="font-subhead text-[11px] tracking-[0.3em] uppercase text-[#253136]/50">
-              A LOOK INSIDE
-            </p>
-            <h2 className="font-headline text-[32px] md:text-[40px] leading-[1.2] text-[#253136]">
-              The Standard Cabin
-            </h2>
-            <p className="font-body-secondary text-lg leading-relaxed text-[#253136]/80">
-              256 square feet. A king bed, a writing desk by the window, and a private
-              cedar tub outside. Sleeps two.
-            </p>
-          </div>
-          <div className="text-[#253136]">
-            <SectionGallery photos={STANDARD_CABIN_GALLERY} label="The Standard Cabin" />
-          </div>
-        </div>
-      </section>
-
-      <section id="cabin-suite" className="scroll-mt-20 bg-[#F9F4EE] py-20 md:py-28">
-        <div className="container max-w-6xl mx-auto px-6 space-y-10">
-          <div className="max-w-2xl mx-auto text-center space-y-4">
-            <p className="font-subhead text-[11px] tracking-[0.3em] uppercase text-[#253136]/50">
-              A LOOK INSIDE
-            </p>
-            <h2 className="font-headline text-[32px] md:text-[40px] leading-[1.2] text-[#253136]">
-              The Cabin Suite
-            </h2>
-            <p className="font-body-secondary text-lg leading-relaxed text-[#253136]/80">
-              384 square feet. A king bed, two full-size bunks behind the bookshelf, and
-              more room to spread out. Sleeps four.
-            </p>
-          </div>
-          <div className="text-[#253136]">
-            <SectionGallery photos={CABIN_SUITE_GALLERY} label="The Cabin Suite" />
-          </div>
+          {!cabins?.length && (
+            <div className="mt-20 space-y-20">
+              <CabinTour id="standard-cabin" label="The Standard Cabin" photos={STANDARD_CABIN_GALLERY} />
+              <CabinTour id="cabin-suite" label="The Cabin Suite" photos={CABIN_SUITE_GALLERY} />
+            </div>
+          )}
         </div>
       </section>
 

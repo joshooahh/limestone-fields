@@ -48,8 +48,8 @@ export default function CabinCard({ cabin }: CabinCardProps) {
         )}
       </div>
 
-      {/* Image column */}
-      <div>
+      {/* Image column: stays in view while the description scrolls */}
+      <div className="md:sticky md:top-28 md:self-start">
         {cabin.images?.[0] ? (
           <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
             <Image
