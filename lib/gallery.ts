@@ -247,6 +247,7 @@ function pick(slugs: string[]): GalleryPhoto[] {
 export const STANDARD_CABIN_GALLERY: GalleryPhoto[] = pick([
   'cabin-bed-door-to-porch',
   'cabin-bedroom-french-doors',
+  'cabin-bedroom-view-to-desk',
   'cabin-desk-flowers-window',
   'cabin-desk-sunlight-guitar',
   'cabin-desk-bookshelf-open-door',
@@ -258,7 +259,6 @@ export const CABIN_SUITE_GALLERY: GalleryPhoto[] = pick([
   'cabin-bedroom-guitar',
   'cabin-bookshelf-table',
   'cabin-suite-bunk-beds',
-  'cabin-bedroom-view-to-desk',
   'cabin-bathroom-arched-mirror',
   'cabin-bedroom-boots-rug',
   'cabin-bathroom-shower',
