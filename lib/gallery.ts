@@ -251,6 +251,7 @@ export const STANDARD_CABIN_GALLERY: GalleryPhoto[] = pick([
   'cabin-desk-flowers-window',
   'cabin-desk-sunlight-guitar',
   'cabin-desk-bookshelf-open-door',
+  'cabin-bathroom-through-doorway',
   'cabin-exterior-cedar-tub-deck',
 ])
 
@@ -267,7 +268,6 @@ export const CABIN_SUITE_GALLERY: GalleryPhoto[] = pick([
   'cabin-vintage-suitcase',
   'cabin-cowboy-boots',
   'cabin-desk-red-flowers',
-  'cabin-bathroom-through-doorway',
   'cabin-guitar-leather-chair',
   'cabin-exterior-red-chairs-lake',
 ])
