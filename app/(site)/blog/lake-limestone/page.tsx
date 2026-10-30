@@ -447,7 +447,7 @@ export default function LakeLimestoneGuidePage() {
               </p>
               <p>
                 Cabins book individually for a weekend, or the whole property books as{' '}
-                <Link href="/buyouts">one reservation</Link> for up to 26 overnight guests, which
+                <Link href="/private-events">one reservation</Link> for up to 26 overnight guests, which
                 is how our{' '}
                 <Link href="/blog/corporate-retreat-venues-texas">company retreats</Link>,{' '}
                 <Link href="/blog/intimate-wedding-venues-texas">small weddings</Link>, and

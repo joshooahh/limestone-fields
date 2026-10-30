@@ -102,7 +102,7 @@ const jsonLd = [
     name: 'Limestone Fields',
     description:
       'Ten custom-built lakefront cabins on 16 acres at Lake Limestone, Texas, available as a whole-property buyout for corporate retreats, team offsites, reunions, and private gatherings. Two hours from Austin, Dallas, and Houston.',
-    url: 'https://limestonefields.com/buyouts',
+    url: 'https://limestonefields.com/private-events',
     telephone: '+1-254-265-6258',
     priceRange: '$$$',
     image: 'https://limestonefields.com/blog/images/corporate-retreat-venues-texas.jpg',
@@ -172,7 +172,7 @@ export default function CorporateRetreatVenuesTexasPage() {
                 Austin, Dallas, or Houston.
               </p>
               <p>
-                <Link href="/buyouts?utm_source=blog&utm_medium=cta&utm_campaign=buyouts-groups-retreats&utm_content=corporate-retreat-venues-texas">
+                <Link href="/private-events?utm_source=blog&utm_medium=cta&utm_campaign=buyouts-groups-retreats&utm_content=corporate-retreat-venues-texas">
                   See the buyout option and inquire →
                 </Link>
               </p>
@@ -216,7 +216,7 @@ export default function CorporateRetreatVenuesTexasPage() {
               </p>
               <p>
                 You can see how the full-property option works on the{' '}
-                <Link href="/buyouts?utm_source=blog&utm_medium=cta&utm_campaign=buyouts-groups-retreats&utm_content=corporate-retreat-venues-texas">
+                <Link href="/private-events?utm_source=blog&utm_medium=cta&utm_campaign=buyouts-groups-retreats&utm_content=corporate-retreat-venues-texas">
                   buyouts page
                 </Link>
                 .
@@ -308,7 +308,7 @@ export default function CorporateRetreatVenuesTexasPage() {
           heading="Inquire about a whole-property buyout."
           href="/contact?utm_source=blog&utm_medium=cta&utm_campaign=buyouts-groups-retreats&utm_content=corporate-retreat-venues-texas"
           label="Inquire Now"
-          secondaryHref="/buyouts"
+          secondaryHref="/private-events"
           secondaryLabel="See the Buyout Option"
         />
       </article>

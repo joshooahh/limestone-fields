@@ -282,7 +282,7 @@ export default function WeekendGetawayFromDallasPage() {
                 a good part of dinner in season. Weekends fill first, especially spring and fall,
                 so book a few weeks out. If you want the entire property to yourselves for a
                 birthday, a reunion, or a small group, look at{' '}
-                <Link href="/buyouts?utm_source=blog&utm_medium=cta&utm_campaign=weekend-getaways-location&utm_content=weekend-getaway-from-dallas">
+                <Link href="/private-events?utm_source=blog&utm_medium=cta&utm_campaign=weekend-getaways-location&utm_content=weekend-getaway-from-dallas">
                   the buyout option
                 </Link>
                 . Coming to focus rather than to gather? See the{' '}

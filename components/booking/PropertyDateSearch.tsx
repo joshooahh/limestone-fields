@@ -205,12 +205,12 @@ export default function PropertyDateSearch({ className = '' }: Props) {
           ) : avail.status === 'ok' && avail.wholePropertyOpen === false ? (
             <p className="font-body-secondary text-[17px] text-[#253136]">
               The whole property is not open for these dates. Try a nearby weekend, or{' '}
-              <a href="/buyouts#inquiry" className="underline underline-offset-2">ask us</a>.
+              <a href="/private-events#inquiry" className="underline underline-offset-2">ask us</a>.
             </p>
           ) : (
             <p className="font-body-secondary text-[17px] text-[#253136]">
               Ask us about these dates.{' '}
-              <a href="/buyouts#inquiry" className="underline underline-offset-2">Send an inquiry</a>
+              <a href="/private-events#inquiry" className="underline underline-offset-2">Send an inquiry</a>
               {avail.status === 'error' && (
                 <>
                   , or{' '}

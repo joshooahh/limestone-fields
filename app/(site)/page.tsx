@@ -164,10 +164,10 @@ export default async function HomePage() {
             people they love. Sleeps 26. The gate closes behind you and the land is yours.
           </p>
           <Link
-            href="/buyouts"
+            href="/private-events"
             className="inline-flex items-center justify-center rounded-[78px] bg-[#f7f2e4] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#253136] transition hover:bg-[#f7e7d5]"
           >
-            See how a buyout works
+            See private events and buyouts
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </div>

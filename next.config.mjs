@@ -16,6 +16,11 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      { source: '/buyouts', destination: '/private-events', permanent: true },
+    ]
+  },
 }
 
 export default nextConfig;
