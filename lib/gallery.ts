@@ -248,12 +248,8 @@ export const STANDARD_CABIN_GALLERY: GalleryPhoto[] = pick([
   'cabin-bed-door-to-porch',
   'cabin-bedroom-french-doors',
   'cabin-desk-flowers-window',
-  'cabin-bathroom-arched-mirror',
   'cabin-desk-sunlight-guitar',
   'cabin-desk-bookshelf-open-door',
-  'cabin-bathroom-shower',
-  'cabin-desk-red-flowers',
-  'cabin-bathroom-through-doorway',
   'cabin-exterior-cedar-tub-deck',
 ])
 
@@ -263,11 +259,15 @@ export const CABIN_SUITE_GALLERY: GalleryPhoto[] = pick([
   'cabin-bookshelf-table',
   'cabin-suite-bunk-beds',
   'cabin-bedroom-view-to-desk',
+  'cabin-bathroom-arched-mirror',
   'cabin-bedroom-boots-rug',
+  'cabin-bathroom-shower',
   'cabin-leather-chair-guitar',
   'cabin-bookshelf-detail',
   'cabin-vintage-suitcase',
   'cabin-cowboy-boots',
+  'cabin-desk-red-flowers',
+  'cabin-bathroom-through-doorway',
   'cabin-guitar-leather-chair',
   'cabin-exterior-red-chairs-lake',
 ])
