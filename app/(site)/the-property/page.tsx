@@ -145,25 +145,6 @@ export default async function ThePropertyPage() {
         </div>
       </section>
 
-      {/* The Cabins */}
-      <PropertySection
-        id="cabins"
-        label="ACCOMMODATIONS"
-        headline="The Cabins"
-        description="Ten private cabins sit across the property in two layouts — standard (sleeps 2) and cabin suites (sleeps 4). Each has a king bed, private outdoor cedar soaking tub, lake views, and individual HVAC. Natural materials. Quiet interiors. Nothing superfluous."
-        photos={GALLERY.cabins}
-        bg="bg-[#F9F4EE]"
-        cta={
-          <Link
-            href="/book"
-            className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
-          >
-            View Cabin Types
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        }
-      />
-
       {/* The Commons Barn */}
       <PropertySection
         id="barn"
@@ -171,7 +152,7 @@ export default async function ThePropertyPage() {
         headline="The Commons Barn"
         description="A 1,200 sq ft post-and-beam barn anchors the property as the shared gathering space. Inside: a full chef's kitchen, long communal tables, and a wood-burning fireplace. Open to all guests throughout the day. Available for private buyout for events."
         photos={GALLERY.barn}
-        bg="bg-limestone-cream"
+        bg="bg-[#F9F4EE]"
       />
 
       {/* The Outdoor Kitchen */}
@@ -204,7 +185,7 @@ export default async function ThePropertyPage() {
         headline="The Farm"
         description="A working permaculture farm runs along the southern edge of the property. Seasonal vegetables, herbs, fruit trees, and a small flock of chickens. Guests are welcome to walk the beds, pick what's ripe, and bring it to the kitchen. The farm operates year-round."
         photos={GALLERY.farm}
-        bg="bg-[#F9F4EE]"
+        bg="bg-limestone-cream"
       />
 
       {/* The Land */}
@@ -214,7 +195,26 @@ export default async function ThePropertyPage() {
         headline="The Land"
         description="Beyond the structures, the property is mostly undisturbed. Old post oaks and cedar elms. A creek that runs through the lower pasture. Open fields that shift with the seasons. Walking paths connect the cabins to the water's edge. The kind of place that asks you to slow down."
         photos={GALLERY.land}
+        bg="bg-[#F9F4EE]"
+      />
+
+      {/* The Cabins */}
+      <PropertySection
+        id="cabins"
+        label="ACCOMMODATIONS"
+        headline="The Cabins"
+        description="Ten private cabins sit across the property in two layouts — standard (sleeps 2) and cabin suites (sleeps 4). Each has a king bed, private outdoor cedar soaking tub, lake views, and individual HVAC. Natural materials. Quiet interiors. Nothing superfluous."
+        photos={GALLERY.cabins}
         bg="bg-limestone-cream"
+        cta={
+          <Link
+            href="/book"
+            className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
+          >
+            See the two cabin types
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        }
       />
 
       {/* Events CTA — two column */}
