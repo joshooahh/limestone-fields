@@ -65,8 +65,7 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
           >
             Buyouts
           </Link>
-          <Link href="/stay" className={linkClass}>Stay</Link>
-          <Link href="/experience" className={linkClass}>Experience</Link>
+          <Link href="/stay" className={linkClass}>Cabins</Link>
           <Link href="/the-property" className={linkClass}>The Property</Link>
         </nav>
         <div className="md:hidden" />

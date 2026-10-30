@@ -12,8 +12,7 @@ interface MobileNavProps {
 
 const NAV_LINKS = [
   { href: '/buyouts', label: 'Buyouts' },
-  { href: '/stay', label: 'Stay' },
-  { href: '/experience', label: 'Experience' },
+  { href: '/stay', label: 'Cabins' },
   { href: '/the-property', label: 'The Property' },
   { href: '/blog', label: 'Journal' },
   { href: '/private-events', label: 'Private Events' },

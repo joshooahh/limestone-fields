@@ -10,6 +10,8 @@ import { urlForImage } from '@/sanity/lib/image'
 import { cabinsQuery, pageQuery } from '@/sanity/queries'
 import type { Cabin, PageDocument } from '@/sanity/types'
 import { ArrowRight } from 'lucide-react'
+import SectionGallery from '@/components/gallery/SectionGallery'
+import { STANDARD_CABIN_GALLERY, CABIN_SUITE_GALLERY } from '@/lib/gallery'
 
 const pageSchema = webPageSchema(
   '/stay',
@@ -69,12 +71,18 @@ export default async function StayPage() {
           <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136] mb-4">
             Two Layouts. Same Intention.
           </h2>
-          <p className="mb-12">
+          <p className="mb-12 flex flex-wrap gap-x-8 gap-y-3">
             <Link
-              href="/the-property#cabins"
+              href="#standard-cabin"
               className="font-subhead text-[13px] uppercase tracking-[0.22em] text-[#253136] underline underline-offset-4 transition hover:text-[#253136]/70"
             >
-              See photos of the cabin interiors
+              Tour the Standard Cabin
+            </Link>
+            <Link
+              href="#cabin-suite"
+              className="font-subhead text-[13px] uppercase tracking-[0.22em] text-[#253136] underline underline-offset-4 transition hover:text-[#253136]/70"
+            >
+              Tour the Cabin Suite
             </Link>
           </p>
           {cabins?.length ? (
@@ -141,6 +149,47 @@ export default async function StayPage() {
               </div>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Photo tours, one per cabin type */}
+      <section id="standard-cabin" className="scroll-mt-20 bg-limestone-cream py-20 md:py-28">
+        <div className="container max-w-6xl mx-auto px-6 space-y-10">
+          <div className="max-w-2xl mx-auto text-center space-y-4">
+            <p className="font-subhead text-[11px] tracking-[0.3em] uppercase text-[#253136]/50">
+              A LOOK INSIDE
+            </p>
+            <h2 className="font-headline text-[32px] md:text-[40px] leading-[1.2] text-[#253136]">
+              The Standard Cabin
+            </h2>
+            <p className="font-body-secondary text-lg leading-relaxed text-[#253136]/80">
+              256 square feet. A king bed, a writing desk by the window, and a private
+              cedar tub outside. Sleeps two.
+            </p>
+          </div>
+          <div className="text-[#253136]">
+            <SectionGallery photos={STANDARD_CABIN_GALLERY} label="The Standard Cabin" />
+          </div>
+        </div>
+      </section>
+
+      <section id="cabin-suite" className="scroll-mt-20 bg-[#F9F4EE] py-20 md:py-28">
+        <div className="container max-w-6xl mx-auto px-6 space-y-10">
+          <div className="max-w-2xl mx-auto text-center space-y-4">
+            <p className="font-subhead text-[11px] tracking-[0.3em] uppercase text-[#253136]/50">
+              A LOOK INSIDE
+            </p>
+            <h2 className="font-headline text-[32px] md:text-[40px] leading-[1.2] text-[#253136]">
+              The Cabin Suite
+            </h2>
+            <p className="font-body-secondary text-lg leading-relaxed text-[#253136]/80">
+              384 square feet. A king bed, two full-size bunks behind the bookshelf, and
+              more room to spread out. Sleeps four.
+            </p>
+          </div>
+          <div className="text-[#253136]">
+            <SectionGallery photos={CABIN_SUITE_GALLERY} label="The Cabin Suite" />
+          </div>
         </div>
       </section>
 

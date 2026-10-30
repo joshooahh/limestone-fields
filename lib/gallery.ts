@@ -236,3 +236,46 @@ export const GALLERY: Record<GallerySectionId, GalleryPhoto[]> = {
       'Sunset over the tree line'),
   ],
 }
+
+/** Look up photos from the Cabins set by file name, in the order given. */
+function pick(slugs: string[]): GalleryPhoto[] {
+  return slugs.map((slug) => {
+    const photo = GALLERY.cabins.find((x) => x.src === `/images/gallery/${slug}.jpg`)
+    if (!photo) throw new Error(`Gallery photo not found: ${slug}`)
+    return photo
+  })
+}
+
+/**
+ * Photo tours for the two cabin types on /stay. Matched to the cabin photos in
+ * Sanity: the Standard Cabin has the smooth vaulted ceiling, French doors to
+ * the porch and the desk by the window; the Cabin Suite has the exposed
+ * rafters, the bunk beds behind the olive bookshelf and the red porch chairs.
+ */
+export const STANDARD_CABIN_GALLERY: GalleryPhoto[] = pick([
+  'cabin-bed-door-to-porch',
+  'cabin-bedroom-french-doors',
+  'cabin-desk-flowers-window',
+  'cabin-bathroom-arched-mirror',
+  'cabin-desk-sunlight-guitar',
+  'cabin-desk-bookshelf-open-door',
+  'cabin-bathroom-shower',
+  'cabin-desk-red-flowers',
+  'cabin-bathroom-through-doorway',
+  'cabin-exterior-cedar-tub-deck',
+])
+
+export const CABIN_SUITE_GALLERY: GalleryPhoto[] = pick([
+  'cabin-bedroom-warm-light',
+  'cabin-bedroom-guitar',
+  'cabin-bookshelf-table',
+  'cabin-suite-bunk-beds',
+  'cabin-bedroom-view-to-desk',
+  'cabin-bedroom-boots-rug',
+  'cabin-leather-chair-guitar',
+  'cabin-bookshelf-detail',
+  'cabin-vintage-suitcase',
+  'cabin-cowboy-boots',
+  'cabin-guitar-leather-chair',
+  'cabin-exterior-red-chairs-lake',
+])
