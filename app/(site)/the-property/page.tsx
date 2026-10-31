@@ -150,7 +150,7 @@ export default async function ThePropertyPage() {
         id="barn"
         label="SHARED SPACES"
         headline="The Commons Barn"
-        description="A 1,200 sq ft post-and-beam barn anchors the property as the shared gathering space. Inside: a full chef's kitchen, long communal tables, and a wood-burning fireplace. Open to all guests throughout the day. Available for private buyout for events."
+        description="A 1,200 sq ft post-and-beam barn anchors the property as the shared gathering space. Inside: a full chef's kitchen and long communal tables. Open to all guests throughout the day. Available for private buyout for events."
         photos={GALLERY.barn}
         bg="bg-[#F9F4EE]"
       />

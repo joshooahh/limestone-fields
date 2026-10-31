@@ -114,10 +114,10 @@ export default function CabinBooking({ images }: Props) {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   ) : (
-                    // Whole property is the default ask: dates live on /buyouts and
+                    // Whole property is the default ask: dates live on /private-events and
                     // hand off to Cloudbeds with the Full Property type selected.
                     <Link
-                      href="/buyouts#dates"
+                      href="/private-events#dates"
                       className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
                     >
                       Check the whole property

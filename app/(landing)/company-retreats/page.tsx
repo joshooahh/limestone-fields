@@ -25,7 +25,7 @@ import {
 
 /**
  * Company retreats / offsites / executive gatherings landing page. Single path
- * to the inquiry form; no site nav. Facts match /buyouts. Pricing on inquiry.
+ * to the inquiry form; no site nav. Facts match /private-events. Pricing on inquiry.
  */
 
 const PAGE_URL = 'https://limestonefields.com/company-retreats'

@@ -21,7 +21,7 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
   )
   const [scrolled, setScrolled] = useState(false)
   // Whole-property availability search on Cloudbeds. Dates are filled in after mount.
-  const [propertyUrl, setPropertyUrl] = useState('/buyouts#dates')
+  const [propertyUrl, setPropertyUrl] = useState('/private-events#dates')
   useEffect(() => {
     setPropertyUrl(cloudbedsBookingUrl(defaultStayDates()))
   }, [])
@@ -60,10 +60,10 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
         {/* Desktop: left nav */}
         <nav className={`${navClass} justify-start`}>
           <Link
-            href="/buyouts"
+            href="/private-events"
             className={`${linkClass} !text-white border-b border-[#f7f2e4]/70 pb-0.5 font-semibold`}
           >
-            Buyouts
+            Private Events
           </Link>
           <Link href="/stay" className={linkClass}>Cabins</Link>
           <Link href="/the-property" className={linkClass}>The Property</Link>
@@ -78,7 +78,6 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
         {/* Desktop: right nav */}
         <nav className={`${navClass} justify-end`}>
           <Link href="/blog" className={linkClass}>Journal</Link>
-          <Link href="/private-events" className={linkClass}>Private Events</Link>
           {/* Book now defaults to the whole property; a single cabin is the alternative. */}
           <div className="group relative">
             <Link

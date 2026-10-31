@@ -8,6 +8,9 @@ import { client } from '@/sanity/lib/client'
 import { urlForImage } from '@/sanity/lib/image'
 import { pageQuery } from '@/sanity/queries'
 import type { PageDocument } from '@/sanity/types'
+import BuyoutInquiryForm from '@/components/forms/BuyoutInquiryForm'
+import PropertyDateSearch from '@/components/booking/PropertyDateSearch'
+import FromTheJournal from '@/components/blog/FromTheJournal'
 
 const eventVenueSchema = {
   '@context': 'https://schema.org',
@@ -65,9 +68,18 @@ export default async function PrivateEventsPage() {
         headline="Gather with Intention"
         subhead="Limestone Fields is available for private events that value presence over production. We host one event at a time."
         eyebrow="Private Events"
+        ctaText="Start an inquiry"
+        ctaHref="#inquiry"
         backgroundImage={privateEventsPage?.heroImage ? urlForImage(privateEventsPage.heroImage).width(1600).auto('format').url() : undefined}
         backgroundImageAlt="Private events at Limestone Fields"
       />
+
+      {/* Date search, whole property by default */}
+      <section id="dates" className="bg-limestone-cream pb-10">
+        <div className="container max-w-3xl mx-auto px-6 -mt-10 relative z-10">
+          <PropertyDateSearch />
+        </div>
+      </section>
 
       {/* Property buyouts */}
       <section className="bg-limestone-cream py-24 md:py-32">
@@ -94,13 +106,13 @@ export default async function PrivateEventsPage() {
               <li>Mastermind Groups and Team Offsites</li>
               <li>Intimate Celebrations and Family Gatherings</li>
             </ul>
-            <Link
-              href="/buyouts"
+            <a
+              href="#dates"
               className="inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-2.5 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90"
             >
-              Buyout Details
+              Check your dates
               <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+            </a>
           </div>
           <div className="space-y-5 md:pt-16">
             <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
@@ -117,6 +129,98 @@ export default async function PrivateEventsPage() {
               <li>Fire Pits and Outdoor Gathering Areas</li>
               <li>Seasonal Farm Access</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Who takes the whole property */}
+      <section className="py-24 md:py-32 bg-[#CBD2DA]">
+        <div className="container max-w-6xl mx-auto px-6">
+          <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] mb-5">
+            WHO TAKES THE WHOLE PROPERTY
+          </p>
+          <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136] mb-12">
+            The Kinds of Groups That Come Here
+          </h2>
+          <div className="grid gap-12 md:grid-cols-3">
+            <div className="space-y-4">
+              <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                EXECUTIVE RETREATS
+              </p>
+              <p className="text-[18px] text-[#253136] leading-[1.55]">
+                Leadership teams seeking focused time for strategic planning, decision-making,
+                and alignment away from the office. The kind of thinking that requires
+                actual quiet.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                CREATIVE INTENSIVES
+              </p>
+              <p className="text-[18px] text-[#253136] leading-[1.55]">
+                Writing retreats, design sprints, mastermind groups, and teams working
+                on projects that require deep, uninterrupted focus. Time that is yours
+                to account for.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                INTIMATE CELEBRATIONS
+              </p>
+              <p className="text-[18px] text-[#253136] leading-[1.55]">
+                Small weddings, milestone gatherings, and family reunions that value
+                presence over performance. People who want to be together without
+                an audience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The process */}
+      <section className="py-24 md:py-32 bg-limestone-cream">
+        <div className="container max-w-6xl mx-auto px-6">
+          <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] mb-5">
+            THE PROCESS
+          </p>
+          <h2 className="text-[32px] font-headline leading-[1.37] text-[#253136] mb-12">
+            Simple from Start to Arrival
+          </h2>
+          <div className="grid gap-10 md:grid-cols-4">
+            {[
+              {
+                step: '01',
+                title: 'Inquire',
+                description: 'Fill out the form below with your dates, group size, and what you are planning.',
+              },
+              {
+                step: '02',
+                title: 'Proposal',
+                description: 'We send a custom proposal with pricing, availability, and property details.',
+              },
+              {
+                step: '03',
+                title: 'Reserve',
+                description: 'Confirm your dates with a deposit. The property is yours.',
+              },
+              {
+                step: '04',
+                title: 'Arrive',
+                description: 'Check in, settle in, and use the space however you came to use it.',
+              },
+            ].map((item) => (
+              <div key={item.step} className="space-y-4">
+                <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136]">
+                  {item.step}
+                </p>
+                <h3 className="text-[22px] font-headline leading-[1.37] text-[#253136]">
+                  {item.title}
+                </h3>
+                <p className="text-[18px] text-[#253136] leading-[1.55]">
+                  {item.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -203,6 +307,21 @@ export default async function PrivateEventsPage() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <FromTheJournal slug="corporate-retreat-venues-texas" className="bg-limestone-cream" />
+
+      {/* Inquiry Form — dark bg section */}
+      <section id="inquiry" className="py-24 md:py-32 bg-[#253136]">
+        <div className="container max-w-4xl mx-auto px-6">
+          <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#b3c1ce] mb-5">
+            START HERE
+          </p>
+          <h2 className="text-[32px] font-headline leading-[1.37] text-[#f7f2e4] mb-10">
+            Reserve the Property for Your Group
+          </h2>
+          <BuyoutInquiryForm />
         </div>
       </section>
     </>

@@ -25,7 +25,7 @@ import {
 
 /**
  * Family reunions landing page. Single path to the inquiry form; no site nav.
- * Facts match /buyouts (capacity, barn, farm, lake). Pricing on inquiry.
+ * Facts match /private-events (capacity, barn, farm, lake). Pricing on inquiry.
  */
 
 const PAGE_URL = 'https://limestonefields.com/family-reunions'

@@ -11,11 +11,10 @@ interface MobileNavProps {
 }
 
 const NAV_LINKS = [
-  { href: '/buyouts', label: 'Buyouts' },
+  { href: '/private-events', label: 'Private Events' },
   { href: '/stay', label: 'Cabins' },
   { href: '/the-property', label: 'The Property' },
   { href: '/blog', label: 'Journal' },
-  { href: '/private-events', label: 'Private Events' },
   { href: '/story', label: 'Our Story' },
   { href: '/weddings', label: 'Weddings' },
   { href: '/contact', label: 'Contact' },
@@ -23,7 +22,7 @@ const NAV_LINKS = [
 
 export default function MobileNav({ bookingsOpen }: MobileNavProps) {
   const [open, setOpen] = useState(false)
-  const [propertyUrl, setPropertyUrl] = useState('/buyouts#dates')
+  const [propertyUrl, setPropertyUrl] = useState('/private-events#dates')
   useEffect(() => {
     setPropertyUrl(cloudbedsBookingUrl(defaultStayDates()))
   }, [])

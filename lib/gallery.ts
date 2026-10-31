@@ -153,6 +153,8 @@ export const GALLERY: Record<GallerySectionId, GalleryPhoto[]> = {
       'Squeezing lemon over the grill'),
     p('outdoor-firewood-stack', 2000, 1125, 'Limestone Fields video',
       'Split firewood stacked for the grill'),
+    p('outdoor-blackstone-griddle', 1400, 1867, 'Limestone Fields',
+      'Cooking oyster mushrooms on the Blackstone griddle in a cloud of steam, with split firewood stacked behind'),
   ],
   // The Lake
   lake: [
