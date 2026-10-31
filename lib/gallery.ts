@@ -118,8 +118,6 @@ export const GALLERY: Record<GallerySectionId, GalleryPhoto[]> = {
       'The coffee station: espresso machine, grinder and a Chemex brewing'),
     p('barn-pouring-coffee', 2000, 1125, 'Limestone Fields video',
       'Pouring fresh coffee into a mug by the window'),
-    p('barn-breakfast-bowl', 2000, 1125, 'Limestone Fields video',
-      'A breakfast bowl with sweet peppers on the farm table'),
     p('barn-peppers-on-board', 2000, 1125, 'Limestone Fields video',
       'Sweet peppers from the garden on a cutting board'),
     p('barn-whisking-eggs', 2000, 1125, 'Limestone Fields video',
