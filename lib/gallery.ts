@@ -155,6 +155,8 @@ export const GALLERY: Record<GallerySectionId, GalleryPhoto[]> = {
       'Split firewood stacked for the grill'),
     p('outdoor-blackstone-griddle', 1400, 1867, 'Limestone Fields',
       'Cooking oyster mushrooms on the Blackstone griddle in a cloud of steam, with split firewood stacked behind'),
+    p('outdoor-offset-smoker', 449, 600, 'Limestone Fields',
+      'The black offset smoker on wheels, with a long cook chamber, firebox and side shelves'),
   ],
   // The Lake
   lake: [
