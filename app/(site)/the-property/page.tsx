@@ -160,7 +160,7 @@ export default async function ThePropertyPage() {
         id="kitchen"
         label="OUTDOOR COOKING"
         headline="The Outdoor Kitchen"
-        description="Adjacent to the barn, the outdoor kitchen centers on a Santa Maria-style wood-fired grill. Built for the kind of cooking that takes the better part of an afternoon — whole animals, cast iron, smoke. An outdoor dining area seats a full group."
+        description="Adjacent to the barn, the outdoor kitchen is built for the kind of cooking that takes the better part of an afternoon. A Millscale Santa Maria wood-fired grill anchors it, with a Gozney Dome XL pizza oven, a LyfeTyme offset smoker and a Blackstone griddle alongside. Whole animals, cast iron, pizza, smoke. An outdoor dining area seats a full group."
         photos={GALLERY.kitchen}
         bg="bg-[#CBD2DA]"
       />
