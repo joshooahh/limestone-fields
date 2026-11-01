@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { href: '/stay', label: 'Cabins' },
   { href: '/the-property', label: 'The Property' },
   { href: '/blog', label: 'Journal' },
+  { href: '/gift-cards', label: 'Gift Cards' },
   { href: '/story', label: 'Our Story' },
   { href: '/weddings', label: 'Weddings' },
   { href: '/contact', label: 'Contact' },

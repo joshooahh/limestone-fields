@@ -78,6 +78,7 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
         {/* Desktop: right nav */}
         <nav className={`${navClass} justify-end`}>
           <Link href="/blog" className={linkClass}>Journal</Link>
+          <Link href="/gift-cards" className={linkClass}>Gift Cards</Link>
           {/* Book now defaults to the whole property; a single cabin is the alternative. */}
           <div className="group relative">
             <Link
