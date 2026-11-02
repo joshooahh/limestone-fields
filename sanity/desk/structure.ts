@@ -72,6 +72,10 @@ export const structure: StructureResolver = (S) =>
         .schemaType('waitlistSubmission')
         .child(S.documentTypeList('waitlistSubmission').title('Waitlist Submissions')),
       S.listItem()
+        .title('Field Notes Signups')
+        .schemaType('newsletterSignup')
+        .child(S.documentTypeList('newsletterSignup').title('Field Notes Signups')),
+      S.listItem()
         .title('Buyout Inquiries')
         .schemaType('buyoutInquiry')
         .child(S.documentTypeList('buyoutInquiry').title('Buyout Inquiries')),

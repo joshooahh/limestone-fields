@@ -135,6 +135,9 @@ export default function Footer({
               <Link href="/gift-cards" className="block hover:text-[#e8e4dc] transition">
                 Gift Cards
               </Link>
+              <Link href="/newsletter" className="block hover:text-[#e8e4dc] transition">
+                Field Notes
+              </Link>
               <Link href="/policies/privacy" className="block hover:text-[#e8e4dc] transition">
                 Privacy Policy
               </Link>

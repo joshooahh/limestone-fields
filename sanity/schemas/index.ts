@@ -13,6 +13,7 @@ import buyoutInquiry from './buyoutInquiry'
 import contactSubmission from './contactSubmission'
 import retreatReservation from './retreatReservation'
 import schoolInterest from './schoolInterest'
+import newsletterSignup from './newsletterSignup'
 
 export const schemaTypes = [
   cabin,
@@ -30,4 +31,5 @@ export const schemaTypes = [
   contactSubmission,
   retreatReservation,
   schoolInterest,
+  newsletterSignup,
 ]
