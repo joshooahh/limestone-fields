@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
   if (isRateLimited(clientIp(request))) {
     return NextResponse.json(
-      { error: 'Too many sign-ups from this connection. Please try again in a few minutes.' },
+      { error: 'Your sign-up has not gone through yet. Please try again in a few minutes.' },
       { status: 429 }
     )
   }

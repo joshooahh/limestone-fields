@@ -39,7 +39,7 @@ export default function NewsletterForm() {
       })
 
       if (response.status === 429) {
-        setServerError('Too many sign-ups from this connection. Please try again in a few minutes.')
+        setServerError('Your sign-up has not gone through yet. Please try again in a few minutes.')
         return
       }
       if (response.status === 400) {
@@ -70,8 +70,8 @@ export default function NewsletterForm() {
           You&apos;re on the list.
         </p>
         <p className="font-body-secondary text-[17px] leading-relaxed text-[#253136]/75">
-          The next Field Notes will reach {submittedEmail}. You can unsubscribe any time from the
-          bottom of any letter.
+          The next Field Notes will reach {submittedEmail}. Every letter has an unsubscribe link at
+          the bottom.
         </p>
       </div>
     )

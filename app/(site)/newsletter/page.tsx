@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Logo from '@/components/ui/Logo'
 import NewsletterForm from '@/components/forms/NewsletterForm'
 import { OG_IMAGES, SITE_URL } from '@/lib/schema-constants'
 
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
     'Field Notes is a short letter from Limestone Fields, a farm hotel on Lake Limestone in Jewett, Texas. About once a month, plus a note when dates open.',
   openGraph: {
     images: OG_IMAGES,
-    title: 'Field Notes — Limestone Fields',
+    title: 'Field Notes | Limestone Fields',
     description:
       'A short letter from the farm, about once a month, to read when you have a quiet minute.',
     url: PAGE_URL,
@@ -35,7 +34,7 @@ const ITEMS = [
   },
   {
     title: 'When dates open',
-    body: 'When dates open, you will get a short note. Nothing else is asked of you.',
+    body: 'A short note, in between the monthly letters, when we have dates open to stay.',
     image: '/images/landing/lake-through-trees.jpg',
     alt: 'Lake Limestone seen through the trees from the shore',
   },
@@ -48,17 +47,15 @@ export default function NewsletterPage() {
         <div className="container mx-auto max-w-6xl px-6">
           <div className="grid items-center gap-12 md:grid-cols-2 lg:gap-20">
             <div>
-              <Logo variant="primary" theme="dark" href="" width={132} height={46} priority className="mb-10 w-[132px]" />
               <p className="mb-5 font-subhead text-[11px] uppercase tracking-[0.3em] text-[#253136]/60">
-                FIELD NOTES
+                A FARM HOTEL ON LAKE LIMESTONE, JEWETT TX
               </p>
               <h1 className="mb-6 font-headline text-[40px] leading-[1.15] text-[#253136] md:text-[52px]">
                 Field Notes from Lake Limestone
               </h1>
               <p className="mb-10 max-w-md font-body-secondary text-lg leading-relaxed text-[#253136]/75">
-                A short letter from the farm, about once a month, to read when you have a quiet
-                minute. It is mostly what the land is doing: the Highland cattle, the garden, the
-                lake.
+                A short letter, about once a month, for a quiet minute with nowhere to be. It is a
+                few notes on what the land is doing at Limestone Fields.
               </p>
               <div className="max-w-md">
                 <NewsletterForm />
