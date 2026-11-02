@@ -95,3 +95,13 @@ export const schoolInterestSchema = z.object({
 
 export type SchoolInterestFormData = z.infer<typeof schoolInterestSchema>
 export type SchoolInterestFormInput = z.input<typeof schoolInterestSchema>
+
+// Newsletter ("Field Notes") signup. `company` is a honeypot: real visitors never see it.
+export const newsletterSchema = z.object({
+  email: z.string().trim().toLowerCase().email('Please enter a valid email address.').max(254),
+  firstName: z.string().trim().max(80).optional().default(''),
+  company: z.string().max(200).optional().default(''),
+})
+
+export type NewsletterFormData = z.infer<typeof newsletterSchema>
+export type NewsletterFormInput = z.input<typeof newsletterSchema>

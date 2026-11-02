@@ -51,6 +51,18 @@ If you change the Figma design and want to re‑align the site:
 
 Run the Sanity Studio locally (if included in this repo) to edit content, or update through the hosted Studio if configured.
 
+### Field Notes newsletter
+
+`/newsletter` is the signup page. Its form posts to `app/api/newsletter/route.ts`, which saves the signup to Sanity (`newsletterSignup`) and adds the address to the Field Notes Mailchimp audience (single opt-in, tag `field-notes-website`). `/subscribe` and `/field-notes` redirect to it.
+
+Add these three environment variables in Vercel (Project Settings > Environment Variables), then redeploy:
+
+- `MAILCHIMP_API_KEY`: a Mailchimp API key.
+- `MAILCHIMP_AUDIENCE_ID`: the Field Notes audience ID (Audience > Settings > Audience name and defaults).
+- `MAILCHIMP_SERVER_PREFIX`: the part of the API key after the dash, for example `us2`.
+
+Until they are set, signups still succeed for the visitor and are saved in Sanity with "Added to Mailchimp" unchecked, and the server logs a warning. Add those people to the audience by hand.
+
 ### Deployment
 
 This app can be deployed to any Next.js host (Vercel recommended). Ensure:

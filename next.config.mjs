@@ -19,6 +19,8 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/buyouts', destination: '/private-events', permanent: true },
+      { source: '/subscribe', destination: '/newsletter', permanent: true },
+      { source: '/field-notes', destination: '/newsletter', permanent: true },
     ]
   },
 }

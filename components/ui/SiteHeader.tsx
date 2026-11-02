@@ -8,7 +8,7 @@ import { cloudbedsBookingUrl, defaultStayDates } from '@/lib/cloudbeds'
 import MobileNav from '@/components/ui/MobileNav'
 
 // Pages that don't start with a dark hero image — show dark header immediately
-const NON_HERO_PREFIXES = ['/book', '/contact']
+const NON_HERO_PREFIXES = ['/book', '/contact', '/newsletter']
 
 interface SiteHeaderProps {
   bookingsOpen?: boolean | null
