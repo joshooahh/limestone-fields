@@ -8,7 +8,7 @@ const PAGE_URL = `${SITE_URL}/newsletter`
 export const metadata: Metadata = {
   title: 'Field Notes',
   description:
-    'Field Notes is a short letter from Limestone Fields, a farm hotel on Lake Limestone in Jewett, Texas. About once a month, plus a note when dates open.',
+    'Field Notes is a short letter from Limestone Fields, a farm hotel on Lake Limestone, Jewett TX. About once a month, plus a note when dates open.',
   openGraph: {
     images: OG_IMAGES,
     title: 'Field Notes | Limestone Fields',
@@ -21,19 +21,19 @@ export const metadata: Metadata = {
 
 const ITEMS = [
   {
-    title: 'On the land',
+    title: 'On the Land',
     body: 'What the Highland cattle, ducks and chickens are up to, what is growing in the 1-acre garden, and how the lake looks this month.',
     image: '/images/landing/garden.jpg',
     alt: 'Two people kneeling in the garden at Limestone Fields, looking at a young basil plant',
   },
   {
-    title: 'Around the table',
+    title: 'Around the Table',
     body: 'What we are cooking in the Commons and outside, on the Santa Maria grill, in the Gozney oven and over the offset smoker.',
     image: '/images/landing/grill.jpg',
     alt: 'Meat and greens cooking over a fire on the grill at Limestone Fields',
   },
   {
-    title: 'When dates open',
+    title: 'When Dates Open',
     body: 'A short note, in between the monthly letters, when we have dates open to stay.',
     image: '/images/landing/lake-through-trees.jpg',
     alt: 'Lake Limestone seen through the trees from the shore',

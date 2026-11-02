@@ -67,7 +67,7 @@ export default function NewsletterForm() {
         className="border-l-2 border-limestone-olive pl-5 py-1 outline-none motion-safe:animate-in motion-safe:fade-in motion-safe:duration-500"
       >
         <p className="font-headline text-[26px] leading-[1.2] text-[#253136] mb-2">
-          You&apos;re on the list.
+          You Are Signed Up.
         </p>
         <p className="font-body-secondary text-[17px] leading-relaxed text-[#253136]/75">
           The next Field Notes will reach {submittedEmail}. Every letter has an unsubscribe link at
