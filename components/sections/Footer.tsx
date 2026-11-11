@@ -132,6 +132,9 @@ export default function Footer({
               <Link href="/faq" className="block hover:text-[#e8e4dc] transition">
                 FAQ
               </Link>
+              <Link href="/offers" className="block hover:text-[#e8e4dc] transition">
+                Offers
+              </Link>
               <Link href="/gift-cards" className="block hover:text-[#e8e4dc] transition">
                 Gift Cards
               </Link>
