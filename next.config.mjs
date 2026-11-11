@@ -21,6 +21,8 @@ const nextConfig = {
       { source: '/buyouts', destination: '/private-events', permanent: true },
       { source: '/subscribe', destination: '/newsletter', permanent: true },
       { source: '/field-notes', destination: '/newsletter', permanent: true },
+      { source: '/promotions', destination: '/offers', permanent: true },
+      { source: '/specials', destination: '/offers', permanent: true },
     ]
   },
 }
