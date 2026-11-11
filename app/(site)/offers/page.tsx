@@ -49,6 +49,9 @@ export default function OffersPage() {
               <h2 className="font-headline text-[30px] md:text-[36px] leading-[1.2] text-[#253136] mb-4">
                 {offer.name}
               </h2>
+              {offer.rate && (
+                <p className={`${labelClass} mb-4`}>{offer.rate}</p>
+              )}
               <p className="font-body-secondary text-[17px] text-[#253136]/75 leading-relaxed max-w-xl mx-auto">
                 {offer.description}
               </p>

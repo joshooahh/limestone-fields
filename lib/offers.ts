@@ -18,6 +18,8 @@ export type Offer = {
   promoCode: string
   name: string
   description: string
+  /** What the code gives, shown under the name. Only what has been checked on the booking page. */
+  rate?: string
   /** Who it's for or what to bring, shown in small type. */
   eligibility?: string
   bookBy?: string
@@ -29,6 +31,7 @@ export const offers: Offer[] = [
     slug: 'clergy',
     promoCode: 'CLERGY',
     name: 'Clergy Rate',
+    rate: 'A reduced rate on midweek stays',
     description:
       'For pastors, priests, and others in ministry. A quiet cabin on the lake, for the people who spend their weeks looking after everyone else.',
     eligibility: 'For active and retired clergy.',
@@ -45,6 +48,7 @@ export const offers: Offer[] = [
     slug: 'aaa',
     promoCode: 'AAApublication',
     name: 'AAA Member Rate',
+    rate: '10% off our standard rate',
     description:
       'For AAA members making the drive out to Lake Limestone, two hours from Austin, Dallas, and Houston.',
     eligibility: 'For current AAA members.',
