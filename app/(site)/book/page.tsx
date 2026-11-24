@@ -47,7 +47,7 @@ export default async function BookPage() {
             Choose Your Stay
           </h1>
           <p className="font-body-secondary text-lg text-[#253136]/70 leading-relaxed">
-            Start with the whole property, or choose a single cabin.
+            Choose a single cabin, or take the whole property for your group.
           </p>
         </div>
       </section>

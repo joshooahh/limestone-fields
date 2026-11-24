@@ -104,3 +104,21 @@ export function defaultStayDates(nights = FULL_PROPERTY_MIN_NIGHTS): { checkin: 
   const checkin = toDateParam(d)
   return { checkin, checkout: addDaysToParam(checkin, nights) }
 }
+
+/**
+ * "From" nightly rates shown on cabin cards (/stay, /book) so guests see a
+ * price before the booking engine. These are the lowest standard (weekday)
+ * rates in Cloudbeds, read from the live booking engine on 2026-11-24 for
+ * Dec 8–10 ($338 / $458 / $3,740 for two nights), and they match the
+ * Oct–Jan rate grid. Cloudbeds still owns every real price: update these
+ * whenever the base weekday rates change.
+ */
+export const CABIN_FROM_RATES = {
+  standardCabin: 169,
+  cabinSuite: 229,
+  fullProperty: 1870,
+} as const
+
+export function fromRateLabel(rate: number): string {
+  return `From $${rate.toLocaleString('en-US')}/night`
+}

@@ -13,11 +13,14 @@ interface MobileNavProps {
 const NAV_LINKS = [
   { href: '/private-events', label: 'Private Events' },
   { href: '/stay', label: 'Cabins' },
-  { href: '/the-property', label: 'The Property' },
-  { href: '/blog', label: 'Journal' },
-  { href: '/gift-cards', label: 'Gift Cards' },
-  { href: '/story', label: 'Our Story' },
   { href: '/weddings', label: 'Weddings' },
+  { href: '/the-property', label: 'The Property' },
+  { href: '/experience', label: 'The Experience' },
+  { href: '/story', label: 'Our Story' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/blog', label: 'Journal' },
+  { href: '/offers', label: 'Offers' },
+  { href: '/gift-cards', label: 'Gift Cards' },
   { href: '/contact', label: 'Contact' },
 ]
 

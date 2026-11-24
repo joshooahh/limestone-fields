@@ -131,7 +131,7 @@ export default async function HomePage() {
 
       <Hero
         eyebrow="Whole-property buyouts"
-        headline="A collection of well-appointed cabins designed for rest & renewal."
+        headline="A collection of lakefront cabins on Lake Limestone, designed for rest & renewal."
         kicker="Come remember why you started."
         subhead="Ten cabins, a barn kitchen, and 1,200 feet of lakefront on Lake Limestone. Your group, and no one else."
         backgroundImage={img(images?.heroImage) ?? undefined}
@@ -366,7 +366,6 @@ export default async function HomePage() {
             <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
               <li>Barn Common Area and Communal Kitchen</li>
               <li>Lakefront Ceremony and Event Site</li>
-              <li>Fire Pits for Gathering</li>
               <li>Property Buyout Option</li>
             </ul>
             <Link

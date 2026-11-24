@@ -228,7 +228,7 @@ export default function IntimateWeddingVenuesTexasPage() {
               <p>
                 The ceremony happens at the lakefront, with the water and open sky as the
                 backdrop. The shared barn and communal kitchen anchor the celebration — dinner,
-                dancing, the toast that runs long. Fire pits hold the after-hours. And ten
+                dancing, the toast that runs long. And ten
                 private cabins, in two quiet layouts with natural materials and generous windows,
                 give your family and closest friends a place to stay on site. Because we host one
                 event at a time, the whole 16 acres are reserved for you alone through the
@@ -263,7 +263,7 @@ export default function IntimateWeddingVenuesTexasPage() {
               </p>
               <p>
                 It also simplifies the logistics. With a lakefront ceremony site, a barn for
-                dinner, fire pits for the evening, and cabins a short walk away, most of the
+                dinner, porches for the evening, and cabins a short walk away, most of the
                 wedding lives within one set of grounds. Fewer moving parts, fewer vendors
                 shuttling between locations, and more of your attention left for the people who
                 came. The land carries the beauty so you can carry the day.

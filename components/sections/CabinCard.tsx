@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import { urlForImage } from '@/sanity/lib/image'
@@ -5,9 +6,13 @@ import type { Cabin } from '@/sanity/types'
 
 interface CabinCardProps {
   cabin: Cabin
+  /** e.g. "From $169/night", shown with the size and sleeps line. */
+  fromRateLabel?: string
+  /** Booking action under the description, e.g. a Cloudbeds button. */
+  action?: ReactNode
 }
 
-export default function CabinCard({ cabin }: CabinCardProps) {
+export default function CabinCard({ cabin, fromRateLabel, action }: CabinCardProps) {
   return (
     <div className="grid gap-12 md:gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
       {/* Text column */}
@@ -22,6 +27,12 @@ export default function CabinCard({ cabin }: CabinCardProps) {
             <span>Sleeps {cabin.sleeps}</span>
             <span>·</span>
             <span>{cabin.bedType}</span>
+            {fromRateLabel && (
+              <>
+                <span>·</span>
+                <span className="text-[#253136]">{fromRateLabel}</span>
+              </>
+            )}
           </div>
         </div>
 
@@ -46,6 +57,8 @@ export default function CabinCard({ cabin }: CabinCardProps) {
             </ul>
           </div>
         )}
+
+        {action && <div className="pt-2">{action}</div>}
       </div>
 
       {/* Image column: stays in view while the description scrolls */}

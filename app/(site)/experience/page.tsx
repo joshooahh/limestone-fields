@@ -60,7 +60,6 @@ export default async function ExperiencePage() {
             <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
               <li>The Barn with Communal Kitchen</li>
               <li>Shared Tables for Meals or Work</li>
-              <li>Fire Pits for Evening Gathering</li>
               <li>Open Seating Areas Indoors and Out</li>
             </ul>
           </div>
@@ -136,7 +135,7 @@ export default async function ExperiencePage() {
               </li>
               <li>
                 <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">WINTER</span>
-                Clarity, stillness, and wide views. The fire pits get more use.
+                Clarity, stillness, and wide views.
               </li>
             </ul>
           </div>

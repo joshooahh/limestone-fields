@@ -95,7 +95,7 @@ export default function FamilyReunionsPage() {
       >
         <p>
           Your aunt who needs quiet gets a cabin at the end of the row. The cousins who stay up until two get the
-          fire pit. Your parents get a king bed, a soaking tub, and a porch with a lake view. And every morning, all
+          barn. Your parents get a king bed, a soaking tub, and a porch with a lake view. And every morning, all
           of you end up in the barn kitchen anyway, because that is where the coffee is.
         </p>
         <p>
@@ -113,10 +113,10 @@ export default function FamilyReunionsPage() {
 
       <Pillars
         items={[
-          { n: '01', title: 'A door for every household', body: 'Ten brand-new cabins on the water. Seven with a king bed for a couple; three suites with a king and two full beds for a family. Each with a private cedar soaking tub and a fire pit.' },
+          { n: '01', title: 'A door for every household', body: 'Ten brand-new cabins on the water. Seven with a king bed for a couple; three suites with a king and two full beds for a family. Each with a private cedar soaking tub.' },
           { n: '02', title: 'One table for everyone', body: 'The Commons: a 1,200 sq ft barn with a full chef’s kitchen and a long farm table. Big enough for the whole family to cook, eat, and argue about the recipe together.' },
           { n: '03', title: 'A farm for the kids', body: 'Highland cattle, ducks, hens, a garden, and a tree swing under a big oak. The kind of place where children disappear for an hour and come back muddy and happy.' },
-          { n: '04', title: 'A lake for everyone else', body: '1,200 feet of private shoreline, kayaks, walking paths through the woods, and fire pits at every cabin. Room to be together, and room to get away.' },
+          { n: '04', title: 'A lake for everyone else', body: '1,200 feet of private shoreline, kayaks, and walking paths through the woods. Room to be together, and room to get away.' },
         ]}
       />
 
@@ -128,7 +128,7 @@ export default function FamilyReunionsPage() {
           'All ten cabins for two nights or more: king beds, private cedar soaking tubs, sleeps 26',
           'The Commons barn (1,200 sq ft): full chef’s kitchen, long table, lounge with sofas and games',
           'Outdoor kitchen with a Santa Maria grill and woodfired oven for the big cookout',
-          'Fire pits, the pergola, and outdoor gathering spots for the family photo',
+          'The pergola and outdoor gathering spots for the family photo',
           '1,200 feet of private lakefront, kayaks, walking paths, and open land to run',
           'The working farm: Highland cattle, ducks, hens, and the garden',
           'Space for day guests to join for a meal or a milestone celebration',
@@ -149,7 +149,7 @@ export default function FamilyReunionsPage() {
             items: [
               ['Afternoon', 'Cars roll in from three cities. Cabins are claimed, the kids find the ducks'],
               ['Evening', 'The first big dinner in the barn, or tacos over the fire'],
-              ['Late', 'Fire pits, stars, the cousins catching up until two'],
+              ['Late', 'Porches, stars, the cousins catching up until two'],
             ],
           },
           {
@@ -192,7 +192,7 @@ export default function FamilyReunionsPage() {
                 tend to lose it somewhere between the tree swing and the pond.
               </p>
               <p>
-                For the grown-ups watching from a porch: every cabin has a soaking tub and a fire pit, the barn has
+                For the grown-ups watching from a porch: every cabin has a soaking tub, the barn has
                 a lounge with games, and the lake is right there. Nobody has to drive anywhere for three days.
               </p>
             </div>
@@ -223,7 +223,7 @@ export default function FamilyReunionsPage() {
       <Numbers
         items={[
           ['Overnight', '26 across ten cabins; 3 suites sleep four'],
-          ['Day guests', 'Up to about 50 for a meal or celebration'],
+          ['Day guests', 'Up to about 75 for a meal or celebration'],
           ['Length', 'Two-night minimum; three and four nights welcome'],
           ['Location', 'Lake Limestone, TX. Two hours from Austin, Dallas, and Houston'],
         ]}

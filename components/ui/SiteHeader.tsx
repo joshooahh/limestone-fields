@@ -14,6 +14,47 @@ interface SiteHeaderProps {
   bookingsOpen?: boolean | null
 }
 
+/**
+ * A top-nav link that opens a small menu on hover or keyboard focus, using
+ * the same pattern as the Book now menu. The label still links to `href`.
+ */
+function NavGroup({
+  label,
+  href,
+  items,
+  labelClassName = '',
+  align = 'left',
+}: {
+  label: string
+  href: string
+  items: { href: string; label: string }[]
+  labelClassName?: string
+  align?: 'left' | 'right'
+}) {
+  return (
+    <div className="group relative">
+      <Link href={href} className={`transition hover:text-white whitespace-nowrap ${labelClassName}`}>
+        {label}
+      </Link>
+      <div
+        className={`invisible absolute ${align === 'right' ? 'right-0' : '-left-5'} top-full z-40 pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100`}
+      >
+        <div className="min-w-[190px] rounded-xl bg-[#f7f2e4] py-2 shadow-xl">
+          {items.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="block whitespace-nowrap px-5 py-2.5 text-[#253136] transition hover:bg-[#f7e7d5]"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
   const pathname = usePathname()
   const isNonHero = NON_HERO_PREFIXES.some(
@@ -37,7 +78,7 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
 
   const linkClass = 'transition hover:text-white whitespace-nowrap'
   const navClass =
-    'pointer-events-auto hidden md:flex items-center gap-3.5 lg:gap-9 text-[10.5px] lg:text-[13px] font-subhead uppercase tracking-[0.1em] lg:tracking-[0.16em] text-[#f7f2e4]/90'
+    'pointer-events-auto hidden md:flex items-center gap-3.5 lg:gap-6 xl:gap-9 text-[10.5px] lg:text-[11.5px] xl:text-[13px] font-subhead uppercase tracking-[0.1em] xl:tracking-[0.16em] text-[#f7f2e4]/90'
   const bookHref = bookingsOpen ? propertyUrl : '/contact'
   const bookLabel = bookingsOpen ? 'Book now' : 'Join waitlist'
 
@@ -59,14 +100,26 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
 
         {/* Desktop: left nav */}
         <nav className={`${navClass} justify-start`}>
-          <Link
+          <NavGroup
+            label="Private Events"
             href="/private-events"
-            className={`${linkClass} !text-white border-b border-[#f7f2e4]/70 pb-0.5 font-semibold`}
-          >
-            Private Events
-          </Link>
+            labelClassName="!text-white border-b border-[#f7f2e4]/70 pb-0.5 font-semibold"
+            items={[
+              { href: '/private-events', label: 'Private events' },
+              { href: '/weddings', label: 'Weddings' },
+            ]}
+          />
           <Link href="/stay" className={linkClass}>Cabins</Link>
-          <Link href="/the-property" className={linkClass}>The Property</Link>
+          <NavGroup
+            label="The Property"
+            href="/the-property"
+            items={[
+              { href: '/the-property', label: 'The property' },
+              { href: '/experience', label: 'The experience' },
+              { href: '/story', label: 'Our story' },
+              { href: '/faq', label: 'FAQ' },
+            ]}
+          />
         </nav>
         <div className="md:hidden" />
 
@@ -78,7 +131,15 @@ export default function SiteHeader({ bookingsOpen }: SiteHeaderProps) {
         {/* Desktop: right nav */}
         <nav className={`${navClass} justify-end`}>
           <Link href="/blog" className={linkClass}>Journal</Link>
-          <Link href="/gift-cards" className={linkClass}>Gift Cards</Link>
+          <NavGroup
+            label="Offers & Gift Cards"
+            href="/offers"
+            align="right"
+            items={[
+              { href: '/offers', label: 'Offers' },
+              { href: '/gift-cards', label: 'Gift cards' },
+            ]}
+          />
           {/* Book now defaults to the whole property; a single cabin is the alternative. */}
           <div className="group relative">
             <Link

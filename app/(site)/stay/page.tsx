@@ -12,6 +12,19 @@ import type { Cabin, PageDocument } from '@/sanity/types'
 import { ArrowRight } from 'lucide-react'
 import SectionGallery from '@/components/gallery/SectionGallery'
 import { STANDARD_CABIN_GALLERY, CABIN_SUITE_GALLERY } from '@/lib/gallery'
+import CloudbedsBookButton from '@/components/booking/CloudbedsBookButton'
+import { CABIN_FROM_RATES, fromRateLabel } from '@/lib/cloudbeds'
+
+/** "From" rate for a cabin type, matched by title like cabinTour below. */
+function cabinFromRate(title: string | undefined) {
+  const t = (title ?? '').toLowerCase()
+  if (t.includes('suite')) return fromRateLabel(CABIN_FROM_RATES.cabinSuite)
+  if (t.includes('standard')) return fromRateLabel(CABIN_FROM_RATES.standardCabin)
+  return undefined
+}
+
+const BOOK_BUTTON_CLASS =
+  'inline-flex items-center justify-center rounded-[78px] bg-[#253136] px-8 py-3 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#b3c1ce] transition hover:bg-[#253136]/90'
 
 const pageSchema = webPageSchema(
   '/stay',
@@ -64,14 +77,14 @@ export default async function StayPage() {
       <Hero
         headline="The Cabins at Limestone Fields"
         subhead="Ten private cabins. Two thoughtful layouts. Everything you need, nothing you don't."
-        ctaText="Check Availability"
-        ctaHref="/book"
+        ctaText="See the Cabins"
+        ctaHref="#cabins"
         backgroundImage={stayPage?.heroImage ? urlForImage(stayPage.heroImage).width(1600).auto('format').url() : undefined}
         backgroundImageAlt="Cabins at Limestone Fields"
       />
 
       {/* Intro blurb */}
-      <section className="bg-limestone-cream py-24 md:py-36">
+      <section className="bg-limestone-cream py-14 md:py-20">
         <div className="container max-w-2xl mx-auto px-6 text-center">
           <p className="font-body-secondary text-lg md:text-xl text-[#253136] leading-relaxed">
             Stay in a private cabin on Lake Limestone, surrounded by open land, water,
@@ -82,7 +95,7 @@ export default async function StayPage() {
       </section>
 
       {/* Cabin Types */}
-      <section className="py-24 md:py-32 bg-[#F9F4EE]">
+      <section id="cabins" className="scroll-mt-20 py-24 md:py-32 bg-[#F9F4EE]">
         <div className="container max-w-6xl mx-auto px-6">
           <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] mb-5">
             THE CABINS
@@ -110,7 +123,11 @@ export default async function StayPage() {
                 const tour = cabinTour(cabin.title)
                 return (
                   <div key={cabin._id}>
-                    <CabinCard cabin={cabin} />
+                    <CabinCard
+                      cabin={cabin}
+                      fromRateLabel={cabinFromRate(cabin.title)}
+                      action={<CloudbedsBookButton label="Check Availability" className={BOOK_BUTTON_CLASS} />}
+                    />
                     {tour && <CabinTour {...tour} />}
                   </div>
                 )
@@ -226,7 +243,7 @@ export default async function StayPage() {
             <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
               <li>Fresh Linens and Towels</li>
               <li>Access to the Shared Barn Kitchen</li>
-              <li>Fire Pits and Outdoor Gathering Areas</li>
+              <li>Outdoor Gathering Areas</li>
               <li>Parking Near the Cabins</li>
             </ul>
             <p className="font-subhead text-[13px] tracking-[0.26em] uppercase text-[#253136] pt-2">

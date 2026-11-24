@@ -38,7 +38,6 @@ const eventVenueSchema = {
     { '@type': 'LocationFeatureSpecification', name: 'Lakefront ceremony site', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Barn commons (1,200 sq ft)', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Outdoor chef kitchen', value: true },
-    { '@type': 'LocationFeatureSpecification', name: 'Fire pits', value: true },
     { '@type': 'LocationFeatureSpecification', name: '10 overnight cabins on site', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Full property exclusive use', value: true },
   ],
@@ -52,7 +51,7 @@ export const metadata: Metadata = {
     images: OG_IMAGES,
     title: 'Private Events at Limestone Fields — Lake Limestone, TX',
     description:
-      'Intimate weddings and private gatherings on Lake Limestone. Full property exclusive use. Up to 50 guests for the day, 26 overnight across ten cabins.',
+      'Intimate weddings and private gatherings on Lake Limestone. Full property exclusive use. Up to 75 guests for the day, 26 overnight across ten cabins.',
     url: 'https://limestonefields.com/private-events',
   },
   alternates: { canonical: 'https://limestonefields.com/private-events' },
@@ -126,7 +125,7 @@ export default async function PrivateEventsPage() {
               <li>1,200 sq ft Commons Barn with Full Kitchen</li>
               <li>1,200 ft of Private Lakefront</li>
               <li>Walking Paths and Open Land</li>
-              <li>Fire Pits and Outdoor Gathering Areas</li>
+              <li>Outdoor Gathering Areas</li>
               <li>Seasonal Farm Access</li>
             </ul>
           </div>
@@ -249,7 +248,7 @@ export default async function PrivateEventsPage() {
               <li>Lakefront Ceremony Setting</li>
               <li>On-Site Guest Cabins for 26</li>
               <li>Barn Common Area and Kitchen</li>
-              <li>Fire Pits and Outdoor Gathering Spaces</li>
+              <li>Outdoor Gathering Spaces</li>
             </ul>
             <Link
               href="/weddings"
@@ -267,7 +266,7 @@ export default async function PrivateEventsPage() {
               Intimate Scale
             </h2>
             <ul className="space-y-3 text-[18px] text-[#253136] leading-[1.55]">
-              <li>Up to 50 guests for the ceremony and reception</li>
+              <li>Up to 75 guests for the ceremony and reception</li>
               <li>26 guests overnight in the cabins</li>
               <li>Friday arrival through Sunday departure</li>
               <li>One wedding at a time — full property exclusivity</li>
