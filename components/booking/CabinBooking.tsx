@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { CABIN_FROM_RATES, fromRateLabel } from '@/lib/cloudbeds'
 
 interface CabinImages {
   familyCabin?: string | null
@@ -14,30 +15,15 @@ interface Props {
   images?: CabinImages
 }
 
+// Single cabins first: this page is where "Book now → A single cabin" and the
+// footer's "Ready to Book?" land, so the whole property comes last here.
 const CABIN_TYPES = [
-  {
-    id: 'property',
-    imageKey: 'entireProperty' as keyof CabinImages,
-    bookingUrl: 'cloudbeds',
-    name: 'The Whole Property',
-    sleeps: 26,
-    layout: '10 cabins · Barn commons',
-    features: [
-      'All 10 Private Cabins',
-      '1,200 sq ft Commons Barn',
-      'Full Chef\'s Kitchen',
-      '1,200 ft of Private Lakefront',
-      'Working Permaculture Farm',
-    ],
-    description:
-      'Take all ten cabins and the barn for your group. Family reunions, team offsites, or any gathering that wants the land to itself.',
-    bg: 'bg-[#CBD2DA]',
-  },
   {
     id: 'family',
     imageKey: 'familyCabin' as keyof CabinImages,
     bookingUrl: '/book/family-cabin',
     name: 'Cabin Suite',
+    fromRate: CABIN_FROM_RATES.cabinSuite,
     sleeps: 4,
     layout: '1 bedroom · 1 bathroom',
     features: [
@@ -56,6 +42,7 @@ const CABIN_TYPES = [
     imageKey: 'traditionalCabin' as keyof CabinImages,
     bookingUrl: '/book/traditional-cabin',
     name: 'Standard Cabin',
+    fromRate: CABIN_FROM_RATES.standardCabin,
     sleeps: 2,
     layout: '1 bedroom · 1 bathroom',
     features: [
@@ -68,6 +55,25 @@ const CABIN_TYPES = [
     description:
       'Our original cabin layout — pared back and thoughtfully designed. Everything you need to settle in and slow down. Nothing superfluous.',
     bg: 'bg-limestone-cream',
+  },
+  {
+    id: 'property',
+    imageKey: 'entireProperty' as keyof CabinImages,
+    bookingUrl: 'cloudbeds',
+    name: 'The Whole Property',
+    fromRate: CABIN_FROM_RATES.fullProperty,
+    sleeps: 26,
+    layout: '10 cabins · Barn commons',
+    features: [
+      'All 10 Private Cabins',
+      '1,200 sq ft Commons Barn',
+      'Full Chef\'s Kitchen',
+      '1,200 ft of Private Lakefront',
+      'Working Permaculture Farm',
+    ],
+    description:
+      'Take all ten cabins and the barn for your group. Family reunions, team offsites, or any gathering that wants the land to itself.',
+    bg: 'bg-[#CBD2DA]',
   },
 ]
 
@@ -91,7 +97,7 @@ export default function CabinBooking({ images }: Props) {
                       {cabin.name}
                     </h2>
                     <p className="font-subhead text-[13px] tracking-[0.2em] uppercase text-[#253136]/60">
-                      Sleeps {cabin.sleeps}
+                      Sleeps {cabin.sleeps} · {fromRateLabel(cabin.fromRate)}
                     </p>
                   </div>
                   <p className="text-[18px] text-[#253136] leading-[1.55]">

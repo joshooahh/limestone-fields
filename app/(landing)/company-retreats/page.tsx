@@ -115,7 +115,7 @@ export default function CompanyRetreatsPage() {
         items={[
           { n: '01', title: 'A room for the work', body: 'The Commons: 1,200 sq ft with a long farm table, a lounge, and a full chef’s kitchen. Sessions in the morning, dinner at the same table that night.' },
           { n: '02', title: 'A cabin for each person', body: 'Ten private cabins, each with a king bed, a built-in desk, and an outdoor cedar soaking tub. Real doors that close. The kind of rest that makes day two better than day one.' },
-          { n: '03', title: 'Sixteen acres of think time', body: 'Kayaks on Lake Limestone, walking paths through the woods, a working farm with Highland cattle, and fire pits at every cabin. Walking meetings are better meetings.' },
+          { n: '03', title: 'Sixteen acres of think time', body: 'Kayaks on Lake Limestone, walking paths through the woods, and a working farm with Highland cattle. Walking meetings are better meetings.' },
           { n: '04', title: 'Nobody else here', body: 'One group at a time. The whole property is yours from Friday to Sunday, or midweek if that suits the team better. No other guests, no other event, no audience.' },
         ]}
       />
@@ -127,7 +127,7 @@ export default function CompanyRetreatsPage() {
         items={[
           'All ten cabins for two nights or more: king beds, desks, private cedar soaking tubs, sleeps 26',
           'The Commons barn (1,200 sq ft): meeting and dining space, lounge, full chef’s kitchen',
-          'Outdoor kitchen with a Santa Maria grill and woodfired oven, fire pits, and the pergola',
+          'Outdoor kitchen with a Santa Maria grill and woodfired oven, and the pergola',
           '1,200 feet of private lakefront, kayaks, walking paths, and open land',
           'Access to the working farm: garden, hens, ducks, and the Highland cattle',
           'Un-facilitated by design. Bring your own facilitator, chef, or programming, or use the space as it is',
@@ -157,7 +157,7 @@ export default function CompanyRetreatsPage() {
               ['Morning', 'Coffee in the barn, then the first working block'],
               ['Midday', 'Lunch, then walking meetings in pairs down to the lake'],
               ['Afternoon', 'Second block, or open time to think and write in the cabins'],
-              ['Evening', 'The long dinner. Fire pit after. Nobody drives anywhere'],
+              ['Evening', 'The long dinner, then the stars. Nobody drives anywhere'],
             ],
           },
           {

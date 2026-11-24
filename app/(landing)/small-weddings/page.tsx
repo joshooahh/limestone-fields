@@ -130,7 +130,7 @@ export default function SmallWeddingsPage() {
         items={[
           'Lakefront ceremony site with sound system',
           'The Commons barn (1,200 sq ft) with full chef’s kitchen, tables, chairs, string lights, and uplighting',
-          'Outdoor pergola, fire pits, and the outdoor kitchen with Santa Maria grill',
+          'Outdoor pergola and the outdoor kitchen with Santa Maria grill',
           'All ten cabins for two nights: king beds, private cedar soaking tubs. Every one of your 26 guests sleeps on the property',
           'Bridal suite and groom’s suite for getting ready',
           'Friday evening space for the rehearsal dinner, Sunday morning for a slow brunch',
@@ -162,7 +162,7 @@ export default function SmallWeddingsPage() {
               ['Morning', 'Slow breakfast in the barn; getting ready in the suites'],
               ['Afternoon', 'Ceremony on the lakefront'],
               ['Evening', 'Dinner and dancing in The Commons, drinks under the pergola'],
-              ['Late', 'The fire pit. Nobody has to leave.'],
+              ['Late', 'Stars over the lake. Nobody has to leave.'],
             ],
           },
           {
@@ -191,7 +191,7 @@ export default function SmallWeddingsPage() {
             <p>
               Seven standard cabins with a king bed, and three suites that sleep four, for the couple with kids or
               the grandparents who want a little more room. Every cabin is new, sits on the water, and has its own
-              outdoor cedar soaking tub and fire pit.
+              outdoor cedar soaking tub.
             </p>
             <p>
               Twenty-six people sleep on the property, which is the whole guest list. Parents in the suites with
@@ -238,7 +238,7 @@ export default function SmallWeddingsPage() {
           ['Can all our guests stay on site?', 'Yes. That is the point. Ten cabins sleep twenty-six: seven with a king bed for two, three suites that sleep four. Build the guest list to the cabins and nobody needs a hotel.'],
           ['What if our list is a little over twenty-six?', 'Tell us the real number. A few extra guests can join for the day and stay in Jewett or Groesbeck, fifteen minutes away. But the weekend works best when everyone who is there at midnight is also there at breakfast.'],
           ['What if it rains?', 'The Commons barn holds your reception either way, and a ceremony can move inside or under the pergola. Your coordinator will have a weather plan; we will walk it with them.'],
-          ['Is there a music curfew?', 'Yes. We are on a lake with neighbors, so amplified music ends at a set hour. Ask us for the specifics and we will help you build the night around it. The fire pit has no curfew.'],
+          ['Is there a music curfew?', 'Yes. We are on a lake with neighbors, so amplified music ends at a set hour. Ask us for the specifics and we will help you build the night around it.'],
           ['Can we come see it first?', 'Please do. Tell us in the form and we will set up a visit. Better still, book a regular weekend in a cabin and see how the place feels when it is quiet.'],
           ['How far ahead should we book?', 'We host one wedding at a time and only a handful a year, so popular months go early. If you have a date in mind, ask now; if you are flexible, say so and we will show you what is open.'],
         ]}

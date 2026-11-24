@@ -15,7 +15,7 @@ const eventVenueSchema = {
   '@type': 'EventVenue',
   name: 'Limestone Fields',
   description:
-    'A lakefront wedding and event venue on Lake Limestone, Texas. Full property exclusive use. Intimate ceremony site for up to 50 guests, 1,200 sq ft barn reception space, and 10 private overnight cabins.',
+    'A lakefront wedding and event venue on Lake Limestone, Texas. Full property exclusive use. Intimate ceremony site for up to 75 guests, 1,200 sq ft barn reception space, and 10 private overnight cabins.',
   url: 'https://limestonefields.com/weddings',
   address: {
     '@type': 'PostalAddress',
@@ -35,7 +35,7 @@ const eventVenueSchema = {
     { '@type': 'LocationFeatureSpecification', name: 'Lakefront ceremony site', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Barn reception space (1,200 sq ft)', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Outdoor pergola', value: true },
-    { '@type': 'LocationFeatureSpecification', name: 'Intimate ceremony setup (up to 50)', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Intimate ceremony setup (up to 75)', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Sound system', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Tables and chairs', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'String lights and uplighting', value: true },
@@ -53,13 +53,13 @@ export async function generateMetadata(): Promise<Metadata> {
     title: page?.seo?.metaTitle ?? 'Weddings',
     description:
       page?.seo?.metaDescription ??
-      'Host your wedding at Limestone Fields on Lake Limestone, Texas. Intimate lakefront ceremony for up to 50 guests, 10 private cabins for overnight guests, and a 1,200 sq ft barn reception space. Full property exclusive use. 2 hours from Austin, Dallas, and Houston.',
+      'Host your wedding at Limestone Fields on Lake Limestone, Texas. Intimate lakefront ceremony for up to 75 guests, 10 private cabins for overnight guests, and a 1,200 sq ft barn reception space. Full property exclusive use. 2 hours from Austin, Dallas, and Houston.',
     openGraph: {
     images: OG_IMAGES,
       title: page?.seo?.metaTitle ?? 'Weddings at Limestone Fields — Lake Limestone, TX',
       description:
         page?.seo?.metaDescription ??
-        'An intimate lakefront wedding venue on Lake Limestone. Ceremony for up to 50 guests, barn reception, 10 cabins for overnight guests. Full property exclusive use.',
+        'An intimate lakefront wedding venue on Lake Limestone. Ceremony for up to 75 guests, barn reception, 10 cabins for overnight guests. Full property exclusive use.',
       url: 'https://limestonefields.com/weddings',
     },
     alternates: { canonical: 'https://limestonefields.com/weddings' },
@@ -161,7 +161,7 @@ export default async function WeddingsPage() {
                 <ul className="space-y-5 text-[18px] text-[#253136] leading-[1.55]">
                   <li>
                     <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">CEREMONY SITE</span>
-                    Lakefront location with natural backdrop. Intimate setup for up to 50. Sound system included.
+                    Lakefront location with natural backdrop. Intimate setup for up to 75. Sound system included.
                   </li>
                   <li>
                     <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">RECEPTION SPACE</span>
@@ -216,7 +216,7 @@ export default async function WeddingsPage() {
                 <ul className="space-y-5 text-[18px] text-[#253136] leading-[1.55]">
                   <li>
                     <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">GUEST CAPACITY</span>
-                    Up to 50 for the ceremony and reception
+                    Up to 75 for the ceremony and reception
                   </li>
                   <li>
                     <span className="font-subhead text-[12px] tracking-[0.22em] uppercase block mb-1">OVERNIGHT GUESTS</span>

@@ -54,7 +54,7 @@ const faqs = [
   {
     question: 'What is there to do on a weekend getaway from Dallas at Lake Limestone?',
     answer:
-      'As little or as much as you like. Guests walk the 16 acres, sit by the lake, soak, gather at the fire pits, and spend time on the working farm. The days are unprogrammed on purpose. The land sets the rhythm and you follow it.',
+      'As little or as much as you like. Guests walk the 16 acres, sit by the lake, soak, and spend time on the working farm. The days are unprogrammed on purpose. The land sets the rhythm and you follow it.',
   },
   {
     question: 'Do the cabins have Wi-Fi and TVs?',
@@ -117,7 +117,6 @@ const jsonLd = [
     amenityFeature: [
       { '@type': 'LocationFeatureSpecification', name: 'Lakefront', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Soaking tubs', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'Fire pits', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Working farm', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'No televisions', value: true },
     ],
