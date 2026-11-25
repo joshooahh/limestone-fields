@@ -61,8 +61,8 @@ const CLOUDBEDS_ENGINE_BASE = `https://us2.cloudbeds.com/en/reservation/${CLOUDB
 /**
  * Hosted booking-engine link for a stay. Defaults to the whole property
  * (Full Property room type) — the site's default ask. Pass
- * `wholeProperty: false` for a search across single cabins, which simply
- * omits accommodation_types. No prices are ever hardcoded; Cloudbeds owns them.
+ * `wholeProperty: false` for a search across single cabins, which lists the
+ * three cabin types first. No prices are hardcoded here; Cloudbeds owns them.
  */
 export function cloudbedsBookingUrl(opts: {
   checkin: string
@@ -79,6 +79,17 @@ export function cloudbedsBookingUrl(opts: {
   })
   if (wholeProperty) {
     params.set('accommodation_types', CLOUDBEDS_ROOM_TYPE_IDS.fullProperty)
+  } else {
+    // The hosted engine lists these types first (semicolon-separated) but
+    // still shows the rest below, so single cabins lead and Full Property follows.
+    params.set(
+      'accommodation_types',
+      [
+        CLOUDBEDS_ROOM_TYPE_IDS.standardCabin,
+        CLOUDBEDS_ROOM_TYPE_IDS.standardAccessibleCabin,
+        CLOUDBEDS_ROOM_TYPE_IDS.cabinSuite,
+      ].join(';')
+    )
   }
   return `${CLOUDBEDS_ENGINE_BASE}?${params.toString()}`
 }

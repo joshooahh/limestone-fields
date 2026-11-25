@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { OG_IMAGES, SITE_URL } from '@/lib/schema-constants'
-import { offers, offerBookingUrl } from '@/lib/offers'
+import { activeOffers, offerBookingUrl } from '@/lib/offers'
 
 const PAGE_URL = `${SITE_URL}/offers`
 
@@ -40,7 +40,7 @@ export default function OffersPage() {
 
       <section className="bg-limestone-cream pb-20 md:pb-28">
         <div className="container max-w-2xl mx-auto px-6">
-          {offers.map((offer) => (
+          {activeOffers().map((offer) => (
             <article
               key={offer.slug}
               id={offer.slug}

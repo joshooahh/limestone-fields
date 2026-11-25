@@ -26,9 +26,14 @@ const NAV_LINKS = [
 
 export default function MobileNav({ bookingsOpen }: MobileNavProps) {
   const [open, setOpen] = useState(false)
+  // Book now defaults to single cabins; the whole property is the alternative.
+  // Both open Cloudbeds. Dates are filled in after mount.
+  const [cabinsUrl, setCabinsUrl] = useState('/book')
   const [propertyUrl, setPropertyUrl] = useState('/private-events#dates')
   useEffect(() => {
-    setPropertyUrl(cloudbedsBookingUrl(defaultStayDates()))
+    const dates = defaultStayDates()
+    setCabinsUrl(cloudbedsBookingUrl({ ...dates, wholeProperty: false }))
+    setPropertyUrl(cloudbedsBookingUrl(dates))
   }, [])
   const pathname = usePathname()
 
@@ -60,7 +65,7 @@ export default function MobileNav({ bookingsOpen }: MobileNavProps) {
     return () => document.removeEventListener('keydown', onKey)
   }, [close])
 
-  const waitlistHref = bookingsOpen ? propertyUrl : '/contact'
+  const waitlistHref = bookingsOpen ? cabinsUrl : '/contact'
 
   return (
     <>
@@ -148,15 +153,15 @@ export default function MobileNav({ bookingsOpen }: MobileNavProps) {
               onClick={close}
               className="inline-flex items-center justify-center rounded-[78px] bg-[#f7f2e4] px-8 py-3 text-[13px] font-subhead uppercase tracking-[0.22em] text-[#253136] transition hover:bg-[#f7e7d5]"
             >
-              {bookingsOpen ? 'Book the property' : 'Join Waitlist'}
+              {bookingsOpen ? 'Book a cabin' : 'Join Waitlist'}
             </Link>
             {bookingsOpen && (
               <Link
-                href="/book"
+                href={propertyUrl}
                 onClick={close}
                 className="font-subhead text-[12px] uppercase tracking-[0.22em] text-[#f7f2e4]/70 underline underline-offset-[6px] transition hover:text-[#f7f2e4]"
               >
-                Or a single cabin
+                Or the whole property
               </Link>
             )}
           </div>
