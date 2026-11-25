@@ -130,10 +130,10 @@ export default async function HomePage() {
       <AnnouncementBanner announcement={siteSettings?.announcement} />
 
       <Hero
-        eyebrow="Whole-property buyouts"
+        eyebrow="Lake Limestone, Texas"
         headline="A collection of lakefront cabins on Lake Limestone, designed for rest & renewal."
         kicker="Come remember why you started."
-        subhead="Ten cabins, a barn kitchen, and 1,200 feet of lakefront on Lake Limestone. Your group, and no one else."
+        subhead="Ten cabins, a barn kitchen, and 1,200 feet of lakefront on Lake Limestone. Book a single cabin, or the whole place for your group."
         backgroundImage={img(images?.heroImage) ?? undefined}
         backgroundImageAlt="Sunrise over Lake Limestone"
         backgroundVideo={['/videos/hero.mp4', '/videos/hero-2.mp4']}

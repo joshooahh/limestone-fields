@@ -76,7 +76,7 @@ export default async function PrivateEventsPage() {
       {/* Date search, whole property by default */}
       <section id="dates" className="bg-limestone-cream pb-10">
         <div className="container max-w-3xl mx-auto px-6 -mt-10 relative z-10">
-          <PropertyDateSearch />
+          <PropertyDateSearch defaultMode="property" />
         </div>
       </section>
 

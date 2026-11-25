@@ -32,15 +32,17 @@ function money(rate: number): string {
 
 interface Props {
   className?: string
+  /** Which search the toggle opens on. The homepage leads with cabins; /private-events with the whole property. */
+  defaultMode?: 'property' | 'cabin'
 }
 
 /**
- * Date search that defaults to the whole property. Hands off to the Cloudbeds
- * hosted engine with the Full Property room type pre-selected. Single cabins
- * are the quiet alternative underneath.
+ * Date search with a toggle between single cabins and the whole property.
+ * Hands off to the Cloudbeds hosted engine; the whole property option
+ * pre-selects the Full Property room type.
  */
-export default function PropertyDateSearch({ className = '' }: Props) {
-  const [mode, setMode] = useState<'property' | 'cabin'>('property')
+export default function PropertyDateSearch({ className = '', defaultMode = 'cabin' }: Props) {
+  const [mode, setMode] = useState<'property' | 'cabin'>(defaultMode)
   const [today, setToday] = useState('')
   const [checkin, setCheckin] = useState('')
   const [checkout, setCheckout] = useState('')
@@ -103,7 +105,7 @@ export default function PropertyDateSearch({ className = '' }: Props) {
     'w-full rounded-lg border border-[#253136]/15 bg-white px-4 py-2.5 text-[16px] text-[#253136] focus:border-[#253136]/50 focus:outline-none'
   const label = 'mb-1.5 block font-subhead text-[11px] uppercase tracking-[0.22em] text-[#253136]/60'
 
-  const toggleButtons = (['property', 'cabin'] as const).map((m) => (
+  const toggleButtons = (['cabin', 'property'] as const).map((m) => (
     <button
       key={m}
       type="button"
